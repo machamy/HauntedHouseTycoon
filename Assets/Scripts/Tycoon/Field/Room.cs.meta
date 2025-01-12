@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 710f6f17a63c4fe896374184e63bb539
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - placedCardPrefab: {instanceID: 0}
+  - placedCard: {instanceID: 0}
+  - focusRenderer: {instanceID: 0}
+  - turnEventChannelSo: {fileID: 11400000, guid: b30948b240df495448b1d9188f3ad6dc, type: 2}
+  - roomEventChannelSo: {fileID: 11400000, guid: 2ca08cea909ea8749b0879adb8c7b219, type: 2}
+  - screamEventChannelSo: {fileID: 11400000, guid: 063e8998648600a4d8d18440bf64ffd4, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

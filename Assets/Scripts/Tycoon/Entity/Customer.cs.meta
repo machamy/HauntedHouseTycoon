@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 3ebbc6517b4b47f182aa19467c85da82
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - screamEventChannel: {fileID: 11400000, guid: 063e8998648600a4d8d18440bf64ffd4, type: 2}
+  - turnEventChannelSo: {fileID: 11400000, guid: b30948b240df495448b1d9188f3ad6dc, type: 2}
+  - roomEventChannelSo: {fileID: 11400000, guid: 2ca08cea909ea8749b0879adb8c7b219, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

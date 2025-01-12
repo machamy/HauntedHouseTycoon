@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 41bd210a3473997439636738878d2a3e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - turnVariableSo: {fileID: 11400000, guid: e2e2d0cc15efd134297adbb9feac0605, type: 2}
+  - turnEventChannelSo: {fileID: 11400000, guid: b30948b240df495448b1d9188f3ad6dc, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

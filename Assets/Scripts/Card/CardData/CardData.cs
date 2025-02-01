@@ -14,7 +14,9 @@ public class CardData : ICloneable
     public Sprite cardSprite;
     public Sprite cardPlacedSprite;
     public CardActionContainer cardActionContainer;
-    public List<CardDataAgument> arguments; // TODO 직렬화 Dict으로
+    
+    // TODO 각 Action이 arguments를 가지도록... 지금은 서로 간섭 가능
+    public List<CardDataAgument> arguments; 
     
     public Deck returnDeck { get; set; }
     

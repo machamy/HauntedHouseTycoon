@@ -351,7 +351,7 @@ MonoBehaviour:
   cardDataList:
   - cardName: Blank
     cardDescription: 
-    directions: 
+    directions: 00000000010000000200000003000000
     cardSprite: {fileID: 21300000, guid: e45ca4d5292104d4a89df3d2e36494f1, type: 3}
     cardPlacedSprite: {fileID: 0}
     cardActionContainer:
@@ -3136,7 +3136,7 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
-  m_ChildScaleWidth: 1
+  m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
 --- !u!1 &1876476784
@@ -3565,7 +3565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 554b15b232624140afa0b69c135aa514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  formatText: 'Turn : {0}'
+  formatText: 'Week : {0}'
   variableSO: {fileID: 11400000, guid: 711e0359cfa65ab45b858fbee7efb3c8, type: 2}
 --- !u!114 &2002097041
 MonoBehaviour:

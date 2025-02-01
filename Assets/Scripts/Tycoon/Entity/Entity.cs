@@ -15,7 +15,7 @@ public class Entity : MonoBehaviour
     {
         currentRoom = room;
         coordinate = room.Coordinate;
-        transform.position = room.transform.position;
+        // transform.position = room.transform.position;
     }
     
     public void MoveWithTransform(Room room)

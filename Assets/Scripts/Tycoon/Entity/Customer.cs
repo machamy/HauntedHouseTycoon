@@ -71,7 +71,7 @@ public class Customer : MonoBehaviour
         {
             roomEventChannelSo.RaiseCustomerRoomExit(this, CurrentRoom);
             entity.Move(nextRoom);
-            transform.DOMove(nextRoom.transform.position, 0.25f).SetEase(Ease.Linear).OnComplete(() =>
+            transform.DOMove(nextRoom.transform.position, 0.5f).SetEase(Ease.Linear).OnComplete(() =>
             {
                 roomEventChannelSo.RaiseCustomerRoomEnter(this, nextRoom);
             });

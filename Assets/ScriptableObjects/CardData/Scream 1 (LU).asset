@@ -17,6 +17,7 @@ MonoBehaviour:
     cardDescription: 
     directions: 0000000002000000
     cardSprite: {fileID: 21300000, guid: 9a55834dab0473148be31f36fd3e1b77, type: 3}
+    cardPlacedSprite: {fileID: 0}
     cardActionContainer:
       actions:
       - {fileID: 11400000, guid: d92a58ffbd6f4ae49ba6704d7d8edcd4, type: 2}

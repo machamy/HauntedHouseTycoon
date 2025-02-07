@@ -18,42 +18,42 @@ public class HandManager : MonoBehaviour
 
     
 
-    private void OnEnable()
-    {
-        turnEventChannel.OnTurnEnter += OnTurnEnter;
-        turnEventChannel.OnTurnExit+= OnturnExit;
-    }
+    // private void OnEnable()
+    // {
+    //     turnEventChannel.OnPlayerTurnEnter += OnPlayerTurnEnter;
+    //     turnEventChannel.OnPlayerTurnExit += OnturnExit;
+    // }
+    //
+    // private void OnDisable()
+    // {
+    //     turnEventChannel.OnPlayerTurnEnter -= OnPlayerTurnEnter;
+    //     turnEventChannel.OnPlayerTurnExit -= OnturnExit;
+    // }
+    //
+    // private void OnPlayerTurnEnter()
+    // {
+    //     for (int i = 0; i < drawCount; i++)
+    //     {
+    //         DrawCard();
+    //     }
+    // }
+    //
+    // private void OnturnExit()
+    // {
+    //     
+    // }
     
-    private void OnDisable()
-    {
-        turnEventChannel.OnTurnEnter -= OnTurnEnter;
-        turnEventChannel.OnTurnExit -= OnturnExit;
-    }
+    // public void DrawCard()
+    // {
+    //     CardData cardData = deck.DrawCard();
+    //     if (cardData == null)
+    //         return;
+    //     handCardHolder.AddCardWithSlot(cardData);
+    //     cardData.returnDeck = deck;
+    // }
     
-    private void OnTurnEnter()
-    {
-        for (int i = 0; i < drawCount; i++)
-        {
-            DrawCard();
-        }
-    }
-    
-    private void OnturnExit()
-    {
-        
-    }
-    
-    public void DrawCard()
-    {
-        CardData cardData = deck.DrawCard();
-        if (cardData == null)
-            return;
-        handCardHolder.AddCardWithSlot(cardData);
-        cardData.returnDeck = deck;
-    }
-    
-    public void DiscardHand()
-    {
-
-    }
+    // public void DiscardHand()
+    // {
+    //
+    // }
 }

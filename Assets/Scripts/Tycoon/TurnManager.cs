@@ -57,7 +57,8 @@ public class TurnManager : MonoBehaviour
         turnIndicatingSlider.UpdateColor();
         remainingTurnDuration = maxPlayerTurnDuration;
         turnVariableSO.Value = (turnVariableSO.Value + 1);
-        turnEventChannelSo.RaiseTurnEnterEvent();
+        turnEventChannelSo.RaiseNonPlayerTurnExitEvent();
+        turnEventChannelSo.RaisePlayerTurnEnterEvent();
     }
 
     public void ReadyToPlayerTurnEnd()
@@ -77,6 +78,7 @@ public class TurnManager : MonoBehaviour
         turnIndicatingSlider.isPlayerTurn = false;
         turnIndicatingSlider.UpdateColor();
         remainingTurnDuration = maxNonplayerTurnDuration;
-        turnEventChannelSo.RaiseTurnExitEvent();
+        turnEventChannelSo.RaisePlayerTurnExitEvent();
+        turnEventChannelSo.RaiseNonPlayerTurnEnterEvent();
     }
 }

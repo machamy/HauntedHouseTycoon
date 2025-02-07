@@ -34,4 +34,9 @@ public class VariableSOTextUI<T> : MonoBehaviour
     {
         textUI.text = string.Format(formatText, value);
     }
+
+    private void OnValidate()
+    {
+        GetComponent<TextMeshProUGUI>().text = string.Format(formatText, variableSO.Value);
+    }
 }

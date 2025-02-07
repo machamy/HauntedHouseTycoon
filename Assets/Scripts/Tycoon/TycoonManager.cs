@@ -48,7 +48,7 @@ public class TycoonManager : Singleton<TycoonManager>
         Vector3 centerPosition = field.GetCenterPosition();
         Camera.main.transform.position = new Vector3(centerPosition.x, centerPosition.y, Camera.main.transform.position.z);
         handManager.deck = deck;
-        deck.SetupForCycle();
+        // deck.SetupForCycle();
     }
     
     public DataBase dataBase;
@@ -58,7 +58,7 @@ public class TycoonManager : Singleton<TycoonManager>
         {
             if(cardData.cardName == "Blank")
                 continue;
-            deck.AddCard(cardData.Clone() as CardData);
+            // deck.AddCard(cardData.Clone() as CardData);
         }
     }
 

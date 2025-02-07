@@ -60,8 +60,10 @@ public class Room : MonoBehaviour
         cardData = defaultCardData.cardData;
         if(originalCardData != null && originalCardData.cardName != "Blank")
         {
-            if(originalCardData.returnDeck != null)
-                originalCardData.returnDeck.AddCardToDiscardPool(cardData);
+            if (originalCardData.returnDeck != null)
+                // originalCardData.returnDeck.AddCardToDiscardPool(cardData);
+                // TODO : 버려진 카드는 어디로??
+                ;
         }
         UpdateCard();
         return true;
@@ -84,8 +86,8 @@ public class Room : MonoBehaviour
     #region Event Handlers
     private void OnEnable()
     {
-        turnEventChannelSo.OnTurnEnter += OnTurnEnter;
-        turnEventChannelSo.OnTurnExit += OnTurnExit;
+        turnEventChannelSo.OnPlayerTurnEnter += OnPlayerTurnEnter;
+        turnEventChannelSo.OnPlayerTurnExit += OnPlayerTurnExit;
         roomEventChannelSo.OnCustomerRoomEnter += OnCustomerRoomEnter;
         roomEventChannelSo.OnCustomerRoomExit += OnCustomerRoomExit;
         screamEventChannelSo.OnScream += OnScream;
@@ -93,14 +95,14 @@ public class Room : MonoBehaviour
     
     private void OnDisable()
     {
-        turnEventChannelSo.OnTurnEnter -= OnTurnEnter;
-        turnEventChannelSo.OnTurnExit -= OnTurnExit;
+        turnEventChannelSo.OnPlayerTurnEnter -= OnPlayerTurnEnter;
+        turnEventChannelSo.OnPlayerTurnExit -= OnPlayerTurnExit;
         roomEventChannelSo.OnCustomerRoomEnter -= OnCustomerRoomEnter;
         roomEventChannelSo.OnCustomerRoomExit -= OnCustomerRoomExit;
         screamEventChannelSo.OnScream -= OnScream;
     }
 
-    private void OnTurnEnter()
+    private void OnPlayerTurnEnter()
     {
         if (cardData != null)
         {
@@ -110,7 +112,7 @@ public class Room : MonoBehaviour
         }
     }
     
-    private void OnTurnExit()
+    private void OnPlayerTurnExit()
     {
         if (cardData != null)
         {
@@ -120,24 +122,24 @@ public class Room : MonoBehaviour
         }
     }
     
-    private void OnCustomerRoomEnter(Customer customer, Room room)
+    private void OnCustomerRoomEnter(Guest guest, Room room)
     {
         if (room == this)
         {
             if (cardData != null)
             {
-                cardData.cardActionContainer.InvokeOnCustomerEnter(this, cardData, customer);
+                cardData.cardActionContainer.InvokeOnCustomerEnter(this, cardData, guest);
             }
         }
     }
     
-    private void OnCustomerRoomExit(Customer customer, Room room)
+    private void OnCustomerRoomExit(Guest guest, Room room)
     {
         if (room == this)
         {
             if (cardData != null)
             {
-                cardData.cardActionContainer.InvokeOnCustomerExit(this, cardData, customer);
+                cardData.cardActionContainer.InvokeOnCustomerExit(this, cardData, guest);
             }
         }
     }

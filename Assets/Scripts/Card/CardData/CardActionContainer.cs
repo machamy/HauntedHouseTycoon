@@ -54,10 +54,10 @@ public class CardActionContainer: ICloneable
     /// 고객 입장 이벤트
     /// 처음 True를 반환할 때까지 모든 Action을 순회함.
     /// </summary>
-    public bool InvokeOnCustomerEnter(Room room, CardData cardData, Customer customer){
+    public bool InvokeOnCustomerEnter(Room room, CardData cardData, Guest guest){
         foreach (var action in actions)
         {
-            if (action.OnCustomerEnter(room, cardData, customer))
+            if (action.OnCustomerEnter(room, cardData, guest))
             {
                 return true;
             }
@@ -70,10 +70,10 @@ public class CardActionContainer: ICloneable
     /// 고객 퇴장 이벤트
     /// 처음 True를 반환할 때까지 모든 Action을 순회함.
     /// </summary>
-    public bool InvokeOnCustomerExit(Room room, CardData cardData, Customer customer){
+    public bool InvokeOnCustomerExit(Room room, CardData cardData, Guest guest){
         foreach (var action in actions)
         {
-            if (action.OnCustomerExit(room, cardData, customer))
+            if (action.OnCustomerExit(room, cardData, guest))
             {
                 return true;
             }

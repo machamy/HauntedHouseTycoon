@@ -6,16 +6,29 @@ public class TurnEventChannelSO : ScriptableObject
 {
     public delegate void TurnEnterEvent();
     public delegate void TurnExitEvent();
-    public event TurnEnterEvent OnTurnEnter;
-    public event TurnExitEvent OnTurnExit;
+    public event TurnEnterEvent OnPlayerTurnEnter;
+    public event TurnExitEvent OnPlayerTurnExit;
     
-    public void RaiseTurnEnterEvent()
+    public event TurnEnterEvent OnNonPlayerTurnEnter;
+    public event TurnExitEvent OnNonPlayerTurnExit;
+    
+    public void RaisePlayerTurnEnterEvent()
     {
-        OnTurnEnter?.Invoke();
+        OnPlayerTurnEnter?.Invoke();
     }
     
-    public void RaiseTurnExitEvent()
+    public void RaisePlayerTurnExitEvent()
     {
-        OnTurnExit?.Invoke();
+        OnPlayerTurnExit?.Invoke();
+    }
+    
+    public void RaiseNonPlayerTurnEnterEvent()
+    {
+        OnNonPlayerTurnEnter?.Invoke();
+    }
+    
+    public void RaiseNonPlayerTurnExitEvent()
+    {
+        OnNonPlayerTurnExit?.Invoke();
     }
 }

@@ -20,12 +20,12 @@ public class BaseCardActionSO : ScriptableObject
         return false;
     }
     
-    public virtual bool OnCustomerEnter(Room room, CardData cardData, Customer customer)
+    public virtual bool OnCustomerEnter(Room room, CardData cardData, Guest guest)
     {
         return false;
     }
     
-    public virtual bool OnCustomerExit(Room room, CardData cardData, Customer customer)
+    public virtual bool OnCustomerExit(Room room, CardData cardData, Guest guest)
     {
         return false;
     }

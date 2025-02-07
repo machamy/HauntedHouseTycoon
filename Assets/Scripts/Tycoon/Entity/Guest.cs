@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Entity))]
-public class Customer : MonoBehaviour
+public class Guest : MonoBehaviour
 {
     private Entity entity;
     [Header("Events")]
@@ -18,6 +18,7 @@ public class Customer : MonoBehaviour
     [SerializeField] private int screamRequirement = 5;
     [SerializeField] private int screamRequirementIncrease = 3;
     [SerializeField] private int fear = 0;
+    [SerializeField] private int panic = 20;
     [Header("References")]
     [SerializeField] private TextMeshPro fearText;
     
@@ -26,7 +27,14 @@ public class Customer : MonoBehaviour
     [SerializeField] Direction direction = Direction.None;
     
     
+    public int Fear => fear;
+    public int Panic => panic;
+    public int ScreamRequirement => screamRequirement;
+    public int ScreamRequirementIncrease => screamRequirementIncrease;
+    public int NextScreamRequirement => screamRequirement + screamRequirementIncrease;
+    
     public bool CanScream => fear >= screamRequirement;
+    public bool isPanic => fear >= panic;
     public int MovedDistance => movedDistance;
 
     private Room CurrentRoom => entity.currentRoom;
@@ -46,13 +54,13 @@ public class Customer : MonoBehaviour
     private void OnEnable()
     {
         screamEventChannel.OnScreamModified += OnCustomerScreamModified;
-        turnEventChannelSo.OnTurnEnter += OnTurnEnter;
+        turnEventChannelSo.OnPlayerTurnEnter += OnPlayerTurnEnter;
     }
     
     private void OnDisable()
     {
         screamEventChannel.OnScreamModified -= OnCustomerScreamModified;
-        turnEventChannelSo.OnTurnEnter -= OnTurnEnter;
+        turnEventChannelSo.OnPlayerTurnEnter -= OnPlayerTurnEnter;
     }
     public void MoveBehaviour()
     {
@@ -64,7 +72,7 @@ public class Customer : MonoBehaviour
         
         // TODO: 다음 이동 값 구하는 방식 수정 필요, 현재는 이동 안될때가 생김
         
-        Direction targetDir = GetFirstDirection(direction, CurrentRoom.CardData.directions);
+        Direction targetDir = GetFirstDirection(direction, CurrentRoom.CardData.directionsLegacy);
         Room nextRoom = _field.GetRoomByDirection(CurrentRoom, targetDir);
         
         if (nextRoom)
@@ -141,7 +149,7 @@ public class Customer : MonoBehaviour
     }
 
 
-    public void OnTurnEnter()
+    public void OnPlayerTurnEnter()
     {
         fear = Mathf.CeilToInt(fear * 0.9f);
         MoveBehaviour();

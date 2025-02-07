@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 133892ddc1364764bb5f6933ccd4aff1, type: 3}
-  m_Name: Week
+  m_Name: Money
   m_EditorClassIdentifier: 
   value: 0

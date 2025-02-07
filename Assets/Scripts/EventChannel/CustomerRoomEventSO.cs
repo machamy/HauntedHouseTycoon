@@ -4,17 +4,17 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CustomerRoomEvent", menuName = "EventChannel/CustomerRoomEvent")]
 public class CustomerRoomEventSO : ScriptableObject
 {
-   public delegate void CustomerRoomEneterEvent(Customer customer, Room room);
-   public delegate void CustomerRoomExitEvent(Customer customer, Room room);
+   public delegate void CustomerRoomEneterEvent(Guest guest, Room room);
+   public delegate void CustomerRoomExitEvent(Guest guest, Room room);
    public event CustomerRoomEneterEvent OnCustomerRoomEnter;
    public event CustomerRoomExitEvent OnCustomerRoomExit;
    
-   public void RaiseCustomerRoomEnter(Customer customer, Room room)
+   public void RaiseCustomerRoomEnter(Guest guest, Room room)
    {
-      OnCustomerRoomEnter?.Invoke(customer, room);
+      OnCustomerRoomEnter?.Invoke(guest, room);
    }
-   public void RaiseCustomerRoomExit(Customer customer, Room room)
+   public void RaiseCustomerRoomExit(Guest guest, Room room)
    {
-      OnCustomerRoomExit?.Invoke(customer, room);
+      OnCustomerRoomExit?.Invoke(guest, room);
    }
 }

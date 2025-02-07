@@ -82,13 +82,13 @@ public class Field : MonoBehaviour
         var coordinate = room.Coordinate;
         switch (direction)
         {
-            case Direction.U:
+            case Direction.Down:
                 return GetRoom(coordinate.x, coordinate.y + 1);
-            case Direction.D:
+            case Direction.Left:
                 return GetRoom(coordinate.x, coordinate.y - 1);
-            case Direction.L:
+            case Direction.Up:
                 return GetRoom(coordinate.x - 1, coordinate.y);
-            case Direction.R:
+            case Direction.Right:
                 return GetRoom(coordinate.x + 1, coordinate.y);
             default:
                 return null;

@@ -5,11 +5,11 @@ using UnityEngine;
 public class SimpleScreamCardActionSO : BaseCardActionSO
 {
     
-    public override bool OnCustomerEnter(Room room, CardData cardData, Customer customer)
+    public override bool OnCustomerEnter(Room room, CardData cardData, Guest guest)
     {
-        if (customer.CanScream)
+        if (guest.CanScream)
         {
-            customer.Scream();
+            guest.Scream();
         }
         return breakChain;
     }

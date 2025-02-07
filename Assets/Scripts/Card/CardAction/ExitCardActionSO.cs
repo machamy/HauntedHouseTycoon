@@ -4,9 +4,9 @@ using UnityEngine;
 [CreateAssetMenu (menuName = "CardAction/ExitCardAction")]
 public class ExitCardActionSO : BaseCardActionSO
 {
-    public override bool OnCustomerEnter(Room room, CardData cardData, Customer customer)
+    public override bool OnCustomerEnter(Room room, CardData cardData, Guest guest)
     {
-        customer.Exit();
+        guest.Exit();
         return breakChain;
     }
 }

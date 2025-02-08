@@ -22,4 +22,4 @@ MonoBehaviour:
     cardActionContainer:
       actions: []
     arguments: []
-  initDirectionFromLegacy: 1
+  initDirectionFromLegacy: 0

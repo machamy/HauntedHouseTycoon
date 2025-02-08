@@ -62,7 +62,7 @@ public class Room : MonoBehaviour
         {
             if (originalCardData.returnDeck != null)
                 // originalCardData.returnDeck.AddCardToDiscardPool(cardData);
-                // TODO : 버려진 카드는 어디로??
+                // 버려진 카드는 그냥 버려짐
                 ;
         }
         UpdateCard();

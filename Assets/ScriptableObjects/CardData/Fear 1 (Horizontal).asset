@@ -16,7 +16,7 @@ MonoBehaviour:
     cardName: "\uACF5\uD3EC\uCE74\uB4DC 2"
     cardDescription: 
     directionsLegacy: 0000000001000000
-    directions: 0
+    directions: 3
     cardSprite: {fileID: 21300000, guid: 0c91f20f315e20749ae327dde89b14c2, type: 3}
     cardPlacedSprite: {fileID: 0}
     cardActionContainer:
@@ -26,4 +26,4 @@ MonoBehaviour:
     - key: 2
       stringValue: 
       intValue: 3
-  initDirectionFromLegacy: 1
+  initDirectionFromLegacy: 0

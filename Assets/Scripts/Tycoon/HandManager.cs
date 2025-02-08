@@ -16,44 +16,47 @@ public class HandManager : MonoBehaviour
     [Header("Events")]
     [SerializeField] private TurnEventChannelSO turnEventChannel;
 
-    
+    public void Initialize()
+    {
+        
+    }
 
-    // private void OnEnable()
-    // {
-    //     turnEventChannel.OnPlayerTurnEnter += OnPlayerTurnEnter;
-    //     turnEventChannel.OnPlayerTurnExit += OnturnExit;
-    // }
-    //
-    // private void OnDisable()
-    // {
-    //     turnEventChannel.OnPlayerTurnEnter -= OnPlayerTurnEnter;
-    //     turnEventChannel.OnPlayerTurnExit -= OnturnExit;
-    // }
-    //
-    // private void OnPlayerTurnEnter()
-    // {
-    //     for (int i = 0; i < drawCount; i++)
-    //     {
-    //         DrawCard();
-    //     }
-    // }
-    //
-    // private void OnturnExit()
-    // {
-    //     
-    // }
+    private void OnEnable()
+    {
+        turnEventChannel.OnPlayerTurnEnter += OnPlayerTurnEnter;
+        turnEventChannel.OnPlayerTurnExit += OnturnExit;
+    }
     
-    // public void DrawCard()
-    // {
-    //     CardData cardData = deck.DrawCard();
-    //     if (cardData == null)
-    //         return;
-    //     handCardHolder.AddCardWithSlot(cardData);
-    //     cardData.returnDeck = deck;
-    // }
+    private void OnDisable()
+    {
+        turnEventChannel.OnPlayerTurnEnter -= OnPlayerTurnEnter;
+        turnEventChannel.OnPlayerTurnExit -= OnturnExit;
+    }
     
-    // public void DiscardHand()
-    // {
-    //
-    // }
+    private void OnPlayerTurnEnter()
+    {
+        for (int i = 0; i < drawCount; i++)
+        {
+            DrawCard();
+        }
+    }
+    
+    private void OnturnExit()
+    {
+        
+    }
+    
+    public void DrawCard()
+    {
+        CardData cardData = deck.DrawCard();
+        if (cardData == null)
+            return;
+        handCardHolder.AddCardWithSlot(cardData);
+        cardData.returnDeck = deck;
+    }
+    
+    public void DiscardHand()
+    {
+    
+    }
 }

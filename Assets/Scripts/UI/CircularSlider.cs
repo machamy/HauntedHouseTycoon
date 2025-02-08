@@ -88,5 +88,23 @@ public class CircularSlider : MonoBehaviour, ICircularUI
     private void OnValidate()
     {
         Initialize(startAngle, endAngle, clockwise);
+        SetValue(value);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        int segments = 100;
+        Gizmos.color = Color.red;
+        Vector3 prev = transform.position;
+        float radius = GetComponent<RectTransform>().rect.width / 2;
+        for (int i = 0; i <= segments; i++)
+        {
+            float angle = startAngle + (endAngle - startAngle) * i / segments;
+            float rad = (clockwise ? 360-angle : angle) * Mathf.Deg2Rad;
+            Vector3 to = transform.position + new Vector3(radius*Mathf.Cos(rad), radius*Mathf.Sin(rad), 0);
+            Gizmos.DrawLine(prev, to);
+            prev = to;
+        }
+        Gizmos.DrawLine(prev, transform.position);
     }
 }

@@ -50,7 +50,6 @@ public class GuestNodeUI : MonoBehaviour
         else if(endAngle-startAngle > 360)
         {
             endAngle = startAngle + 360;
-            // Debug.LogWarning("End Angle is too big. It will be set to 360");
         }
         fearSlider.Initialize(startAngle, endAngle, clockwise);
         CurrentScreamLine.Initialize(startAngle, endAngle, clockwise);
@@ -58,4 +57,5 @@ public class GuestNodeUI : MonoBehaviour
         PanicLine.Initialize(startAngle, endAngle, clockwise);
         UpdateUI();
     }
+    
 }

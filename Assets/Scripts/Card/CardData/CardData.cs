@@ -10,7 +10,7 @@ public class CardData : ICloneable
 {
     public string cardName;
     public string cardDescription;
-    [FormerlySerializedAs("directions")] public List<Direction> directionsLegacy;
+    // [FormerlySerializedAs("directions")] public List<Direction> directionsLegacy;
     public DirectionFlag directions;
     public Sprite cardSprite;
     public Sprite cardPlacedSprite;
@@ -75,17 +75,13 @@ public class CardData : ICloneable
         {
             cardName = cardName,
             cardDescription = cardDescription,
-            directionsLegacy = new List<Direction>(),
+            directions = directions,
             cardSprite = cardSprite,
             cardPlacedSprite = cardPlacedSprite,
             cardActionContainer = cardActionContainer,
             arguments = new List<CardDataAgument>(),
             returnDeck = returnDeck
         };
-        foreach (var direction in directionsLegacy)
-        {
-            obj.directionsLegacy.Add(direction);
-        }
 
         foreach (var argument in arguments)
         {

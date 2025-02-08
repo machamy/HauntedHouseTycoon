@@ -70,45 +70,71 @@ public class Guest : MonoBehaviour
             return;
         }
         
-        // TODO: 다음 이동 값 구하는 방식 수정 필요, 현재는 이동 안될때가 생김
-        
-        Direction targetDir = GetFirstDirection(direction, CurrentRoom.CardData.directionsLegacy);
-        Room nextRoom = _field.GetRoomByDirection(CurrentRoom, targetDir);
-        
+        Room nextRoom = FindNextRoom(_field, CurrentRoom, direction);
         if (nextRoom)
         {
-            roomEventChannelSo.RaiseCustomerRoomExit(this, CurrentRoom);
-            entity.Move(nextRoom);
-            transform.DOMove(nextRoom.transform.position, 0.5f).SetEase(Ease.Linear).OnComplete(() =>
-            {
-                roomEventChannelSo.RaiseCustomerRoomEnter(this, nextRoom);
-            });
             movedDistance++;
+            entity.transform
+                .DOMove(nextRoom.transform.position, 0.5f)
+                .OnComplete(()=> entity.Move(nextRoom));
+            entity.currentRoom = nextRoom;
+            roomEventChannelSo.RaiseCustomerRoomEnter(this, nextRoom);
         }
         else
         {
-            Debug.LogWarning($"No room in direction {targetDir}");
+            Debug.LogWarning($"No next room found");
         }
     }
 
-    private static Direction GetFirstDirection(Direction originDir, List<Direction> candidates)
+    /// <summary>
+    /// 들어간 방향을 기준으로, 다음 방향을 구한다.
+    /// </summary>
+    /// <param name="originDir"></param>
+    /// <param name="candidates"></param>
+    /// <returns></returns>
+    private static Direction GetFirstDirection(Direction originDir, DirectionFlag candidates)
     {
-        if(Direction.None == originDir)
+        if (candidates == DirectionFlag.None)
         {
-            int RandomIndex = UnityEngine.Random.Range(0, candidates.Count);
-            return candidates[RandomIndex];
-        }
-        Direction chkDir = originDir.Clockwise();
-        for (int i = 0; i < 4; i++)
-        {
-            if (candidates.Contains(chkDir))
-            {
-                return chkDir;
-            }
-            chkDir = chkDir.Clockwise();
+            return Direction.None;
         }
 
+        Direction res = originDir;
+        
+        for(int i = 0; i < 4; i++)
+        {
+            res = res.Clockwise();
+            if ((candidates & res.ToFlag()) != 0)
+            {
+                return res;
+            }
+        }
         return Direction.None;
+    }
+    
+    /// <summary>
+    /// 해당 방에서, 들어온 방향을 기준으로 좌측우선 탐색을 통해 다음 방을 찾는다.
+    /// 다음방도 들어온 방향을 가지고 있어야 한다.
+    /// </summary>
+    /// <param name="field"></param>
+    /// <param name="currentRoom"></param>
+    /// <param name="originDirection"></param>
+    /// <returns></returns>
+    private static Room FindNextRoom(Field field, Room currentRoom, Direction originDirection)
+    {
+        Direction targetDir = GetFirstDirection(originDirection, currentRoom.CardData.directions);
+        Room nextRoom;
+        int count = 0;
+        while (targetDir != Direction.None && count++ < 4)
+        {
+            nextRoom = field.GetRoomByDirection(currentRoom, targetDir);
+            if (nextRoom.CardData.directions.HasFlag(targetDir.Opposite()))
+            {
+                return nextRoom;
+            }
+            targetDir = GetFirstDirection(targetDir, currentRoom.CardData.directions);
+        }
+        return null;
     }
     public void AddFear(int amount)
     {

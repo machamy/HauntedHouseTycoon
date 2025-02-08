@@ -10,7 +10,7 @@ public class CardData : ICloneable
 {
     public string cardName;
     public string cardDescription;
-    [FormerlySerializedAs("directions")] public List<Direction> directionsLegacy;
+    // [FormerlySerializedAs("directions")] public List<Direction> directionsLegacy;
     public DirectionFlag directions;
     public Sprite cardSprite;
     public Sprite cardPlacedSprite;

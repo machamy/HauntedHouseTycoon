@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DataBase : Singleton<DataBase>
+public class DataBase : SingletonBehaviour<DataBase>
 {
     [SerializeField] private List<CardDataSO> cardDataSOList;
     public List<CardData> cardDataList;

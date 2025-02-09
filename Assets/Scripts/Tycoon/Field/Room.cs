@@ -84,6 +84,30 @@ public class Room : MonoBehaviour
         focusRenderer.enabled = false;
     }
 
+    /// <summary>
+    /// 해당 방에서, 들어온 방향을 기준으로 좌측우선 탐색을 통해 다음 방을 찾는다.
+    /// 다음방도 들어온 방향을 가지고 있어야 한다.
+    /// </summary>
+    /// <param name="field"></param>
+    /// <param name="currentRoom"></param>
+    /// <param name="originDirection"></param>
+    /// <returns></returns>
+    public Room FindLeftmostRoom(Field field, Direction originDirection)
+    {
+        Direction targetDir = DirectionHelper.GetLeftmostDirection(originDirection, CardData.directions);
+        Room nextRoom;
+        int count = 0;
+        while (targetDir != Direction.None && count++ < 4)
+        {
+            nextRoom = field.GetRoomByDirection(this, targetDir);
+            if (nextRoom.CardData.directions.HasFlag(targetDir.Opposite().ToFlag()))
+            {
+                return nextRoom;
+            }
+            targetDir = DirectionHelper.GetLeftmostDirection(targetDir, this.CardData.directions);
+        }
+        return null;
+    }
     #region Event Handlers
     private void OnEnable()
     {

@@ -33,7 +33,8 @@ public static class DirectionHelper
     public static readonly Vector2Int Right = new Vector2Int(1, 0);
     public static readonly Vector2Int Down = new Vector2Int(0, -1);
     public static readonly Vector2Int Left = new Vector2Int(-1, 0);
-    
+
+    #region 회전
     public static Direction Clockwise(this Direction dir)
     {
         return (Direction)(((int)dir + 1) % (int)Direction.Max);
@@ -48,6 +49,25 @@ public static class DirectionHelper
     {
         return (Direction)(((int)dir + 2) % (int)Direction.Max);
     }
+    
+
+    public static DirectionFlag Clockwise(this DirectionFlag flag)
+    {
+        int res = (int)flag << 1;
+        if (res > (int)DirectionFlag.All)
+            res += 1;
+        return (DirectionFlag)(res & (int)DirectionFlag.All);
+    }
+    
+    public static DirectionFlag CounterClockwise(this DirectionFlag flag)
+    {
+        int res = (int)flag >> 1;
+        if (((int)flag & 1) == 1)
+            res |= (int)DirectionFlag.Left;
+        return (DirectionFlag)(res & (int)DirectionFlag.All);
+    }
+    #endregion
+   
 
     public static Vector2Int ToVector2Int(this Direction dir)
     {
@@ -65,6 +85,8 @@ public static class DirectionHelper
                 return Vector2Int.zero;
         }
     }
+
+    #region Flag 조작
     public static List<Direction> ToList(this DirectionFlag flag)
     {
         List<Direction> list = new List<Direction>();
@@ -93,19 +115,39 @@ public static class DirectionHelper
         return (DirectionFlag)(1 << (int)dir);
     }
     
-    public static DirectionFlag Clockwise(this DirectionFlag flag)
-    {
-        int res = (int)flag << 1;
-        if (res > (int)DirectionFlag.All)
-            res += 1;
-        return (DirectionFlag)(res & (int)DirectionFlag.All);
-    }
+
+    #endregion
+
     
-    public static DirectionFlag CounterClockwise(this DirectionFlag flag)
+    
+
+    #region 기타 헬퍼 함수
+
+    /// <summary>
+    /// 들어간 방향을 기준으로, 다음 방향을 구한다.
+    /// </summary>
+    /// <param name="originDir"></param>
+    /// <param name="candidates"></param>
+    /// <returns></returns>
+    public static Direction GetLeftmostDirection(this Direction originDir, DirectionFlag candidates)
     {
-        int res = (int)flag >> 1;
-        if (((int)flag & 1) == 1)
-            res |= (int)DirectionFlag.Left;
-        return (DirectionFlag)(res & (int)DirectionFlag.All);
-    }
+        if (candidates == DirectionFlag.None)
+        {
+            return Direction.None;
+        }
+
+        Direction res = originDir;
+        
+        for(int i = 0; i < 4; i++)
+        {
+            res = res.Clockwise();
+            if ((candidates & res.ToFlag()) != 0)
+            {
+                return res;
+            }
+        }
+        return Direction.None;
+    }    
+
+    #endregion
 }

@@ -81,7 +81,7 @@ public class Guest : MonoBehaviour
             return;
         }
         
-        Room nextRoom = FindNextRoom(TycoonManager.Instance.Field, CurrentRoom, direction);
+        Room nextRoom = CurrentRoom.FindLeftmostRoom(TycoonManager.Instance.Field, direction);
         if (nextRoom)
         {
             Debug.Log($"from {CurrentRoom.name} to {nextRoom.name}");
@@ -98,56 +98,9 @@ public class Guest : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 들어간 방향을 기준으로, 다음 방향을 구한다.
-    /// </summary>
-    /// <param name="originDir"></param>
-    /// <param name="candidates"></param>
-    /// <returns></returns>
-    private static Direction GetFirstDirection(Direction originDir, DirectionFlag candidates)
-    {
-        if (candidates == DirectionFlag.None)
-        {
-            return Direction.None;
-        }
 
-        Direction res = originDir;
-        
-        for(int i = 0; i < 4; i++)
-        {
-            res = res.Clockwise();
-            if ((candidates & res.ToFlag()) != 0)
-            {
-                return res;
-            }
-        }
-        return Direction.None;
-    }
     
-    /// <summary>
-    /// 해당 방에서, 들어온 방향을 기준으로 좌측우선 탐색을 통해 다음 방을 찾는다.
-    /// 다음방도 들어온 방향을 가지고 있어야 한다.
-    /// </summary>
-    /// <param name="field"></param>
-    /// <param name="currentRoom"></param>
-    /// <param name="originDirection"></param>
-    /// <returns></returns>
-    private static Room FindNextRoom(Field field, Room currentRoom, Direction originDirection)
-    {
-        Direction targetDir = GetFirstDirection(originDirection, currentRoom.CardData.directions);
-        Room nextRoom;
-        int count = 0;
-        while (targetDir != Direction.None && count++ < 4)
-        {
-            nextRoom = field.GetRoomByDirection(currentRoom, targetDir);
-            if (nextRoom.CardData.directions.HasFlag(targetDir.Opposite().ToFlag()))
-            {
-                return nextRoom;
-            }
-            targetDir = GetFirstDirection(targetDir, currentRoom.CardData.directions);
-        }
-        return null;
-    }
+
     public void AddFear(int amount)
     {
         fear += amount;

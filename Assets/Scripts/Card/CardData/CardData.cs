@@ -86,7 +86,7 @@ public class CardData : ICloneable
             directions = directions,
             cardSprite = cardSprite,
             cardPlacedSprite = cardPlacedSprite,
-            cardActionContainer = cardActionContainer,
+            cardActionContainer = (CardActionContainer)cardActionContainer.Clone(),
             arguments = new List<CardDataAgument>(),
             returnDeck = returnDeck
         };

@@ -159,7 +159,7 @@ public class Room : MonoBehaviour
     {
         if (cardData != null)
         {
-            int roomScreamModifier = cardData.GetArgumentInt(CardDataAgument.Key.FearGlobalAmount);
+            int roomScreamModifier = cardData.GetArgumentIntDefault(CardDataAgument.Key.FearGlobalAmount,0);
             screamEventArg.modifier += roomScreamModifier;
         }
     }

@@ -84,6 +84,7 @@ public class Guest : MonoBehaviour
         Room nextRoom = FindNextRoom(TycoonManager.Instance.Field, CurrentRoom, direction);
         if (nextRoom)
         {
+            Debug.Log($"from {CurrentRoom.name} to {nextRoom.name}");
             movedDistance++;
             entity.transform
                 .DOMove(nextRoom.transform.position, 0.5f)
@@ -150,10 +151,10 @@ public class Guest : MonoBehaviour
     public void AddFear(int amount)
     {
         fear += amount;
-        if (CanScream)
-        {
-            Scream();
-        }
+        // if (CanScream)
+        // {
+        //     Scream();
+        // }
         OnValueChanged();
     }
     

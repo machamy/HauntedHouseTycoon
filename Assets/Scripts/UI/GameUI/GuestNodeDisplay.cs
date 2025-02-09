@@ -59,6 +59,7 @@ public class GuestNodeDisplay : MonoBehaviour
     
     private void OnGuestRemoved()
     {
+        Destroy(node.gameObject);
         Destroy(gameObject);
     }
 

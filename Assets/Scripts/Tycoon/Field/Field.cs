@@ -80,19 +80,8 @@ public class Field : MonoBehaviour
     public Room GetRoomByDirection(Room room, Direction direction)
     {
         var coordinate = room.Coordinate;
-        switch (direction)
-        {
-            case Direction.Down:
-                return GetRoom(coordinate.x, coordinate.y + 1);
-            case Direction.Left:
-                return GetRoom(coordinate.x, coordinate.y - 1);
-            case Direction.Up:
-                return GetRoom(coordinate.x - 1, coordinate.y);
-            case Direction.Right:
-                return GetRoom(coordinate.x + 1, coordinate.y);
-            default:
-                return null;
-        }
+        var nextCoordinate = coordinate + direction.ToVector2Int();
+        return GetRoom(nextCoordinate);
     }
     
     public Vector3 GetRoomPosition(Vector2Int coordinate)

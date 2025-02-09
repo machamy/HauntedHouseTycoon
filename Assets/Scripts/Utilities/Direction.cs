@@ -28,6 +28,12 @@ public enum DirectionFlag
 
 public static class DirectionHelper
 {
+    // Vector2Int에 이미 선언되어있지만, 변동 가능성을 고려하여 별도로 선언
+    public static readonly Vector2Int Up = new Vector2Int(0, 1);
+    public static readonly Vector2Int Right = new Vector2Int(1, 0);
+    public static readonly Vector2Int Down = new Vector2Int(0, -1);
+    public static readonly Vector2Int Left = new Vector2Int(-1, 0);
+    
     public static Direction Clockwise(this Direction dir)
     {
         return (Direction)(((int)dir + 1) % (int)Direction.Max);
@@ -48,13 +54,13 @@ public static class DirectionHelper
         switch (dir)
         {
             case Direction.Up:
-                return new Vector2Int(-1, 0);
+                return Up;
             case Direction.Right:
-                return new Vector2Int(1, 0);
+                return Right;
             case Direction.Down:
-                return new Vector2Int(0, 1);
+                return Down;
             case Direction.Left:
-                return new Vector2Int(0, -1);
+                return Left;
             default:
                 return Vector2Int.zero;
         }

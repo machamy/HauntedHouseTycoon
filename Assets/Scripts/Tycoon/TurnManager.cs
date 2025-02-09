@@ -23,10 +23,10 @@ public class TurnManager : MonoBehaviour
     {
         turnVariableSO.Value = 0;
         remainingTurnDuration = maxPlayerTurnDuration;
-        turnEventChannelSo.OnNonPlayerTurnEnter += () => { Debug.Log("NonPlayerTurnEnter"); };
-        turnEventChannelSo.OnNonPlayerTurnExit += () => { Debug.Log("NonPlayerTurnExit"); };
-        delayedTurnEventChannelSo.OnNonPlayerTurnEnter += () => { Debug.Log("DelayedNonPlayerTurnEnter"); };
-        delayedTurnEventChannelSo.OnNonPlayerTurnExit += () => { Debug.Log("DelayedNonPlayerTurnExit"); };
+        // turnEventChannelSo.OnNonPlayerTurnEnter += () => { Debug.Log("NonPlayerTurnEnter"); };
+        // turnEventChannelSo.OnNonPlayerTurnExit += () => { Debug.Log("NonPlayerTurnExit"); };
+        // delayedTurnEventChannelSo.OnNonPlayerTurnEnter += () => { Debug.Log("DelayedNonPlayerTurnEnter"); };
+        // delayedTurnEventChannelSo.OnNonPlayerTurnExit += () => { Debug.Log("DelayedNonPlayerTurnExit"); };
     }
 
     

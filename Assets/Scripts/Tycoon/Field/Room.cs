@@ -89,6 +89,7 @@ public class Room : MonoBehaviour
     {
         turnEventChannelSo.OnPlayerTurnEnter += OnPlayerTurnEnter;
         turnEventChannelSo.OnNonPlayerTurnEnter += OnNpcTurnEnter;
+        turnEventChannelSo.OnNonPlayerTurnExit += OnNpcTurnExit;
         roomEventChannelSo.OnCustomerRoomEnter += OnCustomerRoomEnter;
         roomEventChannelSo.OnCustomerRoomExit += OnCustomerRoomExit;
         screamEventChannelSo.OnScream += OnScream;
@@ -98,6 +99,7 @@ public class Room : MonoBehaviour
     {
         turnEventChannelSo.OnPlayerTurnEnter -= OnPlayerTurnEnter;
         turnEventChannelSo.OnNonPlayerTurnEnter -= OnNpcTurnEnter;
+        turnEventChannelSo.OnNonPlayerTurnExit -= OnNpcTurnExit;
         roomEventChannelSo.OnCustomerRoomEnter -= OnCustomerRoomEnter;
         roomEventChannelSo.OnCustomerRoomExit -= OnCustomerRoomExit;
         screamEventChannelSo.OnScream -= OnScream;
@@ -108,7 +110,7 @@ public class Room : MonoBehaviour
         if (cardData != null)
         {
             var tmp = cardData;
-            print($"OnTurnEnter {name}");
+            // print($"OnTurnEnter {name}");
             cardData.cardActionContainer.InvokeOnPlayerTurnEnter(this, tmp);
         }
     }

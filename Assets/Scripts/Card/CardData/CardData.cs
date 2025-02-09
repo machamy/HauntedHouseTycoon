@@ -5,6 +5,10 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
+/// <summary>
+/// 카드 정보 클래스ㅜ
+/// 실제로 Room 안에 들어간 CardData는 복사되어 사용되어야함!
+/// </summary>
 [Serializable]
 public class CardData : ICloneable
 {
@@ -21,6 +25,10 @@ public class CardData : ICloneable
     
     public Deck returnDeck { get; set; }
     
+    public void CleanAction()
+    {
+        cardActionContainer.actions.Clear();
+    }
     
     public int GetArgumentIntDefault(CardDataAgument.Key key, int defaultValue)
     {

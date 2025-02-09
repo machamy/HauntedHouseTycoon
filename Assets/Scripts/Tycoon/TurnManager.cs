@@ -18,10 +18,15 @@ public class TurnManager : MonoBehaviour
     [SerializeField] private TurnIndicatingSlider turnIndicatingSlider;
     [Header("Events")]
     [SerializeField] private TurnEventChannelSO turnEventChannelSo;
+    [SerializeField] private TurnEventChannelSO delayedTurnEventChannelSo;
     private void Start()
     {
         turnVariableSO.Value = 0;
         remainingTurnDuration = maxPlayerTurnDuration;
+        turnEventChannelSo.OnNonPlayerTurnEnter += () => { Debug.Log("NonPlayerTurnEnter"); };
+        turnEventChannelSo.OnNonPlayerTurnExit += () => { Debug.Log("NonPlayerTurnExit"); };
+        delayedTurnEventChannelSo.OnNonPlayerTurnEnter += () => { Debug.Log("DelayedNonPlayerTurnEnter"); };
+        delayedTurnEventChannelSo.OnNonPlayerTurnExit += () => { Debug.Log("DelayedNonPlayerTurnExit"); };
     }
 
     
@@ -52,13 +57,16 @@ public class TurnManager : MonoBehaviour
 
     public void PlayerTurnStart()
     {
+        Debug.Log($"$Player Turn {turnVariableSO.Value} Start");
         isPlayerTurn = true;
         turnIndicatingSlider.isPlayerTurn = true;
         turnIndicatingSlider.UpdateColor();
         remainingTurnDuration = maxPlayerTurnDuration;
         turnVariableSO.Value = (turnVariableSO.Value + 1);
         turnEventChannelSo.RaiseNonPlayerTurnExitEvent();
+        delayedTurnEventChannelSo.RaiseNonPlayerTurnExitEvent();
         turnEventChannelSo.RaisePlayerTurnEnterEvent();
+        delayedTurnEventChannelSo.RaisePlayerTurnEnterEvent();
     }
 
     public void ReadyToPlayerTurnEnd()
@@ -74,11 +82,14 @@ public class TurnManager : MonoBehaviour
     
     public void PlayerTurnEnd()
     {
+        Debug.Log($"$Player Turn {turnVariableSO.Value} End");
         isPlayerTurn = false;
         turnIndicatingSlider.isPlayerTurn = false;
         turnIndicatingSlider.UpdateColor();
         remainingTurnDuration = maxNonplayerTurnDuration;
         turnEventChannelSo.RaisePlayerTurnExitEvent();
+        delayedTurnEventChannelSo.RaisePlayerTurnExitEvent();
         turnEventChannelSo.RaiseNonPlayerTurnEnterEvent();
+        delayedTurnEventChannelSo.RaiseNonPlayerTurnEnterEvent();
     }
 }

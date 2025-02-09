@@ -14,14 +14,15 @@ public class SimpleDecayCardActionSO : BaseCardActionSO
         return breakChain;
     }
 
-    public override bool OnTurnExit(Room room, CardData cardData)
+    public override bool OnNpcTurnExit(Room room, CardData cardData)
     {
         int decayTurnRemain = cardData.GetArgumentInt(CardDataAgument.Key.DecayTurnRemain);
         cardData.SetArgumentInt(CardDataAgument.Key.DecayTurnRemain, decayTurnRemain-1);
         if(decayTurnRemain <= 0)
         {
             Debug.Log($"[SimpleDecayCardActionSO::OnTurnExit] {room.name} : Card decayed({decayTurnRemain})");
-            room.DiscardCard();
+            cardData.CleanAction();
+            room.FocusColor(new Color(0.4f, 0.4f, 0.4f, 0.5f));
             return true;
         }
         return breakChain;

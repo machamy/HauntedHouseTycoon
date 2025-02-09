@@ -30,14 +30,14 @@ public class Room : MonoBehaviour
         var placedCardHolder = FindFirstObjectByType<PlacedCardHolder>();
         placedCard.transform.SetParent(placedCardHolder.transform);
         placedCard.room = this;
-        UpdateCard();
+        UpdatePlacedCard();
     }
 
-    private void UpdateCard()
+    public void UpdatePlacedCard()
     {
         placedCard.UpdateDisplay(cardData);
     }
-    private void UpdateCard(Vector3 uiSize)
+    private void UpdatePlacedCard(Vector3 uiSize)
     {
         placedCard.UpdateDisplay(cardData,uiSize);
     }
@@ -49,7 +49,7 @@ public class Room : MonoBehaviour
         originalCardData = cardData;
         this.cardData = cardData.Clone() as CardData;
         cardData.cardActionContainer.InvokeOnCardPlaced(this, this.cardData);
-        UpdateCard(uiSize);
+        UpdatePlacedCard(uiSize);
         return true;
     }
     
@@ -60,12 +60,13 @@ public class Room : MonoBehaviour
         cardData = defaultCardData.cardData;
         if(originalCardData != null && originalCardData.cardName != "Blank")
         {
+            UnfocusColor();
             if (originalCardData.returnDeck != null)
                 // originalCardData.returnDeck.AddCardToDiscardPool(cardData);
                 // 버려진 카드는 그냥 버려짐
                 ;
         }
-        UpdateCard();
+        UpdatePlacedCard();
         return true;
     }
     
@@ -87,7 +88,7 @@ public class Room : MonoBehaviour
     private void OnEnable()
     {
         turnEventChannelSo.OnPlayerTurnEnter += OnPlayerTurnEnter;
-        turnEventChannelSo.OnPlayerTurnExit += OnPlayerTurnExit;
+        turnEventChannelSo.OnNonPlayerTurnEnter += OnNpcTurnEnter;
         roomEventChannelSo.OnCustomerRoomEnter += OnCustomerRoomEnter;
         roomEventChannelSo.OnCustomerRoomExit += OnCustomerRoomExit;
         screamEventChannelSo.OnScream += OnScream;
@@ -96,7 +97,7 @@ public class Room : MonoBehaviour
     private void OnDisable()
     {
         turnEventChannelSo.OnPlayerTurnEnter -= OnPlayerTurnEnter;
-        turnEventChannelSo.OnPlayerTurnExit -= OnPlayerTurnExit;
+        turnEventChannelSo.OnNonPlayerTurnEnter -= OnNpcTurnEnter;
         roomEventChannelSo.OnCustomerRoomEnter -= OnCustomerRoomEnter;
         roomEventChannelSo.OnCustomerRoomExit -= OnCustomerRoomExit;
         screamEventChannelSo.OnScream -= OnScream;
@@ -107,18 +108,26 @@ public class Room : MonoBehaviour
         if (cardData != null)
         {
             var tmp = cardData;
-            // print($"OnTurnEnter {name}");
-            cardData.cardActionContainer.InvokeOnTurnEnter(this, tmp);
+            print($"OnTurnEnter {name}");
+            cardData.cardActionContainer.InvokeOnPlayerTurnEnter(this, tmp);
         }
     }
     
-    private void OnPlayerTurnExit()
+    private void OnNpcTurnEnter()
     {
         if (cardData != null)
         {
-            // print($"OnTurnExit {name}");
+            
             var tmp = cardData;
-            cardData.cardActionContainer.InvokeOnTurnExit(this, tmp);
+            cardData.cardActionContainer.InvokeOnNpcTurnEnter(this, tmp);
+        }
+    }
+    
+    private void OnNpcTurnExit()
+    {
+        if (cardData != null)
+        {
+            cardData.cardActionContainer.InvokeOnNpcTurnExit(this, cardData);
         }
     }
     

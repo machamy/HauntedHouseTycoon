@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e99cf1aa0e2d49ca94692c149138c400, type: 3}
-  m_Name: Entrance Card Action SO
+  m_Script: {fileID: 11500000, guid: 2aff7cbda9c3415ea21ea1758fcc77e2, type: 3}
+  m_Name: CreateGuestChannel
   m_EditorClassIdentifier: 
-  actionName: 
-  breakChain: 0
-  createGuestChannel: {fileID: 11400000, guid: 5e5e427a32b624444bfaddb5ad779272, type: 2}

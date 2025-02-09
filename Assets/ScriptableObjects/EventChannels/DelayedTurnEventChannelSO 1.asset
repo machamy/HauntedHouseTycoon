@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e99cf1aa0e2d49ca94692c149138c400, type: 3}
-  m_Name: Entrance Card Action SO
+  m_Script: {fileID: 11500000, guid: 101e8f0fafb743af8806f1101475e3ae, type: 3}
+  m_Name: DelayedTurnEventChannelSO 1
   m_EditorClassIdentifier: 
-  actionName: 
-  breakChain: 0
-  createGuestChannel: {fileID: 11400000, guid: 5e5e427a32b624444bfaddb5ad779272, type: 2}

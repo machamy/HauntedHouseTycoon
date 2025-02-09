@@ -41,6 +41,7 @@ public class CardDisplay : MonoBehaviour
     {
         transform.localScale = CardSetting.defaultScale * Vector3.one;
         cardImage.sprite = cardObject.CardData.cardSprite;
+        
     }
 
     public void UpdateIndex()

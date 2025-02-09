@@ -25,7 +25,10 @@ public class Guest : MonoBehaviour
     private int movedDistance = 0;
     
     [SerializeField] Direction direction = Direction.None;
-    
+
+
+    public event Action OnValueChangedEvent; 
+    public event Action OnRemoved; // 현재로서는 Disable시에만 호출됨.
     
     public int Fear => fear;
     public int Panic => panic;
@@ -38,8 +41,7 @@ public class Guest : MonoBehaviour
     public int MovedDistance => movedDistance;
 
     private Room CurrentRoom => entity.currentRoom;
-
-    private Field _field;
+    
     private void Awake()
     {
         entity = GetComponent<Entity>();
@@ -47,20 +49,29 @@ public class Guest : MonoBehaviour
 
     private void Start()
     {
-        _field = TycoonManager.Instance.Field;
-        UpdateText();
+        OnValueChanged();
     }
 
     private void OnEnable()
     {
         screamEventChannel.OnScreamModified += OnCustomerScreamModified;
         turnEventChannelSo.OnPlayerTurnEnter += OnPlayerTurnEnter;
+        turnEventChannelSo.OnNonPlayerTurnExit += OnNonPlayerTurnExit;
     }
     
     private void OnDisable()
     {
         screamEventChannel.OnScreamModified -= OnCustomerScreamModified;
         turnEventChannelSo.OnPlayerTurnEnter -= OnPlayerTurnEnter;
+        turnEventChannelSo.OnNonPlayerTurnExit -= OnNonPlayerTurnExit;
+        OnRemoved?.Invoke();
+    }
+
+    private bool isCreatedNow = false;
+    public bool IsCreatedNow => isCreatedNow;
+    public void OnCreate()
+    {
+        isCreatedNow = true;
     }
     public void MoveBehaviour()
     {
@@ -70,7 +81,7 @@ public class Guest : MonoBehaviour
             return;
         }
         
-        Room nextRoom = FindNextRoom(_field, CurrentRoom, direction);
+        Room nextRoom = FindNextRoom(TycoonManager.Instance.Field, CurrentRoom, direction);
         if (nextRoom)
         {
             movedDistance++;
@@ -128,7 +139,7 @@ public class Guest : MonoBehaviour
         while (targetDir != Direction.None && count++ < 4)
         {
             nextRoom = field.GetRoomByDirection(currentRoom, targetDir);
-            if (nextRoom.CardData.directions.HasFlag(targetDir.Opposite()))
+            if (nextRoom.CardData.directions.HasFlag(targetDir.Opposite().ToFlag()))
             {
                 return nextRoom;
             }
@@ -143,7 +154,7 @@ public class Guest : MonoBehaviour
         {
             Scream();
         }
-        UpdateText();
+        OnValueChanged();
     }
     
     public void Scream()
@@ -152,7 +163,7 @@ public class Guest : MonoBehaviour
         screamEventChannel.RaiseScreamEvent(new ScreamEventArg(this,0));
         screamRequirement += screamRequirementIncrease;
         fear /= 2;
-        UpdateText();
+        OnValueChanged();
     }
 
     public void Exit()
@@ -162,9 +173,10 @@ public class Guest : MonoBehaviour
     }
 
 
-    public void UpdateText()
+    public void OnValueChanged()
     {
         fearText.text = $"{fear} / {screamRequirement}";
+        OnValueChangedEvent?.Invoke();
     }
     #region Event Handlers
 
@@ -178,7 +190,12 @@ public class Guest : MonoBehaviour
     public void OnPlayerTurnEnter()
     {
         fear = Mathf.CeilToInt(fear * 0.9f);
-        MoveBehaviour();
+        // MoveBehaviour(); 이동은 GuestManager에서 처리
+    }
+    
+    public void OnNonPlayerTurnExit()
+    {
+        isCreatedNow = false;
     }
     #endregion
 

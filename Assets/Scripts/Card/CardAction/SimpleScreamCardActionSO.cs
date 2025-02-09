@@ -5,7 +5,7 @@ using UnityEngine;
 public class SimpleScreamCardActionSO : BaseCardActionSO
 {
     
-    public override bool OnCustomerEnter(Room room, CardData cardData, Guest guest)
+    public override bool OnGuestEnter(Room room, CardData cardData, Guest guest)
     {
         if (guest.CanScream)
         {

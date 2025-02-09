@@ -35,10 +35,10 @@ public class HandManager : MonoBehaviour
     
     private void OnPlayerTurnEnter()
     {
-        for (int i = 0; i < drawCount; i++)
-        {
-            DrawCard();
-        }
+        // for (int i = 0; i < drawCount; i++)
+        // {
+        //     DrawCard();
+        // }
     }
     
     private void OnturnExit()

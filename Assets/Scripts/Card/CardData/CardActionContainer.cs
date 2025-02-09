@@ -57,7 +57,7 @@ public class CardActionContainer: ICloneable
     public bool InvokeOnCustomerEnter(Room room, CardData cardData, Guest guest){
         foreach (var action in actions)
         {
-            if (action.OnCustomerEnter(room, cardData, guest))
+            if (action.OnGuestEnter(room, cardData, guest))
             {
                 return true;
             }
@@ -73,7 +73,7 @@ public class CardActionContainer: ICloneable
     public bool InvokeOnCustomerExit(Room room, CardData cardData, Guest guest){
         foreach (var action in actions)
         {
-            if (action.OnCustomerExit(room, cardData, guest))
+            if (action.OnGuestExit(room, cardData, guest))
             {
                 return true;
             }
@@ -83,13 +83,13 @@ public class CardActionContainer: ICloneable
     }
     
     /// <summary>
-    /// 턴 시작 이벤트
+    /// 플레이어 턴 시작 이벤트
     /// 처음 True를 반환할 때까지 모든 Action을 순회함.
     /// </summary>
-    public bool InvokeOnTurnEnter(Room room, CardData cardData){
+    public bool InvokeOnPlayerTurnEnter(Room room, CardData cardData){
         foreach (var action in actions)
         {
-            if (action.OnTurnEnter(room, cardData))
+            if (action.OnPlayerTurnEnter(room, cardData))
             {
                 return true;
             }
@@ -99,13 +99,30 @@ public class CardActionContainer: ICloneable
     }
     
     /// <summary>
-    /// 턴 종료 이벤트
+    /// NPC 턴 시작 이벤트
     /// 처음 True를 반환할 때까지 모든 Action을 순회함.
     /// </summary>
-    public bool InvokeOnTurnExit(Room room, CardData cardData){
+    public bool InvokeOnNpcTurnEnter(Room room, CardData cardData){
         foreach (var action in actions)
         {
-            if (action.OnTurnExit(room, cardData))
+            
+            if (action.OnNpcTurnEnter(room, cardData))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    
+    /// <summary>
+    ///  NPC 턴 종료 이벤트
+    /// 처음 True를 반환할 때까지 모든 Action을 순회함.
+    /// </summary>
+    public bool InvokeOnNpcTurnExit(Room room, CardData cardData){
+        foreach (var action in actions)
+        {
+            if (action.OnNpcTurnExit(room, cardData))
             {
                 return true;
             }

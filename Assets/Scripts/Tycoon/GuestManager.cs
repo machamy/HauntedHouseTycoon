@@ -97,6 +97,10 @@ public class GuestManager : MonoBehaviour
         guest.OnCreate();
         guestQueue.Add(guest);
         guestQueueBarUI.AddGuestNode(guest);
+        guest.OnRemoved += () =>
+        {
+            guestQueue.Remove(guest);
+        };
         return guest;
     }
 }

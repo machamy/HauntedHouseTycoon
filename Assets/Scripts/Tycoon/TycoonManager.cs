@@ -52,6 +52,8 @@ public class TycoonManager : SingletonBehaviour<TycoonManager>
     }
     
     public DataBase dataBase;
+    
+    [ContextMenu("InitDeckByDatabae")]
     public void InitDeckByDatabae()
     {
         foreach (var cardData in dataBase.cardDataList)
@@ -60,6 +62,12 @@ public class TycoonManager : SingletonBehaviour<TycoonManager>
                 continue;
             deck.AddCard(cardData.Clone() as CardData);
         }
+    }
+    
+    [ContextMenu("SetHandManagerDeck")]
+    public void SetHandManagerDeck()
+    {
+        handManager.deck = deck;
     }
 
     public void TestStart()

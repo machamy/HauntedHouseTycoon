@@ -15,6 +15,8 @@ public class CardDataAgument : ICloneable
         DecayTurnAmount,
         DecayTurnRemain,
         FearGlobalAmount,
+        
+        PrevGuestDirection,
     }
 
     public Key key; // string이 아닌 enum으로도 가능함.

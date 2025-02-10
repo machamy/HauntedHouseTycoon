@@ -438,7 +438,7 @@ MonoBehaviour:
   - cardName: "\uC785\uC7A5\uCE74\uB4DC 1"
     cardDescription: "2\uBA85 \uC18C\uD658 2\uD134\uB4A4 \uC0AC\uB9DD"
     directions: 10
-    cardSprite: {fileID: 21300000, guid: ee87494b71e2ae146b0aa356c97ba23e, type: 3}
+    cardSprite: {fileID: 21300000, guid: 07c5e4f88482abe4d8e21b54f859a2bb, type: 3}
     cardPlacedSprite: {fileID: 0}
     cardActionContainer:
       actions:
@@ -520,7 +520,7 @@ MonoBehaviour:
   - cardName: "\uBE44\uBA85\uCE74\uB4DC 1"
     cardDescription: 
     directions: 3
-    cardSprite: {fileID: 21300000, guid: 9a55834dab0473148be31f36fd3e1b77, type: 3}
+    cardSprite: {fileID: 21300000, guid: 1bf16e051e033834e8299a830a0e19d2, type: 3}
     cardPlacedSprite: {fileID: 0}
     cardActionContainer:
       actions:
@@ -528,8 +528,8 @@ MonoBehaviour:
     arguments: []
   - cardName: "\uBE44\uBA85\uCE74\uB4DC 1"
     cardDescription: 
-    directions: 11
-    cardSprite: {fileID: 21300000, guid: 9a55834dab0473148be31f36fd3e1b77, type: 3}
+    directions: 7
+    cardSprite: {fileID: 21300000, guid: a280644f9ef69ed44b9f89b22b0f08ee, type: 3}
     cardPlacedSprite: {fileID: 0}
     cardActionContainer:
       actions:
@@ -538,7 +538,7 @@ MonoBehaviour:
   - cardName: "\uBE44\uBA85\uCE74\uB4DC 1"
     cardDescription: 
     directions: 10
-    cardSprite: {fileID: 21300000, guid: 9a55834dab0473148be31f36fd3e1b77, type: 3}
+    cardSprite: {fileID: 21300000, guid: 608c8fb17d63fd148857d690342e55ce, type: 3}
     cardPlacedSprite: {fileID: 0}
     cardActionContainer:
       actions:
@@ -614,7 +614,135 @@ MonoBehaviour:
   deck:
     discardSize: {fileID: 11400000, guid: 72b6081ca9422f14e81051598fec9a92, type: 2}
     drawSize: {fileID: 11400000, guid: 488548a036f92f942a4257283cbc7f55, type: 2}
-    cardDataList: []
+    cardDataList:
+    - cardName: "\uC785\uC7A5\uCE74\uB4DC 1222"
+      cardDescription: "1\uBA85 \uC18C\uD658 2\uD134\uB4A4 \uC0AC\uB9DD"
+      directions: 10
+      cardSprite: {fileID: 21300000, guid: ee87494b71e2ae146b0aa356c97ba23e, type: 3}
+      cardPlacedSprite: {fileID: 0}
+      cardActionContainer:
+        actions:
+        - {fileID: 11400000, guid: b734331511c502648b5149874c00e4cb, type: 2}
+        - {fileID: 11400000, guid: d58f103b126071f4dacd559af4f263a1, type: 2}
+      arguments:
+      - key: 1
+        stringValue: 
+        intValue: 1
+      - key: 5
+        stringValue: 
+        intValue: 2
+    - cardName: "\uC785\uC7A5\uCE74\uB4DC 1"
+      cardDescription: "2\uBA85 \uC18C\uD658 2\uD134\uB4A4 \uC0AC\uB9DD"
+      directions: 10
+      cardSprite: {fileID: 21300000, guid: 07c5e4f88482abe4d8e21b54f859a2bb, type: 3}
+      cardPlacedSprite: {fileID: 0}
+      cardActionContainer:
+        actions:
+        - {fileID: 11400000, guid: b734331511c502648b5149874c00e4cb, type: 2}
+        - {fileID: 11400000, guid: d58f103b126071f4dacd559af4f263a1, type: 2}
+      arguments:
+      - key: 1
+        stringValue: 
+        intValue: 2
+      - key: 5
+        stringValue: 
+        intValue: 2
+    - cardName: "\uACF5\uD3EC\uCE74\uB4DC 2"
+      cardDescription: "\uC774\uB3D9\uAC70\uB9AC\uB9CC\uD07C \uACF5\uD3EC"
+      directions: 6
+      cardSprite: {fileID: 21300000, guid: 9f364f581d21f1d469648cb029fa3cbe, type: 3}
+      cardPlacedSprite: {fileID: 0}
+      cardActionContainer:
+        actions:
+        - {fileID: 11400000, guid: edcb5c4c3330f094a86716c4236ab3ba, type: 2}
+      arguments: []
+    - cardName: "\uACF5\uD3EC\uCE74\uB4DC 2"
+      cardDescription: 
+      directions: 10
+      cardSprite: {fileID: 21300000, guid: 0c91f20f315e20749ae327dde89b14c2, type: 3}
+      cardPlacedSprite: {fileID: 0}
+      cardActionContainer:
+        actions:
+        - {fileID: 11400000, guid: 9403b8892d9e6294f806240da7564da5, type: 2}
+      arguments:
+      - key: 2
+        stringValue: 
+        intValue: 3
+    - cardName: "\uACF5\uD3EC\uCE74\uB4DC 2"
+      cardDescription: 
+      directions: 10
+      cardSprite: {fileID: 21300000, guid: e4bb8933ca0828e418a0cfee542d27e5, type: 3}
+      cardPlacedSprite: {fileID: 0}
+      cardActionContainer:
+        actions:
+        - {fileID: 11400000, guid: 9403b8892d9e6294f806240da7564da5, type: 2}
+      arguments:
+      - key: 2
+        stringValue: 
+        intValue: 3
+    - cardName: "\uACF5\uD3EC\uCE74\uB4DC 2"
+      cardDescription: 
+      directions: 5
+      cardSprite: {fileID: 21300000, guid: 1a128ac24d954da459aaf968a758b6c8, type: 3}
+      cardPlacedSprite: {fileID: 0}
+      cardActionContainer:
+        actions:
+        - {fileID: 11400000, guid: 9403b8892d9e6294f806240da7564da5, type: 2}
+      arguments:
+      - key: 2
+        stringValue: 
+        intValue: 3
+    - cardName: "\uACF5\uD3EC\uCE74\uB4DC 2"
+      cardDescription: "\uC774\uB3D9\uAC70\uB9AC\uB9CC\uD07C \uACF5\uD3EC"
+      directions: 12
+      cardSprite: {fileID: 21300000, guid: c3466c426e600e844951f71a551e5f6d, type: 3}
+      cardPlacedSprite: {fileID: 0}
+      cardActionContainer:
+        actions:
+        - {fileID: 11400000, guid: a523546ce626c7e4bbd04ca10187c0e0, type: 2}
+      arguments:
+      - key: 3
+        stringValue: 
+        intValue: 1
+    - cardName: "\uBE44\uBA85\uCE74\uB4DC 1"
+      cardDescription: 
+      directions: 9
+      cardSprite: {fileID: 21300000, guid: 9a55834dab0473148be31f36fd3e1b77, type: 3}
+      cardPlacedSprite: {fileID: 0}
+      cardActionContainer:
+        actions:
+        - {fileID: 11400000, guid: d92a58ffbd6f4ae49ba6704d7d8edcd4, type: 2}
+      arguments: []
+    - cardName: "\uBE44\uBA85\uCE74\uB4DC 1"
+      cardDescription: 
+      directions: 3
+      cardSprite: {fileID: 21300000, guid: 1bf16e051e033834e8299a830a0e19d2, type: 3}
+      cardPlacedSprite: {fileID: 0}
+      cardActionContainer:
+        actions:
+        - {fileID: 11400000, guid: d92a58ffbd6f4ae49ba6704d7d8edcd4, type: 2}
+      arguments: []
+    - cardName: "\uBE44\uBA85\uCE74\uB4DC 1"
+      cardDescription: 
+      directions: 7
+      cardSprite: {fileID: 21300000, guid: a280644f9ef69ed44b9f89b22b0f08ee, type: 3}
+      cardPlacedSprite: {fileID: 0}
+      cardActionContainer:
+        actions:
+        - {fileID: 11400000, guid: d92a58ffbd6f4ae49ba6704d7d8edcd4, type: 2}
+      arguments: []
+    - cardName: "\uBE44\uBA85\uCE74\uB4DC 1"
+      cardDescription: 
+      directions: 10
+      cardSprite: {fileID: 21300000, guid: 608c8fb17d63fd148857d690342e55ce, type: 3}
+      cardPlacedSprite: {fileID: 0}
+      cardActionContainer:
+        actions:
+        - {fileID: 11400000, guid: d92a58ffbd6f4ae49ba6704d7d8edcd4, type: 2}
+      arguments:
+      - key: 7
+        stringValue: 
+        intValue: 2
   isPaused: 0
   dataBase: {fileID: 216223549}
 --- !u!114 &262391827
@@ -1135,7 +1263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deck:
-    rid: -2
+    rid: 8367493738509893701
   maxHandSize: 5
   drawCount: 1
   handCardHolder: {fileID: 918442101}
@@ -1143,8 +1271,12 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+    - rid: 8367493738509893701
+      type: {class: Deck, ns: , asm: Assembly-CSharp}
+      data:
+        discardSize: {fileID: 11400000, guid: 72b6081ca9422f14e81051598fec9a92, type: 2}
+        drawSize: {fileID: 11400000, guid: 488548a036f92f942a4257283cbc7f55, type: 2}
+        cardDataList: []
 --- !u!4 &566048090
 Transform:
   m_ObjectHideFlags: 0
@@ -2931,7 +3063,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Draw Deck : 6'
+  m_text: 'Draw Deck : 11'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3267,7 +3399,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Turn : 01'
+  m_text: 'Turn : 00'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

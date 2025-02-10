@@ -87,6 +87,12 @@ public static class DirectionHelper
     }
 
     #region Flag 조작
+
+    public static bool HasDirection(this DirectionFlag flag, Direction dir)
+    {
+        return (flag & dir.ToFlag()) != 0;
+    }
+    
     public static List<Direction> ToList(this DirectionFlag flag)
     {
         List<Direction> list = new List<Direction>();
@@ -115,12 +121,55 @@ public static class DirectionHelper
         return (DirectionFlag)(1 << (int)dir);
     }
     
+    public static Direction First(this DirectionFlag flag)
+    {
+        for (int i = 0; i < (int)Direction.Max; i++)
+        {
+            if ((flag & (DirectionFlag)(1 << i)) != 0)
+            {
+                return (Direction)i;
+            }
+        }
+        return Direction.None;
+    }
+    
 
     #endregion
+    public static Direction GetClockwiseDirection(Direction dir, DirectionFlag candidates)
+    {
+        if (candidates == DirectionFlag.None)
+        {
+            return Direction.None;
+        }
+        do
+        {
+            dir = dir.Clockwise();
+        }while (!candidates.HasDirection(dir));
 
+        return dir;
+    }
+    
+    public static Direction GetCounterClockwiseDirection(Direction dir, DirectionFlag candidates)
+    {
+        if (candidates == DirectionFlag.None)
+        {
+            return Direction.None;
+        }
+        do
+        {
+            dir = dir.CounterClockwise();
+        }while (!candidates.HasDirection(dir));
+
+        return dir;
+    }
+    
+    private static Direction GetRandomDir(DirectionFlag candidates)
+    {
+        List<Direction> dirs = candidates.ToList();
+        return dirs[UnityEngine.Random.Range(0, dirs.Count)];
+    }
     
     
-
     #region 기타 헬퍼 함수
 
     /// <summary>

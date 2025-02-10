@@ -24,8 +24,12 @@ public class Guest : MonoBehaviour
     
     private int movedDistance = 0;
     
-    [SerializeField] Direction direction = Direction.None;
-
+    [FormerlySerializedAs("direction")] [SerializeField] Direction orientingDirection = Direction.None;
+    public Direction OrientingDirection
+    {
+        get => orientingDirection;
+        set => orientingDirection = value;
+    }
 
     public event Action OnValueChangedEvent; 
     public event Action OnRemoved; // 현재로서는 Disable시에만 호출됨.
@@ -81,7 +85,7 @@ public class Guest : MonoBehaviour
             return;
         }
         
-        Room nextRoom = CurrentRoom.FindLeftmostRoom(TycoonManager.Instance.Field, direction);
+        Room nextRoom = CurrentRoom.FindLeftmostRoom(TycoonManager.Instance.Field, orientingDirection);
         if (nextRoom)
         {
             Debug.Log($"from {CurrentRoom.name} to {nextRoom.name}");

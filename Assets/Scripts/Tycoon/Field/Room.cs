@@ -100,7 +100,7 @@ public class Room : MonoBehaviour
         while (targetDir != Direction.None && count++ < 4)
         {
             nextRoom = field.GetRoomByDirection(this, targetDir);
-            if (nextRoom.CardData.directions.HasFlag(targetDir.Opposite().ToFlag()))
+            if (nextRoom && nextRoom.CardData.directions.HasFlag(targetDir.Opposite().ToFlag()))
             {
                 return nextRoom;
             }

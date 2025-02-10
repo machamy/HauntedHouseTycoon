@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ba0c5603cab942289a850604267745b5, type: 3}
-  m_Name: Scream 1 (RUD) 1
+  m_Name: Scream 1 (LUD) 1
   m_EditorClassIdentifier: 
   cardData:
     cardName: "\uBE44\uBA85\uCE74\uB4DC 1"
     cardDescription: 
-    directions: 7
+    directions: 13
     cardSprite: {fileID: 21300000, guid: a280644f9ef69ed44b9f89b22b0f08ee, type: 3}
     cardPlacedSprite: {fileID: 0}
     cardActionContainer:

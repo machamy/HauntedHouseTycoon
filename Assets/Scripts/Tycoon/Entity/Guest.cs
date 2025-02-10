@@ -85,7 +85,8 @@ public class Guest : MonoBehaviour
             return;
         }
         
-        Room nextRoom = CurrentRoom.FindLeftmostRoom(TycoonManager.Instance.Field, orientingDirection);
+        Direction targetDirection;
+        Room nextRoom = CurrentRoom.FindLeftmostRoom(TycoonManager.Instance.Field, orientingDirection.Opposite(),out targetDirection);
         if (nextRoom)
         {
             Debug.Log($"from {CurrentRoom.name} to {nextRoom.name}");
@@ -94,6 +95,7 @@ public class Guest : MonoBehaviour
                 .DOMove(nextRoom.transform.position, 0.5f)
                 .OnComplete(()=> entity.Move(nextRoom));
             entity.currentRoom = nextRoom;
+            orientingDirection = targetDirection;
             roomEventChannelSo.RaiseCustomerRoomEnter(this, nextRoom);
         }
         else

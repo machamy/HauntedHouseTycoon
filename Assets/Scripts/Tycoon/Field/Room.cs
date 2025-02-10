@@ -92,7 +92,7 @@ public class Room : MonoBehaviour
     /// <param name="currentRoom"></param>
     /// <param name="originDirection"></param>
     /// <returns></returns>
-    public Room FindLeftmostRoom(Field field, Direction originDirection)
+    public Room FindLeftmostRoom(Field field, Direction originDirection,out Direction targetDirection)
     {
         Direction targetDir = DirectionHelper.GetLeftmostDirection(originDirection, CardData.directions);
         Room nextRoom;
@@ -102,10 +102,12 @@ public class Room : MonoBehaviour
             nextRoom = field.GetRoomByDirection(this, targetDir);
             if (nextRoom && nextRoom.CardData.directions.HasFlag(targetDir.Opposite().ToFlag()))
             {
+                targetDirection = targetDir;
                 return nextRoom;
             }
             targetDir = DirectionHelper.GetLeftmostDirection(targetDir, this.CardData.directions);
         }
+        targetDirection = Direction.None;
         return null;
     }
     #region Event Handlers

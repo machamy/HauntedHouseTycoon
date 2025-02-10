@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 namespace Utilities
 {
@@ -14,6 +15,42 @@ namespace Utilities
         public static float NormalizeAngle(float angle)
         {
             return (angle + 360) % 360;
+        }
+        
+        public static int WeightedRandom(params int[] weights)
+        {
+            int totalWeight = weights.Sum();
+
+            int randomValue = Random.Range(0, totalWeight);
+            for (int i = 0; i < weights.Length; i++)
+            {
+                if (randomValue < weights[i])
+                {
+                    return i;
+                }
+
+                randomValue -= weights[i];
+            }
+
+            return weights.Length - 1;
+        }
+        
+        public static int WeightedRandom(params float[] weights)
+        {
+            float totalWeight = weights.Sum();
+
+            float randomValue = Random.Range(0, totalWeight);
+            for (int i = 0; i < weights.Length; i++)
+            {
+                if (randomValue < weights[i])
+                {
+                    return i;
+                }
+
+                randomValue -= weights[i];
+            }
+
+            return weights.Length - 1;
         }
     }
 }

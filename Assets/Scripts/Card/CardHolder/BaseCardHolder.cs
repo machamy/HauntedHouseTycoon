@@ -19,7 +19,10 @@ public class BaseCardHolder : MonoBehaviour
     [SerializeField] private CardSettingSO cardSetting;
     [SerializeField] private GameObject cardobjectPrefab;
     [SerializeField] private GameObject cardSlotPrefab;
-    
+    [Header("Card Setting")]
+    [SerializeField] protected float cardWidth = 238.5f;
+    [SerializeField] protected float cardHeight = 375f;
+    [SerializeField] protected float cardGap = 0f;
     protected List<CardObject> cardObjects = new List<CardObject>();
     public int CardCount => cardObjects.Count;
     
@@ -75,7 +78,7 @@ public class BaseCardHolder : MonoBehaviour
     /// </summary>
     /// <param name="cardData">생성된 카드 오브젝트</param>
     /// <returns></returns>
-    public CardObject AddCardWithSlot(CardData cardData)
+    public virtual CardObject AddCardWithSlot(CardData cardData)
     {
         var slot = Instantiate(cardSlotPrefab, slotHolder.transform);
         var cardObject = slot.GetComponentInChildren<CardObject>();
@@ -100,7 +103,7 @@ public class BaseCardHolder : MonoBehaviour
     /// 카드를 슬롯과 홀더에서 빼내고, 슬롯을 삭제한다.
     /// </summary>
     /// <param name="cardObject"></param>
-    public void RemoveCardFromHolder(CardObject cardObject)
+    public virtual void RemoveCardFromHolder(CardObject cardObject)
     {
         if (!cardObjects.Contains(cardObject))
         {

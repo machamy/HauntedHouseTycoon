@@ -49,6 +49,14 @@ public class CardDisplay : MonoBehaviour
         transform.SetSiblingIndex(cardObject.GetIdx());
     }
     
+    public void DoFade(float targetAlpha, float duration,bool stopCurrent = true)
+    {
+        if(stopCurrent)
+            cardImage.DOKill();
+        cardImage.DOFade(targetAlpha, duration);
+    }
+
+    
     public float GetClampedVisiblePos(float postion){
         return Mathf.Clamp(postion
             , rectTransform.rect.height * 0.5f * CardSetting.hoverScale

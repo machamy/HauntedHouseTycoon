@@ -8,7 +8,9 @@ public class CardObject : MonoBehaviour
     [Header("Data")]
     [SerializeField] private CardData cardData;
     public CardData CardData => cardData;
-    [Header("References")]
+    [Header("References")] 
+    public GameObject slotGO => transform.parent.gameObject;
+    public Transform slotTransform => transform.parent;
     [SerializeReference] private CardSettingSO cardSetting;
     [SerializeField] private CardSelection cardSelection;
     [SerializeField] private CardDisplay cardDisplay;
@@ -27,7 +29,17 @@ public class CardObject : MonoBehaviour
         cardDisplay = Instantiate(cardDisplayPrefab,displayHolder.transform);
         cardDisplay.cardObject = this;
     }
-    
+
+    private void OnEnable()
+    {
+        cardDisplay.gameObject.SetActive(true);
+    }
+
+    private void OnDisable()
+    {
+        cardDisplay.gameObject.SetActive(false);
+    }
+
     public void Initialize(CardData data, CardSettingSO cardSetting)
     {
         cardData = data;

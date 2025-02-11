@@ -61,10 +61,16 @@ public class HorizontalCardHolder : BaseCardHolder
         for (int i = visibleStartIdx + 1; i < visibleEndIdx; i++)
         {
             // for문으로 다 돌아도 최적화에 큰 문제는 없을듯
-            cardObjects[i].slotGO.SetActive(true);
+            if(!cardObjects[i].slotGO.activeSelf)
+            {
+                cardObjects[i].slotGO.SetActive(true);
+            }
             cardObjects[i].CardDisplay.DoFade(1, fadeDuration);
         }
-        cardObjects[visibleStartIdx].slotGO.SetActive(true);
+        if(!cardObjects[visibleStartIdx].slotGO.activeSelf)
+        {
+            cardObjects[visibleStartIdx].slotGO.SetActive(true);
+        }
         if(visibleStartIdx - 1 >= 0)
         {
             // 왼쪽에 카드가 있는경우
@@ -76,7 +82,11 @@ public class HorizontalCardHolder : BaseCardHolder
             // 왼쪽에 카드가 없는경우
             cardObjects[visibleStartIdx].CardDisplay.DoFade(1, fadeDuration);
         }
-        cardObjects[visibleEndIdx].slotGO.SetActive(true);
+        
+        if(!cardObjects[visibleEndIdx].slotGO.activeSelf)
+        {
+            cardObjects[visibleEndIdx].slotGO.SetActive(true);
+        }
         if(visibleEndIdx + 1 < cardObjects.Count)
         {
             // 오른쪽에 카드가 있는경우

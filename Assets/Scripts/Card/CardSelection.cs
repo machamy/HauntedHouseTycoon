@@ -130,7 +130,7 @@ public class CardSelection : MonoBehaviour, IPointerEnterHandler,IPointerExitHan
         {
             Vector3 uiSize = CardObject.CardDisplay.CardImageSize * CardObject.transform.lossyScale.x;
             room.PlaceCard(cardObject.CardData, uiSize);
-            TycoonManager.Instance.TurnManager.ReadyToPlayerTurnEnd();
+            // TycoonManager.Instance.TurnManager.ReadyToPlayerTurnEnd();
             _isUsed = true;
             cardObject.LeaveHand();
         }

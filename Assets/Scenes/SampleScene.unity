@@ -418,7 +418,10 @@ MonoBehaviour:
     cardPlacedSprite: {fileID: 0}
     cardActionContainer:
       actions: []
-    arguments: []
+    arguments:
+    - key: 7
+      stringValue: 
+      intValue: 0
   - cardName: "\uC785\uC7A5\uCE74\uB4DC 1"
     cardDescription: "1\uBA85 \uC18C\uD658 2\uD134\uB4A4 \uC0AC\uB9DD"
     directions: 10
@@ -528,7 +531,7 @@ MonoBehaviour:
     arguments: []
   - cardName: "\uBE44\uBA85\uCE74\uB4DC 1"
     cardDescription: 
-    directions: 7
+    directions: 13
     cardSprite: {fileID: 21300000, guid: a280644f9ef69ed44b9f89b22b0f08ee, type: 3}
     cardPlacedSprite: {fileID: 0}
     cardActionContainer:
@@ -2127,6 +2130,13 @@ MonoBehaviour:
   cardSetting: {fileID: 11400000, guid: 86c538bd570b8554b9d23be045f40831, type: 2}
   cardobjectPrefab: {fileID: 5505701845008967105, guid: 67724ac694faa034881290edacce7cdc, type: 3}
   cardSlotPrefab: {fileID: 2679809313440519932, guid: 6cea4899fb96e314c8617f457b411b24, type: 3}
+  cardWidth: 238.5
+  cardHeight: 375
+  cardGap: 0
+  fadeDuration: 0.25
+  fadeAlpha: 0.25
+  maxVisibleCardAmount: 5
+  currentVisibleCardAmount: 0
 --- !u!1 &960786831
 GameObject:
   m_ObjectHideFlags: 0
@@ -3399,7 +3409,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Turn : 00'
+  m_text: 'Turn : 02'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

@@ -33,6 +33,7 @@ public class HorizontalCardHolder : BaseCardHolder
     protected override void OnFocus(CardSelection cardSelect)
     {
         base.OnFocus(cardSelect);
+        Debug.Log("HorizontalCardHolder OnFocus");
         CardDisplay cardDisplay = cardSelect.CardObject.CardDisplay;
         if(!cardSelect.CardSetting.hoverVisible)
             return;
@@ -40,6 +41,7 @@ public class HorizontalCardHolder : BaseCardHolder
         cardSelect.transform.position = new Vector3(cardSelect.transform.position.x, focusedY, cardSelect.transform.position.z);
         cardSelect.transform.localScale = Vector3.one * cardSelect.CardSetting.hoverScale;
         cardDisplay.transform.SetAsLastSibling();
+        
     }
 
     protected override void OnUnfocus(CardSelection cardSelect)

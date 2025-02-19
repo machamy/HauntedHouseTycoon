@@ -19,6 +19,7 @@ public class CardSelection : MonoBehaviour, IPointerEnterHandler,IPointerExitHan
     private bool _isUsed = false;
     
     
+    public bool IsFocused => _isFocused;
     public bool IsDragging => _isDragging;
     public bool IsSelected => _isSelected;
     public bool IsUsed => _isUsed;
@@ -42,8 +43,8 @@ public class CardSelection : MonoBehaviour, IPointerEnterHandler,IPointerExitHan
 
     #region Events
     [SerializeField] private TurnEventChannelSO turnEventChannelSo;
-    public event Action<PointerEventData,CardSelection> OnCardPointerEnter;
-    public event Action<PointerEventData,CardSelection> OnCardPointerExit;
+    public PriorityEvent<PointerEventData,CardSelection> OnCardPointerEnter = new PriorityEvent<PointerEventData, CardSelection>();
+    public PriorityEvent<PointerEventData,CardSelection> OnCardPointerExit = new PriorityEvent<PointerEventData, CardSelection>();
     public event Action<PointerEventData,CardSelection> OnCardPointerDown;
     public event Action<PointerEventData,CardSelection,bool> OnCardPointerUp;
     public event Action<PointerEventData,CardSelection,Room> OnCardPointerRoomEnter;
@@ -98,7 +99,7 @@ public class CardSelection : MonoBehaviour, IPointerEnterHandler,IPointerExitHan
             return;
         var targetPosUi = eventData.position;
         transform.position = targetPosUi;
-        Field field = TycoonManager.Instance.Field;
+        // Field field = TycoonManager.Instance.Field;
         CardUseArea cardUseArea = CardUseArea.RaycastCardUseArea(targetPosUi);
         Room room = (Room) cardUseArea?.parent;
         if(room != null && room != _prevPointerRoom)

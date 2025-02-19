@@ -15,7 +15,7 @@ public class CardSetting
     [Header("Defualt Parameters")]
     public float defaultAlpha = 1f;
     public float defaultScale = 1f;
-    public float returnSpeed = 20f;
+    // public float returnSpeed = 20f;
     // public bool doAngleCurve = true;
     public bool usePositionCurve = true;
     public bool useRotationCurve = true;
@@ -33,6 +33,7 @@ public class CardSetting
     public float hoverScale = 1.3f;
     public float hoverAnimationDuration = 0.2f;
     public bool hoverVisible = true;
+    public bool hoverRotation = true;
     
     [Header("Selection Parameters")]
     public bool isSelectable = true;

@@ -19,6 +19,8 @@ public class CardDisplay : MonoBehaviour
     
     private bool _isAnimating = false;
     public bool IsAnimating => _isAnimating;
+    
+    private bool _handlerInitialized = false;
     private void Start()
     {
         _cardSelection = cardObject.CardSelection;
@@ -26,16 +28,27 @@ public class CardDisplay : MonoBehaviour
         InitHandlers();
     }
     
-    private void InitHandlers()
+    public void InitHandlers()
     {
-        _cardSelection.OnCardPointerEnter += OnPointerEnter;
-        _cardSelection.OnCardPointerExit += OnPointerExit;
+        if (_handlerInitialized)
+            return;
+        _cardSelection.OnCardPointerEnter.RemoveListener(OnPointerEnter);
+        _cardSelection.OnCardPointerExit.RemoveListener(OnPointerExit);
+        _cardSelection.OnCardPointerDown -= OnPointerDown;
+        _cardSelection.OnCardPointerUp -= OnPointerUp;
+        _cardSelection.OnCardPointerRoomEnter -= OnPointerRoomEnter;
+        _cardSelection.OnCardPointerRoomExit -= OnPointerRoomExit;
+        _cardSelection.OnCardDragStart -= OnDragStart;
+        _cardSelection.OnCardDragEnd -= OnDragEnd;
+        _cardSelection.OnCardPointerEnter.AddListener(OnPointerEnter,-10);
+        _cardSelection.OnCardPointerExit.AddListener(OnPointerExit,-10);
         _cardSelection.OnCardPointerDown += OnPointerDown;
         _cardSelection.OnCardPointerUp += OnPointerUp;
         _cardSelection.OnCardPointerRoomEnter += OnPointerRoomEnter;
         _cardSelection.OnCardPointerRoomExit += OnPointerRoomExit;
         _cardSelection.OnCardDragStart += OnDragStart;
         _cardSelection.OnCardDragEnd += OnDragEnd;
+        _handlerInitialized = true;
     }
     
     public void InitializeDisplay()
@@ -83,7 +96,7 @@ public class CardDisplay : MonoBehaviour
     private void HandPositioning()
     {
         // 드래그중이면 패스
-        if (_cardSelection.IsDragging)
+        if (_cardSelection.IsDragging || !cardObject.CardHolder)
         {
             curveYoffset = 0;
             curveRotationOffset = 0;
@@ -99,7 +112,8 @@ public class CardDisplay : MonoBehaviour
         else
             curveYoffset = 0;
         // Debug.Log($"{curveYoffset} {normalizedIdx}");
-        if(CardSetting.useRotationCurve)
+        // 회전커브 사용, 포커스중이면 호버로테이션 확인
+        if(CardSetting.useRotationCurve && (!_cardSelection.IsFocused || CardSetting.hoverRotation))
         {
             float normalizedIdxForRotation;
             if (visibleCardAmount == 1)
@@ -135,6 +149,7 @@ public class CardDisplay : MonoBehaviour
 
     private void OnPointerEnter(PointerEventData eventData, CardSelection cardSelection)
     {
+        Debug.Log("CardDisplay OnPointerEnter");
         if (!CardSetting.isHoverable || cardSelection.IsUsed)
             return;
         transform.DOScale(CardSetting.hoverScale, CardSetting.hoverAnimationDuration);

@@ -93,8 +93,8 @@ public class BaseCardHolder : MonoBehaviour
         cardObjects.Add(cardObject);
         cardObject.CardHolder = this;
         cardObject.Initialize(cardData,cardSetting);
-        cardObject.CardSelection.OnCardPointerEnter += OnFocusBase;
-        cardObject.CardSelection.OnCardPointerExit += OnUnfocusBase;
+        cardObject.CardSelection.OnCardPointerEnter.AddListener(OnFocusBase);
+        cardObject.CardSelection.OnCardPointerExit.AddListener(OnUnfocusBase);
         cardObject.CardSelection.OnCardDragStart += OnCardDraggStartBase;
         cardObject.CardSelection.OnCardDragEnd += OnCardDraggingBase;
         cardObject.CardSelection.OnCardDragEnd += OnCardDragEndBase;
@@ -121,8 +121,9 @@ public class BaseCardHolder : MonoBehaviour
         }
         GameObject slot = cardObject.transform.parent.gameObject;
         cardObjects.Remove(cardObject);
-        cardObject.CardSelection.OnCardPointerEnter -= OnFocusBase;
-        cardObject.CardSelection.OnCardPointerExit -= OnUnfocusBase;
+        cardObject.CardDisplay.InitHandlers();
+        cardObject.CardSelection.OnCardPointerEnter.RemoveListener(OnFocusBase);
+        cardObject.CardSelection.OnCardPointerExit.RemoveListener(OnUnfocusBase);
         cardObject.CardSelection.OnCardDragStart -= OnCardDraggStartBase;
         cardObject.CardSelection.OnCardDragEnd -= OnCardDraggingBase;
         cardObject.CardSelection.OnCardDragEnd -= OnCardDragEndBase;

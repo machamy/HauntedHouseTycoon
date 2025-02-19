@@ -75,6 +75,7 @@ public class CardDisplay : MonoBehaviour
     {
         HandPositioning();
         FollowCard();
+        FollowRotation();
     }
 
     float curveYoffset = 0;
@@ -83,7 +84,11 @@ public class CardDisplay : MonoBehaviour
     {
         // 드래그중이면 패스
         if (_cardSelection.IsDragging)
+        {
+            curveYoffset = 0;
+            curveRotationOffset = 0;
             return;
+        }
         int visibleCardAmount = cardObject.CardHolder.CurrentVisibleCardAmount;
         CardCurveSO cardCurveSo = CardSetting.cardCurveSo;
         float normalizedIdx = visibleCardAmount == 1 ? 0: cardObject.GetVisibleIdx() / ((float) visibleCardAmount - 1);
@@ -117,8 +122,15 @@ public class CardDisplay : MonoBehaviour
         if(CardSetting.followAnimation)
             targetPos = Vector3.Lerp(transform.position, targetPos, cardObject.CardSetting.followSpeed * Time.deltaTime);
         transform.position = targetPos;
-        transform.rotation = cardObject.transform.rotation;
-        transform.Rotate(Vector3.forward, curveRotationOffset);
+        
+    }
+    private void FollowRotation()
+    {
+        Quaternion targetRotation = cardObject.transform.rotation;
+        targetRotation.eulerAngles += new Vector3(0,0,curveRotationOffset);
+        if(CardSetting.followRotation)
+            targetRotation = Quaternion.Lerp(transform.rotation, targetRotation, cardObject.CardSetting.followRotationSpeed * Time.deltaTime);
+        transform.rotation = targetRotation;
     }
 
     private void OnPointerEnter(PointerEventData eventData, CardSelection cardSelection)

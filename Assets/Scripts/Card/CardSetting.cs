@@ -24,6 +24,9 @@ public class CardSetting
     [Header("Follow Parameters")]
     public bool followAnimation = true;
     public float followSpeed = 10f;
+    [Header("Rotation Parameters")]
+    public bool followRotation = true;
+    public float followRotationSpeed = 10f;
     
     [Header("Hover Parameters")]
     public bool isHoverable = true;

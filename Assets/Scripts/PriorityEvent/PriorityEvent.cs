@@ -29,7 +29,8 @@ public class PriorityEvent : PriorityEventBase
     
     public void RemoveListener(Action listener)
     {
-        foreach (var k in _events.Keys)
+        var keys = new List<int>(_events.Keys);
+        foreach (var k in keys)
         {
             _events[k] -= listener;
         }

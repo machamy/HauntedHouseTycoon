@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Events;
 
 
@@ -29,9 +30,11 @@ public class PriorityEvent<T0,T1> : PriorityEventBase
     
     public void RemoveListener(Action<T0,T1> listener)
     {
-        foreach (var k in _events.Keys)
+        var keys = new List<int>(_events.Keys);
+        foreach (var k in keys)
         {
             _events[k] -= listener;
+            Debug.Log($"{k} {_events.Keys.Count}");
         }
     }
     

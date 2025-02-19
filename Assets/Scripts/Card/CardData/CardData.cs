@@ -17,6 +17,9 @@ public class CardData : ICloneable
     // [FormerlySerializedAs("directions")] public List<Direction> directionsLegacy;
     public DirectionFlag directions;
     public Sprite cardSprite;
+    public Sprite simpleCardSprite;
+    public Sprite halfCardSprite;
+    public Sprite fullCardSprite;
     public Sprite cardPlacedSprite;
     public CardActionContainer cardActionContainer;
     
@@ -85,6 +88,9 @@ public class CardData : ICloneable
             cardDescription = cardDescription,
             directions = directions,
             cardSprite = cardSprite,
+            simpleCardSprite = simpleCardSprite,
+            halfCardSprite = halfCardSprite,
+            fullCardSprite = fullCardSprite,
             cardPlacedSprite = cardPlacedSprite,
             cardActionContainer = (CardActionContainer)cardActionContainer.Clone(),
             arguments = new List<CardDataAgument>(),

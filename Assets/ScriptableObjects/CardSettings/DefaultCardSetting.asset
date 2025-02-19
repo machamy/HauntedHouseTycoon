@@ -13,24 +13,25 @@ MonoBehaviour:
   m_Name: DefaultCardSetting
   m_EditorClassIdentifier: 
   Setting:
+    useDebugSprite: 0
+    slotWidth: 150
+    slotHeight: 375
     defaultAlpha: 1
     defaultScale: 1
     returnSpeed: 20
-    doAngleCurve: 1
-    handAngleCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
+    usePositionCurve: 1
+    useRotationCurve: 1
+    cardCurveSo: {fileID: 11400000, guid: ffc4a0afaf51772448af6c8b639997a3, type: 2}
     followAnimation: 1
     followSpeed: 10
     isHoverable: 1
     hoverScale: 1.5
     hoverAnimationDuration: 0.2
     hoverVisible: 1
-    isSelectable: 1
+    isSelectable: 0
     isDraggable: 1
     dragAnimationDuration: 0.2
     dragAlpha: 0.5
     dragScale: 0.7
+    forceStopAnimation: 0
+  isDirty: 1

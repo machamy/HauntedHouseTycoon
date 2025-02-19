@@ -1,9 +1,11 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
 public class CardObject : MonoBehaviour
 { 
+    [FormerlySerializedAs("cardHolder")] [SerializeField] public BaseCardHolder CardHolder;
     [SerializeField] private CardDisplay cardDisplayPrefab;
     [Header("Data")]
     [SerializeField] private CardData cardData;
@@ -28,6 +30,7 @@ public class CardObject : MonoBehaviour
         var displayHolder = FindFirstObjectByType<CardDisplayHolder>();
         cardDisplay = Instantiate(cardDisplayPrefab,displayHolder.transform);
         cardDisplay.cardObject = this;
+        // visibleIdx = GetRawIdx();
     }
 
     private void OnEnable()
@@ -44,7 +47,7 @@ public class CardObject : MonoBehaviour
     {
         cardData = data;
         this.cardSetting = cardSetting;
-        cardDisplay.UpdateDisplay();
+        cardDisplay.InitializeDisplay();
     }
 
     public void LeaveHand()
@@ -52,5 +55,16 @@ public class CardObject : MonoBehaviour
         OnCardLeaveHand?.Invoke(this);
     }
     
-    public int GetIdx() => transform.parent.GetSiblingIndex();
+    public int GetRawIdx() => transform.parent.GetSiblingIndex();
+
+    public int GetVisibleIdx()
+    {
+        if (CardHolder == null)
+        {
+            return GetRawIdx();
+        }
+
+        return GetRawIdx() - CardHolder.VisibleStartIdx;
+    }
+
 }

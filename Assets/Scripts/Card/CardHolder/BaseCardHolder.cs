@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 
 
@@ -20,12 +21,16 @@ public class BaseCardHolder : MonoBehaviour
     [SerializeField] private GameObject cardobjectPrefab;
     [SerializeField] private GameObject cardSlotPrefab;
     [Header("Card Setting")]
-    [SerializeField] protected float cardWidth = 238.5f;
-    [SerializeField] protected float cardHeight = 375f;
+    [SerializeField] protected float cardWidth => cardSetting.Setting.slotWidth;
+    [SerializeField] protected float cardHeight => cardSetting.Setting.slotHeight;
     [SerializeField] protected float cardGap = 0f;
     protected List<CardObject> cardObjects = new List<CardObject>();
     public int CardCount => cardObjects.Count;
     
+    public virtual int MaxVisibleCardAmount => CurrentVisibleCardAmount;
+    public virtual int VisibleStartIdx => 0;
+    public virtual int VisibleEndIdx => cardObjects.Count - 1;
+    public virtual int CurrentVisibleCardAmount => cardObjects.Count;
 
     // /// <summary>
     // /// 해당 카드들로 카드를 초기화함. 필수아님
@@ -82,7 +87,11 @@ public class BaseCardHolder : MonoBehaviour
     {
         var slot = Instantiate(cardSlotPrefab, slotHolder.transform);
         var cardObject = slot.GetComponentInChildren<CardObject>();
+        slot.transform.localScale = Vector3.one;
+        var rectTransform = slot.GetComponent<RectTransform>();
+        rectTransform.sizeDelta = new Vector2(cardWidth,cardHeight);
         cardObjects.Add(cardObject);
+        cardObject.CardHolder = this;
         cardObject.Initialize(cardData,cardSetting);
         cardObject.CardSelection.OnCardPointerEnter += OnFocusBase;
         cardObject.CardSelection.OnCardPointerExit += OnUnfocusBase;
@@ -212,16 +221,16 @@ public class BaseCardHolder : MonoBehaviour
         
     }
     
-    private void OnFocusBase (CardSelection cardSelect) => OnFocus(cardSelect);
-    private void OnUnfocusBase (CardSelection cardSelect) => OnUnfocus(cardSelect);
-    private void OnCardDraggStartBase (CardSelection cardSelect) => OnCardDraggStart(cardSelect);
-    private void OnCardDraggingBase (CardSelection cardSelect) => OnCardDragging(cardSelect);
-    private void OnCardDragEndBase (CardSelection cardSelect) => OnCardDragEnd(cardSelect);
+    private void OnFocusBase (PointerEventData eventData, CardSelection cardSelect) => OnFocus(cardSelect);
+    private void OnUnfocusBase (PointerEventData eventData, CardSelection cardSelect) => OnUnfocus(cardSelect);
+    private void OnCardDraggStartBase (PointerEventData eventData, CardSelection cardSelect) => OnCardDraggStart(cardSelect);
+    private void OnCardDraggingBase (PointerEventData eventData, CardSelection cardSelect) => OnCardDragging(cardSelect);
+    private void OnCardDragEndBase (PointerEventData eventData, CardSelection cardSelect) => OnCardDragEnd(cardSelect);
     private void OnCardLeaveHandBase(CardObject cardSelect) => OnCardLeaveHand(cardSelect);
     
-    private void OnCardPointerDownBase(CardSelection cardSelect) => OnCardPointerDown(cardSelect);
+    private void OnCardPointerDownBase(PointerEventData eventData, CardSelection cardSelect) => OnCardPointerDown(cardSelect);
     
-    private void OnCardPointerUpBase(CardSelection cardSelect,bool isClick) => OnCardPointerUp(cardSelect,isClick);
+    private void OnCardPointerUpBase(PointerEventData eventData, CardSelection cardSelect,bool isClick) => OnCardPointerUp(cardSelect,isClick);
     
     #endregion
 

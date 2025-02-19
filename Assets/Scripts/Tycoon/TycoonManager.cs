@@ -41,12 +41,16 @@ public class TycoonManager : SingletonBehaviour<TycoonManager>
                 Pause();
         }
     }
-    
+    public bool initCameraToFieldCenter = false;
     public void StartCycle()
     {
         field.InitField(4, 3);
-        Vector3 centerPosition = field.GetCenterPosition();
-        Camera.main.transform.position = new Vector3(centerPosition.x, centerPosition.y, Camera.main.transform.position.z);
+        if (initCameraToFieldCenter)
+        {
+            Vector3 centerPosition = field.GetCenterPosition();
+            Camera.main.transform.position =
+                new Vector3(centerPosition.x, centerPosition.y, Camera.main.transform.position.z);
+        }
         handManager.deck = deck;
         deck.SetupForCycle();
     }

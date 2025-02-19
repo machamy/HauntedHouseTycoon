@@ -31,7 +31,7 @@ public class Field : MonoBehaviour
                 room.transform.parent = transform;
                 room.name = $"Room ({x}, {y})";
                 room.Init(new Vector2Int(x, y), defaultCardData.cardData);
-                room.transform.localScale = grid.cellSize;
+                // room.transform.localScale = grid.cellSize;
                 if (RoomHolder != null)
                 {
                     room.transform.SetParent(RoomHolder.transform);

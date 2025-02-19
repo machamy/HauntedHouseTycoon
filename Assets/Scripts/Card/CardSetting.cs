@@ -6,12 +6,20 @@ using UnityEngine.Serialization;
 [Serializable]
 public class CardSetting
 {
+    public bool useDebugSprite = false;
+    [Header("Card Parameters")]
+    public float slotWidth = 238.5f;
+    public float slotHeight = 375f;
+    
+    
     [Header("Defualt Parameters")]
     public float defaultAlpha = 1f;
     public float defaultScale = 1f;
     public float returnSpeed = 20f;
-    public bool doAngleCurve = true;
-    public AnimationCurve handAngleCurve;
+    // public bool doAngleCurve = true;
+    public bool usePositionCurve = true;
+    public bool useRotationCurve = true;
+    public CardCurveSO cardCurveSo;
    
     [Header("Follow Parameters")]
     public bool followAnimation = true;
@@ -19,7 +27,7 @@ public class CardSetting
     
     [Header("Hover Parameters")]
     public bool isHoverable = true;
-    public float hoverScale = 1.5f;
+    public float hoverScale = 1.3f;
     public float hoverAnimationDuration = 0.2f;
     public bool hoverVisible = true;
     

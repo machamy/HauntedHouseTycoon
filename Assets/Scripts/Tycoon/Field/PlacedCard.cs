@@ -16,16 +16,14 @@ public class PlacedCard : MonoBehaviour
         spriteRenderer.sprite = cardData.cardSprite;
     }
     
-    public void UpdateDisplay(CardData cardData, Vector3 uiSize)
+    public void UpdateDisplay(CardData cardData, Vector3 startSize)
     {
         if (spriteRenderer == null)
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
-        Camera mainCam = Camera.main;
-        float worldScreenHeight = mainCam.orthographicSize * 2;
-        float worldScreenWidth = worldScreenHeight * mainCam.aspect;
-        Vector3 worldSize = new Vector3(uiSize.x / Screen.width * worldScreenWidth, uiSize.y / Screen.height * worldScreenHeight, 1);
+
+        Vector3 worldSize = startSize;
         spriteRenderer.sprite = cardData.cardSprite;
         transform.localScale = worldSize;
         transform.DOScale(Vector3.one, 0.25f);

@@ -1,4 +1,5 @@
 ﻿
+using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -20,6 +21,8 @@ public class Room : MonoBehaviour
     [SerializeField] private ScreamEventChannelSO screamEventChannelSo;
     public Vector2Int Coordinate => coordinate;
     public CardData CardData => cardData;
+
+    private CardUseArea cardUseArea;
     public void Init(Vector2Int position, CardData cardData)
     {
         this.coordinate = position;
@@ -33,14 +36,24 @@ public class Room : MonoBehaviour
         UpdatePlacedCard();
     }
 
+    private void Awake()
+    {
+        cardUseArea = GetComponentInChildren<CardUseArea>();
+        cardUseArea.parent = this;
+    }
+
     public void UpdatePlacedCard()
     {
         placedCard.UpdateDisplay(cardData);
+        focusRenderer.sprite = cardData.cardSprite;
     }
-    private void UpdatePlacedCard(Vector3 uiSize)
+    private void UpdatePlacedCard(Vector3 startSize)
     {
-        placedCard.UpdateDisplay(cardData,uiSize);
-    }
+        placedCard.UpdateDisplay(cardData,startSize);
+        focusRenderer.sprite = cardData.cardSprite;
+    } 
+
+
     
     public bool PlaceCard(CardData cardData) => PlaceCard(cardData, Vector3.one);
     public bool PlaceCard(CardData cardData, Vector3 uiSize)
@@ -60,7 +73,7 @@ public class Room : MonoBehaviour
         cardData = defaultCardData.cardData;
         if(originalCardData != null && originalCardData.cardName != "Blank")
         {
-            UnfocusColor();
+            Unfocus();
             if (originalCardData.returnDeck != null)
                 // originalCardData.returnDeck.AddCardToDiscardPool(cardData);
                 // 버려진 카드는 그냥 버려짐
@@ -73,13 +86,21 @@ public class Room : MonoBehaviour
     private bool isFocused = false;
     public bool IsFocused => isFocused;
     
+    public void FocusSprite(Sprite sprite, Color color)
+    {
+        focusRenderer.sprite = sprite;
+        focusRenderer.color = color;
+        focusRenderer.enabled = true;
+        isFocused = true;
+    }
+    
     public void FocusColor(Color color)
     {
         focusRenderer.color = color;
         focusRenderer.enabled = true;
     }
     
-    public void UnfocusColor()
+    public void Unfocus()
     {
         focusRenderer.enabled = false;
     }
@@ -119,6 +140,12 @@ public class Room : MonoBehaviour
         roomEventChannelSo.OnCustomerRoomEnter += OnCustomerRoomEnter;
         roomEventChannelSo.OnCustomerRoomExit += OnCustomerRoomExit;
         screamEventChannelSo.OnScream += OnScream;
+        if (cardUseArea)
+        {
+            cardUseArea.OnCardUse += OnCardUse;
+            // cardUseArea.OnCardUseAreaEnter += OnCardUseAreaEnter;
+            // cardUseArea.OnCardUseAreaExit += OnCardUseAreaExit;
+        }
     }
     
     private void OnDisable()
@@ -129,6 +156,12 @@ public class Room : MonoBehaviour
         roomEventChannelSo.OnCustomerRoomEnter -= OnCustomerRoomEnter;
         roomEventChannelSo.OnCustomerRoomExit -= OnCustomerRoomExit;
         screamEventChannelSo.OnScream -= OnScream;
+        if (cardUseArea)
+        {
+            cardUseArea.OnCardUse -= OnCardUse;
+            // cardUseArea.OnCardUseAreaEnter -= OnCardUseAreaEnter;
+            // cardUseArea.OnCardUseAreaExit -= OnCardUseAreaExit;
+        }
     }
 
     private void OnPlayerTurnEnter()
@@ -190,6 +223,21 @@ public class Room : MonoBehaviour
         }
     }
     
+    public void OnCardUse(CardUseArea cardUseArea, CardData cardData)
+    {
+        PlaceCard(cardData);
+    }
+    
+    // Color focusColor = new Color(0.5f,1,0.0f,0.5f);
+    // public void OnCardUseAreaEnter(CardUseArea cardUseArea, CardData cardData)
+    // {
+    //     FocusSprite(cardData.cardSprite, focusColor);
+    // }
+    //
+    // public void OnCardUseAreaExit(CardUseArea cardUseArea, CardData cardData)
+    // {
+    //     Unfocus();
+    // }
 
     #endregion
 }

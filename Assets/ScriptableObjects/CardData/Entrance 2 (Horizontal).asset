@@ -17,6 +17,9 @@ MonoBehaviour:
     cardDescription: "2\uBA85 \uC18C\uD658 2\uD134\uB4A4 \uC0AC\uB9DD"
     directions: 10
     cardSprite: {fileID: 21300000, guid: 07c5e4f88482abe4d8e21b54f859a2bb, type: 3}
+    simpleCardSprite: {fileID: 4444644672834298981, guid: e37a38533a542014baf1894373197c88, type: 3}
+    halfCardSprite: {fileID: 1835788373175305458, guid: 480de0f3e60e26848bf2060b36c5586d, type: 3}
+    fullCardSprite: {fileID: 1835788373175305458, guid: 480de0f3e60e26848bf2060b36c5586d, type: 3}
     cardPlacedSprite: {fileID: 0}
     cardActionContainer:
       actions:

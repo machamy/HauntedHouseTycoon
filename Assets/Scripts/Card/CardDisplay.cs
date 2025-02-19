@@ -2,6 +2,7 @@
 using System;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
@@ -12,6 +13,7 @@ public class CardDisplay : MonoBehaviour
     private CardSelection _cardSelection;
     
     [SerializeField] private Image cardImage;
+    [SerializeField] private Image cardFullRightImage;
     public Vector3 CardImageSize => cardImage.rectTransform.sizeDelta;
     private RectTransform rectTransform;
     
@@ -21,7 +23,6 @@ public class CardDisplay : MonoBehaviour
     {
         _cardSelection = cardObject.CardSelection;
         rectTransform = GetComponent<RectTransform>();
-        
         InitHandlers();
     }
     
@@ -37,16 +38,23 @@ public class CardDisplay : MonoBehaviour
         _cardSelection.OnCardDragEnd += OnDragEnd;
     }
     
-    public void UpdateDisplay()
+    public void InitializeDisplay()
     {
         transform.localScale = CardSetting.defaultScale * Vector3.one;
-        cardImage.sprite = cardObject.CardData.cardSprite;
-        
+        if(CardSetting.useDebugSprite)
+        {
+            cardImage.sprite = cardObject.CardData.cardSprite;
+        }
+        else
+        {
+            cardImage.sprite = cardObject.CardData.simpleCardSprite;
+        }
+        cardImage.SetNativeSize();
     }
 
     public void UpdateIndex()
     {
-        transform.SetSiblingIndex(cardObject.GetIdx());
+        transform.SetSiblingIndex(cardObject.GetRawIdx());
     }
     
     public void DoFade(float targetAlpha, float duration,bool stopCurrent = true)
@@ -65,58 +73,112 @@ public class CardDisplay : MonoBehaviour
     
     private void Update()
     {
+        HandPositioning();
         FollowCard();
+    }
+
+    float curveYoffset = 0;
+    float curveRotationOffset = 0;
+    private void HandPositioning()
+    {
+        // 드래그중이면 패스
+        if (_cardSelection.IsDragging)
+            return;
+        int visibleCardAmount = cardObject.CardHolder.CurrentVisibleCardAmount;
+        CardCurveSO cardCurveSo = CardSetting.cardCurveSo;
+        float normalizedIdx = visibleCardAmount == 1 ? 0: cardObject.GetVisibleIdx() / ((float) visibleCardAmount - 1);
+        
+        if (CardSetting.usePositionCurve)
+            curveYoffset = cardCurveSo.positionCurve.Evaluate(normalizedIdx) *
+                           CardSetting.cardCurveSo.positionCoefficient * visibleCardAmount;
+        else
+            curveYoffset = 0;
+        // Debug.Log($"{curveYoffset} {normalizedIdx}");
+        if(CardSetting.useRotationCurve)
+        {
+            float normalizedIdxForRotation;
+            if (visibleCardAmount == 1)
+                normalizedIdxForRotation = 0.5f;
+            else
+            {
+                normalizedIdxForRotation = cardObject.GetVisibleIdx() / ((float) visibleCardAmount - 1);
+            }
+            curveRotationOffset = cardCurveSo.rotationCurve.Evaluate(normalizedIdxForRotation) *
+                                  CardSetting.cardCurveSo.rotationCoefficient * visibleCardAmount;
+        }
+        else
+            curveRotationOffset = 0;
     }
     
     private void FollowCard()
     {
         var targetPos = cardObject.transform.position;
+        targetPos.y += curveYoffset;
         if(CardSetting.followAnimation)
             targetPos = Vector3.Lerp(transform.position, targetPos, cardObject.CardSetting.followSpeed * Time.deltaTime);
         transform.position = targetPos;
+        transform.rotation = cardObject.transform.rotation;
+        transform.Rotate(Vector3.forward, curveRotationOffset);
     }
 
-    private void OnPointerEnter(CardSelection cardSelection)
+    private void OnPointerEnter(PointerEventData eventData, CardSelection cardSelection)
     {
         if (!CardSetting.isHoverable || cardSelection.IsUsed)
             return;
         transform.DOScale(CardSetting.hoverScale, CardSetting.hoverAnimationDuration);
+        if (!CardSetting.useDebugSprite)
+        {
+            cardImage.sprite = cardObject.CardData.halfCardSprite;
+            cardImage.SetNativeSize();
+        }
     }
     
-    private void OnPointerExit(CardSelection cardSelection)
+    private void OnPointerExit(PointerEventData eventData,CardSelection cardSelection)
     {
         if(cardSelection.IsUsed)
             return;
         transform.DOScale(CardSetting.defaultScale, CardSetting.hoverAnimationDuration);
+        
+        if (!CardSetting.useDebugSprite)
+        {
+            cardImage.sprite = cardObject.CardData.simpleCardSprite;
+            cardImage.SetNativeSize();
+        }
     }
     
-    private void OnPointerDown(CardSelection cardSelection)
+    private void OnPointerDown(PointerEventData eventData,CardSelection cardSelection)
     {
        
     }
     
-    private void OnPointerUp(CardSelection cardSelection, bool isClick)
+    private void OnPointerUp(PointerEventData eventData,CardSelection cardSelection, bool isClick)
     {
-        
-    }
-    
-    private void OnPointerRoomEnter(CardSelection cardSelection, Room room)
-    {
-        if (room != null)
+        if (isClick)
         {
-            room.FocusColor(new Color(0.5f, 1f, 0f, 0.5f));
+            if(eventData.button == PointerEventData.InputButton.Right)
+            {
+                // TODO : Show Full Card
+            }
         }
     }
     
-    private void OnPointerRoomExit(CardSelection cardSelection, Room room)
+    private void OnPointerRoomEnter(PointerEventData eventData,CardSelection cardSelection, Room room)
     {
         if (room != null)
         {
-            room.UnfocusColor();
+            room.FocusSprite(cardObject.CardData.cardSprite, new Color(0.5f,1f,0f,0.5f));
         }
     }
     
-    private void OnDragStart(CardSelection cardSelection)
+    private void OnPointerRoomExit(PointerEventData eventData,CardSelection cardSelection, Room room)
+    {
+        if (room != null)
+        {
+            room.Unfocus();
+        }
+    }
+    
+    private void OnDragStart(PointerEventData eventData,CardSelection cardSelection)
     {
         if(!cardSelection.IsDragging)
             return;
@@ -126,7 +188,7 @@ public class CardDisplay : MonoBehaviour
             .OnComplete(() => _isAnimating = false);
     }
     
-    private void OnDragEnd(CardSelection cardSelection)
+    private void OnDragEnd(PointerEventData eventData, CardSelection cardSelection)
     {
         if(!cardSelection.IsDragging || cardSelection.IsUsed)
             return;

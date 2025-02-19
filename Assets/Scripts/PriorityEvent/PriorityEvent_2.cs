@@ -34,7 +34,6 @@ public class PriorityEvent<T0,T1> : PriorityEventBase
         foreach (var k in keys)
         {
             _events[k] -= listener;
-            Debug.Log($"{k} {_events.Keys.Count}");
         }
     }
     

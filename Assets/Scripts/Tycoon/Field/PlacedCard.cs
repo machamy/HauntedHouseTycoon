@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlacedCard : MonoBehaviour
 {
-    private SpriteRenderer spriteRenderer;
+    [SerializeField] private SpriteRenderer spriteRenderer;
     public Room room;
     
     public void UpdateDisplay(CardData cardData)

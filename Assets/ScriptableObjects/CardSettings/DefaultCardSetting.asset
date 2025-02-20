@@ -18,16 +18,18 @@ MonoBehaviour:
     slotHeight: 375
     defaultAlpha: 1
     defaultScale: 1
-    returnSpeed: 20
     usePositionCurve: 1
     useRotationCurve: 1
     cardCurveSo: {fileID: 11400000, guid: ffc4a0afaf51772448af6c8b639997a3, type: 2}
     followAnimation: 1
     followSpeed: 10
+    followRotation: 1
+    followRotationSpeed: 10
     isHoverable: 1
-    hoverScale: 1.5
+    hoverScale: 1.3
     hoverAnimationDuration: 0.2
     hoverVisible: 1
+    hoverRotation: 0
     isSelectable: 0
     isDraggable: 1
     dragAnimationDuration: 0.2

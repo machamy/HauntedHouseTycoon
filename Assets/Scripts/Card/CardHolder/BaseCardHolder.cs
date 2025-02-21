@@ -173,11 +173,11 @@ public class BaseCardHolder : MonoBehaviour
     
 
     
-    protected virtual void OnFocus(CardSelection cardSelect)
+    protected virtual void OnHover(CardSelection cardSelect)
     {
     }
     
-    protected virtual void OnUnfocus(CardSelection cardSelect)
+    protected virtual void OnUnhover(CardSelection cardSelect)
     {
         
     }
@@ -222,8 +222,8 @@ public class BaseCardHolder : MonoBehaviour
         
     }
     
-    private void OnFocusBase (PointerEventData eventData, CardSelection cardSelect) => OnFocus(cardSelect);
-    private void OnUnfocusBase (PointerEventData eventData, CardSelection cardSelect) => OnUnfocus(cardSelect);
+    private void OnFocusBase (PointerEventData eventData, CardSelection cardSelect) => OnHover(cardSelect);
+    private void OnUnfocusBase (PointerEventData eventData, CardSelection cardSelect) => OnUnhover(cardSelect);
     private void OnCardDraggStartBase (PointerEventData eventData, CardSelection cardSelect) => OnCardDraggStart(cardSelect);
     private void OnCardDraggingBase (PointerEventData eventData, CardSelection cardSelect) => OnCardDragging(cardSelect);
     private void OnCardDragEndBase (PointerEventData eventData, CardSelection cardSelect) => OnCardDragEnd(cardSelect);

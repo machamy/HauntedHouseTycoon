@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: c9cb7967a4b942f39fff2da8880564eb
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - uiScenePrefabContainer: {fileID: 11400000, guid: fbc0984687722b9448e4d6b10160eee2, type: 2}
+  - uiPopupPrefabContainer: {fileID: 11400000, guid: a5ff1a92248c4094b81c74e57bd74b09, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -26,7 +26,7 @@ public enum DirectionFlag
 }
 
 
-public static class DirectionHelper
+public static class DirectionExtentions
 {
     // Vector2Int에 이미 선언되어있지만, 변동 가능성을 고려하여 별도로 선언
     public static readonly Vector2Int Up = new Vector2Int(0, 1);

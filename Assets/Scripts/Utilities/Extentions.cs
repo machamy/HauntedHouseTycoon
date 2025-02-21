@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class Helper
+public static class Extentions
 {
     public static void Shuffle<T>(this List<T> list)
     {
@@ -13,5 +13,15 @@ public static class Helper
             list[i] = list[randomIndex];
             list[randomIndex] = temp;
         }
+    }
+    
+    public static T GetOrAddComponent<T>(this GameObject go) where T : Component
+    {
+        T component = go.GetComponent<T>();
+        if (component == null)
+        {
+            component = go.AddComponent<T>();
+        }
+        return component;
     }
 }

@@ -30,10 +30,10 @@ public class HorizontalCardHolder : BaseCardHolder
         currentMaxVisibleCardAmount = Math.Clamp(maxAvailable,2, maxVisibleCardAmount);
     }
 
-    protected override void OnFocus(CardSelection cardSelect)
+    protected override void OnHover(CardSelection cardSelect)
     {
-        base.OnFocus(cardSelect);
-        Debug.Log("HorizontalCardHolder OnFocus");
+        base.OnHover(cardSelect);
+        // Debug.Log("HorizontalCardHolder OnFocus");
         CardDisplay cardDisplay = cardSelect.CardObject.CardDisplay;
         if(!cardSelect.CardSetting.hoverVisible)
             return;
@@ -44,12 +44,12 @@ public class HorizontalCardHolder : BaseCardHolder
         
     }
 
-    protected override void OnUnfocus(CardSelection cardSelect)
+    protected override void OnUnhover(CardSelection cardSelect)
     {
         cardSelect.transform.localPosition = Vector3.zero;
         cardSelect.transform.localScale = cardSelect.CardSetting.defaultScale * Vector3.one;
         UpdateAllCardIndex();
-        base.OnUnfocus(cardSelect);
+        base.OnUnhover(cardSelect);
     }
 
 

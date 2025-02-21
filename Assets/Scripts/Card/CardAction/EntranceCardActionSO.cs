@@ -44,8 +44,8 @@ public class EntranceCardActionSO : BaseCardActionSO
             else
             {
                 dir = clockwise ?
-                    DirectionHelper.GetClockwiseDirection(dir, candidates) 
-                    : DirectionHelper.GetCounterClockwiseDirection(dir, candidates);
+                    DirectionExtentions.GetClockwiseDirection(dir, candidates) 
+                    : DirectionExtentions.GetCounterClockwiseDirection(dir, candidates);
             }
         }
         return breakChain;

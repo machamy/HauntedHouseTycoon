@@ -14,7 +14,7 @@ public class SingletonBehaviour<T> : MonoBehaviour where T : MonoBehaviour
                 instance = FindObjectOfType<T>();
                 if (instance == null)
                 {
-                    var go = new GameObject(typeof(T).Name);
+                    var go = new GameObject("@"+typeof(T).Name);
                     instance = go.AddComponent<T>();
                 }
             }

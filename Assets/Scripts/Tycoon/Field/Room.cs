@@ -115,7 +115,7 @@ public class Room : MonoBehaviour
     /// <returns></returns>
     public Room FindLeftmostRoom(Field field, Direction originDirection,out Direction targetDirection)
     {
-        Direction targetDir = DirectionHelper.GetLeftmostDirection(originDirection, CardData.directions);
+        Direction targetDir = DirectionExtentions.GetLeftmostDirection(originDirection, CardData.directions);
         Room nextRoom;
         int count = 0;
         while (targetDir != Direction.None && count++ < 4)
@@ -126,7 +126,7 @@ public class Room : MonoBehaviour
                 targetDirection = targetDir;
                 return nextRoom;
             }
-            targetDir = DirectionHelper.GetLeftmostDirection(targetDir, this.CardData.directions);
+            targetDir = DirectionExtentions.GetLeftmostDirection(targetDir, this.CardData.directions);
         }
         targetDirection = Direction.None;
         return null;

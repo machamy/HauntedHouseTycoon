@@ -152,39 +152,83 @@ public class CardDisplay : MonoBehaviour
         Debug.Log("CardDisplay OnPointerEnter");
         if (!CardSetting.isHoverable || cardSelection.IsUsed)
             return;
-        transform.DOScale(CardSetting.hoverScale, CardSetting.hoverAnimationDuration);
-        if (!CardSetting.useDebugSprite)
-        {
-            cardImage.sprite = cardObject.CardData.halfCardSprite;
-            cardImage.SetNativeSize();
-        }
+        
+        Hover();
     }
     
     private void OnPointerExit(PointerEventData eventData,CardSelection cardSelection)
     {
         if(cardSelection.IsUsed)
             return;
-        transform.DOScale(CardSetting.defaultScale, CardSetting.hoverAnimationDuration);
         
+        Unhover();
+        if(isShowPopup)
+        {
+            showingPopup.Close();
+        }
+        
+    }
+    
+    private void Hover()
+    {
         if (!CardSetting.useDebugSprite)
         {
-            cardImage.sprite = cardObject.CardData.simpleCardSprite;
-            cardImage.SetNativeSize();
+            ShowHalfCard();
         }
+        transform.DOScale(CardSetting.hoverScale, CardSetting.hoverAnimationDuration);
+        transform.SetAsLastSibling();
     }
+    
+    private void Unhover()
+    {
+        if (!CardSetting.useDebugSprite)
+        {
+            ShowSimpleCard();
+        }
+        transform.DOScale(CardSetting.defaultScale, CardSetting.hoverAnimationDuration);
+        UpdateIndex();
+    }
+    
+    private void ShowSimpleCard()
+    {
+        cardImage.sprite = cardObject.CardData.simpleCardSprite;
+        cardImage.SetNativeSize();
+    }
+    
+    private void ShowHalfCard()
+    {
+        cardImage.sprite = cardObject.CardData.halfCardSprite;
+        cardImage.SetNativeSize();
+    }
+    
+    
     
     private void OnPointerDown(PointerEventData eventData,CardSelection cardSelection)
     {
        
     }
     
+    private bool isShowPopup = false;
+    private BasePopupUI showingPopup;
     private void OnPointerUp(PointerEventData eventData,CardSelection cardSelection, bool isClick)
     {
         if (isClick)
         {
-            if(eventData.button == PointerEventData.InputButton.Right)
+            if(eventData.button == PointerEventData.InputButton.Right && !isShowPopup)
             {
-                // TODO : Show Full Card
+                CardPopupUI cardPopupUi = UIManager.Instance.CreateUI<CardPopupUI>(UI_Poups.CardPopup);
+                cardPopupUi.Initialize(cardObject.CardData);
+                isShowPopup = true;
+                showingPopup = cardPopupUi;
+                Unhover();
+                cardPopupUi.OnClose += () =>
+                {
+                    if (_cardSelection.IsFocused)
+                    {
+                        Hover();
+                    }
+                    isShowPopup = false;
+                };
             }
         }
     }

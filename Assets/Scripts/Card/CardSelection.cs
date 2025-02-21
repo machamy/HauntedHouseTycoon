@@ -53,8 +53,6 @@ public class CardSelection : MonoBehaviour, IPointerEnterHandler,IPointerExitHan
     public event Action<PointerEventData,CardSelection> OnCardDragEnd;
     
     
-    
-    
     public void OnPointerEnter(PointerEventData eventData)
     {
         _isFocused = true;

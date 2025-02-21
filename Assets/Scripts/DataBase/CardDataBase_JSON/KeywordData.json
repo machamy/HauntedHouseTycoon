@@ -1,0 +1,12 @@
+[
+  {
+    "varName": "type",
+    "index": "long",
+    "name": "string"
+  },
+  {
+    "varName": "data",
+    "index": "08000100",
+    "name": "평범한"
+  }
+]

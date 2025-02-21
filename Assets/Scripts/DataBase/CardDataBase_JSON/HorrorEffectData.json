@@ -1,0 +1,14 @@
+[
+  {
+    "varName": "type",
+    "index": "long",
+    "#cardName": "#string",
+    "": "eTargetType"
+  },
+  {
+    "varName": "data",
+    "index": "04000300",
+    "#cardName": "평범한 주방도",
+    "": "CURRENT_TARGET"
+  }
+]

@@ -1,82 +1,132 @@
-/*using System;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
-using System.Runtime.InteropServices;
-using System.Text.Json;
-using Excel = Microsoft.Office.Interop.Excel;
+using Newtonsoft.Json;
+using ExcelDataReader;
+using UnityEngine;
+using UnityEditor;
+using ClassManager;
+using static ClassManager.Card.CardClass;
 
-class ExcleToJSON
+[InitializeOnLoad]
+public class ExcelToJSON
 {
-    static void main(string[] args)
+    static ExcelToJSON()
     {
-        string excelPath = @"C:\Unity 2022.3.10f1\HauntedHouseTycoon\Assets\Scripts\DataBase\CardDataBase.xlsx";
-        string jsonFolderPath = @"C:\Unity 2022.3.10f1\HauntedHouseTycoon\Assets\Scripts\DataBase\CardDataBase.JSONs";
+        ConvertAllExcelsInFolder(@"C:\Unity 2022.3.10f1\HauntedHouseTycoon\Assets\Scripts\DataBase");
+    }
 
-        try
+    public static void ConvertAllExcelsInFolder(string folderPath)
+    {
+        if(!Directory.Exists(folderPath))
         {
-            Excel.Application excelApp = new Excel.Application();
-            Excel.Workbook workbook = excelApp.Workbooks.Open(excelPath);
-
-            for(int i = 0; i <= workbook.Sheets.Count; i++)
-            {
-                Excel._Worksheet worksheet = workbook.Sheets[i];
-                Excel.Range range = worksheet.UsedRange;
-
-                List<Dictionary<string, string>> sheetData = ReadSheet(range);
-                string jsonString = JsonSerializer.Serialize(sheetData, new JsonSerializerOptions { WriteIndented = true });
-
-                string sheetName = worksheet.Name;
-                string jsonPath = Path.Combine(jsonFolderPath, $"{sheetName}.json");
-                File.WriteAllText(jsonPath, jsonString);
-
-                Console.WriteLine($"시트 '{sheetName}' 데이터를 JSON으로 저장 완료.");
-
-                Marshal.ReleaseComObject(range);
-                Marshal.ReleaseComObject(worksheet);
-            }
-
-            workbook.Close(false);
-            excelApp.Quit();
-            Marshal.ReleaseComObject(workbook);
-            Marshal.ReleaseComObject(excelApp);
+            Debug.LogWarning("폴더를 찾을 수 없습니다.");
         }
 
-        catch(Exception ex)
+        string[] excelFiles = Directory.GetFiles(folderPath, "*xlsx",SearchOption.AllDirectories);
+
+        foreach(string excelFilePath in excelFiles)
         {
-            Console.WriteLine("오류 발생" + ex.Message);
+            ConvertExcelToJson(excelFilePath, "");
+        }
+
+        AssetDatabase.Refresh();
+    }
+
+    public static void ConvertExcelToJson(string excelFilePath, string sheetName = "")
+    {
+        System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+
+        using (var stream = File.Open(excelFilePath, FileMode.Open, FileAccess.Read))
+        {
+            using (var reader = ExcelReaderFactory.CreateReader(stream))
+            {
+                var result = reader.AsDataSet();
+
+                string excelFileName = Path.GetFileNameWithoutExtension(excelFilePath);
+                string outputFolder = Path.Combine(Path.GetDirectoryName(excelFilePath), excelFileName + "_JSON");
+
+                if (!Directory.Exists(outputFolder))
+                {
+                    Directory.CreateDirectory(outputFolder);
+                }
+
+                foreach (DataTable table in result.Tables)
+                {
+                    ProcessSheet(table, outputFolder);
+                }
+            }
+            Debug.Log($"엑셀 → JSON 변환 완료: {excelFilePath}");
         }
     }
 
-    static List<Dictionary<string, string>> ReadSheet(Excel.Range range)
+    public static void ProcessSheet(DataTable table, string outputFolder)
     {
-        var dataList = new List<Dictionary<string, string>>();
+        Debug.Log($"시트 이름: {table.TableName}");
 
-        int rowCount = range.Rows.Count;
-        int colnCount = range.Columns.Count;
-
-        int headerRow = 2;
-        int startCol = 2;
-        int dataStartRow = headerRow + 2;
+        var excelData = new List<Dictionary<string, string>>();
 
         List<string> headers = new List<string>();
-        for (int c = startCol; c <= colnCount; c++)
+        for (int c = 0;  c < table.Columns.Count; c++)
         {
-            var headerCell = (range.Cells[headerRow, c] as Excel.Range).Value2;
-            headers.Add(headerCell != null ? headerCell.ToString() : $"Column{c}");
+            headers.Add(table.Rows[1][c].ToString());
         }
 
-        for(int r =startCol; r <= colnCount; r++)
+        for(int r = 2; r < table.Rows.Count; r++)
         {
             var rowDict = new Dictionary<string, string>();
-            for (int c = startCol; c <= colnCount; c++)
+            for (int c = 0; c < table.Columns.Count; c++)
             {
-                string header = headers[c - startCol];
-                var cell = (range.Cells[r, c] as Excel.Range).Value2;
-                string cellValue = cell != null ? cell.ToString() : "";
-                rowDict[header] = cellValue;
+                string header = headers[c];
+                var cellValue = table.Rows[r][c]?.ToString() ?? "";
+
+                if(cellValue.Contains(","))
+                {
+                    string[] splitArray = cellValue.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                    for (int i = 0; i < splitArray.Length; i++)
+                    {
+                        rowDict[$"{header}_{i}"] = splitArray[i].Trim();
+                    }
+                }
+
+                else
+                {
+                    if (header.Equals("Type", StringComparison.OrdinalIgnoreCase))
+                    {
+                        if (Enum.TryParse(typeof(ClassManager.Card.CardClass.Type), cellValue, out var typeEnum))
+                        {
+                            rowDict[header] = ((int)(ClassManager.Card.CardClass.Type)typeEnum).ToString();
+                        }
+                        else
+                        {
+                            rowDict[header] = "-1";
+                        }
+                    }
+                    else if (header.Equals("Rank", StringComparison.OrdinalIgnoreCase))
+                    {
+                        if (Enum.TryParse(typeof(ClassManager.Card.CardClass.Rank), cellValue, out var rankEnum))
+                        {
+                            rowDict[header] = ((int)(ClassManager.Card.CardClass.Rank)rankEnum).ToString();
+                        }
+                        else
+                        {
+                            rowDict[header] = "-1";
+                        }
+                    }
+                    else
+                    {
+                        rowDict[header] = cellValue;
+                    }
+                }
             }
-            dataList.Add(rowDict);
+            excelData.Add(rowDict);
         }
-        return dataList;
+
+        string jsonFilePath = Path.Combine(outputFolder, table.TableName + ".json");
+        var jsonString = JsonConvert.SerializeObject(excelData, Formatting.Indented);
+        File.WriteAllText(jsonFilePath, jsonString);
+
+        Debug.Log($"시트 '{table.TableName}' → JSON 변환 완료: {jsonFilePath}");
     }
-}*/
+}

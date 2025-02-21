@@ -385,5 +385,6 @@ MonoBehaviour:
   screamRequirement: 5
   screamRequirementIncrease: 3
   fear: 0
+  panic: 20
   fearText: {fileID: 6344852369952238341}
-  direction: -1
+  orientingDirection: -1

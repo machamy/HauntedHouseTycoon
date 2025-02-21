@@ -71,6 +71,7 @@ public class UIManager : SingletonBehaviour<UIManager>
         GameObject prefab = uiScenePrefabContainer.Get(uiScenes);
         GameObject go = GameObject.Instantiate(prefab, Root.transform);
         T ui = go.GetOrAddComponent<T>();
+        ui.Init();
         return ui;
     }
     
@@ -80,6 +81,7 @@ public class UIManager : SingletonBehaviour<UIManager>
         GameObject go = GameObject.Instantiate(prefab, Root.transform);
         T ui = go.GetOrAddComponent<T>();
         popupStack.Push(ui);
+        ui.Init();
         return ui;
     }
     

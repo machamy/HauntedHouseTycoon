@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Xml;
 using Newtonsoft.Json;
 using ExcelDataReader;
 using UnityEngine;
@@ -21,7 +22,7 @@ public class ExcelToJSON
     {
         if(!Directory.Exists(folderPath))
         {
-            Debug.LogWarning("Æú´õ¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+            Debug.LogWarning("í´ë”ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
         }
 
         string[] excelFiles = Directory.GetFiles(folderPath, "*xlsx",SearchOption.AllDirectories);
@@ -57,13 +58,13 @@ public class ExcelToJSON
                     ProcessSheet(table, outputFolder);
                 }
             }
-            Debug.Log($"¿¢¼¿ ¡æ JSON º¯È¯ ¿Ï·á: {excelFilePath}");
+            Debug.Log($"ì—‘ì…€ â†’ JSON ë³€í™˜ ì™„ë£Œ: {excelFilePath}");
         }
     }
 
     public static void ProcessSheet(DataTable table, string outputFolder)
     {
-        Debug.Log($"½ÃÆ® ÀÌ¸§: {table.TableName}");
+        Debug.Log($"ì‹œíŠ¸ ì´ë¦„: {table.TableName}");
 
         var excelData = new List<Dictionary<string, string>>();
 
@@ -127,6 +128,6 @@ public class ExcelToJSON
         var jsonString = JsonConvert.SerializeObject(excelData, Formatting.Indented);
         File.WriteAllText(jsonFilePath, jsonString);
 
-        Debug.Log($"½ÃÆ® '{table.TableName}' ¡æ JSON º¯È¯ ¿Ï·á: {jsonFilePath}");
+        Debug.Log($"ì‹œíŠ¸ '{table.TableName}' â†’ JSON ë³€í™˜ ì™„ë£Œ: {jsonFilePath}");
     }
 }

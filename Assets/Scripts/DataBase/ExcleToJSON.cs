@@ -14,7 +14,8 @@ public class ExcelToJSON
 {
     static ExcelToJSON()
     {
-        ConvertAllExcelsInFolder(@"C:\Unity 2022.3.10f1\HauntedHouseTycoon\Assets\Scripts\DataBase");
+        string folderPath = Application.dataPath + "/Scripts/DataBase";
+        ConvertAllExcelsInFolder(folderPath);
     }
 
     public static void ConvertAllExcelsInFolder(string folderPath)
@@ -125,7 +126,8 @@ public class ExcelToJSON
 
         string jsonFilePath = Path.Combine(outputFolder, table.TableName + ".json");
         var jsonString = JsonConvert.SerializeObject(excelData, Formatting.Indented);
-        File.WriteAllText(jsonFilePath, jsonString);
+
+        File.WriteAllText(jsonFilePath, jsonString, System.Text.Encoding.UTF8);
 
         Debug.Log($"시트 '{table.TableName}' → JSON 변환 완료: {jsonFilePath}");
     }

@@ -79,6 +79,8 @@ public class CardSelection : MonoBehaviour, IPointerEnterHandler,IPointerExitHan
     
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if(eventData.button != PointerEventData.InputButton.Left)
+            return;
         if(!cardSetting.isDraggable || !TycoonManager.Instance.TurnManager.IsPlayerTurn)
             return;
         var screenPoint = eventData.position;
@@ -92,6 +94,8 @@ public class CardSelection : MonoBehaviour, IPointerEnterHandler,IPointerExitHan
     private PointerEventData _lastDragEventData;
     public void OnDrag(PointerEventData eventData)
     {
+        if(eventData.button != PointerEventData.InputButton.Left)
+            return;
         _lastDragEventData = eventData;
         if(!_isDragging || !cardSetting.isDraggable)
             return;
@@ -117,6 +121,8 @@ public class CardSelection : MonoBehaviour, IPointerEnterHandler,IPointerExitHan
     
     public void OnEndDrag(PointerEventData eventData)
     {
+        if(eventData.button != PointerEventData.InputButton.Left)
+            return;
         if (_prevPointerRoom)
         {
             OnCardPointerRoomExit?.Invoke(eventData,this,_prevPointerRoom);

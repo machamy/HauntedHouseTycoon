@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Pools;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
@@ -86,10 +87,12 @@ public class BaseCardHolder : MonoBehaviour
     public virtual CardObject AddCardWithSlot(CardData cardData)
     {
         var slot = Instantiate(cardSlotPrefab, slotHolder.transform);
-        var cardObject = slot.GetComponentInChildren<CardObject>();
+        var slotRect = slot.GetComponent<RectTransform>();
+        var cardObject = PoolManager.Instance
+            .Get(PoolManager.Poolables.CardObject,slotRect)
+            .GetComponent<CardObject>();
         slot.transform.localScale = Vector3.one;
-        var rectTransform = slot.GetComponent<RectTransform>();
-        rectTransform.sizeDelta = new Vector2(cardWidth,cardHeight);
+        slotRect.sizeDelta = new Vector2(cardWidth,cardHeight);
         cardObjects.Add(cardObject);
         cardObject.CardHolder = this;
         cardObject.Initialize(cardData,cardSetting);
@@ -207,7 +210,7 @@ public class BaseCardHolder : MonoBehaviour
             if(cardObject.CardSetting.forceStopAnimation)
                 cardDisplay.StopAllDOTweens();
             yield return new WaitWhile(() => DOTween.IsTweening(cardObject.transform) || cardDisplay.IsAnimating);
-            Destroy(cardDisplay.gameObject);
+            cardDisplay.GetComponent<Poolable>().Release();
             Destroy(cardObject.gameObject);
         }
     }

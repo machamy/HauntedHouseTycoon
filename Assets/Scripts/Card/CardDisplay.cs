@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections;
 using DG.Tweening;
 using Pools;
 using UnityEngine;
@@ -25,9 +26,14 @@ public class CardDisplay : MonoBehaviour
 
     private void Awake()
     {
+        rectTransform = GetComponent<RectTransform>();
         var poolable = GetComponent<Poolable>();
         if (poolable)
         {
+            poolable.OnGet += () =>
+            {
+                OnGetFromPool();
+            };
             poolable.OnRelease += () =>
             {
                 StopAllDOTweens();
@@ -36,11 +42,16 @@ public class CardDisplay : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void OnGetFromPool()
     {
-        _cardSelection = cardObject.CardSelection;
-        rectTransform = GetComponent<RectTransform>();
-        InitHandlers();
+        IEnumerator Initialize()
+        {
+            yield return new WaitForEndOfFrame();
+            _cardSelection = cardObject.CardSelection;
+            InitHandlers();
+            InitializeDisplay();
+        }
+        StartCoroutine(Initialize());
     }
     
     public void InitHandlers()
@@ -69,6 +80,7 @@ public class CardDisplay : MonoBehaviour
     public void InitializeDisplay()
     {
         transform.localScale = CardSetting.defaultScale * Vector3.one;
+        cardImage.color = Color.white;
         if(CardSetting.useDebugSprite)
         {
             cardImage.sprite = cardObject.CardData.cardSprite;

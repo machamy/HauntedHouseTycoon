@@ -34,9 +34,22 @@ public class CardSelection : MonoBehaviour, IPointerEnterHandler,IPointerExitHan
         GetComponent<Poolable>().OnGet += () =>
         {
             cardSetting = cardObject.CardSetting;
+            ClearHandlers();
         };
     }
 
+    public void ClearHandlers()
+    {
+        OnCardPointerEnter.ClearListeners();
+        OnCardPointerExit.ClearListeners();
+        OnCardPointerDown = null;
+        OnCardPointerUp = null;
+        OnCardPointerRoomEnter = null;
+        OnCardPointerRoomExit = null;
+        OnCardDragStart = null;
+        OnCardDragEnd = null;
+    }
+    
     private void OnEnable()
     {
         turnEventChannelSo.OnPlayerTurnExit += OnPlayerTurnExit;

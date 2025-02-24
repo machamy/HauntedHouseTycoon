@@ -141,6 +141,7 @@ public class Guest : MonoBehaviour
         OnValueChanged();
     }
 
+    [ContextMenu("Exit")]
     public void Exit()
     {
         Debug.Log($"{entity.name} is exiting!");

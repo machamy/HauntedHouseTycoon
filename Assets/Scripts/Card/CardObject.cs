@@ -31,23 +31,26 @@ public class CardObject : MonoBehaviour
     {
         var displayHolder = FindFirstObjectByType<CardDisplayHolder>();
         poolable = GetComponent<Poolable>();
-        poolable.OnRelease += () =>
+        // print("Awake");
+        poolable.OnGet += () =>
         {
+            // print("OnGet");
             cardDisplay = PoolManager.Instance.Get(PoolManager.Poolables.CardDisplay).GetComponent<CardDisplay>();
             cardDisplay.cardObject = this;
             cardDisplay.transform.SetParent(displayHolder.transform);
         };
-        cardDisplay = PoolManager.Instance.Get(PoolManager.Poolables.CardDisplay).GetComponent<CardDisplay>();
-        cardDisplay.cardObject = this;
-        cardDisplay.transform.SetParent(displayHolder.transform);
-        // visibleIdx = GetRawIdx();
+        // cardDisplay = PoolManager.Instance.Get(PoolManager.Poolables.CardDisplay).GetComponent<CardDisplay>();
+        // cardDisplay.cardObject = this;
+        // cardDisplay.transform.SetParent(displayHolder.transform);
+        ////visibleIdx = GetRawIdx();
     }
     
     
 
     private void OnEnable()
     {
-        cardDisplay.gameObject.SetActive(true);
+        if(cardDisplay)
+            cardDisplay.gameObject.SetActive(true);
     }
 
     private void OnDisable()
@@ -59,7 +62,7 @@ public class CardObject : MonoBehaviour
     {
         cardData = data;
         this.cardSetting = cardSetting;
-        cardDisplay.InitializeDisplay();
+        // cardDisplay.InitializeDisplay();
     }
 
     public void LeaveHand()

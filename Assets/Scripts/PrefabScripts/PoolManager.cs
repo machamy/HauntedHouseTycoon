@@ -43,13 +43,13 @@ namespace Pools
 
         private void ActionOnGet(Poolable poolable)
         {
-            poolable.transform.SetParent(null);
+            poolable.transform.SetParent(_poolParent,false);
             poolable.OnGetFromPool();
         }
         
         private void ActionOnRelease(Poolable poolable)
         {
-            poolable.transform.SetParent(_poolParent);
+            poolable.transform.SetParent(transform);
             poolable.OnReturnToPool();
         }
         
@@ -61,8 +61,9 @@ namespace Pools
         private Transform _poolParent;
         public Poolable Get(Poolables type, Transform parent = null)
         {
-            var poolable = _pools[type].Get();
             _poolParent = parent;
+            var poolable = _pools[type].Get();
+            poolable._pool = _pools[type];
             return poolable;
         }
     }

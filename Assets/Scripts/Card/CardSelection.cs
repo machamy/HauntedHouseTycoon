@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Pools;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -28,7 +29,12 @@ public class CardSelection : MonoBehaviour, IPointerEnterHandler,IPointerExitHan
     {
         _pointerDownTimeDict = new Dictionary<int, float>();
         cardObject = GetComponent<CardObject>();
+        // cardSetting = cardObject.CardSetting;
         cardSetting = cardObject.CardSetting;
+        GetComponent<Poolable>().OnGet += () =>
+        {
+            cardSetting = cardObject.CardSetting;
+        };
     }
 
     private void OnEnable()

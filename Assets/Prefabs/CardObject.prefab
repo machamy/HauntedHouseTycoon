@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6305443137714916558}
   - component: {fileID: 6427223725567144853}
   - component: {fileID: 3657196772799551996}
+  - component: {fileID: -2845387057604314736}
   m_Layer: 5
   m_Name: CardObject
   m_TagString: Untagged
@@ -102,12 +103,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0df3ce647fe4459593356c5263aa0546, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CardHolder: {fileID: 0}
   cardDisplayPrefab: {fileID: 4852916428818584067, guid: a8fe9daf21a68f04cbe6251435ad2af8, type: 3}
   cardData:
     cardName: 
     cardDescription: 
-    directions: 
+    directions: 0
     cardSprite: {fileID: 0}
+    simpleCardSprite: {fileID: 0}
+    halfCardSprite: {fileID: 0}
+    fullCardSprite: {fileID: 0}
     cardPlacedSprite: {fileID: 0}
     cardActionContainer:
       actions: []
@@ -115,3 +120,15 @@ MonoBehaviour:
   cardSetting: {fileID: 11400000, guid: 86c538bd570b8554b9d23be045f40831, type: 2}
   cardSelection: {fileID: 6427223725567144853}
   cardDisplay: {fileID: 0}
+--- !u!114 &-2845387057604314736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5505701845008967105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d0e5ba27ff14a4f955126b9b7c7f1e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

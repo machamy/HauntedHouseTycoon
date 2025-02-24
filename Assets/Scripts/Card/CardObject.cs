@@ -1,8 +1,10 @@
 ﻿using System;
+using Pools;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 
+[RequireComponent(typeof(Poolable))]
 public class CardObject : MonoBehaviour
 { 
     [FormerlySerializedAs("cardHolder")] [SerializeField] public BaseCardHolder CardHolder;
@@ -24,14 +26,24 @@ public class CardObject : MonoBehaviour
     public CardDisplay CardDisplay => cardDisplay;
 
 
-
+    private Poolable poolable;
     private void Awake()
     {
         var displayHolder = FindFirstObjectByType<CardDisplayHolder>();
-        cardDisplay = Instantiate(cardDisplayPrefab,displayHolder.transform);
+        poolable = GetComponent<Poolable>();
+        poolable.OnRelease += () =>
+        {
+            cardDisplay = PoolManager.Instance.Get(PoolManager.Poolables.CardDisplay).GetComponent<CardDisplay>();
+            cardDisplay.cardObject = this;
+            cardDisplay.transform.SetParent(displayHolder.transform);
+        };
+        cardDisplay = PoolManager.Instance.Get(PoolManager.Poolables.CardDisplay).GetComponent<CardDisplay>();
         cardDisplay.cardObject = this;
+        cardDisplay.transform.SetParent(displayHolder.transform);
         // visibleIdx = GetRawIdx();
     }
+    
+    
 
     private void OnEnable()
     {

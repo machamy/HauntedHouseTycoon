@@ -5,8 +5,8 @@ using Object = UnityEngine.Object;
 
 namespace Pools
 {
-    [CreateAssetMenu(fileName = "PoolableFactorySO", menuName = "ScriptableObjects/FactorySO")]
-    public class PoolableFactorySO : IFactory<Poolable>
+    [CreateAssetMenu(fileName = "PoolableFactorySO", menuName = "ScriptableObjects/PoolableFactorySO")]
+    public class PoolableFactorySO : ScriptableObject, IFactory<Poolable>
     {
         [SerializeField] private Poolable _prefab;
     

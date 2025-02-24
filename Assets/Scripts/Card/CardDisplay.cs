@@ -1,6 +1,7 @@
 ﻿
 using System;
 using DG.Tweening;
+using Pools;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -21,6 +22,20 @@ public class CardDisplay : MonoBehaviour
     public bool IsAnimating => _isAnimating;
     
     private bool _handlerInitialized = false;
+
+    private void Awake()
+    {
+        var poolable = GetComponent<Poolable>();
+        if (poolable)
+        {
+            poolable.OnRelease += () =>
+            {
+                StopAllDOTweens();
+                _handlerInitialized = false;
+            };
+        }
+    }
+
     private void Start()
     {
         _cardSelection = cardObject.CardSelection;
@@ -200,8 +215,24 @@ public class CardDisplay : MonoBehaviour
         cardImage.sprite = cardObject.CardData.halfCardSprite;
         cardImage.SetNativeSize();
     }
-    
-    
+
+
+    private void ShowFullCardUI()
+    {
+        CardPopupUI cardPopupUi = UIManager.Instance.CreateUI<CardPopupUI>(UI_Poups.CardPopup);
+        cardPopupUi.Initialize(cardObject.CardData);
+        isShowPopup = true;
+        showingPopup = cardPopupUi;
+        Unhover();
+        cardPopupUi.OnClose += () =>
+        {
+            if (_cardSelection.IsFocused)
+            {
+                Hover();
+            }
+            isShowPopup = false;
+        };
+    }
     
     private void OnPointerDown(PointerEventData eventData,CardSelection cardSelection)
     {
@@ -216,19 +247,7 @@ public class CardDisplay : MonoBehaviour
         {
             if(eventData.button == PointerEventData.InputButton.Right && !isShowPopup)
             {
-                CardPopupUI cardPopupUi = UIManager.Instance.CreateUI<CardPopupUI>(UI_Poups.CardPopup);
-                cardPopupUi.Initialize(cardObject.CardData);
-                isShowPopup = true;
-                showingPopup = cardPopupUi;
-                Unhover();
-                cardPopupUi.OnClose += () =>
-                {
-                    if (_cardSelection.IsFocused)
-                    {
-                        Hover();
-                    }
-                    isShowPopup = false;
-                };
+                ShowFullCardUI();
             }
         }
     }

@@ -275,6 +275,7 @@ GameObject:
   - component: {fileID: 7725314813543312449}
   - component: {fileID: 5330208180854723635}
   - component: {fileID: 5435110228205548348}
+  - component: {fileID: 3715099512221576335}
   m_Layer: 0
   m_Name: Guest
   m_TagString: Untagged
@@ -388,3 +389,15 @@ MonoBehaviour:
   panic: 20
   fearText: {fileID: 6344852369952238341}
   orientingDirection: -1
+--- !u!114 &3715099512221576335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5209660156337373952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d0e5ba27ff14a4f955126b9b7c7f1e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

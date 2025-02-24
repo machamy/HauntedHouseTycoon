@@ -2,11 +2,12 @@
 using System;
 using System.Collections.Generic;
 using DG.Tweening;
+using Pools;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-[RequireComponent(typeof(Entity))]
+[RequireComponent(typeof(Entity), typeof(Poolable))]
 public class Guest : MonoBehaviour
 {
     private Entity entity;
@@ -31,8 +32,11 @@ public class Guest : MonoBehaviour
         set => orientingDirection = value;
     }
 
+    /// <summary>
+    /// 내부 변수가 바뀔 시 호출됨
+    /// </summary>
     public event Action OnValueChangedEvent; 
-    public event Action OnRemoved; // 현재로서는 Disable시에만 호출됨.
+    public event Action OnRemoved;
     
     public int Fear => fear;
     public int Panic => panic;
@@ -46,18 +50,20 @@ public class Guest : MonoBehaviour
 
     private Room CurrentRoom => entity.currentRoom;
     
+    
+    private Poolable poolable;
+    
     private void Awake()
     {
         entity = GetComponent<Entity>();
+        poolable = GetComponent<Poolable>();
+        poolable.OnRelease += OnRelease;
     }
 
-    private void Start()
-    {
-        OnValueChanged();
-    }
 
     private void OnEnable()
     {
+        OnValueChanged();
         screamEventChannel.OnScreamModified += OnCustomerScreamModified;
         turnEventChannelSo.OnPlayerTurnEnter += OnPlayerTurnEnter;
         turnEventChannelSo.OnNonPlayerTurnExit += OnNonPlayerTurnExit;
@@ -68,6 +74,11 @@ public class Guest : MonoBehaviour
         screamEventChannel.OnScreamModified -= OnCustomerScreamModified;
         turnEventChannelSo.OnPlayerTurnEnter -= OnPlayerTurnEnter;
         turnEventChannelSo.OnNonPlayerTurnExit -= OnNonPlayerTurnExit;
+        
+    }
+    
+    private void OnRelease()
+    {
         OnRemoved?.Invoke();
     }
 
@@ -77,6 +88,10 @@ public class Guest : MonoBehaviour
     {
         isCreatedNow = true;
     }
+    
+    /// <summary>
+    /// 손님 1턴간의 이동 로직
+    /// </summary>
     public void MoveBehaviour()
     {
         if (!CurrentRoom)
@@ -129,7 +144,7 @@ public class Guest : MonoBehaviour
     public void Exit()
     {
         Debug.Log($"{entity.name} is exiting!");
-        Destroy(gameObject); // TODO 테스트용
+        poolable.Release();
     }
 
 

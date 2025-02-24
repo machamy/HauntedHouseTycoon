@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using EventChannel;
+using Pools;
 using UI.GameUI;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -12,8 +13,8 @@ using UnityEngine.Serialization;
 /// </summary>
 public class GuestManager : MonoBehaviour
 {
-    [Header("Prefabs")]
-    [SerializeField] private Guest guestPrefab; // FactorySO로 이양 가능
+    // [Header("Prefabs")]
+    // [SerializeField] private 
     [Header("Channels")]
     [SerializeField] private CreateGuestChannelSO createGuestChannel;
     [SerializeField] private TurnEventChannelSO turnChannel;
@@ -92,7 +93,7 @@ public class GuestManager : MonoBehaviour
     // }
     public Guest CreateGuest(Vector3 position = default)
     {
-        Guest guest = Instantiate(guestPrefab);
+        Guest guest = PoolManager.Instance.Get(PoolManager.Poolables.Guest).GetComponent<Guest>();
         guest.transform.position = position;
         guest.OnCreate();
         guestQueue.Add(guest);

@@ -15,6 +15,11 @@ namespace UI.GameUI
         [SerializeField] private GameObject nodeHolder;
         [SerializeField] private GameObject displayHolder;
         
+        /// <summary>
+        /// 해당 손님 정보를 가진 노드를 추가한다.
+        /// </summary>
+        /// <param name="guest"></param>
+        /// <returns></returns>
         public GuestNodeDisplay AddGuestNode(Guest guest)
         {
             GameObject node = Instantiate(this.node, nodeHolder.transform);

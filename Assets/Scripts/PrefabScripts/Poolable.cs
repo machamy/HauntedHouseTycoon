@@ -1,4 +1,5 @@
 ﻿
+using System;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -8,6 +9,11 @@ namespace Pools
     {
         internal IObjectPool<Poolable> _pool;
         
+        /// <summary>
+        /// 첫 호출시에는 실행되지 않음.
+        /// </summary>
+        public event Action OnGet;
+        public event Action OnRelease;
         
         public void Release()
         {
@@ -16,12 +22,15 @@ namespace Pools
         
         internal void OnGetFromPool()
         {
+            OnGet?.Invoke();
             gameObject.SetActive(true);
         }
     
         internal void OnReturnToPool()
         {
+            OnRelease?.Invoke();
             gameObject.SetActive(false);
+            
         }
     }
 

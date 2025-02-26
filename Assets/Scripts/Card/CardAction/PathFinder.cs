@@ -4,7 +4,6 @@ using UnityEditor.Experimental.GraphView;
 public class PathFinder : MonoBehaviour
 {
     public CardManager manager;
-    private LineRenderer lineRenderer;
     private Vector2Int[] leftPriorityDirections = new Vector2Int[]
         {
             new Vector2Int(-1,0),

@@ -21,10 +21,10 @@ public class CardData : ICloneable
     public Sprite halfCardSprite;
     public Sprite fullCardSprite;
     public Sprite cardPlacedSprite;
-    public CardActionContainer cardActionContainer;
+    public CardActionContainer cardActionContainer= new CardActionContainer();
     
     // TODO 각 Action이 arguments를 가지도록... 지금은 서로 간섭 가능
-    public List<CardDataAgument> arguments; 
+    public List<CardDataAgument> arguments = new List<CardDataAgument>(); 
     
     public Deck returnDeck { get; set; }
     
@@ -82,26 +82,43 @@ public class CardData : ICloneable
     /// <returns></returns>
     public object Clone()
     {
-        var obj = new CardData
-        {
-            cardName = cardName,
-            cardDescription = cardDescription,
-            directions = directions,
-            cardSprite = cardSprite,
-            simpleCardSprite = simpleCardSprite,
-            halfCardSprite = halfCardSprite,
-            fullCardSprite = fullCardSprite,
-            cardPlacedSprite = cardPlacedSprite,
-            cardActionContainer = (CardActionContainer)cardActionContainer.Clone(),
-            arguments = new List<CardDataAgument>(),
-            returnDeck = returnDeck
-        };
+        var pool = CardDataPool.Instance;
+        var obj = pool.Get();
+        CopyTo(obj);
+        return obj;
+    }
+    
+    public void CopyTo(CardData target)
+    {
+        target.cardName = cardName;
+        target.cardDescription = cardDescription;
+        target.directions = directions;
+        target.cardSprite = cardSprite;
+        target.simpleCardSprite = simpleCardSprite;
+        target.halfCardSprite = halfCardSprite;
+        target.fullCardSprite = fullCardSprite;
+        target.cardPlacedSprite = cardPlacedSprite;
+        target.cardActionContainer.CopyFrom(cardActionContainer);
+        target.arguments.Clear();
+        target.returnDeck = returnDeck;
 
         foreach (var argument in arguments)
         {
-            obj.arguments.Add((CardDataAgument)argument.Clone());
+            target.arguments.Add((CardDataAgument)argument.Clone());
         }
-
-        return obj;
+    }
+    
+    public void CopyFrom(CardData target)
+    {
+        target.CopyTo(this);
+    }
+    
+    public void Reset()
+    {
+        cardName = "";
+        directions = DirectionFlag.None;
+        cardDescription = "";
+        CleanAction();
+        arguments.Clear();
     }
 }

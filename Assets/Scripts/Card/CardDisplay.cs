@@ -176,7 +176,7 @@ public class CardDisplay : MonoBehaviour
 
     private void OnPointerEnter(PointerEventData eventData, CardSelection cardSelection)
     {
-        Debug.Log("CardDisplay OnPointerEnter");
+        // Debug.Log("CardDisplay OnPointerEnter");
         if (!CardSetting.isHoverable || cardSelection.IsUsed)
             return;
         

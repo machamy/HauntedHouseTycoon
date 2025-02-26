@@ -143,4 +143,15 @@ public class CardActionContainer: ICloneable
             actions = new List<BaseCardActionSO>(actions)
         };
     }
+    
+    public void Clear()
+    {
+        actions.Clear();
+    }
+    
+    public void CopyFrom(CardActionContainer other)
+    {
+        actions.Clear();
+        actions.AddRange(other.actions);
+    }
 }

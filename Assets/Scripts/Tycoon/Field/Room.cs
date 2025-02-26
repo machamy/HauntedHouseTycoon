@@ -60,7 +60,7 @@ public class Room : MonoBehaviour
     {
         DiscardCard();
         originalCardData = cardData;
-        this.cardData = cardData.Clone() as CardData;
+        this.cardData.CopyFrom(cardData);
         cardData.cardActionContainer.InvokeOnCardPlaced(this, this.cardData);
         UpdatePlacedCard(uiSize);
         return true;
@@ -70,7 +70,10 @@ public class Room : MonoBehaviour
     {
         Debug.Log($"DiscardCard {name}");
         cardData.cardActionContainer.InvokeOnCardRemoved(this, cardData);
-        cardData = defaultCardData.cardData;
+        CardDataPool.Instance.Release(cardData);
+        cardData = CardDataPool.Instance.Get();
+        cardData.CopyFrom(defaultCardData.cardData);
+        
         if(originalCardData != null && originalCardData.cardName != "Blank")
         {
             Unfocus();

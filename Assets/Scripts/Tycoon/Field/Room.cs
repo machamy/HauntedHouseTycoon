@@ -9,8 +9,8 @@ public class Room : MonoBehaviour
     [SerializeField] private PlacedCard placedCardPrefab;
     [SerializeField] private CardDataSO defaultCardData;
     [Header("References")]
-    [SerializeField] private CardData originalCardData;
-    [SerializeField] private CardData cardData;
+    [SerializeField] private CardData originalCardData = null;
+    [SerializeField] private CardData cardData = new CardData();
     [SerializeField] private PlacedCard placedCard;
     [SerializeField] private SpriteRenderer focusRenderer;
     [Header("Properties")]
@@ -26,7 +26,8 @@ public class Room : MonoBehaviour
     public void Init(Vector2Int position, CardData cardData)
     {
         this.coordinate = position;
-        this.cardData = cardData;
+        originalCardData = cardData;
+        this.cardData.CopyFrom(defaultCardData.cardData);
         if(!placedCard)
             placedCard = Instantiate(placedCardPrefab);
         placedCard.transform.position = transform.position;

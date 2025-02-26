@@ -30,10 +30,10 @@ public class CardDisplay : MonoBehaviour
         var poolable = GetComponent<Poolable>();
         if (poolable)
         {
-            poolable.OnGet += () =>
-            {
-                OnGetFromPool();
-            };
+            // poolable.OnGet += () =>
+            // {
+            //     OnGetFromPool();
+            // };
             poolable.OnRelease += () =>
             {
                 StopAllDOTweens();
@@ -42,18 +42,11 @@ public class CardDisplay : MonoBehaviour
         }
     }
 
-    private void OnGetFromPool()
-    {
-        IEnumerator Initialize()
-        {
-            yield return new WaitForEndOfFrame();
-            // _cardSelection = cardObject.CardSelection;
-            // InitHandlers();
-            // InitializeDisplay();
-        }
-        StartCoroutine(Initialize());
-    }
-    
+    // private void OnGetFromPool()
+    // {
+    //    
+    // }
+    //
     public void InitHandlers()
     {
         if (_handlerInitialized)

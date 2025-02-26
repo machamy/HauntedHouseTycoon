@@ -21,60 +21,22 @@ public class CardData : ICloneable
     public Sprite halfCardSprite;
     public Sprite fullCardSprite;
     public Sprite cardPlacedSprite;
-    public CardActionContainer cardActionContainer= new CardActionContainer();
-    
-    // TODO 각 Action이 arguments를 가지도록... 지금은 서로 간섭 가능
-    public List<CardDataAgument> arguments = new List<CardDataAgument>(); 
+    public CardActionContainer cardActionContainer = new CardActionContainer();
+    public CardDataVariables nonlocalVariables = new CardDataVariables();
+
     
     public Deck returnDeck { get; set; }
     
     public void CleanAction()
     {
-        cardActionContainer.actions.Clear();
+        cardActionContainer.Clear();
     }
     
-    public int GetArgumentIntDefault(CardDataAgument.Key key, int defaultValue)
+    public void OnValidate()
     {
-        foreach (var agument in arguments)
-        {
-            if (agument.key == key)
-            {
-                return agument.intValue;
-            }
-        }
-        SetArgumentInt(key, defaultValue);
-        return defaultValue;
+        cardActionContainer.OnValidate();
     }
 
-    public int GetArgumentInt(CardDataAgument.Key key)
-    {
-        foreach (var agument in arguments)
-        {
-            if (agument.key == key)
-            {
-                return agument.intValue;
-            }
-        }
-        Debug.LogError($"[CardData::GetArgumentInt] {key} not found, return 0");
-        return 0;
-    }
-    
-    public void SetArgumentInt(CardDataAgument.Key key, int value)
-    {
-        foreach (var agument in arguments)
-        {
-            if (agument.key == key)
-            {
-                agument.intValue = value;
-                return;
-            }
-        }
-        arguments.Add(new CardDataAgument
-        {
-            key = key,
-            intValue = value
-        });
-    }
 
     /// <summary>
     /// 
@@ -99,13 +61,9 @@ public class CardData : ICloneable
         target.fullCardSprite = fullCardSprite;
         target.cardPlacedSprite = cardPlacedSprite;
         target.cardActionContainer.CopyFrom(cardActionContainer);
-        target.arguments.Clear();
+        target.nonlocalVariables.CopyFrom(nonlocalVariables);
         target.returnDeck = returnDeck;
 
-        foreach (var argument in arguments)
-        {
-            target.arguments.Add((CardDataAgument)argument.Clone());
-        }
     }
     
     public void CopyFrom(CardData target)
@@ -119,6 +77,6 @@ public class CardData : ICloneable
         directions = DirectionFlag.None;
         cardDescription = "";
         CleanAction();
-        arguments.Clear();
+        nonlocalVariables.Clear();
     }
 }

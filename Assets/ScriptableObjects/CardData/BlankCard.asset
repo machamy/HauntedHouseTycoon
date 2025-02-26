@@ -22,9 +22,9 @@ MonoBehaviour:
     fullCardSprite: {fileID: 0}
     cardPlacedSprite: {fileID: 0}
     cardActionContainer:
-      actions:
-      - {fileID: 11400000, guid: 9403b8892d9e6294f806240da7564da5, type: 2}
-    arguments:
-    - key: 2
-      stringValue: 
-      intValue: 3
+      actionNodes: []
+    nonlocalVariables:
+      arguments: []
+  references:
+    version: 2
+    RefIds: []

@@ -22,9 +22,18 @@ MonoBehaviour:
     fullCardSprite: {fileID: 1835788373175305458, guid: 480de0f3e60e26848bf2060b36c5586d, type: 3}
     cardPlacedSprite: {fileID: 0}
     cardActionContainer:
-      actions:
-      - {fileID: 11400000, guid: a523546ce626c7e4bbd04ca10187c0e0, type: 2}
-    arguments:
-    - key: 3
-      stringValue: 
-      intValue: 1
+      actionNodes:
+      - actionBlueprint: {fileID: 11400000, guid: a523546ce626c7e4bbd04ca10187c0e0, type: 2}
+        action:
+          rid: 8367494095163883726
+    nonlocalVariables:
+      arguments: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 8367494095163883726
+      type: {class: MovementFearCardActionBlueprintSo/EntranceAction, ns: , asm: Assembly-CSharp}
+      data:
+        actionName: EntranceAction
+        breakChain: 0
+        FearMovementCoefficient: 1

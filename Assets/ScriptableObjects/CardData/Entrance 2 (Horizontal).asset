@@ -22,13 +22,32 @@ MonoBehaviour:
     fullCardSprite: {fileID: 1835788373175305458, guid: 480de0f3e60e26848bf2060b36c5586d, type: 3}
     cardPlacedSprite: {fileID: 0}
     cardActionContainer:
-      actions:
-      - {fileID: 11400000, guid: b734331511c502648b5149874c00e4cb, type: 2}
-      - {fileID: 11400000, guid: d58f103b126071f4dacd559af4f263a1, type: 2}
-    arguments:
-    - key: 1
-      stringValue: 
-      intValue: 2
-    - key: 5
-      stringValue: 
-      intValue: 2
+      actionNodes:
+      - actionBlueprint: {fileID: 11400000, guid: b734331511c502648b5149874c00e4cb, type: 2}
+        action:
+          rid: 8367494095163883713
+      - actionBlueprint: {fileID: 11400000, guid: d58f103b126071f4dacd559af4f263a1, type: 2}
+        action:
+          rid: 8367494095163883714
+    nonlocalVariables:
+      arguments: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 8367494095163883713
+      type: {class: EntranceCardActionBlueprintSo/EntranceAction, ns: , asm: Assembly-CSharp}
+      data:
+        actionName: EntranceAction
+        breakChain: 0
+        createGuestChannel: {fileID: 11400000, guid: 5e5e427a32b624444bfaddb5ad779272, type: 2}
+        isRandomDirection: 0
+        clockwise: 1
+        customerAmount: 2
+        prevGuestDirection: -1
+    - rid: 8367494095163883714
+      type: {class: SimpleDecayCardActionBlueprintSo/SimpleDecayCardAction, ns: , asm: Assembly-CSharp}
+      data:
+        actionName: SimpleDecayCardAction
+        breakChain: 0
+        DecayTurnAmount: 3
+        DecayTurnRemain: 3

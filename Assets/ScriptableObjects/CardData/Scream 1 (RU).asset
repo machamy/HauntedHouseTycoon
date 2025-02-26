@@ -22,6 +22,17 @@ MonoBehaviour:
     fullCardSprite: {fileID: 1835788373175305458, guid: 480de0f3e60e26848bf2060b36c5586d, type: 3}
     cardPlacedSprite: {fileID: 0}
     cardActionContainer:
-      actions:
-      - {fileID: 11400000, guid: d92a58ffbd6f4ae49ba6704d7d8edcd4, type: 2}
-    arguments: []
+      actionNodes:
+      - actionBlueprint: {fileID: 11400000, guid: d92a58ffbd6f4ae49ba6704d7d8edcd4, type: 2}
+        action:
+          rid: 8367494095163883729
+    nonlocalVariables:
+      arguments: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 8367494095163883729
+      type: {class: SimpleScreamCardActionBlueprintSo/SimpleScreamCardAction, ns: , asm: Assembly-CSharp}
+      data:
+        actionName: SimpleScreamCardAction
+        breakChain: 0

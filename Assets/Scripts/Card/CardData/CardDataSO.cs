@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.IO;
 using UnityEngine;
 
@@ -14,6 +15,11 @@ public class CardDataSO : ScriptableObject
             string json = File.ReadAllText(jsonCardData);
             cardData = JsonUtility.FromJson<cardDataWrapper>(json).cardData;
         }
+    }
+
+    public void OnValidate()
+    {
+        cardData?.OnValidate();
     }
 
     [System.Serializable]

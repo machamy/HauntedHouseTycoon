@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Support 2 (LR) 1
   m_EditorClassIdentifier: 
   cardData:
-    cardName: "\uBE44\uBA85\uCE74\uB4DC 1"
+    cardName: "\uBCF4\uC870\uCE74\uB4DC 2"
     cardDescription: 
     directions: 10
     cardSprite: {fileID: 21300000, guid: 2f660354e3216a847affdfd71c26c730, type: 3}
@@ -22,9 +22,18 @@ MonoBehaviour:
     fullCardSprite: {fileID: 1835788373175305458, guid: 480de0f3e60e26848bf2060b36c5586d, type: 3}
     cardPlacedSprite: {fileID: 0}
     cardActionContainer:
-      actions:
-      - {fileID: 11400000, guid: d92a58ffbd6f4ae49ba6704d7d8edcd4, type: 2}
-    arguments:
-    - key: 0
-      stringValue: 
-      intValue: 0
+      actionNodes:
+      - actionBlueprint: {fileID: 11400000, guid: 005b237729eed70479846e30cb2f54c0, type: 2}
+        action:
+          rid: 8367494095163883768
+    nonlocalVariables:
+      arguments: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 8367494095163883768
+      type: {class: TestSupportCardActionBlueprintSo/TestSupportCard, ns: , asm: Assembly-CSharp}
+      data:
+        actionName: TestSupportCard
+        breakChain: 0
+        fearGlobalAmount: 2

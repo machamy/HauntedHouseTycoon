@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fear 1 (Horizontal)
   m_EditorClassIdentifier: 
   cardData:
-    cardName: "\uACF5\uD3EC\uCE74\uB4DC 2"
+    cardName: "\uACF5\uD3EC\uCE74\uB4DC 1"
     cardDescription: 
     directions: 10
     cardSprite: {fileID: 21300000, guid: 0c91f20f315e20749ae327dde89b14c2, type: 3}
@@ -22,9 +22,18 @@ MonoBehaviour:
     fullCardSprite: {fileID: 1835788373175305458, guid: 480de0f3e60e26848bf2060b36c5586d, type: 3}
     cardPlacedSprite: {fileID: 0}
     cardActionContainer:
-      actions:
-      - {fileID: 11400000, guid: 9403b8892d9e6294f806240da7564da5, type: 2}
-    arguments:
-    - key: 2
-      stringValue: 
-      intValue: 3
+      actionNodes:
+      - actionBlueprint: {fileID: 11400000, guid: 9403b8892d9e6294f806240da7564da5, type: 2}
+        action:
+          rid: 8367494095163883723
+    nonlocalVariables:
+      arguments: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 8367494095163883723
+      type: {class: SimpleFearCardActionBlueprintSo/SimpleFearCardAction, ns: , asm: Assembly-CSharp}
+      data:
+        actionName: SimpleFearCardAction
+        breakChain: 0
+        fearAmount: 3

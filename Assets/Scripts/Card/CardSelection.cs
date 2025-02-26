@@ -178,8 +178,12 @@ public class CardSelection : MonoBehaviour, IPointerEnterHandler,IPointerExitHan
             return;
         if(_isDragging)
         {
-            _prevPointerRoom.Unfocus();
-            _prevPointerRoom = null;
+            if(_prevPointerRoom)
+            {
+                OnCardPointerRoomExit?.Invoke(_lastDragEventData,this,_prevPointerRoom);
+                _prevPointerRoom.Unfocus();
+                _prevPointerRoom = null;
+            }
             transform.localPosition = Vector3.zero;
             OnCardDragEnd?.Invoke(_lastDragEventData,this);
             _isDragging = false;

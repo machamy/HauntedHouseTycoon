@@ -1,15 +1,81 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Serialization;
 
 /// <summary>
 /// 카드 액션 헬퍼 클래스.
 /// 전체다 실행하고 싶으면 List에 접근해서 실행하도록
 /// </summary>
 [Serializable]
-public class CardActionContainer: ICloneable
+public class CardActionContainer: ICloneable, ICopyable<CardActionContainer>
 {
-    public List<BaseCardActionSO> actions = new List<BaseCardActionSO>();
+    [Serializable]
+    public class CardActionContainerNode
+    {
+        [FormerlySerializedAs("actionDefinition")] [FormerlySerializedAs("action")] public CardActionBlueprintSO actionBlueprint;
+        [FormerlySerializedAs("variable")] [SerializeReference] public CardActionBlueprintSO.CardAction action;
+    }
+    
+    [FormerlySerializedAs("actions")] [SerializeField] private List<CardActionContainerNode> actionNodes = new ();
+    
+    public void OnValidate()
+    {
+        foreach (var cardActionContainerNode in actionNodes)
+        {
+            if (cardActionContainerNode.actionBlueprint == null)
+            {
+                continue;
+            }
+
+            if (cardActionContainerNode.action == null 
+                || cardActionContainerNode.actionBlueprint.GetCardActionType() != cardActionContainerNode.action.GetType())
+            {
+                cardActionContainerNode.action = cardActionContainerNode.actionBlueprint.CreateCardAction();
+            }
+        }
+    }
+    public void AddAction(CardActionBlueprintSO actionBlueprint)
+    {
+        actionNodes.Add(new CardActionContainerNode
+        {
+            actionBlueprint = actionBlueprint,
+            action = actionBlueprint.CreateCardAction()
+        });
+    }
+
+    public object Clone()
+    {
+        var obj = new CardActionContainer();
+        obj.CopyFrom(this);
+        return obj;
+    }
+    
+    public void Clear()
+    {
+        actionNodes.Clear();
+    }
+
+    public void CopyTo(CardActionContainer target)
+    {
+        target.actionNodes.Clear();
+        foreach (var node in actionNodes)
+        {
+            target.actionNodes.Add(new CardActionContainerNode
+            {
+                actionBlueprint = node.actionBlueprint,
+                action = node.action
+            });
+        }
+    }
+
+    public void CopyFrom(CardActionContainer other)
+    {
+        Clear();
+        CopyTo(this);
+    }
+
     
     /// <summary>
     /// 카드 설치 이벤트
@@ -20,9 +86,9 @@ public class CardActionContainer: ICloneable
     /// <returns></returns>
     public bool InvokeOnCardPlaced(Room room, CardData cardData)
     {
-        foreach (var action in actions)
+        foreach (var node in actionNodes)
       {
-            if (action.OnCardPlaced(room, cardData))
+            if (node.action.OnCardPlaced(room, cardData))
             {
                 return true;
             }
@@ -39,9 +105,9 @@ public class CardActionContainer: ICloneable
     /// <returns></returns>
     public bool InvokeOnCardRemoved(Room room, CardData cardData)
     {
-        foreach (var action in actions)
+        foreach (var node in actionNodes)
         {
-            if (action.OnCardRemoved(room, cardData))
+            if (node.action.OnCardRemoved(room, cardData))
             {
                 return true;
             }
@@ -55,9 +121,9 @@ public class CardActionContainer: ICloneable
     /// 처음 True를 반환할 때까지 모든 Action을 순회함.
     /// </summary>
     public bool InvokeOnCustomerEnter(Room room, CardData cardData, Guest guest){
-        foreach (var action in actions)
+        foreach (var node in actionNodes)
         {
-            if (action.OnGuestEnter(room, cardData, guest))
+            if (node.action.OnGuestEnter(room, cardData, guest))
             {
                 return true;
             }
@@ -71,9 +137,9 @@ public class CardActionContainer: ICloneable
     /// 처음 True를 반환할 때까지 모든 Action을 순회함.
     /// </summary>
     public bool InvokeOnCustomerExit(Room room, CardData cardData, Guest guest){
-        foreach (var action in actions)
+        foreach (var node in actionNodes)
         {
-            if (action.OnGuestExit(room, cardData, guest))
+            if (node.action.OnGuestExit(room, cardData, guest))
             {
                 return true;
             }
@@ -87,9 +153,9 @@ public class CardActionContainer: ICloneable
     /// 처음 True를 반환할 때까지 모든 Action을 순회함.
     /// </summary>
     public bool InvokeOnPlayerTurnEnter(Room room, CardData cardData){
-        foreach (var action in actions)
+        foreach (var node in actionNodes)
         {
-            if (action.OnPlayerTurnEnter(room, cardData))
+            if (node.action.OnPlayerTurnEnter(room, cardData))
             {
                 return true;
             }
@@ -103,10 +169,9 @@ public class CardActionContainer: ICloneable
     /// 처음 True를 반환할 때까지 모든 Action을 순회함.
     /// </summary>
     public bool InvokeOnNpcTurnEnter(Room room, CardData cardData){
-        foreach (var action in actions)
+        foreach (var node in actionNodes)
         {
-            
-            if (action.OnNpcTurnEnter(room, cardData))
+            if (node.action.OnNpcTurnEnter(room, cardData))
             {
                 return true;
             }
@@ -120,9 +185,9 @@ public class CardActionContainer: ICloneable
     /// 처음 True를 반환할 때까지 모든 Action을 순회함.
     /// </summary>
     public bool InvokeOnNpcTurnExit(Room room, CardData cardData){
-        foreach (var action in actions)
+        foreach (var node in actionNodes)
         {
-            if (action.OnNpcTurnExit(room, cardData))
+            if (node.action.OnNpcTurnExit(room, cardData))
             {
                 return true;
             }
@@ -130,28 +195,7 @@ public class CardActionContainer: ICloneable
 
         return false;
     }
-    
-    public void AddAction(BaseCardActionSO action)
-    {
-        actions.Add(action);
-    }
 
-    public object Clone()
-    {
-        return new CardActionContainer
-        {
-            actions = new List<BaseCardActionSO>(actions)
-        };
-    }
-    
-    public void Clear()
-    {
-        actions.Clear();
-    }
-    
-    public void CopyFrom(CardActionContainer other)
-    {
-        actions.Clear();
-        actions.AddRange(other.actions);
-    }
+
+
 }

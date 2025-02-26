@@ -222,7 +222,7 @@ public class Room : MonoBehaviour
     {
         if (cardData != null)
         {
-            int roomScreamModifier = cardData.GetArgumentIntDefault(CardDataAgument.Key.FearGlobalAmount,0);
+            int roomScreamModifier = cardData.nonlocalVariables.GetIntDefault(CardDataVariables.Key.FearGlobalAmount,0);
             screamEventArg.modifier += roomScreamModifier;
         }
     }

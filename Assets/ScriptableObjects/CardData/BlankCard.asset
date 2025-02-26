@@ -13,14 +13,18 @@ MonoBehaviour:
   m_Name: BlankCard
   m_EditorClassIdentifier: 
   cardData:
-    cardName: Blank
+    cardName: "\uACF5\uD3EC\uCE74\uB4DC 1"
     cardDescription: 
-    directions: 0
-    cardSprite: {fileID: 21300000, guid: e45ca4d5292104d4a89df3d2e36494f1, type: 3}
+    directions: 10
+    cardSprite: {fileID: 21300000, guid: e4bb8933ca0828e418a0cfee542d27e5, type: 3}
     simpleCardSprite: {fileID: 4444644672834298981, guid: e37a38533a542014baf1894373197c88, type: 3}
     halfCardSprite: {fileID: 1835788373175305458, guid: 480de0f3e60e26848bf2060b36c5586d, type: 3}
     fullCardSprite: {fileID: 1835788373175305458, guid: 480de0f3e60e26848bf2060b36c5586d, type: 3}
     cardPlacedSprite: {fileID: 0}
     cardActionContainer:
-      actions: []
-    arguments: []
+      actions:
+      - {fileID: 11400000, guid: 9403b8892d9e6294f806240da7564da5, type: 2}
+    arguments:
+    - key: 2
+      stringValue: 
+      intValue: 3

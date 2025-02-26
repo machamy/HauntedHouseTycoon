@@ -38,6 +38,8 @@ public class CardObject : MonoBehaviour
             cardDisplay = PoolManager.Instance.Get(PoolManager.Poolables.CardDisplay).GetComponent<CardDisplay>();
             cardDisplay.cardObject = this;
             cardDisplay.transform.SetParent(displayHolder.transform);
+            cardDisplay.InitHandlers();
+            
         };
         // cardDisplay = PoolManager.Instance.Get(PoolManager.Poolables.CardDisplay).GetComponent<CardDisplay>();
         // cardDisplay.cardObject = this;
@@ -62,6 +64,7 @@ public class CardObject : MonoBehaviour
     {
         cardData = data;
         this.cardSetting = cardSetting;
+        cardDisplay.InitializeDisplay();
         // cardDisplay.InitializeDisplay();
     }
 

@@ -12,7 +12,7 @@ public class CardDisplay : MonoBehaviour
 {
     public CardObject cardObject;
     private CardSetting CardSetting => cardObject.CardSetting;
-    private CardSelection _cardSelection;
+    private CardSelection _cardSelection => cardObject.CardSelection;
     
     [SerializeField] private Image cardImage;
     [SerializeField] private Image cardFullRightImage;
@@ -47,9 +47,9 @@ public class CardDisplay : MonoBehaviour
         IEnumerator Initialize()
         {
             yield return new WaitForEndOfFrame();
-            _cardSelection = cardObject.CardSelection;
-            InitHandlers();
-            InitializeDisplay();
+            // _cardSelection = cardObject.CardSelection;
+            // InitHandlers();
+            // InitializeDisplay();
         }
         StartCoroutine(Initialize());
     }

@@ -10,7 +10,7 @@ using UnityEngine.Serialization;
 /// 실제로 Room 안에 들어간 CardData는 복사되어 사용되어야함!
 /// </summary>
 [Serializable]
-public class CardData : ICloneable
+public class CardData : ICloneable<CardData>, ICopyable<CardData>
 {
     public string cardName;
     public string cardDescription;
@@ -42,7 +42,7 @@ public class CardData : ICloneable
     /// 
     /// </summary>
     /// <returns></returns>
-    public object Clone()
+    public CardData Clone()
     {
         var pool = CardDataPool.Instance;
         var obj = pool.Get();

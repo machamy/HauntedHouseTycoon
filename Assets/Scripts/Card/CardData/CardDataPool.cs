@@ -30,6 +30,7 @@ public class CardDataPool : IObjectPool<CardData>
             cardData.Reset();
             return cardData;
         }
+
         return new CardData();
     }
 

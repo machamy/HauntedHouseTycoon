@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Entity), typeof(Poolable))]
-public class Guest : MonoBehaviour
+public class GuestObject : MonoBehaviour
 {
     private Entity entity;
     [Header("Events")]

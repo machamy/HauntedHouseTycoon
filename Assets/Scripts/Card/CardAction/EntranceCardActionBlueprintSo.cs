@@ -38,9 +38,9 @@ public class EntranceCardActionBlueprintSo : CardActionBlueprintSO
         
             for (int i = 0; i < amount; i++)
             {
-                Guest guest = createGuestChannel.RaiseCreateGuest(room.transform.position);
-                guest.OrientingDirection = dir;
-                guest.GetComponent<Entity>().MoveWithTransform(room);
+                GuestObject guestObject = createGuestChannel.RaiseCreateGuest(room.transform.position);
+                guestObject.OrientingDirection = dir;
+                guestObject.GetComponent<Entity>().MoveWithTransform(room);
                 if (isRandomDirection)
                 {
                     dir = directions[Random.Range(0, directions.Count)];

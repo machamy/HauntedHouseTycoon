@@ -8,9 +8,9 @@ public class ExitCardActionBlueprintSo : CardActionBlueprintSO
     [Serializable]
     public class ExitCardAction : CardAction
     {
-        public override bool OnGuestEnter(Room room, CardData cardData, Guest guest)
+        public override bool OnGuestEnter(Room room, CardData cardData, GuestObject guestObject)
         {
-            guest.Exit();
+            guestObject.Exit();
             return breakChain;
         }
     }

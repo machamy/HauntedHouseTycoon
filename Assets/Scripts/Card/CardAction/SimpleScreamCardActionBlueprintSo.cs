@@ -8,11 +8,11 @@ public class SimpleScreamCardActionBlueprintSo : CardActionBlueprintSO
     [System.Serializable]
     public class SimpleScreamCardAction : CardAction
     {
-        public override bool OnGuestEnter(Room room, CardData cardData, Guest guest)
+        public override bool OnGuestEnter(Room room, CardData cardData, GuestObject guestObject)
         {
-            if (guest.CanScream)
+            if (guestObject.CanScream)
             {
-                guest.Scream();
+                guestObject.Scream();
             }
             return breakChain;
         }

@@ -10,10 +10,10 @@ public class SimpleFearCardActionBlueprintSo : CardActionBlueprintSO
     {
         public int fearAmount = 2;
         
-        public override bool OnGuestEnter(Room room, CardData cardData, Guest guest)
+        public override bool OnGuestEnter(Room room, CardData cardData, GuestObject guestObject)
         {
             int fear = fearAmount;
-            guest.AddFear(fear);
+            guestObject.AddFear(fear);
             return breakChain;
         }
     }

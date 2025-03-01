@@ -18,11 +18,11 @@ public class ScreamEventChannelSO : ScriptableObject
 
 public class ScreamEventArg
 {
-    public Guest Guest;
+    public GuestObject GuestObject;
     public int modifier;
-    public ScreamEventArg(Guest guest, int modifier)
+    public ScreamEventArg(GuestObject guestObject, int modifier)
     {
-        this.Guest = guest;
+        this.GuestObject = guestObject;
         this.modifier = modifier;
     }
 }

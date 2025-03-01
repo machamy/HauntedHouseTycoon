@@ -30,12 +30,12 @@ public abstract class CardActionBlueprintSO : ScriptableObject
             return false;
         }
     
-        public virtual bool OnGuestEnter(Room room, CardData cardData, Guest guest)
+        public virtual bool OnGuestEnter(Room room, CardData cardData, GuestObject guestObject)
         {
             return false;
         }
     
-        public virtual bool OnGuestExit(Room room, CardData cardData, Guest guest)
+        public virtual bool OnGuestExit(Room room, CardData cardData, GuestObject guestObject)
         {
             return false;
         }

@@ -18,16 +18,16 @@ namespace UI.GameUI
         /// <summary>
         /// 해당 손님 정보를 가진 노드를 추가한다.
         /// </summary>
-        /// <param name="guest"></param>
+        /// <param name="guestObject"></param>
         /// <returns></returns>
-        public GuestNodeDisplay AddGuestNode(Guest guest)
+        public GuestNodeDisplay AddGuestNode(GuestObject guestObject)
         {
             GameObject node = Instantiate(this.node, nodeHolder.transform);
             GuestNodeDisplay nodeDisplay = Instantiate(guestNodeDisplay, displayHolder.transform);
             Vector3 position = transform.position;
             position.y = GetComponent<RectTransform>().rect.min.y;
             nodeDisplay.transform.position = position;
-            nodeDisplay.SetGuest(guest);
+            nodeDisplay.SetGuest(guestObject);
             nodeDisplay.SetNode(node.transform);
             return nodeDisplay;
         }

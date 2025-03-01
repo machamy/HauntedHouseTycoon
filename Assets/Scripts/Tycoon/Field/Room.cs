@@ -180,9 +180,9 @@ public class Room : MonoBehaviour
     
     private void OnNpcTurnEnter()
     {
+        // print($"OnNpcTurnEnter {name}");
         if (cardData != null)
         {
-            
             var tmp = cardData;
             cardData.cardActionContainer.InvokeOnNpcTurnEnter(this, tmp);
         }
@@ -196,24 +196,24 @@ public class Room : MonoBehaviour
         }
     }
     
-    private void OnCustomerRoomEnter(Guest guest, Room room)
+    private void OnCustomerRoomEnter(GuestObject guestObject, Room room)
     {
         if (room == this)
         {
             if (cardData != null)
             {
-                cardData.cardActionContainer.InvokeOnCustomerEnter(this, cardData, guest);
+                cardData.cardActionContainer.InvokeOnCustomerEnter(this, cardData, guestObject);
             }
         }
     }
     
-    private void OnCustomerRoomExit(Guest guest, Room room)
+    private void OnCustomerRoomExit(GuestObject guestObject, Room room)
     {
         if (room == this)
         {
             if (cardData != null)
             {
-                cardData.cardActionContainer.InvokeOnCustomerExit(this, cardData, guest);
+                cardData.cardActionContainer.InvokeOnCustomerExit(this, cardData, guestObject);
             }
         }
     }

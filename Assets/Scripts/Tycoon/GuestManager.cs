@@ -24,7 +24,7 @@ public class GuestManager : MonoBehaviour
     [SerializeField] private GuestQueueBarUI guestQueueBarUI;
     [FormerlySerializedAs("guests")]
     [Header("Guest Properties")]
-    [SerializeField] private List<Guest> guestQueue = new List<Guest>(); // List가 조작에 용이, 큐쓴다고 해서 큰 이점이 없음
+    [SerializeField] private List<GuestObject> guestQueue = new List<GuestObject>(); // List가 조작에 용이, 큐쓴다고 해서 큰 이점이 없음
     [Header("Settings")]
     [SerializeField] private float guestNotifyInterval = 0.2f;
 
@@ -75,13 +75,13 @@ public class GuestManager : MonoBehaviour
         Debug.Log($"NotifyGuestQueue {guestQueue.Count}");
         while (haveToMoveIndex < guestQueue.Count)
         {
-            Guest guest = guestQueue[haveToMoveIndex];
+            GuestObject guestObject = guestQueue[haveToMoveIndex];
             // 소환된 개체도 바로 이동하므로 주석처리
             // if (guest.IsCreatedNow) 
             // {
             //     continue;
             // }
-            guest.MoveBehaviour();
+            guestObject.MoveBehaviour();
             haveToMoveIndex++;
             yield return wait;
         }
@@ -91,17 +91,17 @@ public class GuestManager : MonoBehaviour
     // {
     //     
     // }
-    public Guest CreateGuest(Vector3 position = default)
+    public GuestObject CreateGuest(Vector3 position = default)
     {
-        Guest guest = PoolManager.Instance.Get(PoolManager.Poolables.Guest).GetComponent<Guest>();
-        guest.transform.position = position;
-        guest.OnCreate();
-        guestQueue.Add(guest);
-        guestQueueBarUI.AddGuestNode(guest);
-        guest.OnRemoved += () =>
+        GuestObject guestObject = PoolManager.Instance.Get(PoolManager.Poolables.Guest).GetComponent<GuestObject>();
+        guestObject.transform.position = position;
+        guestObject.OnCreate();
+        guestQueue.Add(guestObject);
+        guestQueueBarUI.AddGuestNode(guestObject);
+        guestObject.OnRemoved += () =>
         {
-            guestQueue.Remove(guest);
+            guestQueue.Remove(guestObject);
         };
-        return guest;
+        return guestObject;
     }
 }

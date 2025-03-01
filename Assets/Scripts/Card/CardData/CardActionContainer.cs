@@ -14,11 +14,10 @@ public class CardActionContainer: ICloneable, ICopyable<CardActionContainer>
     [Serializable]
     public class CardActionContainerNode
     {
-        [FormerlySerializedAs("actionDefinition")] [FormerlySerializedAs("action")] public CardActionBlueprintSO actionBlueprint;
-        [FormerlySerializedAs("variable")] [SerializeReference] public CardActionBlueprintSO.CardAction action;
-    }
-    
-    [FormerlySerializedAs("actions")] [SerializeField] private List<CardActionContainerNode> actionNodes = new ();
+        [SerializeReference] public CardActionBlueprintSO actionBlueprint;
+        [SerializeReference] public CardActionBlueprintSO.CardAction action;
+    } 
+    [SerializeField] private List<CardActionContainerNode> actionNodes = new ();
     
     public void OnValidate()
     {
@@ -73,7 +72,7 @@ public class CardActionContainer: ICloneable, ICopyable<CardActionContainer>
     public void CopyFrom(CardActionContainer other)
     {
         Clear();
-        CopyTo(this);
+        other.CopyTo(this);
     }
 
     
@@ -120,10 +119,10 @@ public class CardActionContainer: ICloneable, ICopyable<CardActionContainer>
     /// 고객 입장 이벤트
     /// 처음 True를 반환할 때까지 모든 Action을 순회함.
     /// </summary>
-    public bool InvokeOnCustomerEnter(Room room, CardData cardData, Guest guest){
+    public bool InvokeOnCustomerEnter(Room room, CardData cardData, GuestObject guestObject){
         foreach (var node in actionNodes)
         {
-            if (node.action.OnGuestEnter(room, cardData, guest))
+            if (node.action.OnGuestEnter(room, cardData, guestObject))
             {
                 return true;
             }
@@ -136,10 +135,10 @@ public class CardActionContainer: ICloneable, ICopyable<CardActionContainer>
     /// 고객 퇴장 이벤트
     /// 처음 True를 반환할 때까지 모든 Action을 순회함.
     /// </summary>
-    public bool InvokeOnCustomerExit(Room room, CardData cardData, Guest guest){
+    public bool InvokeOnCustomerExit(Room room, CardData cardData, GuestObject guestObject){
         foreach (var node in actionNodes)
         {
-            if (node.action.OnGuestExit(room, cardData, guest))
+            if (node.action.OnGuestExit(room, cardData, guestObject))
             {
                 return true;
             }

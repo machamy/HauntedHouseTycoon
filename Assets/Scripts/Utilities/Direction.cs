@@ -173,12 +173,24 @@ public static class DirectionExtentions
     #region 기타 헬퍼 함수
 
     /// <summary>
-    /// 들어간 방향을 기준으로, 다음 방향을 구한다.
+    /// 들어간 방향을 기준으로, 왼쪽 방향을 구한다.
+    /// 오른쪽일 경우 위.
+    /// <-> 방향에서 오른쪽이면, 오른쪽이다.
     /// </summary>
     /// <param name="originDir"></param>
     /// <param name="candidates"></param>
-    /// <returns></returns>
+    /// <returns>왼쪽 우선 방향</returns>
     public static Direction GetLeftmostDirection(this Direction originDir, DirectionFlag candidates)
+    {
+        if (candidates == DirectionFlag.None)
+        {
+            return Direction.None;
+        }
+        originDir = originDir.CounterClockwise().CounterClockwise(); // Opposite과 동치
+        return originDir.GetFirstClockwiseDirection(candidates);
+    } 
+    
+    public static Direction GetFirstClockwiseDirection(this Direction originDir, DirectionFlag candidates)
     {
         if (candidates == DirectionFlag.None)
         {
@@ -196,7 +208,7 @@ public static class DirectionExtentions
             }
         }
         return Direction.None;
-    }    
+    }
 
     #endregion
 }

@@ -114,8 +114,8 @@ public class Room : MonoBehaviour
     /// 다음방도 들어온 방향을 가지고 있어야 한다.
     /// </summary>
     /// <param name="field"></param>
-    /// <param name="currentRoom"></param>
     /// <param name="originDirection"></param>
+    /// <param name="targetDirection"></param>
     /// <returns></returns>
     public Room FindLeftmostRoom(Field field, Direction originDirection,out Direction targetDirection)
     {
@@ -130,7 +130,7 @@ public class Room : MonoBehaviour
                 targetDirection = targetDir;
                 return nextRoom;
             }
-            targetDir = DirectionExtentions.GetLeftmostDirection(targetDir, this.CardData.directions);
+            targetDir = targetDir.GetFirstClockwiseDirection(CardData.directions);
         }
         targetDirection = Direction.None;
         return null;

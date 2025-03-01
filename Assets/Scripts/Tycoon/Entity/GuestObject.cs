@@ -48,7 +48,7 @@ public class GuestObject : MonoBehaviour
     public bool isPanic => fear >= panic;
     public int MovedDistance => movedDistance;
 
-    private Room CurrentRoom => entity.currentRoom;
+    public Room CurrentRoom => entity.currentRoom;
     
     
     private Poolable poolable;

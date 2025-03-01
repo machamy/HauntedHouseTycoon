@@ -69,12 +69,12 @@ public class ExcelToJSON
         var excelData = new List<Dictionary<string, string>>();
 
         List<string> headers = new List<string>();
-        for (int c = 0;  c < table.Columns.Count; c++)
+        for (int c = 0; c < table.Columns.Count; c++)
         {
             headers.Add(table.Rows[1][c].ToString());
         }
 
-        for(int r = 2; r < table.Rows.Count; r++)
+        for (int r = 2; r < table.Rows.Count; r++)
         {
             var rowDict = new Dictionary<string, string>();
             for (int c = 0; c < table.Columns.Count; c++)
@@ -82,7 +82,7 @@ public class ExcelToJSON
                 string header = headers[c];
                 var cellValue = table.Rows[r][c]?.ToString() ?? "";
 
-                if(cellValue.Contains(","))
+                if (cellValue.Contains(","))
                 {
                     string[] splitArray = cellValue.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                     for (int i = 0; i < splitArray.Length; i++)
@@ -90,7 +90,6 @@ public class ExcelToJSON
                         rowDict[$"{header}_{i}"] = splitArray[i].Trim();
                     }
                 }
-
                 else
                 {
                     if (header.Equals("Type", StringComparison.OrdinalIgnoreCase))
@@ -120,15 +119,25 @@ public class ExcelToJSON
                         rowDict[header] = cellValue;
                     }
                 }
+
             }
             excelData.Add(rowDict);
         }
 
         string jsonFilePath = Path.Combine(outputFolder, table.TableName + ".json");
-        var jsonString = JsonConvert.SerializeObject(excelData, Formatting.Indented);
+
+        var wrapper = new CardDataWrapper { cardDataList = excelData };
+        var jsonString = JsonConvert.SerializeObject(wrapper, Formatting.Indented);
 
         File.WriteAllText(jsonFilePath, jsonString, System.Text.Encoding.UTF8);
 
         Debug.Log($"시트 '{table.TableName}' → JSON 변환 완료: {jsonFilePath}");
     }
+
+    [System.Serializable]
+    public class CardDataWrapper
+    {
+        public List<Dictionary<string, string>> cardDataList;
+    }
+
 }

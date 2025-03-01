@@ -1,16 +1,18 @@
-﻿[
-  {
-    "varName": "type",
-    "index": "long",
-    "StringCode": "string",
-    "KOR": "eLocalize",
-    "EN": "eLocalize"
-  },
-  {
-    "varName": "data",
-    "index": "",
-    "StringCode": "",
-    "KOR": "",
-    "EN": ""
-  }
-]
+﻿{
+  "cardDataList": [
+    {
+      "varName": "type",
+      "index": "long",
+      "StringCode": "string",
+      "KOR": "eLocalize",
+      "EN": "eLocalize"
+    },
+    {
+      "varName": "data",
+      "index": "",
+      "StringCode": "",
+      "KOR": "",
+      "EN": ""
+    }
+  ]
+}

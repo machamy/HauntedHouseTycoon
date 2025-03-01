@@ -1,14 +1,16 @@
-﻿[
-  {
-    "varName": "type",
-    "index": "int",
-    "#cardName": "#string",
-    "": "eTargetType"
-  },
-  {
-    "varName": "data",
-    "index": "05000400",
-    "#cardName": "평범한 깜놀",
-    "": "CURRENT_TARGET"
-  }
-]
+﻿{
+  "cardDataList": [
+    {
+      "varName": "type",
+      "index": "int",
+      "#cardName": "#string",
+      "": "eTargetType"
+    },
+    {
+      "varName": "data",
+      "index": "05000400",
+      "#cardName": "평범한 깜놀",
+      "": "CURRENT_TARGET"
+    }
+  ]
+}

@@ -1,12 +1,14 @@
-﻿[
-  {
-    "varName": "type",
-    "index": "long",
-    "#cardName": "#string"
-  },
-  {
-    "varName": "data",
-    "index": "06000500",
-    "#cardName": "평범한 안개발생기"
-  }
-]
+﻿{
+  "cardDataList": [
+    {
+      "varName": "type",
+      "index": "long",
+      "#cardName": "#string"
+    },
+    {
+      "varName": "data",
+      "index": "06000500",
+      "#cardName": "평범한 안개발생기"
+    }
+  ]
+}

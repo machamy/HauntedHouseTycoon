@@ -1,12 +1,14 @@
-﻿[
-  {
-    "varName": "type",
-    "index": "long",
-    "animationName": "string"
-  },
-  {
-    "varName": "data",
-    "index": "",
-    "animationName": ""
-  }
-]
+﻿{
+  "cardDataList": [
+    {
+      "varName": "type",
+      "index": "long",
+      "animationName": "string"
+    },
+    {
+      "varName": "data",
+      "index": "",
+      "animationName": ""
+    }
+  ]
+}

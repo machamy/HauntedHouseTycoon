@@ -1,19 +1,21 @@
-﻿[
-  {
-    "varName": "type",
-    "idnex": "long",
-    "name": "string",
-    "": "visitorPrefabPath",
-    "traumaIndex": "long[]"
-  },
-  {
-    "varName": "data",
-    "idnex": "06100100",
-    "name": "평범한 손님",
-    "": "",
-    "traumaIndex": "09100100",
-    "_0": "5",
-    "_1": "7",
-    "_2": "9"
-  }
-]
+﻿{
+  "cardDataList": [
+    {
+      "varName": "type",
+      "idnex": "long",
+      "name": "string",
+      "": "visitorPrefabPath",
+      "traumaIndex": "long[]"
+    },
+    {
+      "varName": "data",
+      "idnex": "06100100",
+      "name": "평범한 손님",
+      "": "",
+      "traumaIndex": "09100100",
+      "_0": "5",
+      "_1": "7",
+      "_2": "9"
+    }
+  ]
+}

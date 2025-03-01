@@ -1,12 +1,14 @@
-﻿[
-  {
-    "varName": "type",
-    "index": "long",
-    "marketingName": "string"
-  },
-  {
-    "varName": "data",
-    "index": "10000100",
-    "marketingName": ""
-  }
-]
+﻿{
+  "cardDataList": [
+    {
+      "varName": "type",
+      "index": "long",
+      "marketingName": "string"
+    },
+    {
+      "varName": "data",
+      "index": "10000100",
+      "marketingName": ""
+    }
+  ]
+}

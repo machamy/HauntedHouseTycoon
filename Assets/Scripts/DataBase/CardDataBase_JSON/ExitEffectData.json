@@ -1,12 +1,14 @@
-﻿[
-  {
-    "varName": "type",
-    "index": "long",
-    "#cardName": "#string"
-  },
-  {
-    "varName": "data",
-    "index": "03000200",
-    "#cardName": "평범한 출구"
-  }
-]
+﻿{
+  "cardDataList": [
+    {
+      "varName": "type",
+      "index": "long",
+      "#cardName": "#string"
+    },
+    {
+      "varName": "data",
+      "index": "03000200",
+      "#cardName": "평범한 출구"
+    }
+  ]
+}

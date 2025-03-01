@@ -1,4 +1,3 @@
-using System.Text;
 using System;
 using System.Collections.Generic;
 
@@ -9,21 +8,9 @@ namespace ClassManager.Card
     {
         public long Index;
         public string Name;
-        public enum Type
-        {
-            ENTER,
-            EXIT,
-            HORROR,
-            SCREAM,
-            ASSITANCE
-        }
 
-        public enum Rank
-        {
-            NORMAL,
-            RARE,
-            LEGEND
-        }
+        public Type CardType;
+        public Rank CardRank;
 
         public int Cost;
         public long[] KeyWordIndex;
@@ -37,5 +24,21 @@ namespace ClassManager.Card
         public int[] input2;
         public int[] input3;
         public int[] input4;
+
+        public enum Type
+        {
+            ENTER,
+            EXIT,
+            HORROR,
+            SCREAM,
+            ASSISTANCE
+        }
+
+        public enum Rank
+        {
+            NORMAL,
+            RARE,
+            LEGEND
+        }
     }
 }

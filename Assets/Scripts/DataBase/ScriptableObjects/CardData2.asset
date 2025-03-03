@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardDataList:
   - Index: 0
-    Name: string
+    NameIndex: 0
+    ExplainIndex: 0
     CardType: 0
     CardRank: 0
     Cost: 0
@@ -22,89 +23,230 @@ MonoBehaviour:
     SpritePath: string
     AvailableRoutes: ffffffffffffffff
     DestroyPayback: 0
-    CardEffectIndex: -1
-    PlaceAnimationIndex: -1
-    ActionAnimationIndex: -1
+    CardEffectIndex: ffffffffffffffff
+    PlaceAnimationIndex: ffffffffffffffff
+    ActionAnimationIndex: ffffffffffffffff
     input1: 
     input2: 
     input3: 
     input4: 
   - Index: 1000100
-    Name: "\uD3C9\uBC94\uD55C \uC785\uAD6C"
-    CardType: 0
+    NameIndex: 12000101
+    ExplainIndex: 12000102
+    CardType: 4
     CardRank: 0
-    Cost: 1
-    KeyWordIndex: 64127a0000000000
+    Cost: 0
+    KeyWordIndex: ffffffffffffffff
     SpritePath: 
-    AvailableRoutes: 6e0000004c040000
+    AvailableRoutes: ffffffffffffffff
     DestroyPayback: 0
-    CardEffectIndex: 2000100
-    PlaceAnimationIndex: -1
-    ActionAnimationIndex: -1
+    CardEffectIndex: ffffffffffffffff
+    PlaceAnimationIndex: ffffffffffffffff
+    ActionAnimationIndex: ffffffffffffffff
     input1: 
     input2: 
     input3: 
     input4: 
   - Index: 1000200
-    Name: "\uD3C9\uBC94\uD55C \uCD9C\uAD6C"
-    CardType: 1
+    NameIndex: 12000201
+    ExplainIndex: 12000202
+    CardType: 4
     CardRank: 0
-    Cost: 1
-    KeyWordIndex: 64127a0000000000
+    Cost: 0
+    KeyWordIndex: ffffffffffffffff
     SpritePath: 
-    AvailableRoutes: 0b000000f3030000
+    AvailableRoutes: ffffffffffffffff
     DestroyPayback: 0
-    CardEffectIndex: 3000200
-    PlaceAnimationIndex: -1
-    ActionAnimationIndex: -1
+    CardEffectIndex: ffffffffffffffff
+    PlaceAnimationIndex: ffffffffffffffff
+    ActionAnimationIndex: ffffffffffffffff
     input1: 
     input2: 
     input3: 
     input4: 
   - Index: 1000300
-    Name: "\uD3C9\uBC94\uD55C \uC8FC\uBC29\uB3C4"
-    CardType: 2
+    NameIndex: 12000301
+    ExplainIndex: 12000302
+    CardType: 4
     CardRank: 0
-    Cost: 1
-    KeyWordIndex: 64127a0000000000
+    Cost: 0
+    KeyWordIndex: ffffffffffffffff
     SpritePath: 
-    AvailableRoutes: 6f000000f3030000
+    AvailableRoutes: ffffffffffffffff
     DestroyPayback: 0
-    CardEffectIndex: 4000300
-    PlaceAnimationIndex: -1
-    ActionAnimationIndex: -1
+    CardEffectIndex: ffffffffffffffff
+    PlaceAnimationIndex: ffffffffffffffff
+    ActionAnimationIndex: ffffffffffffffff
     input1: 
     input2: 
     input3: 
     input4: 
   - Index: 1000400
-    Name: "\uD3C9\uBC94\uD55C \uAE5C\uB180"
-    CardType: 3
+    NameIndex: 12000401
+    ExplainIndex: 12000402
+    CardType: 2
     CardRank: 0
-    Cost: 1
-    KeyWordIndex: 64127a0000000000
+    Cost: 0
+    KeyWordIndex: ffffffffffffffff
     SpritePath: 
-    AvailableRoutes: e90300004c040000
+    AvailableRoutes: ffffffffffffffff
     DestroyPayback: 0
-    CardEffectIndex: 5000400
-    PlaceAnimationIndex: -1
-    ActionAnimationIndex: -1
+    CardEffectIndex: ffffffffffffffff
+    PlaceAnimationIndex: ffffffffffffffff
+    ActionAnimationIndex: ffffffffffffffff
     input1: 
     input2: 
     input3: 
     input4: 
   - Index: 1000500
-    Name: "\uD3C9\uBC94\uD55C \uC548\uAC1C\uBC1C\uC0DD\uAE30"
+    NameIndex: 12000501
+    ExplainIndex: 12000502
+    CardType: 3
+    CardRank: 0
+    Cost: 0
+    KeyWordIndex: ffffffffffffffff
+    SpritePath: 
+    AvailableRoutes: ffffffffffffffff
+    DestroyPayback: 0
+    CardEffectIndex: ffffffffffffffff
+    PlaceAnimationIndex: ffffffffffffffff
+    ActionAnimationIndex: ffffffffffffffff
+    input1: 
+    input2: 
+    input3: 
+    input4: 
+  - Index: 1000600
+    NameIndex: 12000601
+    ExplainIndex: 12000602
+    CardType: 2
+    CardRank: 1
+    Cost: 0
+    KeyWordIndex: 88c72d0000000000
+    SpritePath: 
+    AvailableRoutes: ffffffffffffffff
+    DestroyPayback: 0
+    CardEffectIndex: ffffffffffffffff
+    PlaceAnimationIndex: ffffffffffffffff
+    ActionAnimationIndex: ffffffffffffffff
+    input1: 
+    input2: 
+    input3: 
+    input4: 
+  - Index: 1000700
+    NameIndex: 12000701
+    ExplainIndex: 12000702
+    CardType: 2
+    CardRank: 1
+    Cost: 0
+    KeyWordIndex: ffffffffffffffff
+    SpritePath: 
+    AvailableRoutes: ffffffffffffffff
+    DestroyPayback: 0
+    CardEffectIndex: ffffffffffffffff
+    PlaceAnimationIndex: ffffffffffffffff
+    ActionAnimationIndex: ffffffffffffffff
+    input1: 
+    input2: 
+    input3: 
+    input4: 
+  - Index: 1000800
+    NameIndex: 12000801
+    ExplainIndex: 12000802
+    CardType: 4
+    CardRank: 2
+    Cost: 0
+    KeyWordIndex: 88c72d0000000000
+    SpritePath: 
+    AvailableRoutes: ffffffffffffffff
+    DestroyPayback: 0
+    CardEffectIndex: ffffffffffffffff
+    PlaceAnimationIndex: ffffffffffffffff
+    ActionAnimationIndex: ffffffffffffffff
+    input1: 
+    input2: 
+    input3: 
+    input4: 
+  - Index: 1000900
+    NameIndex: 12000901
+    ExplainIndex: 12000902
+    CardType: 2
+    CardRank: 0
+    Cost: 0
+    KeyWordIndex: ffffffffffffffff
+    SpritePath: 
+    AvailableRoutes: 65000000f2030000
+    DestroyPayback: 0
+    CardEffectIndex: 48851e0000000000
+    PlaceAnimationIndex: ffffffffffffffff
+    ActionAnimationIndex: ffffffffffffffff
+    input1: 
+    input2: 
+    input3: 
+    input4: 
+  - Index: 1001000
+    NameIndex: 12001001
+    ExplainIndex: 12001002
+    CardType: 2
+    CardRank: 0
+    Cost: 0
+    KeyWordIndex: ffffffffffffffff
+    SpritePath: 
+    AvailableRoutes: 0b0000006e000000
+    DestroyPayback: 0
+    CardEffectIndex: 10861e0000000000
+    PlaceAnimationIndex: ffffffffffffffff
+    ActionAnimationIndex: ffffffffffffffff
+    input1: 
+    input2: 
+    input3: 
+    input4: 
+  - Index: 1001100
+    NameIndex: 12001101
+    ExplainIndex: 12001102
+    CardType: 2
+    CardRank: 0
+    Cost: 0
+    KeyWordIndex: ffffffffffffffff
+    SpritePath: 
+    AvailableRoutes: 6f0000004d040000
+    DestroyPayback: 0
+    CardEffectIndex: ac851e0000000000
+    PlaceAnimationIndex: ffffffffffffffff
+    ActionAnimationIndex: ffffffffffffffff
+    input1: 
+    input2: 
+    input3: 
+    input4: 
+  - Index: 1001200
+    NameIndex: 12001201
+    ExplainIndex: 12001202
+    CardType: 3
+    CardRank: 0
+    Cost: 0
+    KeyWordIndex: ffffffffffffffff
+    SpritePath: 
+    AvailableRoutes: ffffffffffffffff
+    DestroyPayback: 0
+    CardEffectIndex: ffffffffffffffff
+    PlaceAnimationIndex: ffffffffffffffff
+    ActionAnimationIndex: ffffffffffffffff
+    input1: 
+    input2: 
+    input3: 
+    input4: 
+  - Index: 1001300
+    NameIndex: 12001301
+    ExplainIndex: 12001302
     CardType: 4
     CardRank: 0
-    Cost: 1
-    KeyWordIndex: 64127a0000000000
+    Cost: 0
+    KeyWordIndex: ffffffffffffffff
     SpritePath: 
-    AvailableRoutes: 640000006f000000
+    AvailableRoutes: ffffffffffffffff
     DestroyPayback: 0
-    CardEffectIndex: 6000500
-    PlaceAnimationIndex: -1
-    ActionAnimationIndex: -1
+    CardEffectIndex: ffffffffffffffff
+    PlaceAnimationIndex: ffffffffffffffff
+    ActionAnimationIndex: ffffffffffffffff
     input1: 
     input2: 
     input3: 

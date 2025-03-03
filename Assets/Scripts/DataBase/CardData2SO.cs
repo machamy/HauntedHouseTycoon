@@ -31,7 +31,8 @@ public class CardData2SO : ScriptableObject
             var newCard = new ClassManager.Card.CardClass
             {
                 Index = TryParseLong(wrappedCard.Index, 0),
-                Name = wrappedCard.Name,
+                NameIndex = TryParseLong(wrappedCard.NameIndex, 0),
+                ExplainIndex = TryParseLong(wrappedCard.ExplainIndex, 0),
 
                 CardType = Enum.IsDefined(typeof(ClassManager.Card.CardClass.Type), parsedType)
                     ? (ClassManager.Card.CardClass.Type)parsedType
@@ -50,9 +51,9 @@ public class CardData2SO : ScriptableObject
             TryParseInt(wrappedCard.AvailableRoutes_1, -1)
                 },
                 DestroyPayback = TryParseInt(wrappedCard.DestroyPayback, 0),
-                CardEffectIndex = TryParseLong(wrappedCard.CardEffectIndex, -1),
-                PlaceAnimationIndex = TryParseLong(wrappedCard.PlaceAnimationIndex, -1),
-                ActionAnimationIndex = TryParseLong(wrappedCard.ActionAnimationIndex, -1)
+                CardEffectIndex = new long[] {TryParseLong(wrappedCard.CardEffectIndex, -1)},
+                PlaceAnimationIndex =new long[] { TryParseLong(wrappedCard.PlaceAnimationIndex, -1) },
+                ActionAnimationIndex =new long[] { TryParseLong(wrappedCard.ActionAnimationIndex, -1) }
             };
 
             cardDataList.Add(newCard);
@@ -85,7 +86,8 @@ public class CardData2SO : ScriptableObject
     public struct CardDataStruct
     {
         public string Index;
-        public string Name;
+        public string NameIndex;
+        public string ExplainIndex;
 
         [JsonProperty("type")]
         public string CardType;
@@ -104,4 +106,3 @@ public class CardData2SO : ScriptableObject
         public string ActionAnimationIndex;
     }
 }
-

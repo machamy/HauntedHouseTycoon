@@ -1,17 +1,15 @@
 ﻿{
   "cardDataList": [
     {
-      "varName": "type",
-      "idnex": "long",
       "name": "string",
       "": "visitorPrefabPath",
+      "age": "int",
       "traumaIndex": "long[]"
     },
     {
-      "varName": "data",
-      "idnex": "06100100",
       "name": "평범한 손님",
       "": "",
+      "age": "",
       "traumaIndex": "09100100",
       "_0": "5",
       "_1": "7",

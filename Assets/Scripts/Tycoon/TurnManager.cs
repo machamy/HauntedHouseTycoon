@@ -3,6 +3,9 @@ using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.Serialization;
 
+/// <summary>
+/// 턴 관리자
+/// </summary>
 public class TurnManager : MonoBehaviour
 {
     [Header("Variables")]
@@ -56,6 +59,9 @@ public class TurnManager : MonoBehaviour
         turnIndicatingSliderUI.SetValue(turnDurationRatio);
     }
 
+    /// <summary>
+    /// 플레이어의 턴을 즉시 시작함
+    /// </summary>
     public void PlayerTurnStart()
     {
         Debug.Log($"$Player Turn {turnVariableSO.Value} Start");
@@ -70,6 +76,9 @@ public class TurnManager : MonoBehaviour
         delayedTurnEventChannelSo.RaisePlayerTurnEnterEvent();
     }
 
+    /// <summary>
+    /// 플레이어의 턴이 종료될 수 있다고 체크.
+    /// </summary>
     public void ReadyToPlayerTurnEnd()
     {
         StartCoroutine(Wait());
@@ -81,6 +90,12 @@ public class TurnManager : MonoBehaviour
         }
     }
     
+    /// <summary>
+    /// 플레이어의 턴을 즉각 종료함.
+    /// </summary>
+    /// <remarks>
+    /// 애니메이션 안전을 위해 ReadyToPlayerTurnEnd를 대신 호출할 것.
+    /// </remarks>
     public void PlayerTurnEnd()
     {
         Debug.Log($"$Player Turn {turnVariableSO.Value} End");

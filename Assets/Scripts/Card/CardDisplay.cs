@@ -8,6 +8,10 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
+/// <summary>
+/// 카드의 디스플레이를 담당하는 클래스
+/// 실제 작동에는 관여하지 않음
+/// </summary>
 public class CardDisplay : MonoBehaviour
 {
     public CardObject cardObject;

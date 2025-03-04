@@ -9,7 +9,8 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 /// <summary>
-/// 
+/// 손님 매니저
+/// 손님의 생성과 움직임에 관여함.
 /// </summary>
 public class GuestManager : MonoBehaviour
 {

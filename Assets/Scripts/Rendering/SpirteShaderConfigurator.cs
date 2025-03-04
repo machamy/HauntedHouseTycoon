@@ -4,14 +4,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
+/// <summary>
+/// 해당 스프라이트에 Lit 셰이더 적용
+/// </summary>
 public class SpirteShaderConfigurator : MonoBehaviour
 {
-    [SerializeField] private bool setMaterial = false;
-    [SerializeField] private Material material = null;
-    [SerializeField] bool registerAllChildren = true;
-    [SerializeField] bool overrideChildren = false;
+    
+    [SerializeField,Tooltip("렌더러에 Material 강제 적용여부")] private bool setMaterial = false;
+    [SerializeField,Tooltip("적용할 Material")] private Material material = null;
+    [SerializeField,Tooltip("모든 자식 Renderer에 적용여부")] bool registerAllChildren = true;
+    [SerializeField,Tooltip("자식에 SpirteShaderConfigurator가 있어도 적용 여부")] bool overrideChildren = false;
     [SerializeField] private SpriteRenderer[] spriteRenderers = Array.Empty<SpriteRenderer>();
-    [SerializeField] private ShadowCastingMode shadowCastingMode = ShadowCastingMode.On;
+    [SerializeField,Tooltip("그림자 적용")] private ShadowCastingMode shadowCastingMode = ShadowCastingMode.On;
 
     public void ApplyConfig()
     {

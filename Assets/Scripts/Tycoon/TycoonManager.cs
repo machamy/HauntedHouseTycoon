@@ -33,7 +33,7 @@ public class TycoonManager : SingletonBehaviour<TycoonManager>
     
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space)) // 임시 테스트용
         {
             if(isPaused)
                 Resume();

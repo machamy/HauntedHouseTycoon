@@ -3,6 +3,9 @@ using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
+/// <summary>
+/// 실제 핸드를 관리함
+/// </summary>
 public class HandManager : MonoBehaviour
 {
     [SerializeReference] public Deck deck;

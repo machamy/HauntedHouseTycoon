@@ -4,6 +4,10 @@ using DefaultNamespace;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+/// <summary>
+/// 덱
+/// TODO : 드로우/버리기 제거, 보유 카드 다 들고있기
+/// </summary>
 [Serializable]
 public class Deck
 {

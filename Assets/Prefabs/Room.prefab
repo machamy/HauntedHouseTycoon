@@ -126,7 +126,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 683fa35d18cb7ce4d96f5cbc1f851233, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -169,6 +169,7 @@ GameObject:
   - component: {fileID: 644384107344564548}
   - component: {fileID: 6155652231046726850}
   - component: {fileID: 8598845156705880574}
+  - component: {fileID: 3037504264735701937}
   m_Layer: 0
   m_Name: Room
   m_TagString: Untagged
@@ -217,8 +218,9 @@ MonoBehaviour:
     fullCardSprite: {fileID: 0}
     cardPlacedSprite: {fileID: 0}
     cardActionContainer:
-      actions: []
-    arguments: []
+      actionNodes: []
+    nonlocalVariables:
+      arguments: []
   cardData:
     cardName: 
     cardDescription: 
@@ -229,14 +231,19 @@ MonoBehaviour:
     fullCardSprite: {fileID: 0}
     cardPlacedSprite: {fileID: 0}
     cardActionContainer:
-      actions: []
-    arguments: []
+      actionNodes: []
+    nonlocalVariables:
+      arguments: []
   placedCard: {fileID: 0}
   focusRenderer: {fileID: 6737162451541017292}
   coordinate: {x: 0, y: 0}
+  entities: []
   turnEventChannelSo: {fileID: 11400000, guid: b30948b240df495448b1d9188f3ad6dc, type: 2}
   roomEventChannelSo: {fileID: 11400000, guid: 2ca08cea909ea8749b0879adb8c7b219, type: 2}
   screamEventChannelSo: {fileID: 11400000, guid: 063e8998648600a4d8d18440bf64ffd4, type: 2}
+  references:
+    version: 2
+    RefIds: []
 --- !u!212 &8598845156705880574
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -260,7 +267,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 683fa35d18cb7ce4d96f5cbc1f851233, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -292,3 +299,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3037504264735701937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4993687430794990330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab16fa8d33604c709f91d2ba964ebb22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  setMaterial: 1
+  material: {fileID: 2100000, guid: 683fa35d18cb7ce4d96f5cbc1f851233, type: 2}
+  registerAllChildren: 1
+  overrideChildren: 0
+  spriteRenderers:
+  - {fileID: 8598845156705880574}
+  - {fileID: 6737162451541017292}
+  shadowCastingMode: 0

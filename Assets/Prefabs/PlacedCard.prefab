@@ -55,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 683fa35d18cb7ce4d96f5cbc1f851233, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 1205247844481147032}
   - component: {fileID: 5015589584329338638}
   - component: {fileID: 9061790381962430551}
+  - component: {fileID: 5244386006603961374}
   m_Layer: 0
   m_Name: PlacedCard
   m_TagString: Untagged
@@ -144,7 +145,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 683fa35d18cb7ce4d96f5cbc1f851233, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -190,3 +191,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 3561932717113064697}
   room: {fileID: 0}
+--- !u!114 &5244386006603961374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6570560357064821862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab16fa8d33604c709f91d2ba964ebb22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  setMaterial: 1
+  material: {fileID: 2100000, guid: 683fa35d18cb7ce4d96f5cbc1f851233, type: 2}
+  registerAllChildren: 0
+  overrideChildren: 0
+  spriteRenderers:
+  - {fileID: 5015589584329338638}
+  - {fileID: 3561932717113064697}
+  shadowCastingMode: 0

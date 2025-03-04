@@ -484,10 +484,10 @@ MonoBehaviour:
       actionNodes:
       - actionBlueprint: {fileID: 11400000, guid: b734331511c502648b5149874c00e4cb, type: 2}
         action:
-          rid: 8903814475939053902
+          rid: 8903814475939054042
       - actionBlueprint: {fileID: 11400000, guid: d58f103b126071f4dacd559af4f263a1, type: 2}
         action:
-          rid: 8903814475939053903
+          rid: 8903814475939054043
     nonlocalVariables:
       arguments: []
   - cardName: "\uC785\uC7A5\uCE74\uB4DC 1"
@@ -502,10 +502,10 @@ MonoBehaviour:
       actionNodes:
       - actionBlueprint: {fileID: 11400000, guid: b734331511c502648b5149874c00e4cb, type: 2}
         action:
-          rid: 8903814475939053904
+          rid: 8903814475939054044
       - actionBlueprint: {fileID: 11400000, guid: d58f103b126071f4dacd559af4f263a1, type: 2}
         action:
-          rid: 8903814475939053905
+          rid: 8903814475939054045
     nonlocalVariables:
       arguments: []
   - cardName: Exit
@@ -520,7 +520,7 @@ MonoBehaviour:
       actionNodes:
       - actionBlueprint: {fileID: 11400000, guid: edcb5c4c3330f094a86716c4236ab3ba, type: 2}
         action:
-          rid: 8903814475939053906
+          rid: 8903814475939054046
     nonlocalVariables:
       arguments: []
   - cardName: "\uACF5\uD3EC\uCE74\uB4DC 1"
@@ -535,7 +535,7 @@ MonoBehaviour:
       actionNodes:
       - actionBlueprint: {fileID: 11400000, guid: 9403b8892d9e6294f806240da7564da5, type: 2}
         action:
-          rid: 8903814475939053907
+          rid: 8903814475939054047
     nonlocalVariables:
       arguments: []
   - cardName: "\uACF5\uD3EC\uCE74\uB4DC 1"
@@ -550,7 +550,7 @@ MonoBehaviour:
       actionNodes:
       - actionBlueprint: {fileID: 11400000, guid: 9403b8892d9e6294f806240da7564da5, type: 2}
         action:
-          rid: 8903814475939053908
+          rid: 8903814475939054048
     nonlocalVariables:
       arguments: []
   - cardName: "\uACF5\uD3EC\uCE74\uB4DC 2"
@@ -565,7 +565,7 @@ MonoBehaviour:
       actionNodes:
       - actionBlueprint: {fileID: 11400000, guid: 9403b8892d9e6294f806240da7564da5, type: 2}
         action:
-          rid: 8903814475939053909
+          rid: 8903814475939054049
     nonlocalVariables:
       arguments: []
   - cardName: "\uACF5\uD3EC\uCE74\uB4DC 2"
@@ -580,7 +580,7 @@ MonoBehaviour:
       actionNodes:
       - actionBlueprint: {fileID: 11400000, guid: a523546ce626c7e4bbd04ca10187c0e0, type: 2}
         action:
-          rid: 8903814475939053910
+          rid: 8903814475939054050
     nonlocalVariables:
       arguments: []
   - cardName: "\uBE44\uBA85\uCE74\uB4DC 1"
@@ -595,7 +595,7 @@ MonoBehaviour:
       actionNodes:
       - actionBlueprint: {fileID: 11400000, guid: d92a58ffbd6f4ae49ba6704d7d8edcd4, type: 2}
         action:
-          rid: 8903814475939053911
+          rid: 8903814475939054051
     nonlocalVariables:
       arguments: []
   - cardName: "\uBE44\uBA85\uCE74\uB4DC 1"
@@ -610,7 +610,7 @@ MonoBehaviour:
       actionNodes:
       - actionBlueprint: {fileID: 11400000, guid: d92a58ffbd6f4ae49ba6704d7d8edcd4, type: 2}
         action:
-          rid: 8903814475939053912
+          rid: 8903814475939054052
     nonlocalVariables:
       arguments: []
   - cardName: "\uBE44\uBA85\uCE74\uB4DC 1"
@@ -625,7 +625,7 @@ MonoBehaviour:
       actionNodes:
       - actionBlueprint: {fileID: 11400000, guid: d92a58ffbd6f4ae49ba6704d7d8edcd4, type: 2}
         action:
-          rid: 8903814475939053913
+          rid: 8903814475939054053
     nonlocalVariables:
       arguments: []
   - cardName: "\uBCF4\uC870\uCE74\uB4DC 1"
@@ -640,7 +640,7 @@ MonoBehaviour:
       actionNodes:
       - actionBlueprint: {fileID: 11400000, guid: 005b237729eed70479846e30cb2f54c0, type: 2}
         action:
-          rid: 8903814475939053914
+          rid: 8903814475939054054
     nonlocalVariables:
       arguments: []
   - cardName: "\uBCF4\uC870\uCE74\uB4DC 2"
@@ -655,13 +655,13 @@ MonoBehaviour:
       actionNodes:
       - actionBlueprint: {fileID: 11400000, guid: 005b237729eed70479846e30cb2f54c0, type: 2}
         action:
-          rid: 8903814475939053915
+          rid: 8903814475939054055
     nonlocalVariables:
       arguments: []
   references:
     version: 2
     RefIds:
-    - rid: 8903814475939053902
+    - rid: 8903814475939054042
       type: {class: EntranceCardActionBlueprintSo/EntranceAction, ns: , asm: Assembly-CSharp}
       data:
         actionName: EntranceAction
@@ -671,14 +671,14 @@ MonoBehaviour:
         clockwise: 1
         customerAmount: 1
         prevGuestDirection: -1
-    - rid: 8903814475939053903
+    - rid: 8903814475939054043
       type: {class: SimpleDecayCardActionBlueprintSo/SimpleDecayCardAction, ns: , asm: Assembly-CSharp}
       data:
         actionName: SimpleDecayCardAction
         breakChain: 0
         DecayTurnAmount: 3
         DecayTurnRemain: 3
-    - rid: 8903814475939053904
+    - rid: 8903814475939054044
       type: {class: EntranceCardActionBlueprintSo/EntranceAction, ns: , asm: Assembly-CSharp}
       data:
         actionName: EntranceAction
@@ -688,64 +688,64 @@ MonoBehaviour:
         clockwise: 1
         customerAmount: 2
         prevGuestDirection: -1
-    - rid: 8903814475939053905
+    - rid: 8903814475939054045
       type: {class: SimpleDecayCardActionBlueprintSo/SimpleDecayCardAction, ns: , asm: Assembly-CSharp}
       data:
         actionName: SimpleDecayCardAction
         breakChain: 0
         DecayTurnAmount: 3
-        DecayTurnRemain: 0
-    - rid: 8903814475939053906
+        DecayTurnRemain: 2
+    - rid: 8903814475939054046
       type: {class: ExitCardActionBlueprintSo/ExitCardAction, ns: , asm: Assembly-CSharp}
       data:
         actionName: ExitCardAction
         breakChain: 0
-    - rid: 8903814475939053907
+    - rid: 8903814475939054047
       type: {class: SimpleFearCardActionBlueprintSo/SimpleFearCardAction, ns: , asm: Assembly-CSharp}
       data:
         actionName: SimpleFearCardAction
         breakChain: 0
         fearAmount: 3
-    - rid: 8903814475939053908
+    - rid: 8903814475939054048
       type: {class: SimpleFearCardActionBlueprintSo/SimpleFearCardAction, ns: , asm: Assembly-CSharp}
       data:
         actionName: SimpleFearCardAction
         breakChain: 0
         fearAmount: 3
-    - rid: 8903814475939053909
+    - rid: 8903814475939054049
       type: {class: SimpleFearCardActionBlueprintSo/SimpleFearCardAction, ns: , asm: Assembly-CSharp}
       data:
         actionName: SimpleFearCardAction
         breakChain: 0
         fearAmount: 3
-    - rid: 8903814475939053910
+    - rid: 8903814475939054050
       type: {class: MovementFearCardActionBlueprintSo/EntranceAction, ns: , asm: Assembly-CSharp}
       data:
         actionName: EntranceAction
         breakChain: 0
         FearMovementCoefficient: 1
-    - rid: 8903814475939053911
+    - rid: 8903814475939054051
       type: {class: SimpleScreamCardActionBlueprintSo/SimpleScreamCardAction, ns: , asm: Assembly-CSharp}
       data:
         actionName: SimpleScreamCardAction
         breakChain: 0
-    - rid: 8903814475939053912
+    - rid: 8903814475939054052
       type: {class: SimpleScreamCardActionBlueprintSo/SimpleScreamCardAction, ns: , asm: Assembly-CSharp}
       data:
         actionName: SimpleScreamCardAction
         breakChain: 0
-    - rid: 8903814475939053913
+    - rid: 8903814475939054053
       type: {class: SimpleScreamCardActionBlueprintSo/SimpleScreamCardAction, ns: , asm: Assembly-CSharp}
       data:
         actionName: SimpleScreamCardAction
         breakChain: 0
-    - rid: 8903814475939053914
+    - rid: 8903814475939054054
       type: {class: TestSupportCardActionBlueprintSo/TestSupportCard, ns: , asm: Assembly-CSharp}
       data:
         actionName: TestSupportCard
         breakChain: 0
         fearGlobalAmount: 2
-    - rid: 8903814475939053915
+    - rid: 8903814475939054055
       type: {class: TestSupportCardActionBlueprintSo/TestSupportCard, ns: , asm: Assembly-CSharp}
       data:
         actionName: TestSupportCard
@@ -2252,92 +2252,6 @@ MonoBehaviour:
   fadeAlpha: 0.25
   maxVisibleCardAmount: 10
   currentMaxVisibleCardAmount: 0
---- !u!1 &975465560 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1917275895002266092, guid: 91ad9983c9181b443a102dd1570040ea, type: 3}
-  m_PrefabInstance: {fileID: 1000454083}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &975465564
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 975465560}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab16fa8d33604c709f91d2ba964ebb22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 0}
-  shadowCastingMode: 1
---- !u!1001 &1000454083
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 218083782189043252, guid: 91ad9983c9181b443a102dd1570040ea, type: 3}
-      propertyPath: m_Name
-      value: SampleGuest1
-      objectReference: {fileID: 0}
-    - target: {fileID: 661533572590808637, guid: 91ad9983c9181b443a102dd1570040ea, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 4.3489037
-      objectReference: {fileID: 0}
-    - target: {fileID: 661533572590808637, guid: 91ad9983c9181b443a102dd1570040ea, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.46907806
-      objectReference: {fileID: 0}
-    - target: {fileID: 661533572590808637, guid: 91ad9983c9181b443a102dd1570040ea, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1.8614647
-      objectReference: {fileID: 0}
-    - target: {fileID: 661533572590808637, guid: 91ad9983c9181b443a102dd1570040ea, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.999962
-      objectReference: {fileID: 0}
-    - target: {fileID: 661533572590808637, guid: 91ad9983c9181b443a102dd1570040ea, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 661533572590808637, guid: 91ad9983c9181b443a102dd1570040ea, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.008726558
-      objectReference: {fileID: 0}
-    - target: {fileID: 661533572590808637, guid: 91ad9983c9181b443a102dd1570040ea, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 661533572590808637, guid: 91ad9983c9181b443a102dd1570040ea, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 661533572590808637, guid: 91ad9983c9181b443a102dd1570040ea, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 661533572590808637, guid: 91ad9983c9181b443a102dd1570040ea, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6138229502313825674, guid: 91ad9983c9181b443a102dd1570040ea, type: 3}
-      propertyPath: m_CastShadows
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4867489662486292994, guid: 91ad9983c9181b443a102dd1570040ea, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 1917275895002266092, guid: 91ad9983c9181b443a102dd1570040ea, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 975465564}
-  m_SourcePrefab: {fileID: 100100000, guid: 91ad9983c9181b443a102dd1570040ea, type: 3}
 --- !u!1 &1001468866
 GameObject:
   m_ObjectHideFlags: 0
@@ -2533,7 +2447,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab16fa8d33604c709f91d2ba964ebb22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 1186040916}
+  setMaterial: 1
+  material: {fileID: 2100000, guid: 683fa35d18cb7ce4d96f5cbc1f851233, type: 2}
+  registerAllChildren: 1
+  overrideChildren: 1
+  spriteRenderers: []
   shadowCastingMode: 1
 --- !u!1 &1205601340
 GameObject:
@@ -3855,4 +3773,3 @@ SceneRoots:
   - {fileID: 1001468869}
   - {fileID: 597169821}
   - {fileID: 1934573868}
-  - {fileID: 1000454083}

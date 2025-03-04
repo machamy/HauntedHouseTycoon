@@ -1,14 +1,10 @@
 ﻿{
   "cardDataList": [
     {
-      "varName": "type",
-      "index": "long",
       "traumaName": "string"
     },
     {
-      "varName": "data",
-      "index": "09100100",
-      "traumaName": "홍대병"
+      "traumaName": ""
     }
   ]
 }

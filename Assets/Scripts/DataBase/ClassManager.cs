@@ -7,7 +7,8 @@ namespace ClassManager.Card
     public class CardClass
     {
         public long Index;
-        public string Name;
+        public long NameIndex;
+        public long ExplainIndex;
 
         public Type CardType;
         public Rank CardRank;
@@ -17,9 +18,9 @@ namespace ClassManager.Card
         public string SpritePath;
         public int[] AvailableRoutes;
         public int DestroyPayback;
-        public long CardEffectIndex;
-        public long PlaceAnimationIndex;
-        public long ActionAnimationIndex;
+        public long[] CardEffectIndex;
+        public long[] PlaceAnimationIndex;
+        public long[] ActionAnimationIndex;
         public int[] input1;
         public int[] input2;
         public int[] input3;

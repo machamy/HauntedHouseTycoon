@@ -69,7 +69,7 @@ public class ExcelToJSON
         var excelData = new List<Dictionary<string, string>>();
 
         List<string> headers = new List<string>();
-        for (int c = 0; c < table.Columns.Count; c++)
+        for (int c = 2; c < table.Columns.Count; c++)
         {
             headers.Add(table.Rows[1][c].ToString());
         }
@@ -77,9 +77,9 @@ public class ExcelToJSON
         for (int r = 2; r < table.Rows.Count; r++)
         {
             var rowDict = new Dictionary<string, string>();
-            for (int c = 0; c < table.Columns.Count; c++)
+            for (int c = 2; c < table.Columns.Count; c++)
             {
-                string header = headers[c];
+                string header = headers[c - 2];
                 var cellValue = table.Rows[r][c]?.ToString() ?? "";
 
                 if (cellValue.Contains(","))

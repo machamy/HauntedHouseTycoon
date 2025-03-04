@@ -1,140 +1,138 @@
 ﻿{
   "cardDataList": [
     {
-      "eType": "ENTER",
-      "value:eType": "0",
       "eRank": "NORMAL",
       "value:eRank": "0",
-      "eConditionType": "",
+      "eConditionType": "OnPlayerTurnEnter",
       "value:eConditionType": "0",
-      "eTargetType": "CURRENT_CARD",
+      "eTargetType": "ToCurrentCard",
       "value:eTargetType": "0",
       "eSex": "MALE",
-      "value:eSex": "0"
+      "value:eSex": "0",
+      "eFanic": "HeartArrest",
+      "value:eFanic": "0"
     },
     {
-      "eType": "EXIT",
-      "value:eType": "1",
       "eRank": "RARE",
       "value:eRank": "1",
-      "eConditionType": "",
+      "eConditionType": "OnPlayerTurnExit",
       "value:eConditionType": "1",
-      "eTargetType": "CONNECTED_CARD",
+      "eTargetType": "ToConnectedCard",
       "value:eTargetType": "1",
       "eSex": "FEMALE",
-      "value:eSex": "1"
+      "value:eSex": "1",
+      "eFanic": "",
+      "value:eFanic": "1"
     },
     {
-      "eType": "HORROR",
-      "value:eType": "2",
       "eRank": "LEGEND",
       "value:eRank": "2",
-      "eConditionType": "",
+      "eConditionType": "OnNPCTurnEnter",
       "value:eConditionType": "2",
-      "eTargetType": "U_CARD",
+      "eTargetType": "ToUpCard",
       "value:eTargetType": "2",
       "eSex": "UNOWN",
-      "value:eSex": "2"
+      "value:eSex": "2",
+      "eFanic": "",
+      "value:eFanic": "2"
     },
     {
-      "eType": "SCREAM",
-      "value:eType": "3",
       "eRank": "",
       "value:eRank": "",
-      "eConditionType": "",
+      "eConditionType": "OnNPCTurnExit",
       "value:eConditionType": "3",
-      "eTargetType": "D_CARD",
+      "eTargetType": "ToDownCard",
       "value:eTargetType": "3",
       "eSex": "",
-      "value:eSex": ""
+      "value:eSex": "",
+      "eFanic": "",
+      "value:eFanic": "3"
     },
     {
-      "eType": "ASSISTANCE",
-      "value:eType": "4",
       "eRank": "",
       "value:eRank": "",
-      "eConditionType": "",
+      "eConditionType": "OnCardPlaced",
       "value:eConditionType": "4",
-      "eTargetType": "R_CARD",
+      "eTargetType": "ToRightCard",
       "value:eTargetType": "4",
       "eSex": "",
-      "value:eSex": ""
+      "value:eSex": "",
+      "eFanic": "",
+      "value:eFanic": ""
     },
     {
-      "eType": "",
-      "value:eType": "",
       "eRank": "",
       "value:eRank": "",
-      "eConditionType": "",
+      "eConditionType": "OnCardRemoved",
       "value:eConditionType": "5",
-      "eTargetType": "L_CARD",
+      "eTargetType": "ToLeftCard",
       "value:eTargetType": "5",
       "eSex": "",
-      "value:eSex": ""
+      "value:eSex": "",
+      "eFanic": "",
+      "value:eFanic": ""
     },
     {
-      "eType": "",
-      "value:eType": "",
       "eRank": "",
       "value:eRank": "",
-      "eConditionType": "",
+      "eConditionType": "OnGuestEnter",
       "value:eConditionType": "6",
-      "eTargetType": "ALL_CARD",
+      "eTargetType": "ToAllCardInField",
       "value:eTargetType": "6",
       "eSex": "",
-      "value:eSex": ""
+      "value:eSex": "",
+      "eFanic": "",
+      "value:eFanic": ""
     },
     {
-      "eType": "",
-      "value:eType": "",
       "eRank": "",
       "value:eRank": "",
-      "eConditionType": "",
+      "eConditionType": "OnGuestExit",
       "value:eConditionType": "7",
-      "eTargetType": "DIAGONAL_CARD",
+      "eTargetType": "ToAllCardInHand",
       "value:eTargetType": "7",
       "eSex": "",
-      "value:eSex": ""
+      "value:eSex": "",
+      "eFanic": "",
+      "value:eFanic": ""
     },
     {
-      "eType": "",
-      "value:eType": "",
       "eRank": "",
       "value:eRank": "",
       "eConditionType": "",
       "value:eConditionType": "8",
-      "eTargetType": "SAME_CARD",
+      "eTargetType": "ToDiagonalCard",
       "value:eTargetType": "8",
       "eSex": "",
-      "value:eSex": ""
+      "value:eSex": "",
+      "eFanic": "",
+      "value:eFanic": ""
     },
     {
-      "eType": "",
-      "value:eType": "",
       "eRank": "",
       "value:eRank": "",
       "eConditionType": "",
       "value:eConditionType": "",
-      "eTargetType": "",
+      "eTargetType": "ToSameCard",
       "value:eTargetType": "9",
       "eSex": "",
-      "value:eSex": ""
+      "value:eSex": "",
+      "eFanic": "",
+      "value:eFanic": ""
     },
     {
-      "eType": "",
-      "value:eType": "",
       "eRank": "",
       "value:eRank": "",
       "eConditionType": "",
       "value:eConditionType": "",
-      "eTargetType": "",
+      "eTargetType": "ToCrossCard",
       "value:eTargetType": "10",
       "eSex": "",
-      "value:eSex": ""
+      "value:eSex": "",
+      "eFanic": "",
+      "value:eFanic": ""
     },
     {
-      "eType": "",
-      "value:eType": "",
       "eRank": "",
       "value:eRank": "",
       "eConditionType": "",
@@ -142,71 +140,71 @@
       "eTargetType": "",
       "value:eTargetType": "11",
       "eSex": "",
-      "value:eSex": ""
+      "value:eSex": "",
+      "eFanic": "",
+      "value:eFanic": ""
     },
     {
-      "eType": "",
-      "value:eType": "",
       "eRank": "",
       "value:eRank": "",
       "eConditionType": "",
       "value:eConditionType": "",
-      "eTargetType": "",
+      "eTargetType": "ToCurrentGuest",
       "value:eTargetType": "12",
       "eSex": "",
-      "value:eSex": ""
+      "value:eSex": "",
+      "eFanic": "",
+      "value:eFanic": ""
     },
     {
-      "eType": "",
-      "value:eType": "",
       "eRank": "",
       "value:eRank": "",
       "eConditionType": "",
       "value:eConditionType": "",
-      "eTargetType": "",
+      "eTargetType": "ToNearestGuest",
       "value:eTargetType": "13",
       "eSex": "",
-      "value:eSex": ""
+      "value:eSex": "",
+      "eFanic": "",
+      "value:eFanic": ""
     },
     {
-      "eType": "",
-      "value:eType": "",
       "eRank": "",
       "value:eRank": "",
       "eConditionType": "",
       "value:eConditionType": "",
-      "eTargetType": "",
+      "eTargetType": "ToFarestGuest",
       "value:eTargetType": "14",
       "eSex": "",
-      "value:eSex": ""
+      "value:eSex": "",
+      "eFanic": "",
+      "value:eFanic": ""
     },
     {
-      "eType": "",
-      "value:eType": "",
       "eRank": "",
       "value:eRank": "",
       "eConditionType": "",
       "value:eConditionType": "",
-      "eTargetType": "",
+      "eTargetType": "ToConnectedGuest",
       "value:eTargetType": "15",
       "eSex": "",
-      "value:eSex": ""
+      "value:eSex": "",
+      "eFanic": "",
+      "value:eFanic": ""
     },
     {
-      "eType": "",
-      "value:eType": "",
       "eRank": "",
       "value:eRank": "",
       "eConditionType": "",
       "value:eConditionType": "",
-      "eTargetType": "",
+      "eTargetType": "To33Guest",
       "value:eTargetType": "16",
       "eSex": "",
-      "value:eSex": ""
+      "value:eSex": "",
+      "eFanic": "",
+      "value:eFanic": ""
     },
     {
-      "eType": "",
-      "value:eType": "",
       "eRank": "",
       "value:eRank": "",
       "eConditionType": "",
@@ -214,11 +212,11 @@
       "eTargetType": "",
       "value:eTargetType": "17",
       "eSex": "",
-      "value:eSex": ""
+      "value:eSex": "",
+      "eFanic": "",
+      "value:eFanic": ""
     },
     {
-      "eType": "",
-      "value:eType": "",
       "eRank": "",
       "value:eRank": "",
       "eConditionType": "",
@@ -226,11 +224,11 @@
       "eTargetType": "",
       "value:eTargetType": "18",
       "eSex": "",
-      "value:eSex": ""
+      "value:eSex": "",
+      "eFanic": "",
+      "value:eFanic": ""
     },
     {
-      "eType": "",
-      "value:eType": "",
       "eRank": "",
       "value:eRank": "",
       "eConditionType": "",
@@ -238,11 +236,11 @@
       "eTargetType": "",
       "value:eTargetType": "19",
       "eSex": "",
-      "value:eSex": ""
+      "value:eSex": "",
+      "eFanic": "",
+      "value:eFanic": ""
     },
     {
-      "eType": "",
-      "value:eType": "",
       "eRank": "",
       "value:eRank": "",
       "eConditionType": "",
@@ -250,11 +248,11 @@
       "eTargetType": "",
       "value:eTargetType": "20",
       "eSex": "",
-      "value:eSex": ""
+      "value:eSex": "",
+      "eFanic": "",
+      "value:eFanic": ""
     },
     {
-      "eType": "",
-      "value:eType": "",
       "eRank": "",
       "value:eRank": "",
       "eConditionType": "",
@@ -262,47 +260,47 @@
       "eTargetType": "",
       "value:eTargetType": "21",
       "eSex": "",
-      "value:eSex": ""
+      "value:eSex": "",
+      "eFanic": "",
+      "value:eFanic": ""
     },
     {
-      "eType": "",
-      "value:eType": "",
       "eRank": "",
       "value:eRank": "",
       "eConditionType": "",
       "value:eConditionType": "",
-      "eTargetType": "CURRENT_VISITOR",
+      "eTargetType": "",
       "value:eTargetType": "22",
       "eSex": "",
-      "value:eSex": ""
+      "value:eSex": "",
+      "eFanic": "",
+      "value:eFanic": ""
     },
     {
-      "eType": "",
-      "value:eType": "",
       "eRank": "",
       "value:eRank": "",
       "eConditionType": "",
       "value:eConditionType": "",
-      "eTargetType": "NEAREST_VISITOR",
+      "eTargetType": "",
       "value:eTargetType": "23",
       "eSex": "",
-      "value:eSex": ""
+      "value:eSex": "",
+      "eFanic": "",
+      "value:eFanic": ""
     },
     {
-      "eType": "",
-      "value:eType": "",
       "eRank": "",
       "value:eRank": "",
       "eConditionType": "",
       "value:eConditionType": "",
-      "eTargetType": "FAREST_VISITOR",
+      "eTargetType": "",
       "value:eTargetType": "24",
       "eSex": "",
-      "value:eSex": ""
+      "value:eSex": "",
+      "eFanic": "",
+      "value:eFanic": ""
     },
     {
-      "eType": "",
-      "value:eType": "",
       "eRank": "",
       "value:eRank": "",
       "eConditionType": "",
@@ -310,11 +308,11 @@
       "eTargetType": "",
       "value:eTargetType": "25",
       "eSex": "",
-      "value:eSex": ""
+      "value:eSex": "",
+      "eFanic": "",
+      "value:eFanic": ""
     },
     {
-      "eType": "",
-      "value:eType": "",
       "eRank": "",
       "value:eRank": "",
       "eConditionType": "",
@@ -322,11 +320,11 @@
       "eTargetType": "",
       "value:eTargetType": "26",
       "eSex": "",
-      "value:eSex": ""
+      "value:eSex": "",
+      "eFanic": "",
+      "value:eFanic": ""
     },
     {
-      "eType": "",
-      "value:eType": "",
       "eRank": "",
       "value:eRank": "",
       "eConditionType": "",
@@ -334,11 +332,11 @@
       "eTargetType": "",
       "value:eTargetType": "27",
       "eSex": "",
-      "value:eSex": ""
+      "value:eSex": "",
+      "eFanic": "",
+      "value:eFanic": ""
     },
     {
-      "eType": "",
-      "value:eType": "",
       "eRank": "",
       "value:eRank": "",
       "eConditionType": "",
@@ -346,11 +344,11 @@
       "eTargetType": "",
       "value:eTargetType": "28",
       "eSex": "",
-      "value:eSex": ""
+      "value:eSex": "",
+      "eFanic": "",
+      "value:eFanic": ""
     },
     {
-      "eType": "",
-      "value:eType": "",
       "eRank": "",
       "value:eRank": "",
       "eConditionType": "",
@@ -358,11 +356,11 @@
       "eTargetType": "",
       "value:eTargetType": "29",
       "eSex": "",
-      "value:eSex": ""
+      "value:eSex": "",
+      "eFanic": "",
+      "value:eFanic": ""
     },
     {
-      "eType": "",
-      "value:eType": "",
       "eRank": "",
       "value:eRank": "",
       "eConditionType": "",
@@ -370,11 +368,11 @@
       "eTargetType": "",
       "value:eTargetType": "30",
       "eSex": "",
-      "value:eSex": ""
+      "value:eSex": "",
+      "eFanic": "",
+      "value:eFanic": ""
     },
     {
-      "eType": "",
-      "value:eType": "",
       "eRank": "",
       "value:eRank": "",
       "eConditionType": "",
@@ -382,7 +380,9 @@
       "eTargetType": "",
       "value:eTargetType": "31",
       "eSex": "",
-      "value:eSex": ""
+      "value:eSex": "",
+      "eFanic": "",
+      "value:eFanic": ""
     }
   ]
 }

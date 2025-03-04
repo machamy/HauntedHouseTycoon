@@ -1,0 +1,12 @@
+﻿{
+  "cardDataList": [
+    {
+      "#cardName": "#string",
+      "": "long[]"
+    },
+    {
+      "#cardName": "",
+      "": ""
+    }
+  ]
+}

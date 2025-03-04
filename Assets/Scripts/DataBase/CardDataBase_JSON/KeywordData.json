@@ -1,14 +1,16 @@
 ﻿{
   "cardDataList": [
     {
-      "varName": "type",
       "index": "long",
-      "name": "string"
+      "": "long"
     },
     {
-      "varName": "data",
       "index": "08000100",
-      "name": "평범한"
+      "": ""
+    },
+    {
+      "index": "08000200",
+      "": ""
     }
   ]
 }

@@ -73,6 +73,10 @@ public class GuestManager : MonoBehaviour
     {
         WaitForSeconds wait = new WaitForSeconds(guestNotifyInterval);
         Debug.Log($"NotifyGuestQueue {guestQueue.Count}");
+        foreach (var guestObject in guestQueue)    
+        {
+            guestObject.HasToMove = true;
+        }
         while (haveToMoveIndex < guestQueue.Count)
         {
             GuestObject guestObject = guestQueue[haveToMoveIndex];

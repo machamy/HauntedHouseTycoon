@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dff280c442c43cc9a17f4891b1d79ed, type: 3}
   m_Name: GuestFactorySO
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 3715099512221576335, guid: 15a1e527684f0884f867566109568300, type: 3}
+  _prefab: {fileID: 6301191226933098189, guid: 91ad9983c9181b443a102dd1570040ea, type: 3}

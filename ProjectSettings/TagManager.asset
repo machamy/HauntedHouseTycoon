@@ -38,6 +38,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: SpriteUI
+    uniqueID: 999630951
+    locked: 0
   - name: Cards
     uniqueID: 907007265
     locked: 0

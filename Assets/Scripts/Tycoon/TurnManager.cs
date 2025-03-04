@@ -14,8 +14,9 @@ public class TurnManager : MonoBehaviour
     private float remainingTurnDuration = 10f;
     [SerializeField] private bool isPlayerTurn = true;
     public bool IsPlayerTurn => isPlayerTurn;
+    [FormerlySerializedAs("turnIndicatingSlider")]
     [Header("References")]
-    [SerializeField] private TurnIndicatingSlider turnIndicatingSlider;
+    [SerializeField] private TurnIndicatingSliderUI turnIndicatingSliderUI;
     [Header("Events")]
     [SerializeField] private TurnEventChannelSO turnEventChannelSo;
     [SerializeField] private TurnEventChannelSO delayedTurnEventChannelSo;
@@ -52,15 +53,15 @@ public class TurnManager : MonoBehaviour
                 PlayerTurnStart();
             }
         }
-        turnIndicatingSlider.SetValue(turnDurationRatio);
+        turnIndicatingSliderUI.SetValue(turnDurationRatio);
     }
 
     public void PlayerTurnStart()
     {
         Debug.Log($"$Player Turn {turnVariableSO.Value} Start");
         isPlayerTurn = true;
-        turnIndicatingSlider.isPlayerTurn = true;
-        turnIndicatingSlider.UpdateColor();
+        turnIndicatingSliderUI.isPlayerTurn = true;
+        turnIndicatingSliderUI.UpdateColor();
         remainingTurnDuration = maxPlayerTurnDuration;
         turnVariableSO.Value = (turnVariableSO.Value + 1);
         turnEventChannelSo.RaiseNonPlayerTurnExitEvent();
@@ -84,8 +85,8 @@ public class TurnManager : MonoBehaviour
     {
         Debug.Log($"$Player Turn {turnVariableSO.Value} End");
         isPlayerTurn = false;
-        turnIndicatingSlider.isPlayerTurn = false;
-        turnIndicatingSlider.UpdateColor();
+        turnIndicatingSliderUI.isPlayerTurn = false;
+        turnIndicatingSliderUI.UpdateColor();
         remainingTurnDuration = maxNonplayerTurnDuration;
         turnEventChannelSo.RaisePlayerTurnExitEvent();
         delayedTurnEventChannelSo.RaisePlayerTurnExitEvent();

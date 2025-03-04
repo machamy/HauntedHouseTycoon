@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Slider))]
-public class TurnIndicatingSlider : MonoBehaviour
+public class TurnIndicatingSliderUI : MonoBehaviour
 {
     private Slider slider;
 

@@ -5,8 +5,9 @@ using UnityEngine.Serialization;
 
 public class GuestNodeDisplay : MonoBehaviour
 {
+    [FormerlySerializedAs("fearSlider")]
     [Header("UI References")]
-    [SerializeField] private CircularSlider fearSlider;
+    [SerializeField] private CircularSliderUI fearSliderUI;
     [SerializeField] private CircularElement PanicLine;
     [SerializeField] private CircularElement CurrentScreamLine;
     [SerializeField] private CircularElement NextScreamLine;
@@ -26,7 +27,7 @@ public class GuestNodeDisplay : MonoBehaviour
 
     private void Awake()
     {
-        fearSlider.Initialize(startAngle, endAngle, clockwise);
+        fearSliderUI.Initialize(startAngle, endAngle, clockwise);
         CurrentScreamLine.Initialize(startAngle, endAngle, clockwise);
         NextScreamLine.Initialize(startAngle, endAngle, clockwise);
         PanicLine.Initialize(startAngle, endAngle, clockwise);
@@ -84,7 +85,7 @@ public class GuestNodeDisplay : MonoBehaviour
         if(!guestObject)
             return;
         float panic = guestObject.Panic;
-        fearSlider.Value = guestObject.Fear / panic;
+        fearSliderUI.Value = guestObject.Fear / panic;
         PanicLine.Value = 1;
         CurrentScreamLine.Value = (float)guestObject.ScreamRequirement / panic;
         NextScreamLine.Value = (float)guestObject.NextScreamRequirement / panic;
@@ -102,7 +103,7 @@ public class GuestNodeDisplay : MonoBehaviour
         {
             endAngle = startAngle + 360;
         }
-        fearSlider.Initialize(startAngle, endAngle, clockwise);
+        fearSliderUI.Initialize(startAngle, endAngle, clockwise);
         CurrentScreamLine.Initialize(startAngle, endAngle, clockwise);
         NextScreamLine.Initialize(startAngle, endAngle, clockwise);
         PanicLine.Initialize(startAngle, endAngle, clockwise);

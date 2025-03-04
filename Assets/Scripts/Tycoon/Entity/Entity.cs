@@ -13,7 +13,19 @@ public class Entity : MonoBehaviour
     
     public void Move(Room room)
     {
+        if (currentRoom)
+        {
+            if (currentRoom.HasEntity(this))
+            {
+                currentRoom.RemoveEntity(this);
+            }
+            else
+            {
+                Debug.LogError($"엔티티가 {currentRoom.name}에서 제대로 삭제되지 않음");
+            }
+        }
         currentRoom = room;
+        currentRoom.AddEntity(this);
         coordinate = room.Coordinate;
         // transform.position = room.transform.position;
     }

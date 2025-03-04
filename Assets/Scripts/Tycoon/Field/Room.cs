@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -15,6 +16,9 @@ public class Room : MonoBehaviour
     [SerializeField] private SpriteRenderer focusRenderer;
     [Header("Properties")]
     [SerializeField] Vector2Int coordinate;
+    [Header("Entities")]
+    [SerializeField] private List<Entity> entities = new List<Entity>();
+    // [SerializeField] List<GuestObject> guests = new List<GuestObject>();
     [Header("Events")]
     [SerializeField] private TurnEventChannelSO turnEventChannelSo;
     [SerializeField] private CustomerRoomEventSO roomEventChannelSo;
@@ -108,18 +112,37 @@ public class Room : MonoBehaviour
     {
         focusRenderer.enabled = false;
     }
+    
+    public void AddEntity(Entity entity)
+    {
+        entities.Add(entity);
+    }
+    
+    public bool HasEntity(Entity entity)
+    {
+        return entities.Contains(entity);
+    }
+    public void RemoveEntity(Entity entity)
+    {
+        entities.Remove(entity);
+    }
+    
+    public Entity FindEntity(Predicate<Entity> match)
+    {
+        return entities.Find(match);
+    }
 
     /// <summary>
     /// 해당 방에서, 들어온 방향을 기준으로 좌측우선 탐색을 통해 다음 방을 찾는다.
     /// 다음방도 들어온 방향을 가지고 있어야 한다.
     /// </summary>
     /// <param name="field"></param>
-    /// <param name="originDirection"></param>
+    /// <param name="orientingDirection">바라보는 방향(진입 경로의 반대)</param>
     /// <param name="targetDirection"></param>
     /// <returns></returns>
-    public Room FindLeftmostRoom(Field field, Direction originDirection,out Direction targetDirection)
+    public Room FindLeftmostRoom(Field field, Direction orientingDirection,out Direction targetDirection)
     {
-        Direction targetDir = DirectionExtentions.GetLeftmostDirection(originDirection, CardData.directions);
+        Direction targetDir = DirectionExtentions.GetLeftmostDirection(orientingDirection, CardData.directions);
         Room nextRoom;
         int count = 0;
         while (targetDir != Direction.None && count++ < 4)

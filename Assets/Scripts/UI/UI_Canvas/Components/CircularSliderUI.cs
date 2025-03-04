@@ -8,10 +8,10 @@ using UnityEngine.UI;
 /// 원형 슬라이더
 /// 내부값은 Value(0~1)로 저장되며, 이를 각도로 변환하여 표시
 /// </summary>
-public class CircularSlider : MonoBehaviour, ICircularUI
+public class CircularSliderUI : MonoBehaviour, ICircularUI
 {
-    [FormerlySerializedAs("fillImage")] [SerializeField] private Image maskImage;
-    [FormerlySerializedAs("backgroundFillImage")] [SerializeField] private Image fillImage;
+    [SerializeField] private Image maskImage;
+    [SerializeField] private Image fillImage;
 
     [SerializeField] private bool clockwise = false;
     // [SerializeField] private Direction startDirection = Direction.Up;

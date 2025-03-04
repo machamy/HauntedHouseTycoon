@@ -22,6 +22,14 @@ public class GuestObject : MonoBehaviour
     [SerializeField] private int panic = 20;
     [Header("References")]
     [SerializeField] private TextMeshPro fearText;
+    [SerializeField] private GuestFearBar fearBar;
+    
+    
+    private bool hasToMove = false;
+    /// <summary>
+    /// 해당 손님이 아직 움직이지 않았음.
+    /// </summary>
+    public bool HasToMove {get => hasToMove; set => hasToMove = value;}
     
     private int movedDistance = 0;
     
@@ -89,11 +97,18 @@ public class GuestObject : MonoBehaviour
         isCreatedNow = true;
     }
     
+    
+
+    
     /// <summary>
     /// 손님 1턴간의 이동 로직
     /// </summary>
-    public void MoveBehaviour()
+    public void MoveBehaviour(bool forceMove = false)
     {
+        if (!hasToMove && !forceMove)
+        {
+            return;
+        }
         if (!CurrentRoom)
         {
             Debug.LogWarning($"Not at a Room");
@@ -101,15 +116,16 @@ public class GuestObject : MonoBehaviour
         }
         
         Direction targetDirection;
-        Room nextRoom = CurrentRoom.FindLeftmostRoom(TycoonManager.Instance.Field, orientingDirection.Opposite(),out targetDirection);
+        Room nextRoom = CurrentRoom.FindLeftmostRoom(TycoonManager.Instance.Field, orientingDirection,out targetDirection);
         if (nextRoom)
         {
-            Debug.Log($"from {CurrentRoom.name} to {nextRoom.name}");
+            // Debug.Log($"from {CurrentRoom.name} to {nextRoom.name}");
             movedDistance++;
             entity.transform
-                .DOMove(nextRoom.transform.position, 0.5f)
-                .OnComplete(()=> entity.Move(nextRoom));
-            entity.currentRoom = nextRoom;
+                .DOMove(nextRoom.transform.position, 0.5f);
+                // .OnComplete(()=> entity.Move(nextRoom));
+            // entity.currentRoom = nextRoom;
+            entity.Move(nextRoom);
             orientingDirection = targetDirection;
             roomEventChannelSo.RaiseCustomerRoomEnter(this, nextRoom);
         }
@@ -117,10 +133,32 @@ public class GuestObject : MonoBehaviour
         {
             Debug.LogWarning($"No next room found");
         }
+        
+        hasToMove = false;
     }
-
-
     
+    /// <summary>
+    /// 다른 손님으로 합체한다
+    /// </summary>
+    /// <param name="other"></param>
+    public void MergeTo(GuestObject other)
+    {
+        /*
+         - 동선이 겹칠 경우 손님들은 뭉치게 된며 아래 수치들이 변경 된다.
+            - 비명을 지를 수 있는 횟수 = 손님들의 최댓값
+            - 비명을 지르기 위해 필요한 공포치, 패닉에 빠지는 공포치의 최솟값 = (손님들의 평균) * 1.1^(손님의 수)
+            - 현재 공포치 = 손님들의 평균 * 0.9
+            - 각 공포 속성에 대한 내성 = 공포를 덜 받는 거만 남음
+            - 트라우마는 중복되는거만 남음
+
+        - 예시: A(비명 횟수3, 손님수 1) , B(비명 횟수 2, 손님수 2)가 합쳐지면 C(비명횟수3, 손님수 3)라고 할때
+            - C의 첫번째 공포치 =  (A의 첫번째 공포치+B의 첫번째 공포치/2) * 1.1^(3)
+            - C의 두번째 공포치 = (A의 두번째 공포치+B의 두번째 공포치/2) * 1.1^(3)
+            - C의 세번째 공포치 = A의 세번째 공포치 * 1.1^(3)
+         */
+        Debug.Log($"{name} merged to {other.name}");
+        poolable.Release();
+    }
 
     public void AddFear(int amount)
     {
@@ -153,6 +191,16 @@ public class GuestObject : MonoBehaviour
     {
         fearText.text = $"{fear} / {screamRequirement}";
         OnValueChangedEvent?.Invoke();
+    }
+    
+    private void OnEnterRoom(Room room)
+    {
+        GuestObject otherGuest = null;
+        Entity otherEntity = room.FindEntity((e)=>e.TryGetComponent<GuestObject>(out otherGuest));
+        if (otherEntity && otherGuest)
+        {
+            MergeTo(otherGuest);
+        }
     }
     #region Event Handlers
 

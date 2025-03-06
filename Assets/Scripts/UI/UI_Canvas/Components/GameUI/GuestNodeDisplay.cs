@@ -85,11 +85,11 @@ public class GuestNodeDisplay : MonoBehaviour
         if(!guestObject)
             return;
         float panic = guestObject.Panic;
-        fearSliderUI.Value = guestObject.Fear / panic;
+        fearSliderUI.Value = guestObject.FinalFear / panic;
         PanicLine.Value = 1;
         CurrentScreamLine.Value = (float)guestObject.ScreamRequirement / panic;
         NextScreamLine.Value = (float)guestObject.NextScreamRequirement / panic;
-        currentFearCounter.text = guestObject.Fear.ToString();
+        currentFearCounter.text = guestObject.FinalFear.ToString();
         statusText.text = guestObject.isPanic ? "Panic" : guestObject.CanScream ? "Scream" : "Normal";
     }
 

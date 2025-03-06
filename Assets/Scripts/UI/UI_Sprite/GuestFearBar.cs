@@ -75,8 +75,8 @@ public class GuestFearBar : MonoBehaviour
         // Debug.Log($"Update UI");
         float panic = guestObject.Panic;
         float maxValue = Mathf.Min(minimumMaxValue, panic);
-        print($"{guestObject.Fear} / {panic}");
-        fearSlider.Ratio = guestObject.Fear / panic;
+        print($"{guestObject.FinalFear} / {panic}");
+        fearSlider.Ratio = guestObject.FinalFear / panic;
         PanicLine.Ratio = panic / maxValue;
         CurrentScreamLine.Ratio = (float)guestObject.ScreamRequirement / panic;
         NextScreamLine.Ratio = (float)guestObject.NextScreamRequirement / panic;

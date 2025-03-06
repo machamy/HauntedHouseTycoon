@@ -15,12 +15,14 @@ public class GuestObject : MonoBehaviour
     [SerializeField] private ScreamEventChannelSO screamEventChannel;
     [SerializeField] private TurnEventChannelSO turnEventChannelSo;
     [SerializeField] private CustomerRoomEventSO roomEventChannelSo;
-    [Header("Customer Properties")]
+    [Header("Guest Properties")]
+    [SerializeField] private GuestData[] guestData;
     [SerializeField] private int screamRequirement = 5;
     [SerializeField] private int screamRequirementIncrease = 3;
     [SerializeField] private int fear = 0;
     [SerializeField] private int panic = 20;
     [Header("References")]
+    [SerializeField] private GuestVisualController guestVisualController;
     [SerializeField] private TextMeshPro fearText;
     [SerializeField] private GuestFearBar fearBar;
     
@@ -46,14 +48,21 @@ public class GuestObject : MonoBehaviour
     public event Action OnValueChangedEvent; 
     public event Action OnRemoved;
     
-    public int Fear => fear;
+    /// <summary>
+    /// 최종 공포치
+    /// </summary>
+    public int FinalFear => fear; // 전역적인 무언가? 있을수 도 있음
+
+    public int FearBySupportCard => 0;
+    public float FearByRelic => 0;
+
     public int Panic => panic;
     public int ScreamRequirement => screamRequirement;
     public int ScreamRequirementIncrease => screamRequirementIncrease;
     public int NextScreamRequirement => screamRequirement + screamRequirementIncrease;
     
-    public bool CanScream => fear >= screamRequirement;
-    public bool isPanic => fear >= panic;
+    public bool CanScream => FinalFear >= screamRequirement;
+    public bool isPanic => FinalFear >= panic;
     public int MovedDistance => movedDistance;
 
     public Room CurrentRoom => entity.currentRoom;
@@ -159,14 +168,39 @@ public class GuestObject : MonoBehaviour
         Debug.Log($"{name} merged to {other.name}");
         poolable.Release();
     }
-
-    public void AddFear(int amount)
+    /// <summary>
+    /// 단순하게 공포를 더함
+    /// </summary>
+    public void AddFearSimple(int amount)
     {
         fear += amount;
         // if (CanScream)
         // {
         //     Scream();
         // }
+        OnValueChanged();
+    }
+    
+    /// <summary>
+    ///  공포를 더함
+    ///  공포치가 패닉치를 넘어가면 패닉에 빠짐
+    /// </summary>
+    /// {
+    ///    (카드의 공포, int)
+    ///     + (보조카드에 의한 추가 공포치, int)
+    ///     + (유물에 의한 추가 공포치, int))
+    /// }
+    /// * (카드의 공포 속성에 맞는, float)
+    /// * (카드의 키워드에 대응되는 트라우마, float)
+    public void AddFear(int baseFear, int supportFear, int relicFear, float cardFearResistance, float relicFearResistance)
+    {
+        fear += baseFear + supportFear + relicFear;
+        fear = Mathf.Max(0, fear);
+        fear = Mathf.CeilToInt(fear * cardFearResistance * relicFearResistance);
+        if (CanScream)
+        {
+            Scream();
+        }
         OnValueChanged();
     }
     
@@ -207,7 +241,7 @@ public class GuestObject : MonoBehaviour
     
     public void OnCustomerScreamModified(ScreamEventArg screamEventArg)
     {
-        AddFear(screamEventArg.modifier + 1);
+        AddFearSimple(screamEventArg.modifier + 1);
     }
 
 

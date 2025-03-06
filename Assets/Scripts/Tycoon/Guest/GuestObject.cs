@@ -176,6 +176,7 @@ public class GuestObject : MonoBehaviour
     /// </summary>
     public void AddFearSimple(int amount)
     {
+        guestVisualController.PlayAnimation(AnimationType.FEAR);
         fear += amount;
         // if (CanScream)
         // {
@@ -197,6 +198,7 @@ public class GuestObject : MonoBehaviour
     /// * (카드의 키워드에 대응되는 트라우마, float)
     public void AddFear(int baseFear, int supportFear, int relicFear, float cardFearResistance, float relicFearResistance)
     {
+        guestVisualController.PlayAnimation(AnimationType.FEAR);
         fear += baseFear + supportFear + relicFear;
         fear = Mathf.Max(0, fear);
         fear = Mathf.CeilToInt(fear * cardFearResistance * relicFearResistance);
@@ -209,12 +211,14 @@ public class GuestObject : MonoBehaviour
     
     public void Scream()
     {
+        guestVisualController.PlayAnimation(AnimationType.SCREAM);
         Debug.Log($"{entity.name} is screaming!");
         screamEventChannel.RaiseScreamEvent(new ScreamEventArg(this,0));
         screamRequirement += screamRequirementIncrease;
         fear /= 2;
         OnValueChanged();
     }
+    
 
     [ContextMenu("Exit")]
     public void Exit()

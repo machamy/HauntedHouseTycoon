@@ -75,6 +75,8 @@ public class GuestObject : MonoBehaviour
         entity = GetComponent<Entity>();
         poolable = GetComponent<Poolable>();
         poolable.OnRelease += OnRelease;
+        if(guestVisualController == null)
+            guestVisualController = GetComponentInChildren<GuestVisualController>();
     }
 
 
@@ -130,9 +132,10 @@ public class GuestObject : MonoBehaviour
         {
             // Debug.Log($"from {CurrentRoom.name} to {nextRoom.name}");
             movedDistance++;
+            guestVisualController?.PlayAnimation(AnimationType.MOVE);
             entity.transform
-                .DOMove(nextRoom.transform.position, 0.5f);
-                // .OnComplete(()=> entity.Move(nextRoom));
+                .DOMove(nextRoom.transform.position, 0.5f)
+                .OnComplete(()=> guestVisualController?.SetIsMoving(false));
             // entity.currentRoom = nextRoom;
             entity.Move(nextRoom);
             orientingDirection = targetDirection;

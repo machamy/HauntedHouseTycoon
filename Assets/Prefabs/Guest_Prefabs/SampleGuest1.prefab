@@ -3178,6 +3178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   guestObject: {fileID: 8084154365609620549}
+  guestVisual: {fileID: 1917275895002266092}
   guestAnimator: {fileID: 2826001532647622495}
   isSpum: 1
   spumPrefab: {fileID: 3757966422092240210}

@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class VisibleOnly : PropertyAttribute
 {
-    
-
     public EditableIn EditableIn;
     public VisibleOnly(EditableIn editableIn = EditableIn.None)
     {

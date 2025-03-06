@@ -681,9 +681,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -574.8888549804688,
-            "y": 84.11116790771485,
-            "width": 208.0,
+            "x": -502.9999694824219,
+            "y": 117.0,
+            "width": 207.99996948242188,
             "height": 435.0
         }
     },
@@ -856,7 +856,7 @@
     "m_ZTestMode": 4,
     "m_ZWriteControl": 0,
     "m_AlphaMode": 0,
-    "m_RenderFace": 2,
+    "m_RenderFace": 0,
     "m_AlphaClip": true,
     "m_CastShadows": true,
     "m_ReceiveShadows": true,

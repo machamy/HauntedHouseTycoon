@@ -16,4 +16,10 @@
         Water,
         Smoke,
     }
+
+    public enum Sex
+    {
+        Male,
+        Female
+    }
 }

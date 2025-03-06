@@ -43,6 +43,7 @@ public class SpirteShaderConfigurator : MonoBehaviour
     {
         renderers.Clear();
         serachQueue.Enqueue(transform);
+        renderers.Add(GetComponent<SpriteRenderer>());
         while (serachQueue.Count > 0)
         {
             GetRenderersRecursive(serachQueue.Dequeue(), !overrideChildren);

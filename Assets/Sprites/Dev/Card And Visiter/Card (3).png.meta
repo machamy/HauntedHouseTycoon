@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9a55834dab0473148be31f36fd3e1b77
+guid: 07c5e4f88482abe4d8e21b54f859a2bb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6472002894137265704
-    second: Card (8)_0
+      213: 8500742309503083442
+    second: Card (3)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,15 +96,28 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Card (8)_0
+      name: Card (3)_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 32
+        y: 6
         width: 477
         height: 750
       alignment: 0
@@ -115,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 82e0a52975c21d950800000000000000
-      internalID: 6472002894137265704
+      spriteID: 2b3a0157714b8f570800000000000000
+      internalID: 8500742309503083442
       vertices: []
       indices: 
       edges: []
@@ -135,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Card (8)_0: 6472002894137265704
+      Card (3)_0: 8500742309503083442
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

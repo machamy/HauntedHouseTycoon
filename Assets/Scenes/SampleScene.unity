@@ -272,7 +272,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 1
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -484,10 +484,10 @@ MonoBehaviour:
       actionNodes:
       - actionBlueprint: {fileID: 11400000, guid: b734331511c502648b5149874c00e4cb, type: 2}
         action:
-          rid: 8903814515532497655
+          rid: 6574065967534178500
       - actionBlueprint: {fileID: 11400000, guid: d58f103b126071f4dacd559af4f263a1, type: 2}
         action:
-          rid: 8903814515532497656
+          rid: 6574065967534178501
     nonlocalVariables:
       arguments: []
   - cardName: "\uC785\uC7A5\uCE74\uB4DC 1"
@@ -502,10 +502,10 @@ MonoBehaviour:
       actionNodes:
       - actionBlueprint: {fileID: 11400000, guid: b734331511c502648b5149874c00e4cb, type: 2}
         action:
-          rid: 8903814515532497657
+          rid: 6574065967534178502
       - actionBlueprint: {fileID: 11400000, guid: d58f103b126071f4dacd559af4f263a1, type: 2}
         action:
-          rid: 8903814515532497658
+          rid: 6574065967534178503
     nonlocalVariables:
       arguments: []
   - cardName: Exit
@@ -520,7 +520,7 @@ MonoBehaviour:
       actionNodes:
       - actionBlueprint: {fileID: 11400000, guid: edcb5c4c3330f094a86716c4236ab3ba, type: 2}
         action:
-          rid: 8903814515532497659
+          rid: 6574065967534178504
     nonlocalVariables:
       arguments: []
   - cardName: "\uACF5\uD3EC\uCE74\uB4DC 1"
@@ -535,7 +535,7 @@ MonoBehaviour:
       actionNodes:
       - actionBlueprint: {fileID: 11400000, guid: 9403b8892d9e6294f806240da7564da5, type: 2}
         action:
-          rid: 8903814515532497660
+          rid: 6574065967534178505
     nonlocalVariables:
       arguments: []
   - cardName: "\uACF5\uD3EC\uCE74\uB4DC 1"
@@ -550,7 +550,7 @@ MonoBehaviour:
       actionNodes:
       - actionBlueprint: {fileID: 11400000, guid: 9403b8892d9e6294f806240da7564da5, type: 2}
         action:
-          rid: 8903814515532497661
+          rid: 6574065967534178506
     nonlocalVariables:
       arguments: []
   - cardName: "\uACF5\uD3EC\uCE74\uB4DC 2"
@@ -565,7 +565,7 @@ MonoBehaviour:
       actionNodes:
       - actionBlueprint: {fileID: 11400000, guid: 9403b8892d9e6294f806240da7564da5, type: 2}
         action:
-          rid: 8903814515532497662
+          rid: 6574065967534178507
     nonlocalVariables:
       arguments: []
   - cardName: "\uACF5\uD3EC\uCE74\uB4DC 2"
@@ -580,7 +580,7 @@ MonoBehaviour:
       actionNodes:
       - actionBlueprint: {fileID: 11400000, guid: a523546ce626c7e4bbd04ca10187c0e0, type: 2}
         action:
-          rid: 8903814515532497663
+          rid: 6574065967534178508
     nonlocalVariables:
       arguments: []
   - cardName: "\uBE44\uBA85\uCE74\uB4DC 1"
@@ -595,7 +595,7 @@ MonoBehaviour:
       actionNodes:
       - actionBlueprint: {fileID: 11400000, guid: d92a58ffbd6f4ae49ba6704d7d8edcd4, type: 2}
         action:
-          rid: 8903814515532497664
+          rid: 6574065967534178509
     nonlocalVariables:
       arguments: []
   - cardName: "\uBE44\uBA85\uCE74\uB4DC 1"
@@ -610,7 +610,7 @@ MonoBehaviour:
       actionNodes:
       - actionBlueprint: {fileID: 11400000, guid: d92a58ffbd6f4ae49ba6704d7d8edcd4, type: 2}
         action:
-          rid: 8903814515532497665
+          rid: 6574065967534178510
     nonlocalVariables:
       arguments: []
   - cardName: "\uBE44\uBA85\uCE74\uB4DC 1"
@@ -625,7 +625,7 @@ MonoBehaviour:
       actionNodes:
       - actionBlueprint: {fileID: 11400000, guid: d92a58ffbd6f4ae49ba6704d7d8edcd4, type: 2}
         action:
-          rid: 8903814515532497666
+          rid: 6574065967534178511
     nonlocalVariables:
       arguments: []
   - cardName: "\uBCF4\uC870\uCE74\uB4DC 1"
@@ -640,7 +640,7 @@ MonoBehaviour:
       actionNodes:
       - actionBlueprint: {fileID: 11400000, guid: 005b237729eed70479846e30cb2f54c0, type: 2}
         action:
-          rid: 8903814515532497667
+          rid: 6574065967534178512
     nonlocalVariables:
       arguments: []
   - cardName: "\uBCF4\uC870\uCE74\uB4DC 2"
@@ -655,13 +655,13 @@ MonoBehaviour:
       actionNodes:
       - actionBlueprint: {fileID: 11400000, guid: 005b237729eed70479846e30cb2f54c0, type: 2}
         action:
-          rid: 8903814515532497668
+          rid: 6574065967534178513
     nonlocalVariables:
       arguments: []
   references:
     version: 2
     RefIds:
-    - rid: 8903814515532497655
+    - rid: 6574065967534178500
       type: {class: EntranceCardActionBlueprintSo/EntranceAction, ns: , asm: Assembly-CSharp}
       data:
         actionName: EntranceAction
@@ -671,14 +671,14 @@ MonoBehaviour:
         clockwise: 1
         customerAmount: 1
         prevGuestDirection: -1
-    - rid: 8903814515532497656
+    - rid: 6574065967534178501
       type: {class: SimpleDecayCardActionBlueprintSo/SimpleDecayCardAction, ns: , asm: Assembly-CSharp}
       data:
         actionName: SimpleDecayCardAction
         breakChain: 0
         DecayTurnAmount: 3
-        DecayTurnRemain: 0
-    - rid: 8903814515532497657
+        DecayTurnRemain: 2
+    - rid: 6574065967534178502
       type: {class: EntranceCardActionBlueprintSo/EntranceAction, ns: , asm: Assembly-CSharp}
       data:
         actionName: EntranceAction
@@ -688,64 +688,64 @@ MonoBehaviour:
         clockwise: 1
         customerAmount: 2
         prevGuestDirection: -1
-    - rid: 8903814515532497658
+    - rid: 6574065967534178503
       type: {class: SimpleDecayCardActionBlueprintSo/SimpleDecayCardAction, ns: , asm: Assembly-CSharp}
       data:
         actionName: SimpleDecayCardAction
         breakChain: 0
         DecayTurnAmount: 3
-        DecayTurnRemain: 3
-    - rid: 8903814515532497659
+        DecayTurnRemain: 1
+    - rid: 6574065967534178504
       type: {class: ExitCardActionBlueprintSo/ExitCardAction, ns: , asm: Assembly-CSharp}
       data:
         actionName: ExitCardAction
         breakChain: 0
-    - rid: 8903814515532497660
+    - rid: 6574065967534178505
       type: {class: SimpleFearCardActionBlueprintSo/SimpleFearCardAction, ns: , asm: Assembly-CSharp}
       data:
         actionName: SimpleFearCardAction
         breakChain: 0
         fearAmount: 3
-    - rid: 8903814515532497661
+    - rid: 6574065967534178506
       type: {class: SimpleFearCardActionBlueprintSo/SimpleFearCardAction, ns: , asm: Assembly-CSharp}
       data:
         actionName: SimpleFearCardAction
         breakChain: 0
         fearAmount: 3
-    - rid: 8903814515532497662
+    - rid: 6574065967534178507
       type: {class: SimpleFearCardActionBlueprintSo/SimpleFearCardAction, ns: , asm: Assembly-CSharp}
       data:
         actionName: SimpleFearCardAction
         breakChain: 0
         fearAmount: 3
-    - rid: 8903814515532497663
+    - rid: 6574065967534178508
       type: {class: MovementFearCardActionBlueprintSo/EntranceAction, ns: , asm: Assembly-CSharp}
       data:
         actionName: EntranceAction
         breakChain: 0
         FearMovementCoefficient: 1
-    - rid: 8903814515532497664
+    - rid: 6574065967534178509
       type: {class: SimpleScreamCardActionBlueprintSo/SimpleScreamCardAction, ns: , asm: Assembly-CSharp}
       data:
         actionName: SimpleScreamCardAction
         breakChain: 0
-    - rid: 8903814515532497665
+    - rid: 6574065967534178510
       type: {class: SimpleScreamCardActionBlueprintSo/SimpleScreamCardAction, ns: , asm: Assembly-CSharp}
       data:
         actionName: SimpleScreamCardAction
         breakChain: 0
-    - rid: 8903814515532497666
+    - rid: 6574065967534178511
       type: {class: SimpleScreamCardActionBlueprintSo/SimpleScreamCardAction, ns: , asm: Assembly-CSharp}
       data:
         actionName: SimpleScreamCardAction
         breakChain: 0
-    - rid: 8903814515532497667
+    - rid: 6574065967534178512
       type: {class: TestSupportCardActionBlueprintSo/TestSupportCard, ns: , asm: Assembly-CSharp}
       data:
         actionName: TestSupportCard
         breakChain: 0
         fearGlobalAmount: 2
-    - rid: 8903814515532497668
+    - rid: 6574065967534178513
       type: {class: TestSupportCardActionBlueprintSo/TestSupportCard, ns: , asm: Assembly-CSharp}
       data:
         actionName: TestSupportCard
@@ -1080,7 +1080,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.2990833, g: 0.3554005, b: 0.4433962, a: 0}
+  m_BackGroundColor: {r: 0.122641504, g: 0.122641504, b: 0.122641504, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1149,7 +1149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.01
-  zoomSpeed: 10
+  zoomSpeed: 30
   minZoom: 30
   maxZoom: 60
   zoomCorrection: 0.4
@@ -1330,6 +1330,113 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a36e736fc4041c49a6cedb3403a0a10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &550279056
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 550279057}
+  - component: {fileID: 550279059}
+  - component: {fileID: 550279058}
+  m_Layer: 0
+  m_Name: 5e5510b5f5c2e2ee2ee1b304758cf762
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &550279057
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550279056}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -17.11, y: -5.67, z: 9.13}
+  m_LocalScale: {x: 2.86, y: 2.86, z: 2.86}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1934573868}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &550279058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550279056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab16fa8d33604c709f91d2ba964ebb22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  setMaterial: 1
+  material: {fileID: 2100000, guid: 683fa35d18cb7ce4d96f5cbc1f851233, type: 2}
+  registerAllChildren: 1
+  overrideChildren: 0
+  spriteRenderers:
+  - {fileID: 550279059}
+  shadowCastingMode: 1
+--- !u!212 &550279059
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550279056}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 683fa35d18cb7ce4d96f5cbc1f851233, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: aab6ac0d638691d49b7cf81458e1592a, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 12, y: 6.44}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &566048087
 GameObject:
   m_ObjectHideFlags: 0
@@ -3463,6 +3570,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1876476784}
   m_CullTransparentMesh: 1
+--- !u!1 &1899570818
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1899570820}
+  - component: {fileID: 1899570819}
+  m_Layer: 0
+  m_Name: Global Volume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1899570819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1899570818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 801840ceac5e8044a98e50ed08a31144, type: 2}
+--- !u!4 &1899570820
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1899570818}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.324239, y: 1.1372068, z: 8.6713505}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1934573867
 GameObject:
   m_ObjectHideFlags: 0
@@ -3495,6 +3651,7 @@ Transform:
   - {fileID: 1186040915}
   - {fileID: 62563562}
   - {fileID: 1275354627}
+  - {fileID: 550279057}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1976094061
@@ -3776,6 +3933,7 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 750362611}
+  - {fileID: 1899570820}
   - {fileID: 52528964}
   - {fileID: 216223550}
   - {fileID: 878131701}

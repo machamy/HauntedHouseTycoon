@@ -32,6 +32,7 @@ public class GuestObject : MonoBehaviour
     /// 해당 손님이 아직 움직이지 않았음.
     /// </summary>
     public bool HasToMove {get => hasToMove; set => hasToMove = value;}
+    public int GuestAmount => guestData.Length;
     
     private int movedDistance = 0;
     
@@ -108,6 +109,13 @@ public class GuestObject : MonoBehaviour
         isCreatedNow = true;
     }
     
+    
+    public void ClearAndSetGuestData(GuestData guestData)
+    {
+        this.guestData = new GuestData[1];
+        this.guestData[0] = guestData;
+        OnValueChanged();
+    }
     
 
     

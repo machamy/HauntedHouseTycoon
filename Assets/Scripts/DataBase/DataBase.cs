@@ -12,9 +12,9 @@ public class DataBase : SingletonBehaviour<DataBase>
         cardDataList = new List<CardData>();
         foreach (var cardDataSO in cardDataSOList)
         {
-            if (!cardDataSO || cardDataSO.cardData == null)
+            if (!cardDataSO || cardDataSO.OriginalCardData == null)
                 continue;
-            cardDataList.Add(cardDataSO.cardData);
+            cardDataList.Add(cardDataSO.OriginalCardData);
         }
     }
 }

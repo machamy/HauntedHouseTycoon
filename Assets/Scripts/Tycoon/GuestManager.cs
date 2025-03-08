@@ -23,8 +23,8 @@ public class GuestManager : MonoBehaviour
     [FormerlySerializedAs("guestQueueBar")]
     [Header("References")]
     [SerializeField] private GuestQueueBarUI guestQueueBarUI;
-    [FormerlySerializedAs("guests")]
     [Header("Guest Properties")]
+    [SerializeField] private GuestDataSO defaultGuestData;
     [SerializeField] private List<GuestObject> guestQueue = new List<GuestObject>(); // List가 조작에 용이, 큐쓴다고 해서 큰 이점이 없음
     [Header("Settings")]
     [SerializeField] private float guestNotifyInterval = 0.2f;
@@ -99,6 +99,7 @@ public class GuestManager : MonoBehaviour
     public GuestObject CreateGuest(Vector3 position = default)
     {
         GuestObject guestObject = PoolManager.Instance.Get(PoolManager.Poolables.Guest).GetComponent<GuestObject>();
+        guestObject.ClearAndSetGuestData(defaultGuestData.GetCopy());
         guestObject.transform.position = position;
         guestObject.OnCreate();
         guestQueue.Add(guestObject);

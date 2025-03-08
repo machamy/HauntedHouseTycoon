@@ -65,7 +65,7 @@ Material:
     m_Floats:
     - _Emission: 0
     - _Intensity: 3
-    - _NormalMap_Strength: 1
+    - _NormalMap_Strength: 542.2
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors: []

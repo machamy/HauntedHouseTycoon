@@ -6,7 +6,14 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "CardData")]
 public class CardDataSO : ScriptableObject
 {
-    [SerializeField] public CardData cardData;
+    [SerializeField] private CardData cardData;
+    
+    public CardData OriginalCardData => cardData;
+
+    public CardData GetCardData()
+    {
+        return cardData.Clone();
+    }
     
     public void LoadFromJSON(string jsonCardData)
     {

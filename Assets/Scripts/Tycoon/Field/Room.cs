@@ -31,7 +31,7 @@ public class Room : MonoBehaviour
     {
         this.coordinate = position;
         originalCardData = cardData;
-        this.cardData.CopyFrom(defaultCardData.cardData);
+        this.cardData.CopyFrom(cardData);
         if(!placedCard)
             placedCard = Instantiate(placedCardPrefab);
         placedCard.transform.position = transform.position;
@@ -77,7 +77,7 @@ public class Room : MonoBehaviour
         cardData.cardActionContainer.InvokeOnCardRemoved(this, cardData);
         CardDataPool.Instance.Release(cardData);
         cardData = CardDataPool.Instance.Get();
-        cardData.CopyFrom(defaultCardData.cardData);
+        cardData.CopyFrom(defaultCardData.OriginalCardData);
         
         if(originalCardData != null && originalCardData.cardName != "Blank")
         {

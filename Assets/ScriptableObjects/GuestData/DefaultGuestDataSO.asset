@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c302d4397bd848afa471b18b89b62f94, type: 3}
+  m_Name: DefaultGuestDataSO
+  m_EditorClassIdentifier: 
+  guestData:
+    id: 0
+    name: TestGuestMale
+    sex: 0
+    age: 20
+    traumaIds: 0000000000000000000000000000000000000000000000000000000000000000
+    traumaRatios:
+    - 0
+    - 0
+    - 0
+    - 0
+    fearResistances:
+    - 0
+    - 0
+    - 0
+    - 0
+    fearRequirements: 00000000000000000000000000000000
+    panicValue: 0
+    fatigueCoefficientPerTurn: 0
+    panicCoefficients: 00000000000000000000000000000000
+    exitScreamAmount: 0
+    entranceCardIds: 0000000000000000000000000000000000000000000000000000000000000000
+    prefabPath: 

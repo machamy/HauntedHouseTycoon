@@ -30,7 +30,7 @@ public class Field : MonoBehaviour
                 roomContainer[y][x] = room;
                 room.transform.parent = transform;
                 room.name = $"Room ({x}, {y})";
-                room.Init(new Vector2Int(x, y), defaultCardData.cardData);
+                room.Init(new Vector2Int(x, y), defaultCardData.OriginalCardData);
                 // room.transform.localScale = grid.cellSize;
                 if (RoomHolder != null)
                 {

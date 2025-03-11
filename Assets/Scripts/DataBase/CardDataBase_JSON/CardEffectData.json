@@ -1,72 +1,104 @@
-﻿{
-  "cardDataList": [
-    {
-      "index": "long",
-      "": ""
-    },
-    {
-      "index": "02000100",
-      "": ""
-    },
-    {
-      "index": "02000200",
-      "": ""
-    },
-    {
-      "index": "02000300",
-      "": ""
-    },
-    {
-      "index": "02000400",
-      "": ""
-    },
-    {
-      "index": "02000500",
-      "": ""
-    },
-    {
-      "index": "02000600",
-      "": ""
-    },
-    {
-      "index": "02000700",
-      "": ""
-    },
-    {
-      "index": "02000800",
-      "": ""
-    },
-    {
-      "index": "02000900",
-      "": ""
-    },
-    {
-      "index": "02001000",
-      "": ""
-    },
-    {
-      "index": "02001100",
-      "": ""
-    },
-    {
-      "index": "02001200",
-      "": ""
-    },
-    {
-      "index": "02001300",
-      "": ""
-    },
-    {
-      "index": "02001400",
-      "": ""
-    },
-    {
-      "index": "02001500",
-      "": ""
-    },
-    {
-      "index": "02001600",
-      "": ""
-    }
-  ]
-}
+﻿[
+  {
+    "index": "long",
+    "conditionType": "-1",
+    "targetType": "-1",
+    "": ""
+  },
+  {
+    "index": "02000100",
+    "conditionType": "0",
+    "targetType": "0",
+    "": ""
+  },
+  {
+    "index": "02000200",
+    "conditionType": "0",
+    "targetType": "12",
+    "": ""
+  },
+  {
+    "index": "02000300",
+    "conditionType": "0",
+    "targetType": "14",
+    "": ""
+  },
+  {
+    "index": "02000400",
+    "conditionType": "0",
+    "targetType": "15",
+    "": ""
+  },
+  {
+    "index": "02000500",
+    "conditionType": "0",
+    "targetType": "12",
+    "": ""
+  },
+  {
+    "index": "02000600",
+    "conditionType": "-1",
+    "targetType": "-1",
+    "": ""
+  },
+  {
+    "index": "02000700",
+    "conditionType": "-1",
+    "targetType": "-1",
+    "": ""
+  },
+  {
+    "index": "02000800",
+    "conditionType": "-1",
+    "targetType": "-1",
+    "": ""
+  },
+  {
+    "index": "02000900",
+    "conditionType": "-1",
+    "targetType": "-1",
+    "": ""
+  },
+  {
+    "index": "02001000",
+    "conditionType": "-1",
+    "targetType": "-1",
+    "": ""
+  },
+  {
+    "index": "02001100",
+    "conditionType": "-1",
+    "targetType": "-1",
+    "": ""
+  },
+  {
+    "index": "02001200",
+    "conditionType": "-1",
+    "targetType": "-1",
+    "": ""
+  },
+  {
+    "index": "02001300",
+    "conditionType": "-1",
+    "targetType": "-1",
+    "": ""
+  },
+  {
+    "index": "02001400",
+    "conditionType": "-1",
+    "targetType": "-1",
+    "": ""
+  },
+  {
+    "index": "02001500",
+    "conditionType": "-1",
+    "targetType": "-1",
+    "": ""
+  },
+  {
+    "index": "02001600",
+    "conditionType": "-1",
+    "targetType": "-1",
+    "": ""
+  }
+]

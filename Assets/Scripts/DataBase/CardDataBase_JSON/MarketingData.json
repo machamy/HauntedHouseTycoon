@@ -1,10 +1,8 @@
-﻿{
-  "cardDataList": [
-    {
-      "marketingName": "string"
-    },
-    {
-      "marketingName": ""
-    }
-  ]
-}
+﻿[
+  {
+    "index": "long"
+  },
+  {
+    "index": "10000100"
+  }
+]

@@ -9,10 +9,9 @@ using UnityEditor;
 using ClassManager;
 using static ClassManager.Card.CardClass;
 
-[InitializeOnLoad]
 public class ExcelToJSON
 {
-    static ExcelToJSON()
+    public static void Initailze()
     {
         string folderPath = Application.dataPath + "/Scripts/DataBase";
         ConvertAllExcelsInFolder(folderPath);
@@ -103,6 +102,7 @@ public class ExcelToJSON
                             rowDict[header] = "-1";
                         }
                     }
+
                     else if (header.Equals("Rank", StringComparison.OrdinalIgnoreCase))
                     {
                         if (Enum.TryParse(typeof(ClassManager.Card.CardClass.Rank), cellValue, out var rankEnum))
@@ -114,6 +114,55 @@ public class ExcelToJSON
                             rowDict[header] = "-1";
                         }
                     }
+
+                    else if (header.Equals("ConditionType", StringComparison.OrdinalIgnoreCase))
+                    {
+                        if (Enum.TryParse(typeof(ClassManager.Card.Effect.ConditonType), cellValue, out var conditonTypeEnum))
+                        {
+                            rowDict[header] = ((int)(ClassManager.Card.Effect.ConditonType)conditonTypeEnum).ToString();
+                        }
+                        else
+                        {
+                            rowDict[header] = "-1";
+                        }
+                    }
+
+                    else if (header.Equals("TargetType", StringComparison.OrdinalIgnoreCase))
+                    {
+                        if (Enum.TryParse(typeof(ClassManager.Card.Effect.TargetType), cellValue, out var targetTypeEnum))
+                        {
+                            rowDict[header] = ((int)(ClassManager.Card.Effect.TargetType)targetTypeEnum).ToString();
+                        }
+                        else
+                        {
+                            rowDict[header] = "-1";
+                        }
+                    }
+
+                    else if(header.Equals("Sex", StringComparison.OrdinalIgnoreCase))
+                    {
+                        if(Enum.TryParse(typeof(ClassManager.Card.Visitor.Sex), cellValue, out var sexEnum))
+                        {
+                            rowDict[header] = ((int)(ClassManager.Card.Visitor.Sex)sexEnum).ToString();
+                        }
+                        else
+                        {
+                            rowDict[header] = "-1";
+                        }
+                    }
+
+                    else if (header.Equals("PanicResponse", StringComparison.OrdinalIgnoreCase))
+                    {
+                        if (Enum.TryParse(typeof(ClassManager.Card.Visitor.PanicResponse), cellValue, out var panicResponseEnum))
+                        {
+                            rowDict[header] = ((int)(ClassManager.Card.Visitor.PanicResponse)panicResponseEnum).ToString();
+                        }
+                        else
+                        {
+                            rowDict[header] = "-1";
+                        }
+                    }
+
                     else
                     {
                         rowDict[header] = cellValue;
@@ -126,18 +175,10 @@ public class ExcelToJSON
 
         string jsonFilePath = Path.Combine(outputFolder, table.TableName + ".json");
 
-        var wrapper = new CardDataWrapper { cardDataList = excelData };
-        var jsonString = JsonConvert.SerializeObject(wrapper, Formatting.Indented);
+        var jsonString = JsonConvert.SerializeObject(excelData, Formatting.Indented);
 
         File.WriteAllText(jsonFilePath, jsonString, System.Text.Encoding.UTF8);
 
         Debug.Log($"시트 '{table.TableName}' → JSON 변환 완료: {jsonFilePath}");
     }
-
-    [System.Serializable]
-    public class CardDataWrapper
-    {
-        public List<Dictionary<string, string>> cardDataList;
-    }
-
 }

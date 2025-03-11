@@ -1,12 +1,12 @@
-﻿{
-  "cardDataList": [
-    {
-      "#cardName": "#string",
-      "": "long[]"
-    },
-    {
-      "#cardName": "",
-      "": ""
-    }
-  ]
-}
+﻿[
+  {
+    "index": "long",
+    "effectlastsTurn": "int",
+    "spawningVisitorIndex": "long[]"
+  },
+  {
+    "index": "02000100",
+    "effectlastsTurn": "",
+    "spawningVisitorIndex": ""
+  }
+]

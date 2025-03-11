@@ -1,140 +1,138 @@
-﻿{
-  "cardDataList": [
-    {
-      "StringKey": "string",
-      "KOR": "eLocalize",
-      "EN": "eLocalize"
-    },
-    {
-      "StringKey": "",
-      "KOR": "탄환 1",
-      "EN": ""
-    },
-    {
-      "StringKey": "",
-      "KOR": "",
-      "EN": ""
-    },
-    {
-      "StringKey": "",
-      "KOR": "탄환 2",
-      "EN": ""
-    },
-    {
-      "StringKey": "",
-      "KOR": "",
-      "EN": ""
-    },
-    {
-      "StringKey": "",
-      "KOR": "탄환 3",
-      "EN": ""
-    },
-    {
-      "StringKey": "",
-      "KOR": "",
-      "EN": ""
-    },
-    {
-      "StringKey": "",
-      "KOR": "총흔",
-      "EN": ""
-    },
-    {
-      "StringKey": "",
-      "KOR": "",
-      "EN": ""
-    },
-    {
-      "StringKey": "",
-      "KOR": "착각",
-      "EN": ""
-    },
-    {
-      "StringKey": "",
-      "KOR": "",
-      "EN": ""
-    },
-    {
-      "StringKey": "",
-      "KOR": "스친 탄환",
-      "EN": ""
-    },
-    {
-      "StringKey": "",
-      "KOR": "",
-      "EN": ""
-    },
-    {
-      "StringKey": "",
-      "KOR": "탄환 획득",
-      "EN": ""
-    },
-    {
-      "StringKey": "",
-      "KOR": "",
-      "EN": ""
-    },
-    {
-      "StringKey": "",
-      "KOR": "난사!",
-      "EN": ""
-    },
-    {
-      "StringKey": "",
-      "KOR": "",
-      "EN": ""
-    },
-    {
-      "StringKey": "",
-      "KOR": "녹슨 쇠창살",
-      "EN": ""
-    },
-    {
-      "StringKey": "",
-      "KOR": "OnGuestEnter 일때 ToCurrentGuest에 레벨별{input1}만큼의 시각적 공포를 제공",
-      "EN": ""
-    },
-    {
-      "StringKey": "",
-      "KOR": "삐걱거리는 문",
-      "EN": ""
-    },
-    {
-      "StringKey": "",
-      "KOR": "OnGuestEnter 일때 ToCurrentGuest에 레벨별{input1}만큼의 청각적 공포를 제공",
-      "EN": ""
-    },
-    {
-      "StringKey": "",
-      "KOR": "곰팡이 냄새",
-      "EN": ""
-    },
-    {
-      "StringKey": "",
-      "KOR": "OnGuestEnter 일때 ToCurrentGuest에 레벨별{input1}만큼의 후각적 공포를 제공",
-      "EN": ""
-    },
-    {
-      "StringKey": "",
-      "KOR": "튀어나오는 해골",
-      "EN": ""
-    },
-    {
-      "StringKey": "",
-      "KOR_0": "OnGuestEnter 일때 ToCurrentGuest에 레벨별{input1}만큼의 촉적 공포를 제공",
-      "KOR_1": "비명을 지를 수있는 상태면 비명을 지르게 함",
-      "EN": ""
-    },
-    {
-      "StringKey": "",
-      "KOR": "어두워 속이 보이지 않는 감옥",
-      "EN": ""
-    },
-    {
-      "StringKey": "",
-      "KOR": "ToCrossCard가 제공하는 공포 +1",
-      "EN": ""
-    }
-  ]
-}
+﻿[
+  {
+    "StringKey": "string",
+    "KOR": "eLocalize",
+    "EN": "eLocalize"
+  },
+  {
+    "StringKey": "",
+    "KOR": "탄환 1",
+    "EN": ""
+  },
+  {
+    "StringKey": "",
+    "KOR": "",
+    "EN": ""
+  },
+  {
+    "StringKey": "",
+    "KOR": "탄환 2",
+    "EN": ""
+  },
+  {
+    "StringKey": "",
+    "KOR": "",
+    "EN": ""
+  },
+  {
+    "StringKey": "",
+    "KOR": "탄환 3",
+    "EN": ""
+  },
+  {
+    "StringKey": "",
+    "KOR": "",
+    "EN": ""
+  },
+  {
+    "StringKey": "",
+    "KOR": "총흔",
+    "EN": ""
+  },
+  {
+    "StringKey": "",
+    "KOR": "",
+    "EN": ""
+  },
+  {
+    "StringKey": "",
+    "KOR": "착각",
+    "EN": ""
+  },
+  {
+    "StringKey": "",
+    "KOR": "",
+    "EN": ""
+  },
+  {
+    "StringKey": "",
+    "KOR": "스친 탄환",
+    "EN": ""
+  },
+  {
+    "StringKey": "",
+    "KOR": "",
+    "EN": ""
+  },
+  {
+    "StringKey": "",
+    "KOR": "탄환 획득",
+    "EN": ""
+  },
+  {
+    "StringKey": "",
+    "KOR": "",
+    "EN": ""
+  },
+  {
+    "StringKey": "",
+    "KOR": "난사!",
+    "EN": ""
+  },
+  {
+    "StringKey": "",
+    "KOR": "",
+    "EN": ""
+  },
+  {
+    "StringKey": "",
+    "KOR": "녹슨 쇠창살",
+    "EN": ""
+  },
+  {
+    "StringKey": "",
+    "KOR": "OnGuestEnter 일때 ToCurrentGuest에 레벨별{input1}만큼의 시각적 공포를 제공",
+    "EN": ""
+  },
+  {
+    "StringKey": "",
+    "KOR": "삐걱거리는 문",
+    "EN": ""
+  },
+  {
+    "StringKey": "",
+    "KOR": "OnGuestEnter 일때 ToCurrentGuest에 레벨별{input1}만큼의 청각적 공포를 제공",
+    "EN": ""
+  },
+  {
+    "StringKey": "",
+    "KOR": "곰팡이 냄새",
+    "EN": ""
+  },
+  {
+    "StringKey": "",
+    "KOR": "OnGuestEnter 일때 ToCurrentGuest에 레벨별{input1}만큼의 후각적 공포를 제공",
+    "EN": ""
+  },
+  {
+    "StringKey": "",
+    "KOR": "튀어나오는 해골",
+    "EN": ""
+  },
+  {
+    "StringKey": "",
+    "KOR_0": "OnGuestEnter 일때 ToCurrentGuest에 레벨별{input1}만큼의 촉적 공포를 제공",
+    "KOR_1": "비명을 지를 수있는 상태면 비명을 지르게 함",
+    "EN": ""
+  },
+  {
+    "StringKey": "",
+    "KOR": "어두워 속이 보이지 않는 감옥",
+    "EN": ""
+  },
+  {
+    "StringKey": "",
+    "KOR": "ToCrossCard가 제공하는 공포 +1",
+    "EN": ""
+  }
+]

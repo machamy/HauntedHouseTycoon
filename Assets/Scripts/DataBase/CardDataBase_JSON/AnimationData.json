@@ -1,10 +1,10 @@
-﻿{
-  "cardDataList": [
-    {
-      "animationName": "string"
-    },
-    {
-      "animationName": ""
-    }
-  ]
-}
+﻿[
+  {
+    "index": "long",
+    "effectSound": "string"
+  },
+  {
+    "index": "",
+    "effectSound": ""
+  }
+]

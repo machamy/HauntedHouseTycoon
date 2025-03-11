@@ -1,19 +1,40 @@
-﻿{
-  "cardDataList": [
-    {
-      "name": "string",
-      "": "visitorPrefabPath",
-      "age": "int",
-      "traumaIndex": "long[]"
-    },
-    {
-      "name": "평범한 손님",
-      "": "",
-      "age": "",
-      "traumaIndex": "09100100",
-      "_0": "5",
-      "_1": "7",
-      "_2": "9"
-    }
-  ]
-}
+﻿[
+  {
+    "idnex": "long",
+    "": "visitorPrefabPath",
+    "age": "int",
+    "traumaIndex": "long[]",
+    "traumaRatio": "float[]",
+    "visualHorrorTolerence": "float",
+    "auditoryHorrorTolerence": "float",
+    "scentHororTolerence": "float",
+    "touchHorrorTolerence": "float",
+    "requiredHorrorMount": "int[]",
+    "panicAmount": "int",
+    "mountOfTiredInturn": "float",
+    "panicResponse": "-1",
+    "panicWeightedAmount": "int[]",
+    "exitGetScreamAmount": "int",
+    "enterCardIndex": "long[]"
+  },
+  {
+    "idnex": "06100100",
+    "": "",
+    "age": "",
+    "traumaIndex": "09100100",
+    "traumaRatio": "1.5",
+    "visualHorrorTolerence": "1.0",
+    "auditoryHorrorTolerence": "1.0",
+    "scentHororTolerence": "1.0",
+    "touchHorrorTolerence": "1.0",
+    "requiredHorrorMount_0": "5",
+    "requiredHorrorMount_1": "7",
+    "requiredHorrorMount_2": "9",
+    "panicAmount": "15",
+    "mountOfTiredInturn": "0.1",
+    "panicResponse": "-1",
+    "panicWeightedAmount": "",
+    "exitGetScreamAmount": "2",
+    "enterCardIndex": "01000100"
+  }
+]

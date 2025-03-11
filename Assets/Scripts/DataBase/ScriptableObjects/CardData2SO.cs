@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 using Newtonsoft.Json.Linq;
+using UnityEditor;
+using Unity.VisualScripting.Antlr3.Runtime;
 
 [CreateAssetMenu(menuName = "CardData2SO")]
 public class CardData2SO : ScriptableObject
@@ -16,13 +18,15 @@ public class CardData2SO : ScriptableObject
         string fullPath = Path.Combine(Application.dataPath, "..", jsonFilePath);
         string json = File.ReadAllText(fullPath);
 
-        JObject jsonObj = JObject.Parse(json);
-        JArray cardArray = (JArray)jsonObj["cardDataList"];
+        JArray cardArray = JArray.Parse(json);
 
         cardDataList.Clear();
 
-        foreach (JObject cardObj in cardArray)
+
+        foreach (JToken token in cardArray)
         {
+            JObject cardObj = (JObject)token;
+
             int[] availableRoutes = ExtractIntArray(cardObj, "availableRoutes");
             int[] input1 = ExtractIntArray(cardObj, "input1");
             int[] input2 = ExtractIntArray(cardObj, "input2");
@@ -61,6 +65,14 @@ public class CardData2SO : ScriptableObject
 
             cardDataList.Add(newCard);
         }
+
+        EditorApplication.delayCall += () =>
+        {
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+        };
+
+        EditorUtility.SetDirty(this);
     }
     private int[] ExtractIntArray(JObject obj, string baseKey)
     {
@@ -124,37 +136,5 @@ public class CardData2SO : ScriptableObject
     {
         return long.TryParse(value, out long result) ? result : defaultValue;
 
-    }
-
-    [System.Serializable]
-    public class CardDataWrapper
-    {
-        public List<CardDataStruct> cardDataList;
-    }
-
-    [System.Serializable]
-    public struct CardDataStruct
-    {
-        public string Index;
-        public string NameIndex;
-        public string ExplainIndex;
-
-        [JsonProperty("type")]
-        public string CardType;
-
-        [JsonProperty("rank")]
-        public string CardRank;
-
-        public string Cost;
-        public string KeywordIndex;
-        public string SpritePath;
-
-        [JsonProperty("availableRoutes")]
-        public string AvailableRoutes;
-
-        public string DestroyPayback;
-        public string CardEffectIndex;
-        public string PlaceAnimationIndex;
-        public string ActionAnimationIndex;
     }
 }

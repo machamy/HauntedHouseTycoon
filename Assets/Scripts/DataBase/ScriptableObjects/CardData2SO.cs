@@ -135,6 +135,5 @@ public class CardData2SO : ScriptableObject
     private long TryParseLong(string value, long defaultValue)
     {
         return long.TryParse(value, out long result) ? result : defaultValue;
-
     }
 }

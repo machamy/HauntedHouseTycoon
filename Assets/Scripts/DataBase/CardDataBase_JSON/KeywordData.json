@@ -1,14 +1,17 @@
 ﻿[
   {
     "index": "long",
-    "": "long"
+    "nameIndex": "long",
+    "explainIndex": "long"
   },
   {
     "index": "08000100",
-    "": ""
+    "nameIndex": "",
+    "explainIndex": ""
   },
   {
     "index": "08000200",
-    "": ""
+    "nameIndex": "",
+    "explainIndex": ""
   }
 ]

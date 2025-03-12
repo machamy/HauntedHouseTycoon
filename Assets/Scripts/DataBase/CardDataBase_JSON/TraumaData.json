@@ -1,8 +1,10 @@
 ﻿[
   {
+    "index": "long",
     "traumaName": "string"
   },
   {
+    "index": "",
     "traumaName": ""
   }
 ]

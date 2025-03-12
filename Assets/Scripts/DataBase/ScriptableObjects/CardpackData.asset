@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f163d4876ec21b42bb873169038b53b, type: 3}
-  m_Name: CardData2
+  m_Script: {fileID: 11500000, guid: 94b8642a909819048878e23d9e49195f, type: 3}
+  m_Name: CardpackData
   m_EditorClassIdentifier: 
-  cardDataList: []
+  cardpackDataList: []

@@ -47,6 +47,8 @@ namespace ClassManager.Card
     public class Effect
     {
         public long Index;
+        public ConditonType condition;
+        public TargetType target;
 
         public enum ConditonType
         {
@@ -93,6 +95,8 @@ namespace ClassManager.Card
     public class Visitor
     {
         public long Index;
+
+        public Sex sex;
         public enum Sex
         {
             MALE,
@@ -101,13 +105,15 @@ namespace ClassManager.Card
         public int Age;
         public long[] TraumaIndex;
         public float[] TraumaRatio;
-        public float VisualHorrorTolerence;
-        public float AuditoryHorrorTolerence;
-        public float ScentHorrorTolerence;
-        public float TouchHorrorTolerence;
-        public int[] RequiredHorrorMount;
+        public float VisualHorrorTolerance;
+        public float AuditoryHorrorTolerance;
+        public float ScentHorrorTolerance;
+        public float TouchHorrorTolerance;
+        public int[] RequiredHorrorAmount;
         public int PanicAmount;
-        public float MountOfTiredInTurn;
+        public float AmountOfTiredInTurn;
+
+        public PanicResponse panicResponse;
         public enum PanicResponse
         {
             HeartArrest,
@@ -138,14 +144,21 @@ namespace ClassManager.Card
         public bool RepurchaseAllowed;
         public bool RepurchaseAllowedForOnce;
         public int MaximumOpenedPackAmount;
-        public long PackOpeningAnimaiton;
+        public long PackOpeningAnimation;
         public string IllustFileName;
+    }
+
+    [Serializable]
+    public class TraumaData
+    {
+        public long Index;
+        public string TraumaName;
     }
 
     [Serializable]
     public class MarketingData
     {
-
+        public long Index;
     }
 
     [Serializable]
@@ -159,6 +172,8 @@ namespace ClassManager.Card
     public class TextData
     {
         public long Index;
-        public string stringKey;
+        public string StringKey;
+        public string KOR;
+        public string EN;
     }
 }

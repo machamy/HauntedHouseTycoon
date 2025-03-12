@@ -10,7 +10,7 @@ using UnityEditor;
 [CreateAssetMenu(menuName = "AnimationSO")]
 public class AnimationDataSO : ScriptableObject
 {
-    [SerializeField] public List<ClassManager.Card.AnimationData> animtionDataList = new List<ClassManager.Card.AnimationData>();
+    [SerializeField] public List<ClassManager.Card.AnimationData> animationDataList = new List<ClassManager.Card.AnimationData>();
 
     public void LoadFromJSON(string jsonFilePath)
     {
@@ -19,7 +19,7 @@ public class AnimationDataSO : ScriptableObject
 
         JArray animationDataArray = JArray.Parse(json);
 
-        animtionDataList.Clear();
+        animationDataList.Clear();
 
         foreach (JToken token in animationDataArray)
         {
@@ -30,8 +30,7 @@ public class AnimationDataSO : ScriptableObject
                 Index = TryParseLong(animationDataobj["index"]?.ToString(), 0),
                 EffectSound = animationDataobj["effectSound"]?.ToString() ?? ""
             };
-            animtionDataList.Add(newAnimationData);
-            Debug.Log($"[AnimationDataSO] 애니메이션 데이터 추가됨 - Index: {newAnimationData.Index}, EffectSound: {newAnimationData.EffectSound}");
+            animationDataList.Add(newAnimationData);
         }
 
         EditorApplication.delayCall += () =>

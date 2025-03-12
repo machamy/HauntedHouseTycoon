@@ -14,5 +14,6 @@ public class CardDataManager
     {
         ExcelToJSON.Initailze();
         JsonToSo.Initailze();
+        AssetDatabase.Refresh();
     }
 }

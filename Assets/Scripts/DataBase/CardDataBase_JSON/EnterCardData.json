@@ -1,12 +1,12 @@
 ﻿[
   {
     "index": "long",
-    "effectlastsTurn": "int",
+    "effectLastsTurn": "int",
     "spawningVisitorIndex": "long[]"
   },
   {
     "index": "02000100",
-    "effectlastsTurn": "",
+    "effectLastsTurn": "",
     "spawningVisitorIndex": ""
   }
 ]

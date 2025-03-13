@@ -24,7 +24,14 @@ public class PlacedCard : MonoBehaviour
         }
 
         Vector3 worldSize = startSize;
-        spriteRenderer.sprite = cardData.cardSprite;
+        if (cardData.cardPlacedSprite)
+        {
+            spriteRenderer.sprite = cardData.cardPlacedSprite;
+        }
+        else
+        {
+            spriteRenderer.sprite = cardData.cardSprite;
+        }
         transform.localScale = worldSize;
         transform.DOScale(Vector3.one, 0.25f);
     }

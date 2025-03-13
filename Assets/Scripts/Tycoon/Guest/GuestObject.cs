@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using DG.Tweening;
+using JetBrains.Annotations;
 using Pools;
 using TMPro;
 using UnityEngine;
@@ -10,17 +11,30 @@ using UnityEngine.Serialization;
 [RequireComponent(typeof(Entity), typeof(Poolable))]
 public class GuestObject : MonoBehaviour
 {
+    // public class GuestObjectVariable
+    // {
+    //    
+    // }
+    
     private Entity entity;
     [Header("Events")]
     [SerializeField] private ScreamEventChannelSO screamEventChannel;
     [SerializeField] private TurnEventChannelSO turnEventChannelSo;
     [SerializeField] private CustomerRoomEventSO roomEventChannelSo;
+    [FormerlySerializedAs("guestDataArray")]
+    [FormerlySerializedAs("guestData")]
     [Header("Guest Properties")]
-    [SerializeField] private GuestData[] guestData;
-    [SerializeField] private int screamRequirement = 5;
-    [SerializeField] private int screamRequirementIncrease = 3;
+    [SerializeField]
+    [ItemNotNull]
+    private List<GuestData> guestDataList = new List<GuestData>();
+    [SerializeField] private Dictionary<long,float> traumaDict = new Dictionary<long, float>();
+    [SerializeField] private List<int> screamRequirements = new List<int>();
+    // [SerializeField] private int screamRequirement = 5;
+    // [SerializeField] private int screamRequirementIncrease = 3;
     [SerializeField] private int fear = 0;
     [SerializeField] private int panic = 20;
+    // [SerializeField] private int fatigue = 2;
+    [SerializeField] private int fatigueCoefficient = 2;
     [Header("References")]
     [SerializeField] private GuestVisualController guestVisualController;
     [SerializeField] private TextMeshPro fearText;
@@ -28,13 +42,16 @@ public class GuestObject : MonoBehaviour
     
     
     private bool hasToMove = false;
+    private bool isMoving = false;
+    private Room targetRoom;
     /// <summary>
     /// 해당 손님이 아직 움직이지 않았음.
     /// </summary>
     public bool HasToMove {get => hasToMove; set => hasToMove = value;}
-    public int GuestAmount => guestData.Length;
+    public int GuestAmount => guestDataList.Count;
     
     private int movedDistance = 0;
+    private int aliveTurnCnt = 0;
     
     [FormerlySerializedAs("direction")] [SerializeField] Direction orientingDirection = Direction.None;
     public Direction OrientingDirection
@@ -58,11 +75,11 @@ public class GuestObject : MonoBehaviour
     public float FearByRelic => 0;
 
     public int Panic => panic;
-    public int ScreamRequirement => screamRequirement;
-    public int ScreamRequirementIncrease => screamRequirementIncrease;
-    public int NextScreamRequirement => screamRequirement + screamRequirementIncrease;
+    public int ScreamRequirement => screamRequirements[0];
+    // public int ScreamRequirementIncrease => screamRequirementIncrease;
+    public int NextScreamRequirement => screamRequirements.Count > 1 ? screamRequirements[1] : 0;
     
-    public bool CanScream => FinalFear >= screamRequirement;
+    public bool CanScream => FinalFear >= ScreamRequirement;
     public bool isPanic => FinalFear >= panic;
     public int MovedDistance => movedDistance;
 
@@ -112,12 +129,18 @@ public class GuestObject : MonoBehaviour
     
     public void ClearAndSetGuestData(GuestData guestData)
     {
-        this.guestData = new GuestData[1];
-        this.guestData[0] = guestData;
+        this.guestDataList.Clear();
+        this.guestDataList.Add(guestData);
+        traumaDict.Clear();
+        foreach (var trauma in guestData.traumaRatios)
+        {
+            traumaDict.Add(trauma.Key, trauma.Value);
+        }
         OnValueChanged();
     }
     
 
+    
     
     /// <summary>
     /// 손님 1턴간의 이동 로직
@@ -133,19 +156,29 @@ public class GuestObject : MonoBehaviour
             Debug.LogWarning($"Not at a Room");
             return;
         }
-        
+
+        if (isMoving)
+        {
+            //TODO : 이전 이동 강제로 처리하기
+            entity.transform.DOKill();
+            entity.MoveWithTransform(targetRoom);
+        }
         Direction targetDirection;
         Room nextRoom = CurrentRoom.FindLeftmostRoom(TycoonManager.Instance.Field, orientingDirection,out targetDirection);
         if (nextRoom)
         {
+            targetRoom = nextRoom;
             // Debug.Log($"from {CurrentRoom.name} to {nextRoom.name}");
             movedDistance++;
             guestVisualController?.PlayAnimation(AnimationType.MOVE);
             entity.transform
                 .DOMove(nextRoom.transform.position, 0.5f)
-                .OnComplete(()=> guestVisualController?.SetIsMoving(false));
+                .OnComplete(() =>
+                {
+                    guestVisualController?.SetIsMoving(false);
+                    entity.Move(nextRoom);
+                });
             // entity.currentRoom = nextRoom;
-            entity.Move(nextRoom);
             orientingDirection = targetDirection;
             roomEventChannelSo.RaiseCustomerRoomEnter(this, nextRoom);
         }
@@ -158,7 +191,8 @@ public class GuestObject : MonoBehaviour
     }
     
     /// <summary>
-    /// 다른 손님으로 합체한다
+    /// 다른 손님으로 합체한다.
+    /// 이 객체는 Release된다.
     /// </summary>
     /// <param name="other"></param>
     public void MergeTo(GuestObject other)
@@ -177,6 +211,46 @@ public class GuestObject : MonoBehaviour
             - C의 세번째 공포치 = A의 세번째 공포치 * 1.1^(3)
          */
         Debug.Log($"{name} merged to {other.name}");
+        
+        // 초기값 설정
+        int mergedGuestAmount = GuestAmount + other.GuestAmount;
+        other.guestDataList.AddRange(guestDataList);
+        float tmpCoefficient = Mathf.Pow(1.1f, mergedGuestAmount);
+        
+        // 비명 최대치
+        int maxScream = Mathf.Max(screamRequirements.Count, other.screamRequirements.Count);
+        
+        // 비명 요구량 적용
+        List<int> newScreamRequirements = new List<int>();
+        for (int i = 0; i < maxScream; i++)
+        {
+            int thisScream = i < screamRequirements.Count ? screamRequirements[i] : 0;
+            int otherScream = i < other.screamRequirements.Count ? other.screamRequirements[i] : 0;
+            if(thisScream == 0 && otherScream == 0)
+                continue;
+            newScreamRequirements.Add((int) (tmpCoefficient * (thisScream + otherScream) / mergedGuestAmount));
+        }
+        
+        // other.screamRequirement = (int) (tmpCoefficient * (screamRequirement + other.screamRequirement) / mergedGuestAmount);
+        // other.screamRequirementIncrease = (int) (tmpCoefficient * (screamRequirementIncrease + other.screamRequirementIncrease) / mergedGuestAmount);
+        other.fear = (int) ((fear + other.fear) / (float)mergedGuestAmount * 0.9f);
+        other.panic = (int) (tmpCoefficient * (Panic + other.Panic) / mergedGuestAmount);
+        // 트라우마에 대하여, 중복되는 것만 남김
+        foreach (var otherTrauma in traumaDict)
+        {
+            if (other.traumaDict.ContainsKey(otherTrauma.Key))
+            {
+                // 중복되는 경우
+                other.traumaDict[otherTrauma.Key] = tmpCoefficient * ((traumaDict[otherTrauma.Key] + otherTrauma.Value) / mergedGuestAmount);
+            }
+            else
+            {
+                // 중복되지 않는 경우
+                // other.traumaDict.Add(otherTrauma.Key, otherTrauma.Value);
+            }
+        }
+        
+        
         poolable.Release();
     }
     /// <summary>
@@ -222,7 +296,7 @@ public class GuestObject : MonoBehaviour
         guestVisualController.PlayAnimation(AnimationType.SCREAM);
         Debug.Log($"{entity.name} is screaming!");
         screamEventChannel.RaiseScreamEvent(new ScreamEventArg(this,0));
-        screamRequirement += screamRequirementIncrease;
+        screamRequirements.RemoveAt(0);
         fear /= 2;
         OnValueChanged();
     }
@@ -238,7 +312,7 @@ public class GuestObject : MonoBehaviour
 
     public void OnValueChanged()
     {
-        fearText.text = $"{fear} / {screamRequirement}";
+        fearText.text = $"{fear} / {screamRequirements[0]}";
         OnValueChangedEvent?.Invoke();
     }
     
@@ -262,7 +336,11 @@ public class GuestObject : MonoBehaviour
 
     public void OnPlayerTurnEnter()
     {
+        aliveTurnCnt += 1;
         fear = Mathf.CeilToInt(fear * 0.9f);
+        // 감소량 = logcoefficient(aliveTurnCnt);
+        float panicDecrease = Mathf.Log(aliveTurnCnt, fatigueCoefficient);
+        panic -= (int)panicDecrease;
         // MoveBehaviour(); 이동은 GuestManager에서 처리
     }
     

@@ -1,6 +1,9 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using Define;
+using Unity.VisualScripting;
+using UnityEngine;
 
 /// <summary>
 /// 손님의 정보를 담고 있음
@@ -14,16 +17,16 @@ public class GuestData : ICopyable<GuestData>
     public string name;
     public Sex sex;
     public int age;
-    public long[] traumaIds = new long[4];
-    public float[] traumaRatios = new float[4];
-    public float[] fearResistances = new float[4];
-    public int[] fearRequirements = new int[4];
+    public SerialzableDict<long, float> traumaRatios = new SerialzableDict<long, float>();
+    public List<float> fearResistances = new List<float>();
+    public List<int> fearRequirements = new List<int>();
     public int panicValue;
     public float fatigueCoefficientPerTurn;
-    public int[] panicCoefficients = new int[4];
+    public List<int> panicCoefficients = new List<int>();
     public int exitScreamAmount;
-    public long[] entranceCardIds = new long[4];
+    public List<long> entranceCardIds = new List<long>();
     public string prefabPath;
+    
     
     public float VisionFearResistance => fearResistances[(int)FearType.Vision];
     public float HearingFearResistance => fearResistances[(int)FearType.Hearing];
@@ -36,15 +39,22 @@ public class GuestData : ICopyable<GuestData>
         target.name = name;
         target.sex = sex;
         target.age = age;
-        Array.Copy(traumaIds, target.traumaIds, traumaIds.Length);
-        Array.Copy(traumaRatios, target.traumaRatios, traumaRatios.Length);
-        Array.Copy(fearResistances, target.fearResistances, fearResistances.Length);
-        Array.Copy(fearRequirements, target.fearRequirements, fearRequirements.Length);
+        target.traumaRatios.Clear();
+        foreach (KeyValuePair<long, float> ratio in traumaRatios)
+        {
+            target.traumaRatios.Add(ratio.Key, ratio.Value);
+        }
+        target.fearResistances.Clear();
+        target.fearResistances.AddRange(fearResistances);
+        target.fearRequirements.Clear();
+        target.fearRequirements.AddRange(fearRequirements);
         target.panicValue = panicValue;
         target.fatigueCoefficientPerTurn = fatigueCoefficientPerTurn;
-        Array.Copy(panicCoefficients, target.panicCoefficients, panicCoefficients.Length);
+        target.panicCoefficients.Clear();
+        target.panicCoefficients.AddRange(panicCoefficients);
         target.exitScreamAmount = exitScreamAmount;
-        Array.Copy(entranceCardIds, target.entranceCardIds, entranceCardIds.Length);
+        target.entranceCardIds.Clear();
+        target.entranceCardIds.AddRange(entranceCardIds);
         target.prefabPath = prefabPath;
     }
 

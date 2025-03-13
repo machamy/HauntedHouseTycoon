@@ -12,4 +12,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94b8642a909819048878e23d9e49195f, type: 3}
   m_Name: CardpackData
   m_EditorClassIdentifier: 
-  cardpackDataList: []
+  cardpackDataList:
+  - Index: 0
+    NameIndex: 0
+    ExplainIndex: 0
+    PackPrice: 0
+    NumberOfCardsAppearingUponOpening: 0
+    AppearingCardIndex: 
+    WeightedRatioForEachCards: 
+    RepurchaseAllowed: 0
+    RepurchaseAllowedForOnce: 0
+    MaximumOpenedPackAmount: 0
+    PackOpeningAnimation: 0
+    IllustFileName: string
+  - Index: 7200100
+    NameIndex: 12200101
+    ExplainIndex: 12200102
+    PackPrice: 0
+    NumberOfCardsAppearingUponOpening: 0
+    AppearingCardIndex: a4420f000000000008430f00000000006c430f0000000000d0430f000000000034440f000000000098440f0000000000fc440f000000000060450f0000000000
+    WeightedRatioForEachCards: 
+    RepurchaseAllowed: 1
+    RepurchaseAllowedForOnce: 1
+    MaximumOpenedPackAmount: 12
+    PackOpeningAnimation: 0
+    IllustFileName: 
+  - Index: 7200200
+    NameIndex: 12200201
+    ExplainIndex: 12200202
+    PackPrice: 0
+    NumberOfCardsAppearingUponOpening: 0
+    AppearingCardIndex: c4450f000000000028460f00000000008c460f0000000000f0460f000000000054470f0000000000
+    WeightedRatioForEachCards: 
+    RepurchaseAllowed: 1
+    RepurchaseAllowedForOnce: 0
+    MaximumOpenedPackAmount: 1
+    PackOpeningAnimation: 0
+    IllustFileName: 

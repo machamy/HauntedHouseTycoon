@@ -3144,11 +3144,13 @@ MonoBehaviour:
   screamEventChannel: {fileID: 11400000, guid: 063e8998648600a4d8d18440bf64ffd4, type: 2}
   turnEventChannelSo: {fileID: 11400000, guid: b30948b240df495448b1d9188f3ad6dc, type: 2}
   roomEventChannelSo: {fileID: 11400000, guid: 2ca08cea909ea8749b0879adb8c7b219, type: 2}
-  guestData: []
+  guestDataList: []
+  screamRequirements: 
   screamRequirement: 5
   screamRequirementIncrease: 3
   fear: 0
   panic: 20
+  fatigueCoefficient: 2
   guestVisualController: {fileID: 0}
   fearText: {fileID: 8768816609872421796}
   fearBar: {fileID: 0}

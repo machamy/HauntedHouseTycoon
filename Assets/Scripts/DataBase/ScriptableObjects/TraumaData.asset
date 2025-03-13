@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ec3f9349a0686439e3d613f0ba2cb2, type: 3}
   m_Name: TraumaData
   m_EditorClassIdentifier: 
-  traumaDataList: []
+  traumaDataList:
+  - Index: 0
+    TraumaName: string
+  - Index: 0
+    TraumaName: 

@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b84f5c9daac5395448442629fddac2f0, type: 3}
   m_Name: EnterCardData
   m_EditorClassIdentifier: 
-  enterCardDataList: []
+  enterCardDataList:
+  - Index: 0
+    EffectLastsTurn: 0
+    SpawningVisitorIndex: 
+  - Index: 2000100
+    EffectLastsTurn: 0
+    SpawningVisitorIndex: 

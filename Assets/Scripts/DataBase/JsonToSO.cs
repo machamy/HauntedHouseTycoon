@@ -30,8 +30,8 @@ public class JsonToSo
     [MenuItem("Tools/Generate GenerateAllCardSO from JSON")]
     public static void GenerateAllCardSO()
     {
-        Debug.Log("[JsonToSO] ½ÇÇà ½ÃÀÛ!");
-
+        Debug.Log("[JsonToSO] ì‹¤í–‰ ì‹œì‘!");
+    
         AnimationDataSO animationDataSO = AssetDatabase.LoadAssetAtPath<AnimationDataSO>(AnimationDataSOPath);
         CardData2SO cardData2SO = AssetDatabase.LoadAssetAtPath<CardData2SO>(CardDataSOPath);
         CardEffectDataSO cardEffectDataSO = AssetDatabase.LoadAssetAtPath<CardEffectDataSO>(CardDataSOPath);
@@ -59,7 +59,7 @@ public class JsonToSo
 
         foreach(var kvp in soDict)
         {
-            Debug.LogWarning($"[JsonToSo] {kvp.Key}°¡ Á¸ÀçÇÏÁö ¾ÊÀ½. »õ·Î »ı¼ºÇÕ´Ï´Ù.");
+            Debug.LogWarning($"[JsonToSo] {kvp.Key}ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŒ. ìƒˆë¡œ ìƒì„±í•©ë‹ˆë‹¤.");
 
             ScriptableObject newSO = null;
             if(kvp.Key == AnimationDataSOPath)
@@ -117,12 +117,12 @@ public class JsonToSo
             if (newSO !=null)
             {
                 AssetDatabase.CreateAsset(newSO,kvp.Key);
-                Debug.Log($"[JsonToSO] {kvp.Key} ScriptableObject°¡ »ı¼ºµÇ¾ú½À´Ï´Ù.");
+                Debug.Log($"[JsonToSO] {kvp.Key} ScriptableObjectê°€ ìƒì„±ë˜ì—ˆìŠµë‹ˆë‹¤.");
             }
         }
 
 
-        Debug.Log("¸ğµç LoadFromJSON ½ÇÇà...");
+        Debug.Log("ëª¨ë“  LoadFromJSON ì‹¤í–‰...");
         animationDataSO.LoadFromJSON(jsonFilenameAnimationData);
         cardData2SO.LoadFromJSON(jsonFileNameCardData);
         cardEffectDataSO.LoadFromJSON(jsonFileNameCardEffectData);
@@ -134,7 +134,7 @@ public class JsonToSo
         traumaDataSO.LoadFromJSON(jsonFileNameTraumaData);
         visitorDataSO.LoadFromJSON(jsonFileNameVisitorData);
 
-        Debug.Log($"JSON µ¥ÀÌÅÍ¸¦ SO·Î º¯È¯ ¿Ï·á! ÀúÀå À§Ä¡: {CardDataSOPath}");
+        Debug.Log($"JSON ë°ì´í„°ë¥¼ SOë¡œ ë³€í™˜ ì™„ë£Œ! ì €ì¥ ìœ„ì¹˜: {CardDataSOPath}");
     }
 
     public static void Initailze()

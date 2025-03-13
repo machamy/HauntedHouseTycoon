@@ -100,21 +100,23 @@ public class GuestVisualController : MonoBehaviour
     
     public void PlayAnimation(AnimationType state, int index = 0)
     {
+        
+        if (state == AnimationType.MOVE)
+        {
+            isMoving = true;
+        }
         if (isSpum)
         {
-            if (state == AnimationType.MOVE)
-            {
-                isMoving = true;
-            }
+            
             spumPrefab.PlayAnimation(state.ToSpumState(ref index), index);
         }
         else
         {
-            bool isMove = state == AnimationType.MOVE;
-            this.isMoving = isMove; // 단순화 가능, 일단 이렇게
+            isMoving = state == AnimationType.MOVE;
+            // this.isMoving = isMove; // 단순화 가능, 일단 이렇게
             bool isDebuff = state == AnimationType.FEAR;
             bool isDeath = state == AnimationType.PANIC;
-            guestAnimator.SetBool("1_Move", isMove);
+            guestAnimator.SetBool("1_Move", isMoving);
             guestAnimator.SetBool("5_Debuff", isDebuff);
             guestAnimator.SetBool("isDeath", isDeath);
             
@@ -126,8 +128,8 @@ public class GuestVisualController : MonoBehaviour
             {
                 guestAnimator.SetTrigger("6_Death");
             }
-            
         }
+
         StartCoroutine(MoveDirectionCheckRoutine());
     }
 }

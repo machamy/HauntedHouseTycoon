@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7029f0aa096f3374ba666a42f6bbc511, type: 3}
   m_Name: MarketingData
   m_EditorClassIdentifier: 
-  marketingDataList: []
+  marketingDataList:
+  - Index: 0
+  - Index: 10000100

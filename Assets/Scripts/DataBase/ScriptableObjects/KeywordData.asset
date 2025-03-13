@@ -12,4 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dec1a5e45a95d94a9ae7c72194003e9, type: 3}
   m_Name: KeywordData
   m_EditorClassIdentifier: 
-  keywordDataList: []
+  keywordDataList:
+  - Index: 0
+    NameIndex: 0
+    ExplainIndex: 0
+  - Index: 8000100
+    NameIndex: 0
+    ExplainIndex: 0
+  - Index: 8000200
+    NameIndex: 0
+    ExplainIndex: 0

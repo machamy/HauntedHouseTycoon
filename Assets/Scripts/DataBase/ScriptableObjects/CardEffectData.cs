@@ -7,6 +7,8 @@ using System.Linq;
 using Newtonsoft.Json.Linq;
 using UnityEditor;
 
+
+
 [CreateAssetMenu(menuName = "CardEffect DataSO")]
 public class CardEffectDataSO : ScriptableObject
 {
@@ -52,6 +54,5 @@ public class CardEffectDataSO : ScriptableObject
     private long TryParseLong(string value, long defaultValue)
     {
         return long.TryParse(value, out long result) ? result : defaultValue;
-
     }
 }

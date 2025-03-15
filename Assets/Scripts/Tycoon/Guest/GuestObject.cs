@@ -29,6 +29,7 @@ public class GuestObject : MonoBehaviour, IFocusable
     // [SerializeField] private int screamRequirementIncrease = 3;
     [SerializeField] private int fear = 0;
     [SerializeField] private int panic = 20;
+    [SerializeField] private List<float> fearResistances = new List<float>() {1f,1f,1f,1f};
     // [SerializeField] private int fatigue = 2;
     [SerializeField] private int fatigueCoefficient = 2;
     [Header("References")]
@@ -205,24 +206,21 @@ public class GuestObject : MonoBehaviour, IFocusable
     {
         /*
          - 동선이 겹칠 경우 손님들은 뭉치게 된며 아래 수치들이 변경 된다.
-            - 비명을 지를 수 있는 횟수 = 손님들의 최댓값
-            - 비명을 지르기 위해 필요한 공포치, 패닉에 빠지는 공포치의 최솟값 = (손님들의 평균) * 1.1^(손님의 수)
-            - 현재 공포치 = 손님들의 평균 * 0.9
-            - 각 공포 속성에 대한 내성 = 공포를 덜 받는 거만 남음
-            - 트라우마는 중복되는거만 남음
-
-        - 예시: A(비명 횟수3, 손님수 1) , B(비명 횟수 2, 손님수 2)가 합쳐지면 C(비명횟수3, 손님수 3)라고 할때
-            - C의 첫번째 공포치 =  (A의 첫번째 공포치+B의 첫번째 공포치/2) * 1.1^(3)
-            - C의 두번째 공포치 = (A의 두번째 공포치+B의 두번째 공포치/2) * 1.1^(3)
-            - C의 세번째 공포치 = A의 세번째 공포치 * 1.1^(3)
+    - 비명을 지를 수 있는 횟수 = 손님들의 최댓값
+    - 비명을 지르기 위해 필요한 공포치, 패닉에 빠지는 공포치의 최솟값 = (손님들의 평균) * 1.1^(손님의 수)
+    - 현재 공포치 = 손님들의 평균 * 0.9^(손님의 수)
+    - 각 공포 속성에 대한 내성 = 공포를 덜 받는 거만 남음(float값이 낮은거)
+    - 트라우마는 모두 유지되고 중복되는 것들은 적용되는 값이 합쳐져서 적용됨
+    - 피로계수 =  (손님들의 평균)
+    - 손님이 필드에 존재한 턴수 = (최대값)
          */
         Debug.Log($"{name} merged to {other.name}");
         
         // 초기값 설정
         int mergedGuestAmount = GuestAmount + other.GuestAmount;
         other.guestDataList.AddRange(guestDataList);
-        float tmpCoefficient = Mathf.Pow(1.1f, mergedGuestAmount);
-        
+        float mergeCoeff1_1 = Mathf.Pow(1.1f, mergedGuestAmount);
+        float mergeCoeff0_9 = Mathf.Pow(0.9f, mergedGuestAmount);
         // 비명 최대치
         int maxScream = Mathf.Max(screamRequirements.Count, other.screamRequirements.Count);
         
@@ -235,31 +233,42 @@ public class GuestObject : MonoBehaviour, IFocusable
             int otherScream = i < other.screamRequirements.Count ? other.screamRequirements[i] : 0;
             if(thisScream == 0 && otherScream == 0)
                 continue;
-            newScreamRequirements.Add((int) (tmpCoefficient * (thisScream + otherScream) / mergedGuestAmount));
+            newScreamRequirements.Add((int) (mergeCoeff1_1 * (thisScream + otherScream) / mergedGuestAmount));
             debugMsg.Append($"{thisScream} + {otherScream} -> {newScreamRequirements[i]}\n");   
         }
         other.screamRequirements = newScreamRequirements;
         Debug.Log(debugMsg);
         
-        // other.screamRequirement = (int) (tmpCoefficient * (screamRequirement + other.screamRequirement) / mergedGuestAmount);
-        // other.screamRequirementIncrease = (int) (tmpCoefficient * (screamRequirementIncrease + other.screamRequirementIncrease) / mergedGuestAmount);
-        other.fear = (int) ((fear + other.fear) / (float)mergedGuestAmount * 0.9f);
-        other.panic = (int) (tmpCoefficient * (Panic + other.Panic) / mergedGuestAmount);
-        // 트라우마에 대하여, 중복되는 것만 남김
+        // 공포치와 패닉치 : 모든 손님의 평균 * 계수
+        other.fear = (int)((fear * GuestAmount + other.fear * other.GuestAmount) / (float) mergedGuestAmount * mergeCoeff0_9);
+        other.panic = (int)((panic * GuestAmount + other.panic * other.GuestAmount) / (float)  mergedGuestAmount * mergeCoeff0_9);
+        
+        // 공포 속성 내성 : 낮은 값으로 설정
+        for (int i = 0; i < fearResistances.Count; i++)
+        {
+            other.fearResistances[i] = Mathf.Min(fearResistances[i], other.fearResistances[i]);
+        }
+        
+        // 트라우마는 모두 유지되고 중복되는 것들은 적용되는 값이 합쳐져서 적용됨
         foreach (var otherTrauma in traumaDict)
         {
             if (other.traumaDict.ContainsKey(otherTrauma.Key))
             {
                 // 중복되는 경우
-                other.traumaDict[otherTrauma.Key] = tmpCoefficient * ((traumaDict[otherTrauma.Key] + otherTrauma.Value) / mergedGuestAmount);
+                other.traumaDict[otherTrauma.Key] = traumaDict[otherTrauma.Key] + otherTrauma.Value;
             }
             else
             {
                 // 중복되지 않는 경우
-                // other.traumaDict.Add(otherTrauma.Key, otherTrauma.Value);
+                other.traumaDict.Add(otherTrauma.Key, otherTrauma.Value);
             }
         }
-
+        
+        
+        // 피로계수 =  (손님들의 평균)
+        fatigueCoefficient = (int)((fatigueCoefficient * GuestAmount + other.fatigueCoefficient * other.GuestAmount) / (float) mergedGuestAmount);
+        
+        other.movedDistance = Mathf.Max(movedDistance, other.movedDistance);
         other.OnValueChanged();
         poolable.Release();
     }

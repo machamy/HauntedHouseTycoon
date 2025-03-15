@@ -19,7 +19,7 @@ public class GuestData : ICopyable<GuestData>
     public Sex sex;
     public int age;
     public SerialzableDict<long, float> traumaRatios = new SerialzableDict<long, float>();
-    public List<float> fearResistances = new List<float>();
+    public List<float> fearResistances = new List<float>() {0, 0, 0, 0};
     [FormerlySerializedAs("fearRequirements")] public List<int> screamRequirements = new List<int>();
     public int panicValue;
     public float fatigueCoefficientPerTurn;

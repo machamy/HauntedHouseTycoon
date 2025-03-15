@@ -28,7 +28,6 @@ public class JsonToSo
     public static void GenerateAllCardSOForAPI()
     {
         GenerateAllCardSOInternal();
-        SaveAllAssetsForAPI();
     }
 
     private static void GenerateAllCardSOInternal()
@@ -92,26 +91,34 @@ public class JsonToSo
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
         Debug.Log("[JsonToSO] 모든 데이터가 업데이트되었습니다.");
+#else
+        SaveAllAssetsForAPI();
 #endif
     }
 
     private static void SaveAllAssetsForAPI()
     {
-#if !UNITY_EDITOR
-    Debug.Log("[JsonToSO API] API 환경에서 ScriptableObject 저장");
 
-    foreach (var kvp in soDict)
-    {
-        string savePath = Path.Combine(Application.persistentDataPath, $"{kvp.Key}.json");
-        string jsonData = JsonUtility.ToJson(kvp.Value, true);
+        Debug.Log("[JsonToSO API] API 환경에서 ScriptableObject 업데이트");
+
+        foreach (var kvp in soDict)
+        {
+            if (kvp.Value == null) continue;
+
+            string jsonFilePath = Path.Combine(Application.streamingAssetsPath, $"{kvp.Key}.json");
         
-        File.WriteAllText(savePath, jsonData);
-
-        Debug.Log($"[JsonToSO API] {kvp.Key} ScriptableObject 데이터가 {savePath}에 저장되었습니다.");
-    }
-
-    Debug.Log("[JsonToSO API] 모든 ScriptableObject가 저장되었습니다.");
-#endif
+            if (File.Exists(jsonFilePath))
+            {
+                string jsonData = File.ReadAllText(jsonFilePath);
+                JsonUtility.FromJsonOverwrite(jsonData, kvp.Value);
+                Debug.Log($"[JsonToSO API] {kvp.Key} ScriptableObject가 JSON 데이터를 적용했습니다.");
+            }
+            else
+            {
+                Debug.LogWarning($"[JsonToSO API] {kvp.Key}에 대한 JSON 파일이 존재하지 않습니다.");
+            }
+        }
+        Debug.Log("[JsonToSO API] 모든 ScriptableObject가 업데이트되었습니다.");
     }
 
     private static ScriptableObject LoadOrCreateScriptableObject(string key, Type type)

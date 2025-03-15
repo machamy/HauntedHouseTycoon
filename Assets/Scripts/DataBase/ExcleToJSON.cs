@@ -6,8 +6,8 @@ using Newtonsoft.Json;
 using ExcelDataReader;
 using UnityEngine;
 using UnityEditor;
-using ClassManager;
-using static ClassManager.Card.CardClass;
+using ClassBase;
+using static ClassBase.Card.CardClass;
 
 public class ExcelToJSON
 {
@@ -93,9 +93,9 @@ public class ExcelToJSON
                 {
                     if (header.Equals("Type", StringComparison.OrdinalIgnoreCase))
                     {
-                        if (Enum.TryParse(typeof(ClassManager.Card.CardClass.Type), cellValue, out var typeEnum))
+                        if (Enum.TryParse(typeof(ClassBase.Card.CardClass.Type), cellValue, out var typeEnum))
                         {
-                            rowDict[header] = ((int)(ClassManager.Card.CardClass.Type)typeEnum).ToString();
+                            rowDict[header] = ((int)(ClassBase.Card.CardClass.Type)typeEnum).ToString();
                         }
                         else
                         {
@@ -105,9 +105,9 @@ public class ExcelToJSON
 
                     else if (header.Equals("Rank", StringComparison.OrdinalIgnoreCase))
                     {
-                        if (Enum.TryParse(typeof(ClassManager.Card.CardClass.Rank), cellValue, out var rankEnum))
+                        if (Enum.TryParse(typeof(ClassBase.Card.CardClass.Rank), cellValue, out var rankEnum))
                         {
-                            rowDict[header] = ((int)(ClassManager.Card.CardClass.Rank)rankEnum).ToString();
+                            rowDict[header] = ((int)(ClassBase.Card.CardClass.Rank)rankEnum).ToString();
                         }
                         else
                         {
@@ -117,9 +117,9 @@ public class ExcelToJSON
 
                     else if (header.Equals("ConditionType", StringComparison.OrdinalIgnoreCase))
                     {
-                        if (Enum.TryParse(typeof(ClassManager.Card.Effect.ConditonType), cellValue, out var conditonTypeEnum))
+                        if (Enum.TryParse(typeof(ClassBase.Card.Effect.ConditonType), cellValue, out var conditonTypeEnum))
                         {
-                            rowDict[header] = ((int)(ClassManager.Card.Effect.ConditonType)conditonTypeEnum).ToString();
+                            rowDict[header] = ((int)(ClassBase.Card.Effect.ConditonType)conditonTypeEnum).ToString();
                         }
                         else
                         {
@@ -129,9 +129,9 @@ public class ExcelToJSON
 
                     else if (header.Equals("TargetType", StringComparison.OrdinalIgnoreCase))
                     {
-                        if (Enum.TryParse(typeof(ClassManager.Card.Effect.TargetType), cellValue, out var targetTypeEnum))
+                        if (Enum.TryParse(typeof(ClassBase.Card.Effect.TargetType), cellValue, out var targetTypeEnum))
                         {
-                            rowDict[header] = ((int)(ClassManager.Card.Effect.TargetType)targetTypeEnum).ToString();
+                            rowDict[header] = ((int)(ClassBase.Card.Effect.TargetType)targetTypeEnum).ToString();
                         }
                         else
                         {
@@ -141,9 +141,9 @@ public class ExcelToJSON
 
                     else if(header.Equals("Sex", StringComparison.OrdinalIgnoreCase))
                     {
-                        if(Enum.TryParse(typeof(ClassManager.Card.Visitor.Sex), cellValue, out var sexEnum))
+                        if(Enum.TryParse(typeof(ClassBase.GameObject.Visitor.Sex), cellValue, out var sexEnum))
                         {
-                            rowDict[header] = ((int)(ClassManager.Card.Visitor.Sex)sexEnum).ToString();
+                            rowDict[header] = ((int)(ClassBase.GameObject.Visitor.Sex)sexEnum).ToString();
                         }
                         else
                         {
@@ -153,9 +153,9 @@ public class ExcelToJSON
 
                     else if (header.Equals("PanicResponse", StringComparison.OrdinalIgnoreCase))
                     {
-                        if (Enum.TryParse(typeof(ClassManager.Card.Visitor.PanicResponse), cellValue, out var panicResponseEnum))
+                        if (Enum.TryParse(typeof(ClassBase.GameObject.Visitor.PanicResponse), cellValue, out var panicResponseEnum))
                         {
-                            rowDict[header] = ((int)(ClassManager.Card.Visitor.PanicResponse)panicResponseEnum).ToString();
+                            rowDict[header] = ((int)(ClassBase.GameObject.Visitor.PanicResponse)panicResponseEnum).ToString();
                         }
                         else
                         {

@@ -6,11 +6,12 @@ using System;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using UnityEditor;
+using CommonFunction.TypeConversion;
 
 [CreateAssetMenu(menuName = "TextDataSO")]
 public class TextDataSO : ScriptableObject
 {
-    [SerializeField] public List<ClassManager.Card.TextData> textDataList = new List<ClassManager.Card.TextData>();
+    [SerializeField] public List<ClassBase.Card.TextData> textDataList = new List<ClassBase.Card.TextData>();
 
     public void LoadFromJSON(string jsonFilePath)
     {
@@ -25,9 +26,9 @@ public class TextDataSO : ScriptableObject
         {
             JObject textDataObj = (JObject)token;
 
-            var newTextData = new ClassManager.Card.TextData
+            var newTextData = new ClassBase.Card.TextData
             {
-                Index = TryParseLong(textDataObj["index"]?.ToString(), 0),
+                Index = TypeConverter.TryParseLong(textDataObj["index"]?.ToString(), 0),
                 StringKey = textDataObj["StringKey"]?.ToString() ?? "",
                 KOR = textDataObj["KOR"]?.ToString() ?? "",
                 EN = textDataObj["EN"]?.ToString() ?? ""
@@ -35,7 +36,7 @@ public class TextDataSO : ScriptableObject
 
             textDataList.Add(newTextData);
         }
-
+#if UNITY_EDITOR
         EditorApplication.delayCall += () =>
         {
             AssetDatabase.SaveAssets();
@@ -43,10 +44,15 @@ public class TextDataSO : ScriptableObject
         };
 
         EditorUtility.SetDirty(this);
+#else
+        SaveForAPI();
+#endif
     }
-
-    private long TryParseLong(string value, long defaultValue)
+    private void SaveForAPI()
     {
-        return long.TryParse(value, out long result) ? result : defaultValue;
+        string savePath = Path.Combine(Application.persistentDataPath, "SavedAnimationData.json");
+        string jsonData = Newtonsoft.Json.JsonConvert.SerializeObject(textDataList, Newtonsoft.Json.Formatting.Indented);
+
+        File.WriteAllText(savePath, jsonData);
     }
 }

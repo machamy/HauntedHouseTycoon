@@ -6,11 +6,12 @@ using System;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using UnityEditor;
+using CommonFunction.TypeConversion;
 
 [CreateAssetMenu(menuName = "KeywordDataSO")]
 public class KeywordDataSO : ScriptableObject
 {
-    [SerializeField] public List<ClassManager.Card.KeywordData> keywordDataList = new List<ClassManager.Card.KeywordData>();
+    [SerializeField] public List<ClassBase.Card.KeywordData> keywordDataList = new List<ClassBase.Card.KeywordData>();
 
     public void LoadFromJSON(string jsonFilePath)
     {
@@ -25,16 +26,16 @@ public class KeywordDataSO : ScriptableObject
         {
             JObject keywordDataObj = (JObject)token;
 
-            var newKeywordData = new ClassManager.Card.KeywordData
+            var newKeywordData = new ClassBase.Card.KeywordData
             {
-                Index = TryParseLong(keywordDataObj["index"]?.ToString(), 0),
-                NameIndex = TryParseLong(keywordDataObj["nameIndex"]?.ToString(), 0),
-                ExplainIndex = TryParseLong(keywordDataObj["explainIndex"]?.ToString(), 0)
+                Index = TypeConverter.TryParseLong(keywordDataObj["index"]?.ToString(), 0),
+                NameIndex = TypeConverter.TryParseLong(keywordDataObj["nameIndex"]?.ToString(), 0),
+                ExplainIndex = TypeConverter.TryParseLong(keywordDataObj["explainIndex"]?.ToString(), 0)
             };
 
             keywordDataList.Add(newKeywordData);
         }
-
+#if UNITY_EDITOR
         EditorApplication.delayCall += () =>
         {
             AssetDatabase.SaveAssets();
@@ -42,10 +43,15 @@ public class KeywordDataSO : ScriptableObject
         };
 
         EditorUtility.SetDirty(this);
+#else
+        SaveForAPI();
+#endif
     }
-
-    private long TryParseLong(string value, long defaultValue)
+    private void SaveForAPI()
     {
-        return long.TryParse(value, out long result) ? result : defaultValue;
+        string savePath = Path.Combine(Application.persistentDataPath, "SavedAnimationData.json");
+        string jsonData = Newtonsoft.Json.JsonConvert.SerializeObject(keywordDataList, Newtonsoft.Json.Formatting.Indented);
+
+        File.WriteAllText(savePath, jsonData);
     }
 }

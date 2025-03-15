@@ -3146,8 +3146,6 @@ MonoBehaviour:
   roomEventChannelSo: {fileID: 11400000, guid: 2ca08cea909ea8749b0879adb8c7b219, type: 2}
   guestDataList: []
   screamRequirements: 
-  screamRequirement: 5
-  screamRequirementIncrease: 3
   fear: 0
   panic: 20
   fatigueCoefficient: 2

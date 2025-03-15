@@ -6,11 +6,12 @@ using System;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using UnityEditor;
+using CommonFunction.TypeConversion;
 
 [CreateAssetMenu(menuName = "AnimationSO")]
 public class AnimationDataSO : ScriptableObject
 {
-    [SerializeField] public List<ClassManager.Card.AnimationData> animationDataList = new List<ClassManager.Card.AnimationData>();
+    [SerializeField] public List<ClassBase.Card.AnimationData> animationDataList = new List<ClassBase.Card.AnimationData>();
 
     public void LoadFromJSON(string jsonFilePath)
     {
@@ -25,13 +26,14 @@ public class AnimationDataSO : ScriptableObject
         {
             JObject animationDataobj = (JObject)token;
 
-            var newAnimationData = new ClassManager.Card.AnimationData
+            var newAnimationData = new ClassBase.Card.AnimationData
             {
-                Index = TryParseLong(animationDataobj["index"]?.ToString(), 0),
+                Index = TypeConverter.TryParseLong(animationDataobj["index"]?.ToString(), 0),
                 EffectSound = animationDataobj["effectSound"]?.ToString() ?? ""
             };
             animationDataList.Add(newAnimationData);
         }
+#if UNITY_EDITOR
 
         EditorApplication.delayCall += () =>
         {
@@ -40,11 +42,15 @@ public class AnimationDataSO : ScriptableObject
         };
 
         EditorUtility.SetDirty(this);
+#else
+        SaveForAPI();
+#endif
     }
-
-    private long TryParseLong(string value, long defaultValue)
+    private void SaveForAPI()
     {
-        return long.TryParse(value, out long result) ? result : defaultValue;
+        string savePath = Path.Combine(Application.persistentDataPath, "SavedAnimationData.json");
+        string jsonData = Newtonsoft.Json.JsonConvert.SerializeObject(animationDataList, Newtonsoft.Json.Formatting.Indented);
 
+        File.WriteAllText(savePath, jsonData);
     }
 }

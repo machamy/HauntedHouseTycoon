@@ -6,13 +6,14 @@ using System;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using UnityEditor;
+using CommonFunction.TypeConversion;
 
 
 
 [CreateAssetMenu(menuName = "CardEffect DataSO")]
 public class CardEffectDataSO : ScriptableObject
 {
-    [SerializeField] public List<ClassManager.Card.Effect> cardEffectDataList = new List<ClassManager.Card.Effect>();
+    [SerializeField] public List<ClassBase.Card.Effect> cardEffectDataList = new List<ClassBase.Card.Effect>();
 
     public void LoadFromJSON(string jsonFilePath)
     {
@@ -27,16 +28,16 @@ public class CardEffectDataSO : ScriptableObject
         {
             JObject cardEffectDataobj = (JObject)token;
 
-            var newCardEffectData = new ClassManager.Card.Effect
+            var newCardEffectData = new ClassBase.Card.Effect
             {
-               Index = TryParseLong(cardEffectDataobj["index"]?.ToString(), 0),
-               condition = (ClassManager.Card.Effect.ConditonType)TryParseInt(cardEffectDataobj["conditionType"]?.ToString(), -1),
-               target = (ClassManager.Card.Effect.TargetType)TryParseInt(cardEffectDataobj["targetType"]?.ToString(), -1)
+               Index = TypeConverter.TryParseLong(cardEffectDataobj["index"]?.ToString(), 0),
+               condition = (ClassBase.Card.Effect.ConditonType)TypeConverter.TryParseInt(cardEffectDataobj["conditionType"]?.ToString(), -1),
+               target = (ClassBase.Card.Effect.TargetType)TypeConverter.TryParseInt(cardEffectDataobj["targetType"]?.ToString(), -1)
             };
 
             cardEffectDataList.Add(newCardEffectData);
         }
-
+#if UNITY_EDITOR
         EditorApplication.delayCall += () =>
         {
             AssetDatabase.SaveAssets();
@@ -44,15 +45,15 @@ public class CardEffectDataSO : ScriptableObject
         };
 
         EditorUtility.SetDirty(this);
+#else
+        SaveForAPI();
+#endif
     }
-
-    private int TryParseInt(string value, int defaultValue)
+    private void SaveForAPI()
     {
-        return int.TryParse(value, out int result) ? result : defaultValue;
-    }
+        string savePath = Path.Combine(Application.persistentDataPath, "SavedAnimationData.json");
+        string jsonData = Newtonsoft.Json.JsonConvert.SerializeObject(cardEffectDataList, Newtonsoft.Json.Formatting.Indented);
 
-    private long TryParseLong(string value, long defaultValue)
-    {
-        return long.TryParse(value, out long result) ? result : defaultValue;
+        File.WriteAllText(savePath, jsonData);
     }
 }

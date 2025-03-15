@@ -6,11 +6,12 @@ using System;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using UnityEditor;
+using CommonFunction.TypeConversion;
 
 [CreateAssetMenu(menuName = "EnterCardDataSO")]
 public class EnterCardDataSO : ScriptableObject
 {
-    [SerializeField] public List<ClassManager.Card.EnterCardData> enterCardDataList = new List<ClassManager.Card.EnterCardData>();
+    [SerializeField] public List<ClassBase.Card.EnterCardData> enterCardDataList = new List<ClassBase.Card.EnterCardData>();
 
     public void LoadFromJSON(string jsonFilePath)
     {
@@ -25,18 +26,18 @@ public class EnterCardDataSO : ScriptableObject
         {
             JObject enterCardDataObj = (JObject)token;
 
-            long[] spawningVisitorIndex = ExtractLongArray(enterCardDataObj, "spawningVisitorIndex");
+            long[] spawningVisitorIndex = TypeConverter.ExtractLongArray(enterCardDataObj, "spawningVisitorIndex");
 
-            var newEnterCardData = new ClassManager.Card.EnterCardData
+            var newEnterCardData = new ClassBase.Card.EnterCardData
             {
-                Index = TryParseLong(enterCardDataObj["index"]?.ToString(), 0),
-                EffectLastsTurn = TryParseInt(enterCardDataObj["effectLastsTurn"]?.ToString(), 0),
+                Index = TypeConverter.TryParseLong(enterCardDataObj["index"]?.ToString(), 0),
+                EffectLastsTurn = TypeConverter.TryParseInt(enterCardDataObj["effectLastsTurn"]?.ToString(), 0),
                 SpawningVisitorIndex = spawningVisitorIndex
             };
 
             enterCardDataList.Add(newEnterCardData);
         }
-
+#if UNITY_EDITOR
         EditorApplication.delayCall += () =>
         {
             AssetDatabase.SaveAssets();
@@ -44,42 +45,15 @@ public class EnterCardDataSO : ScriptableObject
         };
 
         EditorUtility.SetDirty(this);
+#else
+        SaveForAPI();
+#endif
     }
-
-    private long[] ExtractLongArray(JObject obj, string baseKey)
+    private void SaveForAPI()
     {
-        List<long> values = new List<long>();
+        string savePath = Path.Combine(Application.persistentDataPath, "SavedAnimationData.json");
+        string jsonData = Newtonsoft.Json.JsonConvert.SerializeObject(enterCardDataList, Newtonsoft.Json.Formatting.Indented);
 
-        if (obj.TryGetValue(baseKey, out JToken singleValue) && !string.IsNullOrEmpty(singleValue.ToString()))
-        {
-            if (long.TryParse(singleValue.ToString(), out long parsedValue))
-            {
-                values.Add(parsedValue);
-            }
-        }
-
-        foreach (var property in obj.Properties())
-        {
-            if (property.Name.StartsWith(baseKey + "_"))
-            {
-                if (long.TryParse(property.Value.ToString(), out long parsedValue))
-                {
-                    values.Add(parsedValue);
-                }
-            }
-        }
-
-        return values.ToArray();
-    }
-
-
-    private int TryParseInt(string value, int defaultValue)
-    {
-        return int.TryParse(value, out int result) ? result : defaultValue;
-    }
-
-    private long TryParseLong(string value, long defaultValue)
-    {
-        return long.TryParse(value, out long result) ? result : defaultValue;
+        File.WriteAllText(savePath, jsonData);
     }
 }

@@ -6,11 +6,12 @@ using System;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using UnityEditor;
+using CommonFunction.TypeConversion;
 
 [CreateAssetMenu(menuName = "TraumaDataSO")]
 public class TraumaDataSO : ScriptableObject
 {
-    [SerializeField] public List<ClassManager.Card.TraumaData> traumaDataList = new List<ClassManager.Card.TraumaData>();
+    [SerializeField] public List<ClassBase.Card.TraumaData> traumaDataList = new List<ClassBase.Card.TraumaData>();
 
     public void LoadFromJSON(string jsonFilePath)
     {
@@ -25,14 +26,14 @@ public class TraumaDataSO : ScriptableObject
         {
             JObject traumaDataObj = (JObject)token;
 
-            var newTraumaData = new ClassManager.Card.TraumaData
+            var newTraumaData = new ClassBase.Card.TraumaData
             {
-                Index = TryParseLong(traumaDataObj["index"]?.ToString(), 0),
+                Index = TypeConverter.TryParseLong(traumaDataObj["index"]?.ToString(), 0),
                 TraumaName = traumaDataObj["traumaName"]?.ToString() ?? ""
             };
             traumaDataList.Add(newTraumaData);
         }
-
+#if UNITY_EDITOR
         EditorApplication.delayCall += () =>
         {
             AssetDatabase.SaveAssets();
@@ -40,11 +41,16 @@ public class TraumaDataSO : ScriptableObject
         };
 
         EditorUtility.SetDirty(this);
+#else
+        SaveForAPI();
+#endif
     }
-
-    private long TryParseLong(string value, long defaultValue)
+    private void SaveForAPI()
     {
-        return long.TryParse(value, out long result) ? result : defaultValue;
+        string savePath = Path.Combine(Application.persistentDataPath, "SavedAnimationData.json");
+        string jsonData = Newtonsoft.Json.JsonConvert.SerializeObject(traumaDataList, Newtonsoft.Json.Formatting.Indented);
+
+        File.WriteAllText(savePath, jsonData);
     }
 }
 

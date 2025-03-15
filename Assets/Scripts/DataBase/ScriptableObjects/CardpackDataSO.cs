@@ -6,11 +6,12 @@ using System;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using UnityEditor;
+using CommonFunction.TypeConversion;
 
 [CreateAssetMenu(menuName = "CardpackDataSO")]
 public class CardpackDataSO : ScriptableObject
 {
-    [SerializeField] public List<ClassManager.Card.CardPackData> cardpackDataList = new List<ClassManager.Card.CardPackData>();
+    [SerializeField] public List<ClassBase.Card.CardPackData> cardpackDataList = new List<ClassBase.Card.CardPackData>();
 
     public void LoadFromJSON(string jsonFilePath)
     {
@@ -25,102 +26,44 @@ public class CardpackDataSO : ScriptableObject
         {
             JObject cardpackDataObj = (JObject)token;
 
-            long[] appearingCardIndex = ExtractLongArray(cardpackDataObj, "appearingCardIndex");
+            long[] appearingCardIndex = TypeConverter.ExtractLongArray(cardpackDataObj, "appearingCardIndex");
 
-            int[] weightedRatioForEachCards = ExtractIntArray(cardpackDataObj, "weightedRatioForEachCards");
+            int[] weightedRatioForEachCards = TypeConverter.ExtractIntArray(cardpackDataObj, "weightedRatioForEachCards");
 
-            var newcardpackData = new ClassManager.Card.CardPackData
+            var newcardpackData = new ClassBase.Card.CardPackData
             {
-                Index = TryParseLong(cardpackDataObj["index"]?.ToString(), 0),
-                NameIndex = TryParseLong(cardpackDataObj["nameIndex"]?.ToString(), 0),
-                ExplainIndex = TryParseLong(cardpackDataObj["explainIndex"]?.ToString(), 0),
-                PackPrice = TryParseInt(cardpackDataObj["packPrice"]?.ToString(), 0),
-                NumberOfCardsAppearingUponOpening = TryParseInt(cardpackDataObj["numberOfCardsaAppearingUponOning"]?.ToString(), 0),
+                Index = TypeConverter.TryParseLong(cardpackDataObj["index"]?.ToString(), 0),
+                NameIndex = TypeConverter.TryParseLong(cardpackDataObj["nameIndex"]?.ToString(), 0),
+                ExplainIndex = TypeConverter.TryParseLong(cardpackDataObj["explainIndex"]?.ToString(), 0),
+                PackPrice = TypeConverter.TryParseInt(cardpackDataObj["packPrice"]?.ToString(), 0),
+                NumberOfCardsAppearingUponOpening = TypeConverter.TryParseInt(cardpackDataObj["numberOfCardsaAppearingUponOning"]?.ToString(), 0),
                 AppearingCardIndex = appearingCardIndex,
                 WeightedRatioForEachCards = weightedRatioForEachCards,
-                RepurchaseAllowed = TryParseBool(cardpackDataObj["repurchaseAllowed"]?.ToString(), false),
-                RepurchaseAllowedForOnce = TryParseBool(cardpackDataObj["repurchaseAllowedForOnce"]?.ToString(), false),
-                MaximumOpenedPackAmount = TryParseInt(cardpackDataObj["maximumOpenedPackAmount"]?.ToString(), 0),
-                PackOpeningAnimation = TryParseLong(cardpackDataObj["packOpeningAnimation"]?.ToString(), 0),
+                RepurchaseAllowed = TypeConverter.TryParseBool(cardpackDataObj["repurchaseAllowed"]?.ToString(), false),
+                RepurchaseAllowedForOnce = TypeConverter.TryParseBool(cardpackDataObj["repurchaseAllowedForOnce"]?.ToString(), false),
+                MaximumOpenedPackAmount = TypeConverter.TryParseInt(cardpackDataObj["maximumOpenedPackAmount"]?.ToString(), 0),
+                PackOpeningAnimation = TypeConverter.TryParseLong(cardpackDataObj["packOpeningAnimation"]?.ToString(), 0),
                 IllustFileName = cardpackDataObj["illustFileName"]?.ToString() ?? ""
             };
 
             cardpackDataList.Add(newcardpackData);
         }
-
+#if UNITY_EDITOR
         EditorApplication.delayCall += () =>
         {
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
         };
 
-        EditorUtility.SetDirty(this);
+#else
+        SaveForAPI();
+#endif
     }
-
-    private int[] ExtractIntArray(JObject obj, string baseKey)
+    private void SaveForAPI()
     {
-        List<int> values = new List<int>();
+        string savePath = Path.Combine(Application.persistentDataPath, "SavedAnimationData.json");
+        string jsonData = Newtonsoft.Json.JsonConvert.SerializeObject(cardpackDataList, Newtonsoft.Json.Formatting.Indented);
 
-        if (obj.TryGetValue(baseKey, out JToken singleValue) && !string.IsNullOrEmpty(singleValue.ToString()))
-        {
-            if (int.TryParse(singleValue.ToString(), out int parsedValue))
-            {
-                values.Add(parsedValue);
-            }
-        }
-
-        foreach (var property in obj.Properties())
-        {
-            if (property.Name.StartsWith(baseKey + "_"))
-            {
-                if (int.TryParse(property.Value.ToString(), out int parsedValue))
-                {
-                    values.Add(parsedValue);
-                }
-            }
-        }
-
-        return values.ToArray();
-    }
-
-    private long[] ExtractLongArray(JObject obj, string baseKey)
-    {
-        List<long> values = new List<long>();
-
-        if (obj.TryGetValue(baseKey, out JToken singleValue) && !string.IsNullOrEmpty(singleValue.ToString()))
-        {
-            if (long.TryParse(singleValue.ToString(), out long parsedValue))
-            {
-                values.Add(parsedValue);
-            }
-        }
-
-        foreach (var property in obj.Properties())
-        {
-            if (property.Name.StartsWith(baseKey + "_"))
-            {
-                if (long.TryParse(property.Value.ToString(), out long parsedValue))
-                {
-                    values.Add(parsedValue);
-                }
-            }
-        }
-
-        return values.ToArray();
-    }
-
-    private int TryParseInt(string value, int defaultValue)
-    {
-        return int.TryParse(value, out int result) ? result : defaultValue;
-    }
-
-    private long TryParseLong(string value, long defaultValue)
-    {
-        return long.TryParse(value, out long result) ? result : defaultValue;
-    }
-
-    private bool TryParseBool(string value, bool defaultValue)
-    {
-        return bool.TryParse(value, out bool result) ? result : defaultValue;
+        File.WriteAllText(savePath, jsonData);
     }
 }

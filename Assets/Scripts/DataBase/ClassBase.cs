@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace ClassManager.Card
+namespace ClassBase.Card
 {
     [Serializable]
     public class CardClass
@@ -92,38 +92,6 @@ namespace ClassManager.Card
     }
 
     [Serializable]
-    public class Visitor
-    {
-        public long Index;
-
-        public Sex sex;
-        public enum Sex
-        {
-            MALE,
-            FEMALE,
-        }
-        public int Age;
-        public long[] TraumaIndex;
-        public float[] TraumaRatio;
-        public float VisualHorrorTolerance;
-        public float AuditoryHorrorTolerance;
-        public float ScentHorrorTolerance;
-        public float TouchHorrorTolerance;
-        public int[] RequiredHorrorAmount;
-        public int PanicAmount;
-        public float AmountOfTiredInTurn;
-
-        public PanicResponse panicResponse;
-        public enum PanicResponse
-        {
-            HeartArrest,
-        }
-        public int[] PanicWeightedAmount;
-        public int ExitGetScreamAmount;
-        public long[] EnterCardIndex;
-    }
-
-    [Serializable]
     public class EnterCardData
     {
         public long Index;
@@ -175,5 +143,40 @@ namespace ClassManager.Card
         public string StringKey;
         public string KOR;
         public string EN;
+    }
+}
+
+namespace ClassBase.GameObject
+{
+    [Serializable]
+    public class Visitor
+    {
+        public long Index;
+
+        public Sex sex;
+        public enum Sex
+        {
+            MALE,
+            FEMALE,
+        }
+        public int Age;
+        public long[] TraumaIndex;
+        public float[] TraumaRatio;
+        public float VisualHorrorTolerance;
+        public float AuditoryHorrorTolerance;
+        public float ScentHorrorTolerance;
+        public float TouchHorrorTolerance;
+        public int[] RequiredHorrorAmount;
+        public int PanicAmount;
+        public float AmountOfTiredInTurn;
+
+        public PanicResponse panicResponse;
+        public enum PanicResponse
+        {
+            HeartArrest,
+        }
+        public int[] PanicWeightedAmount;
+        public int ExitGetScreamAmount;
+        public long[] EnterCardIndex;
     }
 }

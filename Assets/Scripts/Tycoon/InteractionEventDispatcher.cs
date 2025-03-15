@@ -5,7 +5,7 @@ using Unity.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InteractionManager : SingletonBehaviour<InteractionManager>
+public class InteractionEventDispatcher : SingletonBehaviour<InteractionEventDispatcher>
 {
     [SerializeField] private InputActionAsset inputActionAsset;
 

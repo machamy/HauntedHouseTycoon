@@ -96,10 +96,12 @@ public class GuestManager : MonoBehaviour
     // {
     //     
     // }
+    public static int guestCount = 0;
     public GuestObject CreateGuest(Vector3 position = default)
     {
         GuestObject guestObject = PoolManager.Instance.Get(PoolManager.Poolables.Guest).GetComponent<GuestObject>();
-        guestObject.ClearAndSetGuestData(defaultGuestData.GetCopy());
+        GuestData guestData = defaultGuestData.GetCopy();
+        guestObject.ClearAndSetGuestData(guestData);
         guestObject.transform.position = position;
         guestObject.OnCreate();
         guestQueue.Add(guestObject);
@@ -108,6 +110,7 @@ public class GuestManager : MonoBehaviour
         {
             guestQueue.Remove(guestObject);
         };
+        guestObject.name = $"Guest({guestCount++}) {guestData.name}";
         return guestObject;
     }
 }

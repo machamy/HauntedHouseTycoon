@@ -53,8 +53,8 @@ public class CardActionContainerDrawer : PropertyDrawer
             {
                 SerializedProperty element = actionNodesProperty.GetArrayElementAtIndex(index);
                 
-                var blueprintProp = element.FindPropertyRelative("actionBlueprint");
-                var actionProp    = element.FindPropertyRelative("action");
+                var blueprintProp= element.FindPropertyRelative("actionBlueprint");
+                var actionProp= element.FindPropertyRelative("action");
 
                 float lineHeight  = EditorGUIUtility.singleLineHeight;
                 float spacing     = EditorGUIUtility.standardVerticalSpacing;

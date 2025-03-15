@@ -76,7 +76,7 @@ public class TycoonManager : SingletonBehaviour<TycoonManager>
 
     public void TestStart()
     {
-        InitDeckByDatabae();
+        // InitDeckByDatabae();
         StartCycle();
     }
 }

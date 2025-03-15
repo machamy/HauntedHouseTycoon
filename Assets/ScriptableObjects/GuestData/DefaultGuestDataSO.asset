@@ -17,18 +17,15 @@ MonoBehaviour:
     name: TestGuestMale
     sex: 0
     age: 20
-    traumaIds: 0000000000000000000000000000000000000000000000000000000000000000
     traumaRatios:
-    - 0
-    - 0
-    - 0
-    - 0
+      defaultKey: 0
+      data: []
     fearResistances:
     - 0
     - 0
     - 0
     - 0
-    fearRequirements: 00000000000000000000000000000000
+    screamRequirements: 140000001e00000019000000
     panicValue: 0
     fatigueCoefficientPerTurn: 0
     panicCoefficients: 00000000000000000000000000000000

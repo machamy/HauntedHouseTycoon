@@ -5,6 +5,12 @@ using Unity.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// UI 부분이 "아닌" InteractionEvent를 처리하는 클래스
+/// UI와 UI연관 행위는 직접 이벤트를 받아서 처리하도록 구현하자
+/// </summary>
+/// <seealso cref="CardSelection"/>
+/// <seealso cref="CardUseArea.RaycastCardUseArea(UnityEngine.Vector3,UnityEngine.Camera)"/>
 public class InteractionEventDispatcher : SingletonBehaviour<InteractionEventDispatcher>
 {
     [SerializeField] private InputActionAsset inputActionAsset;
@@ -14,6 +20,8 @@ public class InteractionEventDispatcher : SingletonBehaviour<InteractionEventDis
     [SerializeField,VisibleOnly(EditableIn.EditMode)] private InputActionReference pointerHold;
     [SerializeField,VisibleOnly(EditableIn.EditMode)] private InputActionReference pointerTap;
     [SerializeField,VisibleOnly(EditableIn.EditMode)] private InputActionReference pointerPosition;
+    
+    // record 이용해서 할 수 있음
     
     public class PointerEventArgs
     {
@@ -80,7 +88,7 @@ public class InteractionEventDispatcher : SingletonBehaviour<InteractionEventDis
     
     private void PointerPress(InputAction.CallbackContext context)
     {
-        Debug.Log($"Pointer {context.action.name}");
+        // Debug.Log($"Pointer {context.action.name}");
         _pressedTime = Time.time;
         _pressedPosition = _lastPosition;
         OnPointerPressEvent?.Invoke(GetPointerEvent());
@@ -88,7 +96,7 @@ public class InteractionEventDispatcher : SingletonBehaviour<InteractionEventDis
     
     private void PointerRelease(InputAction.CallbackContext context)
     {
-        Debug.Log($"Pointer {context.action.name}");
+        // Debug.Log($"Pointer {context.action.name}");
         _releaseTime = Time.time;
         _releasedPositione = _lastPosition;
         OnPointerReleaseEvent?.Invoke(GetPointerEvent());
@@ -102,23 +110,22 @@ public class InteractionEventDispatcher : SingletonBehaviour<InteractionEventDis
     
     private void PointerHold(InputAction.CallbackContext context)
     {
-        Debug.Log($"Pointer {context.action.name}");
+        // Debug.Log($"Pointer {context.action.name}");
         OnPointerHoldEvent?.Invoke(GetPointerEvent());
     }
     
     private void PointerTap(InputAction.CallbackContext context)
     {
-        Debug.Log($"Pointer {context.action.name}");
+        // Debug.Log($"Pointer {context.action.name}");
         OnPointerTapEvent?.Invoke(GetPointerEvent());
     }
 
     private void PointerPosition(InputAction.CallbackContext context)
     {
         _lastPosition = context.ReadValue<Vector2>();
-        Debug.Log($"Pointer {context.action.name}");
+        // Debug.Log($"Pointer {context.action.name}");
         OnPointerPositionEvent?.Invoke(GetPointerEvent());
-
-
+        
         if (_isDragging)
         {
             OnPointerDraggingEvent?.Invoke(GetPointerEvent());

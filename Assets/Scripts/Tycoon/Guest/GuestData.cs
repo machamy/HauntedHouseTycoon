@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Define;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 /// <summary>
 /// 손님의 정보를 담고 있음
@@ -19,7 +20,7 @@ public class GuestData : ICopyable<GuestData>
     public int age;
     public SerialzableDict<long, float> traumaRatios = new SerialzableDict<long, float>();
     public List<float> fearResistances = new List<float>();
-    public List<int> fearRequirements = new List<int>();
+    [FormerlySerializedAs("fearRequirements")] public List<int> screamRequirements = new List<int>();
     public int panicValue;
     public float fatigueCoefficientPerTurn;
     public List<int> panicCoefficients = new List<int>();
@@ -46,8 +47,8 @@ public class GuestData : ICopyable<GuestData>
         }
         target.fearResistances.Clear();
         target.fearResistances.AddRange(fearResistances);
-        target.fearRequirements.Clear();
-        target.fearRequirements.AddRange(fearRequirements);
+        target.screamRequirements.Clear();
+        target.screamRequirements.AddRange(screamRequirements);
         target.panicValue = panicValue;
         target.fatigueCoefficientPerTurn = fatigueCoefficientPerTurn;
         target.panicCoefficients.Clear();

@@ -101,7 +101,8 @@ GameObject:
   - component: {fileID: 8084154365609620549}
   - component: {fileID: 6301191226933098189}
   - component: {fileID: 3889057637898172743}
-  m_Layer: 5
+  - component: {fileID: 5081360604837830466}
+  m_Layer: 8
   m_Name: SampleGuest1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3182,6 +3183,27 @@ MonoBehaviour:
   guestAnimator: {fileID: 2826001532647622495}
   isSpum: 1
   spumPrefab: {fileID: 3757966422092240210}
+--- !u!65 &5081360604837830466
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218083782189043252}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 0.35}
+  m_Center: {x: 0, y: 0.72, z: 0}
 --- !u!1 &337350309677626431
 GameObject:
   m_ObjectHideFlags: 0
@@ -4570,8 +4592,8 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1917275895002266092}
   m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1509448423
+  m_SortingLayer: 1
   m_SortingOrder: 5
   m_SortAtRoot: 0
 --- !u!95 &2826001532647622495

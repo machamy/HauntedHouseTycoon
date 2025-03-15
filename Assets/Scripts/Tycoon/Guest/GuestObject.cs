@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Text;
 using DG.Tweening;
 using JetBrains.Annotations;
 using Pools;
@@ -9,13 +10,8 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Entity), typeof(Poolable))]
-public class GuestObject : MonoBehaviour
+public class GuestObject : MonoBehaviour, IFocusable
 {
-    // public class GuestObjectVariable
-    // {
-    //    
-    // }
-    
     private Entity entity;
     [Header("Events")]
     [SerializeField] private ScreamEventChannelSO screamEventChannel;
@@ -29,7 +25,7 @@ public class GuestObject : MonoBehaviour
     private List<GuestData> guestDataList = new List<GuestData>();
     [SerializeField] private Dictionary<long,float> traumaDict = new Dictionary<long, float>();
     [SerializeField] private List<int> screamRequirements = new List<int>();
-    // [SerializeField] private int screamRequirement = 5;
+
     // [SerializeField] private int screamRequirementIncrease = 3;
     [SerializeField] private int fear = 0;
     [SerializeField] private int panic = 20;
@@ -75,7 +71,7 @@ public class GuestObject : MonoBehaviour
     public float FearByRelic => 0;
 
     public int Panic => panic;
-    public int ScreamRequirement => screamRequirements[0];
+    public int ScreamRequirement => screamRequirements.Count > 0 ? screamRequirements[0] : 0;
     // public int ScreamRequirementIncrease => screamRequirementIncrease;
     public int NextScreamRequirement => screamRequirements.Count > 1 ? screamRequirements[1] : 0;
     
@@ -87,7 +83,7 @@ public class GuestObject : MonoBehaviour
     
     
     private Poolable poolable;
-    
+    private PathDrawer pathDrawer;
     private void Awake()
     {
         entity = GetComponent<Entity>();
@@ -95,6 +91,8 @@ public class GuestObject : MonoBehaviour
         poolable.OnRelease += OnRelease;
         if(guestVisualController == null)
             guestVisualController = GetComponentInChildren<GuestVisualController>();
+        pathDrawer = gameObject.GetOrAddComponent<PathDrawer>();
+        pathDrawer.enabled = false;
     }
 
 
@@ -116,6 +114,7 @@ public class GuestObject : MonoBehaviour
     
     private void OnRelease()
     {
+        entity.OnRemoved();
         OnRemoved?.Invoke();
     }
 
@@ -131,6 +130,8 @@ public class GuestObject : MonoBehaviour
     {
         this.guestDataList.Clear();
         this.guestDataList.Add(guestData);
+        screamRequirements.Clear();
+        screamRequirements.AddRange(guestData.screamRequirements);
         traumaDict.Clear();
         foreach (var trauma in guestData.traumaRatios)
         {
@@ -160,6 +161,7 @@ public class GuestObject : MonoBehaviour
         if (isMoving)
         {
             //TODO : 이전 이동 강제로 처리하기
+            isMoving = false;
             entity.transform.DOKill();
             entity.MoveWithTransform(targetRoom);
             OnEnterRoom(targetRoom); // 강제 처리한다면, 이건 제대로 작동 안할 확률 높음
@@ -172,6 +174,7 @@ public class GuestObject : MonoBehaviour
             // Debug.Log($"from {CurrentRoom.name} to {nextRoom.name}");
             movedDistance++;
             guestVisualController?.PlayAnimation(AnimationType.MOVE);
+            isMoving = true;
             entity.transform
                 .DOMove(nextRoom.transform.position, 0.5f)
                 .OnComplete(() =>
@@ -179,6 +182,7 @@ public class GuestObject : MonoBehaviour
                     guestVisualController?.SetIsMoving(false);
                     entity.Move(nextRoom);
                     OnEnterRoom(nextRoom);
+                    isMoving = false;
                 });
             // entity.currentRoom = nextRoom;
             orientingDirection = targetDirection;
@@ -222,6 +226,7 @@ public class GuestObject : MonoBehaviour
         // 비명 최대치
         int maxScream = Mathf.Max(screamRequirements.Count, other.screamRequirements.Count);
         
+        StringBuilder debugMsg = new StringBuilder();
         // 비명 요구량 적용
         List<int> newScreamRequirements = new List<int>();
         for (int i = 0; i < maxScream; i++)
@@ -231,7 +236,10 @@ public class GuestObject : MonoBehaviour
             if(thisScream == 0 && otherScream == 0)
                 continue;
             newScreamRequirements.Add((int) (tmpCoefficient * (thisScream + otherScream) / mergedGuestAmount));
+            debugMsg.Append($"{thisScream} + {otherScream} -> {newScreamRequirements[i]}\n");   
         }
+        other.screamRequirements = newScreamRequirements;
+        Debug.Log(debugMsg);
         
         // other.screamRequirement = (int) (tmpCoefficient * (screamRequirement + other.screamRequirement) / mergedGuestAmount);
         // other.screamRequirementIncrease = (int) (tmpCoefficient * (screamRequirementIncrease + other.screamRequirementIncrease) / mergedGuestAmount);
@@ -251,8 +259,8 @@ public class GuestObject : MonoBehaviour
                 // other.traumaDict.Add(otherTrauma.Key, otherTrauma.Value);
             }
         }
-        
-        
+
+        other.OnValueChanged();
         poolable.Release();
     }
     /// <summary>
@@ -314,14 +322,20 @@ public class GuestObject : MonoBehaviour
 
     public void OnValueChanged()
     {
-        fearText.text = $"{fear} / {screamRequirements[0]}";
+        
+        fearText.text = $"{fear} / {ScreamRequirement}";
         OnValueChangedEvent?.Invoke();
     }
     
     private void OnEnterRoom(Room room)
     {
         GuestObject otherGuest = null;
-        Entity otherEntity = room.FindEntity((e)=>e.TryGetComponent<GuestObject>(out otherGuest));
+        Entity otherEntity = room.FindEntity( // 움직임이 끝난 손님을 찾기
+            (e)=>
+                e != entity 
+                && e.TryGetComponent<GuestObject>(out otherGuest)
+                && !otherGuest.isMoving
+                && !otherGuest.hasToMove);
         if (otherEntity && otherGuest)
         {
             MergeTo(otherGuest);
@@ -352,4 +366,13 @@ public class GuestObject : MonoBehaviour
     }
     #endregion
 
+    public void OnFocus()
+    {
+        pathDrawer.enabled = true;
+    }
+
+    public void OnFocusLost()
+    {
+        pathDrawer.enabled = false;
+    }
 }

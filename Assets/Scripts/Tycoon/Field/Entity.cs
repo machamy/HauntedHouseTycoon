@@ -35,4 +35,13 @@ public class Entity : MonoBehaviour
         Move(room);
         transform.position = room.transform.position;
     }
+    
+    public void OnRemoved()
+    {
+        if (currentRoom)
+        {
+            currentRoom.RemoveEntity(this);
+            currentRoom = null;
+        }
+    }
 }

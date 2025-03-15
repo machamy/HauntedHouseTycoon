@@ -28,6 +28,7 @@ public class JsonToSo
     public static void GenerateAllCardSOForAPI()
     {
         GenerateAllCardSOInternal();
+        SaveAllAssetsForAPI();
     }
 
     private static void GenerateAllCardSOInternal()
@@ -65,14 +66,19 @@ public class JsonToSo
         foreach (var kvp in scriptableObjectTypes)
         {
             string assetPath = $"Assets/Scripts/DataBase/ScriptableObjects/{kvp.Key}.asset";
-            ScriptableObject so = AssetDatabase.LoadAssetAtPath<ScriptableObject>(assetPath);
+            ScriptableObject so = null;
 
+#if UNITY_EDITOR
+            so = AssetDatabase.LoadAssetAtPath<ScriptableObject>(assetPath);
             if (so == null)
             {
                 so = ScriptableObject.CreateInstance(kvp.Value);
                 AssetDatabase.CreateAsset(so, assetPath);
                 Debug.Log($"[JsonToSO] {kvp.Key} SO가 생성되었습니다: {assetPath}");
             }
+#else
+        so = LoadOrCreateScriptableObject(kvp.Key, kvp.Value);
+#endif
 
             soDict[kvp.Key] = so;
 
@@ -82,10 +88,49 @@ public class JsonToSo
             }
         }
 
+#if UNITY_EDITOR
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
-
         Debug.Log("[JsonToSO] 모든 데이터가 업데이트되었습니다.");
+#endif
+    }
+
+    private static void SaveAllAssetsForAPI()
+    {
+#if !UNITY_EDITOR
+    Debug.Log("[JsonToSO API] API 환경에서 ScriptableObject 저장");
+
+    foreach (var kvp in soDict)
+    {
+        string savePath = Path.Combine(Application.persistentDataPath, $"{kvp.Key}.json");
+        string jsonData = JsonUtility.ToJson(kvp.Value, true);
+        
+        File.WriteAllText(savePath, jsonData);
+
+        Debug.Log($"[JsonToSO API] {kvp.Key} ScriptableObject 데이터가 {savePath}에 저장되었습니다.");
+    }
+
+    Debug.Log("[JsonToSO API] 모든 ScriptableObject가 저장되었습니다.");
+#endif
+    }
+
+    private static ScriptableObject LoadOrCreateScriptableObject(string key, Type type)
+    {
+        string loadPath = Path.Combine(Application.persistentDataPath, $"{key}.json");
+
+        if (File.Exists(loadPath))
+        {
+            string jsonData = File.ReadAllText(loadPath);
+            ScriptableObject so = ScriptableObject.CreateInstance(type);
+            JsonUtility.FromJsonOverwrite(jsonData, so);
+            Debug.Log($"[JsonToSO API] {key} ScriptableObject가 로드되었습니다.");
+            return so;
+        }
+        else
+        {
+            Debug.Log($"[JsonToSO API] {key} ScriptableObject가 존재하지 않아 새로 생성됩니다.");
+            return ScriptableObject.CreateInstance(type);
+        }
     }
 
     private static void LoadJsonData(ScriptableObject so, string jsonFilePath)

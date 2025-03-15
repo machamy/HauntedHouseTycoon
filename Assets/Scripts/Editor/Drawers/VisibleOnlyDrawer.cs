@@ -33,6 +33,7 @@ namespace Drawer
         
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
+            bool originalGuiEnabled = GUI.enabled;
             bool visible = false;
             if (Application.isPlaying)
             {
@@ -56,7 +57,7 @@ namespace Drawer
 
             GUI.enabled = false;
             EditorGUI.PropertyField(position, property, label, true);
-            GUI.enabled = true;
+            GUI.enabled = originalGuiEnabled;
         }
     }
 }

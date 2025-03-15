@@ -162,6 +162,7 @@ public class GuestObject : MonoBehaviour
             //TODO : 이전 이동 강제로 처리하기
             entity.transform.DOKill();
             entity.MoveWithTransform(targetRoom);
+            OnEnterRoom(targetRoom); // 강제 처리한다면, 이건 제대로 작동 안할 확률 높음
         }
         Direction targetDirection;
         Room nextRoom = CurrentRoom.FindLeftmostRoom(TycoonManager.Instance.Field, orientingDirection,out targetDirection);
@@ -177,6 +178,7 @@ public class GuestObject : MonoBehaviour
                 {
                     guestVisualController?.SetIsMoving(false);
                     entity.Move(nextRoom);
+                    OnEnterRoom(nextRoom);
                 });
             // entity.currentRoom = nextRoom;
             orientingDirection = targetDirection;

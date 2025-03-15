@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: f16ab65e672d4b7ab04080fb4d324ed5
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - inputActionAsset: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  - pointerPress: {fileID: 2635889194201982857, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  - pointerRelease: {fileID: 497988495747042906, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  - pointerHold: {fileID: 3430272182726442261, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  - pointerTap: {fileID: -4388546702209733245, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  - pointerPosition: {fileID: -3888677467079336054, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

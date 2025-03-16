@@ -77,6 +77,12 @@ public class GuestObject : MonoBehaviour, IFocusable
     public int NextScreamRequirement => screamRequirements.Count > 1 ? screamRequirements[1] : 0;
     
     public bool CanScream => FinalFear >= ScreamRequirement;
+    
+    public bool _screamedBefore = false;
+    /// <summary>
+    /// NPC 턴이 시작되기 전의 비명 여부
+    /// </summary>
+    public bool ScreamedBefore => _screamedBefore;
     public bool isPanic => FinalFear >= panic;
     public int MovedDistance => movedDistance;
 
@@ -102,6 +108,8 @@ public class GuestObject : MonoBehaviour, IFocusable
         OnValueChanged();
         screamEventChannel.OnScreamModified += OnCustomerScreamModified;
         turnEventChannelSo.OnPlayerTurnEnter += OnPlayerTurnEnter;
+        turnEventChannelSo.OnPlayerTurnExit += OnPlayerTurnExit;
+        turnEventChannelSo.OnNonPlayerTurnEnter += OnNonPlayerTurnEnter;
         turnEventChannelSo.OnNonPlayerTurnExit += OnNonPlayerTurnExit;
     }
     
@@ -233,15 +241,15 @@ public class GuestObject : MonoBehaviour, IFocusable
             int otherScream = i < other.screamRequirements.Count ? other.screamRequirements[i] : 0;
             if(thisScream == 0 && otherScream == 0)
                 continue;
-            newScreamRequirements.Add((int) (mergeCoeff1_1 * (thisScream + otherScream) / mergedGuestAmount));
+            newScreamRequirements.Add(Mathf.RoundToInt(mergeCoeff1_1 * (thisScream + otherScream) / mergedGuestAmount));
             debugMsg.Append($"{thisScream} + {otherScream} -> {newScreamRequirements[i]}\n");   
         }
         other.screamRequirements = newScreamRequirements;
         Debug.Log(debugMsg);
         
         // 공포치와 패닉치 : 모든 손님의 평균 * 계수
-        other.fear = (int)((fear * GuestAmount + other.fear * other.GuestAmount) / (float) mergedGuestAmount * mergeCoeff0_9);
-        other.panic = (int)((panic * GuestAmount + other.panic * other.GuestAmount) / (float)  mergedGuestAmount * mergeCoeff0_9);
+        other.fear = Mathf.RoundToInt((fear * GuestAmount + other.fear * other.GuestAmount) / (float) mergedGuestAmount * mergeCoeff0_9);
+        other.panic = Mathf.RoundToInt((panic * GuestAmount + other.panic * other.GuestAmount) / (float)  mergedGuestAmount * mergeCoeff0_9);
         
         // 공포 속성 내성 : 낮은 값으로 설정
         for (int i = 0; i < fearResistances.Count; i++)
@@ -266,7 +274,7 @@ public class GuestObject : MonoBehaviour, IFocusable
         
         
         // 피로계수 =  (손님들의 평균)
-        fatigueCoefficient = (int)((fatigueCoefficient * GuestAmount + other.fatigueCoefficient * other.GuestAmount) / (float) mergedGuestAmount);
+        fatigueCoefficient = Mathf.RoundToInt((fatigueCoefficient * GuestAmount + other.fatigueCoefficient * other.GuestAmount) / (float) mergedGuestAmount);
         
         other.movedDistance = Mathf.Max(movedDistance, other.movedDistance);
         other.OnValueChanged();
@@ -316,6 +324,7 @@ public class GuestObject : MonoBehaviour, IFocusable
         Debug.Log($"{entity.name} is screaming!");
         screamEventChannel.RaiseScreamEvent(new ScreamEventArg(this,0));
         screamRequirements.RemoveAt(0);
+        _screamedBefore = true;
         fear /= 2;
         OnValueChanged();
     }
@@ -365,14 +374,26 @@ public class GuestObject : MonoBehaviour, IFocusable
         fear = Mathf.CeilToInt(fear * 0.9f);
         // 감소량 = logcoefficient(aliveTurnCnt);
         float panicDecrease = Mathf.Log(aliveTurnCnt, fatigueCoefficient);
-        panic -= (int)panicDecrease;
+        panic = Mathf.Max(panic, panic - Mathf.RoundToInt(panicDecrease));
         // MoveBehaviour(); 이동은 GuestManager에서 처리
+    }
+    
+    public void OnPlayerTurnExit()
+    {
+        
+    }
+    
+    public void OnNonPlayerTurnEnter()
+    {
+        _screamedBefore = false;
     }
     
     public void OnNonPlayerTurnExit()
     {
         isCreatedNow = false;
     }
+    
+
     #endregion
 
     public void OnFocus()

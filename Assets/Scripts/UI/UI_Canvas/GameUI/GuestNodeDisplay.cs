@@ -90,7 +90,7 @@ public class GuestNodeDisplay : MonoBehaviour
         CurrentScreamLine.Value = (float)guestObject.ScreamRequirement / panic;
         NextScreamLine.Value = (float)guestObject.NextScreamRequirement / panic;
         currentFearCounter.text = guestObject.FinalFear.ToString();
-        statusText.text = guestObject.isPanic ? "Panic" : guestObject.CanScream ? "Scream" : "Normal";
+        statusText.text = guestObject.isPanic ? "Panic" : guestObject.ScreamedBefore ? "Scream" : "Normal";
     }
 
     public void OnValidate()

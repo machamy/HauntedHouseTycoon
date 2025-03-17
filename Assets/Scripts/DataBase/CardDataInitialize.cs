@@ -4,18 +4,18 @@ using UnityEditor;
 #endif
 
 [InitializeOnLoad]
-public class CardDataManager
+public class CardDataInitialize
 {
-    static CardDataManager()
+    static CardDataInitialize()
     {
         Initialize();
     }
 
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    /*[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     private static void RuntimeInitialize()
     {
         Initialize();
-    }
+    }*/
 
     private static void Initialize()
     {
@@ -23,7 +23,7 @@ public class CardDataManager
 #if UNITY_EDITOR
         JsonToSo.GenerateAllCardSO();
 #else
-        JsonToSo.GenerateAllCardSOForAPI();
+        //JsonToSo.GenerateAllCardSOForAPI();
 #endif
 
 #if UNITY_EDITOR

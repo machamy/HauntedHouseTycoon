@@ -64,19 +64,26 @@ public class JsonToSo
 
         foreach (var kvp in scriptableObjectTypes)
         {
-            string assetPath = $"Assets/Scripts/DataBase/ScriptableObjects/{kvp.Key}.asset";
+            string assetPath = $"Assets/Resources/AllDataBase/{kvp.Key}.asset";
             ScriptableObject so = null;
 
 #if UNITY_EDITOR
             so = AssetDatabase.LoadAssetAtPath<ScriptableObject>(assetPath);
             if (so == null)
             {
+                string directoryPath = Path.GetDirectoryName(assetPath);
+                if (!Directory.Exists(directoryPath))
+                {
+                    Directory.CreateDirectory(directoryPath);
+                    Debug.Log($"[JsonToSO] AllDataBase 폴더가 생성되었습니다: {directoryPath}");
+                }
+
                 so = ScriptableObject.CreateInstance(kvp.Value);
                 AssetDatabase.CreateAsset(so, assetPath);
                 Debug.Log($"[JsonToSO] {kvp.Key} SO가 생성되었습니다: {assetPath}");
             }
 #else
-        so = LoadOrCreateScriptableObject(kvp.Key, kvp.Value);
+    so = LoadOrCreateScriptableObject(kvp.Key, kvp.Value);
 #endif
 
             soDict[kvp.Key] = so;
@@ -98,8 +105,6 @@ public class JsonToSo
 
     private static void SaveAllAssetsForAPI()
     {
-
-        Debug.Log("[JsonToSO API] API 환경에서 ScriptableObject 업데이트");
 
         foreach (var kvp in soDict)
         {

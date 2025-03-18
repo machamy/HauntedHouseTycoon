@@ -26,6 +26,7 @@ namespace ClassBase.Card
         public int[] input3;
         public int[] input4;
 
+
         public enum Type
         {
             ENTER,

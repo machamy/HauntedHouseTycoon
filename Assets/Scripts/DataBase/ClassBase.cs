@@ -181,3 +181,20 @@ namespace ClassBase.GameObject
         public long[] EnterCardIndex;
     }
 }
+
+namespace ClassBase.ListName
+{
+    public enum DatabaseType
+    {
+        animationData,
+        cardDataBase,
+        cardEffectData,
+        cardpackData,
+        enterCardData,
+        keywordData,
+        marketingData,
+        textData,
+        traumaData,
+        visitorData
+    }
+}

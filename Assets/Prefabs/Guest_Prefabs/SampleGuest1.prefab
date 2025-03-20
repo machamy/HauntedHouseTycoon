@@ -3149,11 +3149,17 @@ MonoBehaviour:
   screamRequirements: 
   fear: 0
   panic: 20
+  fearResistances:
+  - 1
+  - 1
+  - 1
+  - 1
   fatigueCoefficient: 2
   guestVisualController: {fileID: 0}
   fearText: {fileID: 8768816609872421796}
   fearBar: {fileID: 0}
   orientingDirection: -1
+  _screamedBefore: 0
 --- !u!114 &6301191226933098189
 MonoBehaviour:
   m_ObjectHideFlags: 0

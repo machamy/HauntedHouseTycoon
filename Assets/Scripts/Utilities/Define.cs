@@ -1,5 +1,11 @@
 ﻿namespace Define
 {
+    public enum TurnType
+    {
+        None,
+        Player,
+        Npc
+    }
     public enum FearType
     {
         None,

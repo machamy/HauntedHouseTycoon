@@ -171,10 +171,10 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 60.89
+  m_Intensity: 1
   m_Range: 10
-  m_SpotAngle: 68.43558
-  m_InnerSpotAngle: 19.60576
+  m_SpotAngle: 95.744194
+  m_InnerSpotAngle: 46.91437
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -234,7 +234,7 @@ Transform:
   m_GameObject: {fileID: 33561076}
   serializedVersion: 2
   m_LocalRotation: {x: 0.38696244, y: 0.19940983, z: -0.086106434, w: 0.89614815}
-  m_LocalPosition: {x: 1, y: 1.96, z: 7.98}
+  m_LocalPosition: {x: 2.26, y: 1.537, z: 8.341}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -359,7 +359,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &52528962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -714,7 +714,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1d47cce453878e94ba9617fa77ea72df, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9528302, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -828,10 +828,10 @@ MonoBehaviour:
       actionNodes:
       - actionBlueprint: {fileID: 11400000, guid: b734331511c502648b5149874c00e4cb, type: 2}
         action:
-          rid: 6574065967534178360
+          rid: 8903814829570523150
       - actionBlueprint: {fileID: 11400000, guid: d58f103b126071f4dacd559af4f263a1, type: 2}
         action:
-          rid: 6574065967534178361
+          rid: 8903814829570523151
     nonlocalVariables:
       arguments: []
   - cardName: "\uC785\uC7A5\uCE74\uB4DC 1"
@@ -846,10 +846,10 @@ MonoBehaviour:
       actionNodes:
       - actionBlueprint: {fileID: 11400000, guid: b734331511c502648b5149874c00e4cb, type: 2}
         action:
-          rid: 6574065967534178362
+          rid: 8903814829570523152
       - actionBlueprint: {fileID: 11400000, guid: d58f103b126071f4dacd559af4f263a1, type: 2}
         action:
-          rid: 6574065967534178363
+          rid: 8903814829570523153
     nonlocalVariables:
       arguments: []
   - cardName: Exit
@@ -864,7 +864,7 @@ MonoBehaviour:
       actionNodes:
       - actionBlueprint: {fileID: 11400000, guid: edcb5c4c3330f094a86716c4236ab3ba, type: 2}
         action:
-          rid: 6574065967534178364
+          rid: 8903814829570523154
     nonlocalVariables:
       arguments: []
   - cardName: "\uACF5\uD3EC\uCE74\uB4DC 1"
@@ -879,7 +879,7 @@ MonoBehaviour:
       actionNodes:
       - actionBlueprint: {fileID: 11400000, guid: 9403b8892d9e6294f806240da7564da5, type: 2}
         action:
-          rid: 6574065967534178365
+          rid: 8903814829570523155
     nonlocalVariables:
       arguments: []
   - cardName: "\uACF5\uD3EC\uCE74\uB4DC 1"
@@ -894,7 +894,7 @@ MonoBehaviour:
       actionNodes:
       - actionBlueprint: {fileID: 11400000, guid: 9403b8892d9e6294f806240da7564da5, type: 2}
         action:
-          rid: 6574065967534178366
+          rid: 8903814829570523156
     nonlocalVariables:
       arguments: []
   - cardName: "\uACF5\uD3EC\uCE74\uB4DC 2"
@@ -909,7 +909,7 @@ MonoBehaviour:
       actionNodes:
       - actionBlueprint: {fileID: 11400000, guid: 9403b8892d9e6294f806240da7564da5, type: 2}
         action:
-          rid: 6574065967534178367
+          rid: 8903814829570523157
     nonlocalVariables:
       arguments: []
   - cardName: "\uACF5\uD3EC\uCE74\uB4DC 2"
@@ -924,7 +924,7 @@ MonoBehaviour:
       actionNodes:
       - actionBlueprint: {fileID: 11400000, guid: a523546ce626c7e4bbd04ca10187c0e0, type: 2}
         action:
-          rid: 6574065967534178368
+          rid: 8903814829570523158
     nonlocalVariables:
       arguments: []
   - cardName: "\uBE44\uBA85\uCE74\uB4DC 1"
@@ -939,7 +939,7 @@ MonoBehaviour:
       actionNodes:
       - actionBlueprint: {fileID: 11400000, guid: d92a58ffbd6f4ae49ba6704d7d8edcd4, type: 2}
         action:
-          rid: 6574065967534178369
+          rid: 8903814829570523159
     nonlocalVariables:
       arguments: []
   - cardName: "\uBE44\uBA85\uCE74\uB4DC 1"
@@ -954,7 +954,7 @@ MonoBehaviour:
       actionNodes:
       - actionBlueprint: {fileID: 11400000, guid: d92a58ffbd6f4ae49ba6704d7d8edcd4, type: 2}
         action:
-          rid: 6574065967534178370
+          rid: 8903814829570523160
     nonlocalVariables:
       arguments: []
   - cardName: "\uBE44\uBA85\uCE74\uB4DC 1"
@@ -969,7 +969,7 @@ MonoBehaviour:
       actionNodes:
       - actionBlueprint: {fileID: 11400000, guid: d92a58ffbd6f4ae49ba6704d7d8edcd4, type: 2}
         action:
-          rid: 6574065967534178371
+          rid: 8903814829570523161
     nonlocalVariables:
       arguments: []
   - cardName: "\uBCF4\uC870\uCE74\uB4DC 1"
@@ -984,7 +984,7 @@ MonoBehaviour:
       actionNodes:
       - actionBlueprint: {fileID: 11400000, guid: 005b237729eed70479846e30cb2f54c0, type: 2}
         action:
-          rid: 6574065967534178372
+          rid: 8903814829570523162
     nonlocalVariables:
       arguments: []
   - cardName: "\uBCF4\uC870\uCE74\uB4DC 2"
@@ -999,13 +999,13 @@ MonoBehaviour:
       actionNodes:
       - actionBlueprint: {fileID: 11400000, guid: 005b237729eed70479846e30cb2f54c0, type: 2}
         action:
-          rid: 6574065967534178373
+          rid: 8903814829570523163
     nonlocalVariables:
       arguments: []
   references:
     version: 2
     RefIds:
-    - rid: 6574065967534178360
+    - rid: 8903814829570523150
       type: {class: EntranceCardActionBlueprintSo/EntranceAction, ns: , asm: Assembly-CSharp}
       data:
         actionName: EntranceAction
@@ -1015,14 +1015,14 @@ MonoBehaviour:
         clockwise: 1
         customerAmount: 1
         prevGuestDirection: -1
-    - rid: 6574065967534178361
+    - rid: 8903814829570523151
       type: {class: SimpleDecayCardActionBlueprintSo/SimpleDecayCardAction, ns: , asm: Assembly-CSharp}
       data:
         actionName: SimpleDecayCardAction
         breakChain: 0
         DecayTurnAmount: 3
-        DecayTurnRemain: 2
-    - rid: 6574065967534178362
+        DecayTurnRemain: 3
+    - rid: 8903814829570523152
       type: {class: EntranceCardActionBlueprintSo/EntranceAction, ns: , asm: Assembly-CSharp}
       data:
         actionName: EntranceAction
@@ -1032,64 +1032,64 @@ MonoBehaviour:
         clockwise: 1
         customerAmount: 2
         prevGuestDirection: -1
-    - rid: 6574065967534178363
+    - rid: 8903814829570523153
       type: {class: SimpleDecayCardActionBlueprintSo/SimpleDecayCardAction, ns: , asm: Assembly-CSharp}
       data:
         actionName: SimpleDecayCardAction
         breakChain: 0
         DecayTurnAmount: 3
-        DecayTurnRemain: 2
-    - rid: 6574065967534178364
+        DecayTurnRemain: 3
+    - rid: 8903814829570523154
       type: {class: ExitCardActionBlueprintSo/ExitCardAction, ns: , asm: Assembly-CSharp}
       data:
         actionName: ExitCardAction
         breakChain: 0
-    - rid: 6574065967534178365
+    - rid: 8903814829570523155
       type: {class: SimpleFearCardActionBlueprintSo/SimpleFearCardAction, ns: , asm: Assembly-CSharp}
       data:
         actionName: SimpleFearCardAction
         breakChain: 0
         fearAmount: 3
-    - rid: 6574065967534178366
+    - rid: 8903814829570523156
       type: {class: SimpleFearCardActionBlueprintSo/SimpleFearCardAction, ns: , asm: Assembly-CSharp}
       data:
         actionName: SimpleFearCardAction
         breakChain: 0
         fearAmount: 3
-    - rid: 6574065967534178367
+    - rid: 8903814829570523157
       type: {class: SimpleFearCardActionBlueprintSo/SimpleFearCardAction, ns: , asm: Assembly-CSharp}
       data:
         actionName: SimpleFearCardAction
         breakChain: 0
         fearAmount: 3
-    - rid: 6574065967534178368
+    - rid: 8903814829570523158
       type: {class: MovementFearCardActionBlueprintSo/EntranceAction, ns: , asm: Assembly-CSharp}
       data:
         actionName: EntranceAction
         breakChain: 0
         FearMovementCoefficient: 1
-    - rid: 6574065967534178369
+    - rid: 8903814829570523159
       type: {class: SimpleScreamCardActionBlueprintSo/SimpleScreamCardAction, ns: , asm: Assembly-CSharp}
       data:
         actionName: SimpleScreamCardAction
         breakChain: 0
-    - rid: 6574065967534178370
+    - rid: 8903814829570523160
       type: {class: SimpleScreamCardActionBlueprintSo/SimpleScreamCardAction, ns: , asm: Assembly-CSharp}
       data:
         actionName: SimpleScreamCardAction
         breakChain: 0
-    - rid: 6574065967534178371
+    - rid: 8903814829570523161
       type: {class: SimpleScreamCardActionBlueprintSo/SimpleScreamCardAction, ns: , asm: Assembly-CSharp}
       data:
         actionName: SimpleScreamCardAction
         breakChain: 0
-    - rid: 6574065967534178372
+    - rid: 8903814829570523162
       type: {class: TestSupportCardActionBlueprintSo/TestSupportCard, ns: , asm: Assembly-CSharp}
       data:
         actionName: TestSupportCard
         breakChain: 0
         fearGlobalAmount: 2
-    - rid: 6574065967534178373
+    - rid: 8903814829570523163
       type: {class: TestSupportCardActionBlueprintSo/TestSupportCard, ns: , asm: Assembly-CSharp}
       data:
         actionName: TestSupportCard
@@ -1204,6 +1204,7 @@ MonoBehaviour:
   turnChannel: {fileID: 11400000, guid: b30948b240df495448b1d9188f3ad6dc, type: 2}
   delayedTurnChannel: {fileID: 11400000, guid: 755857a21d55fc24a9e4fb31b1db70bf, type: 2}
   guestQueueBarUI: {fileID: 1539539432}
+  defaultGuestData: {fileID: 0}
   guestQueue: []
   guestNotifyInterval: 0.4
 --- !u!1 &326737595
@@ -2085,7 +2086,7 @@ Transform:
   m_GameObject: {fileID: 669471118}
   serializedVersion: 2
   m_LocalRotation: {x: 0.28827977, y: 0, z: 0, w: 0.95754623}
-  m_LocalPosition: {x: 1.087, y: 1.139, z: 7.348}
+  m_LocalPosition: {x: 1.087, y: 2.243, z: 7.875}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2125,10 +2126,10 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 52.7
+  m_Intensity: 1
   m_Range: 10
-  m_SpotAngle: 68.43558
-  m_InnerSpotAngle: 19.60576
+  m_SpotAngle: 95.744194
+  m_InnerSpotAngle: 46.91437
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -2266,6 +2267,66 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &742450977
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 218083782189043252, guid: 91ad9983c9181b443a102dd1570040ea, type: 3}
+      propertyPath: m_Name
+      value: SampleGuest1
+      objectReference: {fileID: 0}
+    - target: {fileID: 661533572590808637, guid: 91ad9983c9181b443a102dd1570040ea, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 661533572590808637, guid: 91ad9983c9181b443a102dd1570040ea, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 661533572590808637, guid: 91ad9983c9181b443a102dd1570040ea, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 661533572590808637, guid: 91ad9983c9181b443a102dd1570040ea, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.999962
+      objectReference: {fileID: 0}
+    - target: {fileID: 661533572590808637, guid: 91ad9983c9181b443a102dd1570040ea, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 661533572590808637, guid: 91ad9983c9181b443a102dd1570040ea, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.008726558
+      objectReference: {fileID: 0}
+    - target: {fileID: 661533572590808637, guid: 91ad9983c9181b443a102dd1570040ea, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 661533572590808637, guid: 91ad9983c9181b443a102dd1570040ea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 661533572590808637, guid: 91ad9983c9181b443a102dd1570040ea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 661533572590808637, guid: 91ad9983c9181b443a102dd1570040ea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4867489662486292994, guid: 91ad9983c9181b443a102dd1570040ea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+  m_SourcePrefab: {fileID: 100100000, guid: 91ad9983c9181b443a102dd1570040ea, type: 3}
 --- !u!1 &750362608
 GameObject:
   m_ObjectHideFlags: 0
@@ -2960,7 +3021,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &983594673
 Transform:
   m_ObjectHideFlags: 0
@@ -2970,12 +3031,13 @@ Transform:
   m_GameObject: {fileID: 983594672}
   serializedVersion: 2
   m_LocalRotation: {x: 0.02478112, y: 0, z: 0, w: 0.9996929}
-  m_LocalPosition: {x: 5.64, y: 1.46, z: -5.92}
+  m_LocalPosition: {x: 3.98, y: 1.15, z: -5.94}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 33561079}
   - {fileID: 669471119}
+  - {fileID: 1173645248}
   - {fileID: 1229964220}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 2.84, y: 0, z: 0}
@@ -3161,6 +3223,127 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1173645247
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1173645248}
+  - component: {fileID: 1173645250}
+  - component: {fileID: 1173645249}
+  m_Layer: 0
+  m_Name: "\uC815\uBA74\uBE5B (1)"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1173645248
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173645247}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.087, y: 0.931, z: 7.14}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 983594673}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1173645249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173645247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
+--- !u!108 &1173645250
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173645247}
+  m_Enabled: 1
+  serializedVersion: 11
+  m_Type: 0
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_Range: 10
+  m_SpotAngle: 95.744194
+  m_InnerSpotAngle: 46.91437
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
 --- !u!1 &1186040914
 GameObject:
   m_ObjectHideFlags: 0
@@ -3439,10 +3622,10 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 52.7
+  m_Intensity: 1
   m_Range: 10
-  m_SpotAngle: 68.43558
-  m_InnerSpotAngle: 19.60576
+  m_SpotAngle: 95.744194
+  m_InnerSpotAngle: 46.91437
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -4748,3 +4931,4 @@ SceneRoots:
   - {fileID: 1791067604}
   - {fileID: 201948501}
   - {fileID: 983594673}
+  - {fileID: 742450977}

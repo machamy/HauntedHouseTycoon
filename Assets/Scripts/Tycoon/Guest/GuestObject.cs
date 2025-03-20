@@ -322,7 +322,10 @@ public class GuestObject : MonoBehaviour, IFocusable
     {
         guestVisualController.PlayAnimation(AnimationType.SCREAM);
         Debug.Log($"{entity.name} is screaming!");
-        screamEventChannel.RaiseScreamEvent(new ScreamEventArg(this,0));
+        ScreamEventArgs screamEventArg = ScreamEventArgs.Get();
+        screamEventArg.GuestObject = this;
+        screamEventArg.modifier = 0;
+        screamEventChannel.RaiseScreamEvent(screamEventArg);
         screamRequirements.RemoveAt(0);
         _screamedBefore = true;
         fear /= 2;
@@ -362,7 +365,7 @@ public class GuestObject : MonoBehaviour, IFocusable
     #region Event Handlers
 
     
-    public void OnCustomerScreamModified(ScreamEventArg screamEventArg)
+    public void OnCustomerScreamModified(ScreamEventArgs screamEventArg)
     {
         AddFearSimple(screamEventArg.modifier + 1);
     }

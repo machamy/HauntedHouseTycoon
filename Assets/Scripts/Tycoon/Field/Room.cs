@@ -241,7 +241,7 @@ public class Room : MonoBehaviour
         }
     }
     
-    private void OnScream(ScreamEventArg screamEventArg)
+    private void OnScream(ScreamEventArgs screamEventArg)
     {
         if (cardData != null)
         {

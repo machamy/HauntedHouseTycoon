@@ -5,6 +5,8 @@ using System.Linq;
 using System.Collections;
 using System;
 using ClassBase.Card;
+using CardDataManager;
+using Newtonsoft.Json;
 
 public class CardDatabaseHolder : MonoBehaviour
 {
@@ -27,6 +29,8 @@ public class CardDatabaseHolder : MonoBehaviour
 
     private void Start()
     {
+        CardDataHelper helper = new CardDataHelper();
+        CardDataHelper.Initialize();
         LoadAllScriptableObjects();
         ConvertAllListsToDictionaries();
     }

@@ -1,0 +1,126 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b0775669f887644b95b361e9445b1b6, type: 3}
+  m_Name: TextData
+  m_EditorClassIdentifier: 
+  textDataList:
+  - Index: 0
+    StringKey: string
+    KOR: eLocalize
+    EN: eLocalize
+  - Index: 10000101
+    StringKey: 
+    KOR: "\uD0C4\uD658 1"
+    EN: 
+  - Index: 10000102
+    StringKey: 
+    KOR: 
+    EN: 
+  - Index: 10000201
+    StringKey: 
+    KOR: "\uD0C4\uD658 2"
+    EN: 
+  - Index: 10000202
+    StringKey: 
+    KOR: 
+    EN: 
+  - Index: 12000301
+    StringKey: 
+    KOR: "\uD0C4\uD658 3"
+    EN: 
+  - Index: 12000302
+    StringKey: 
+    KOR: 
+    EN: 
+  - Index: 12000401
+    StringKey: 
+    KOR: "\uCD1D\uD754"
+    EN: 
+  - Index: 12000402
+    StringKey: 
+    KOR: 
+    EN: 
+  - Index: 12000501
+    StringKey: 
+    KOR: "\uCC29\uAC01"
+    EN: 
+  - Index: 12000502
+    StringKey: 
+    KOR: 
+    EN: 
+  - Index: 12000601
+    StringKey: 
+    KOR: "\uC2A4\uCE5C \uD0C4\uD658"
+    EN: 
+  - Index: 12000602
+    StringKey: 
+    KOR: 
+    EN: 
+  - Index: 12000701
+    StringKey: 
+    KOR: "\uD0C4\uD658 \uD68D\uB4DD"
+    EN: 
+  - Index: 12000702
+    StringKey: 
+    KOR: 
+    EN: 
+  - Index: 12000801
+    StringKey: 
+    KOR: "\uB09C\uC0AC!"
+    EN: 
+  - Index: 12000802
+    StringKey: 
+    KOR: 
+    EN: 
+  - Index: 12000901
+    StringKey: 
+    KOR: "\uB179\uC2A8 \uC1E0\uCC3D\uC0B4"
+    EN: 
+  - Index: 12000902
+    StringKey: 
+    KOR: "OnGuestEnter \uC77C\uB54C ToCurrentGuest\uC5D0 \uB808\uBCA8\uBCC4{input1}\uB9CC\uD07C\uC758
+      \uC2DC\uAC01\uC801 \uACF5\uD3EC\uB97C \uC81C\uACF5"
+    EN: 
+  - Index: 12001001
+    StringKey: 
+    KOR: "\uC090\uAC71\uAC70\uB9AC\uB294 \uBB38"
+    EN: 
+  - Index: 12001002
+    StringKey: 
+    KOR: "OnGuestEnter \uC77C\uB54C ToCurrentGuest\uC5D0 \uB808\uBCA8\uBCC4{input1}\uB9CC\uD07C\uC758
+      \uCCAD\uAC01\uC801 \uACF5\uD3EC\uB97C \uC81C\uACF5"
+    EN: 
+  - Index: 12001101
+    StringKey: 
+    KOR: "\uACF0\uD321\uC774 \uB0C4\uC0C8"
+    EN: 
+  - Index: 12001102
+    StringKey: 
+    KOR: "OnGuestEnter \uC77C\uB54C ToCurrentGuest\uC5D0 \uB808\uBCA8\uBCC4{input1}\uB9CC\uD07C\uC758
+      \uD6C4\uAC01\uC801 \uACF5\uD3EC\uB97C \uC81C\uACF5"
+    EN: 
+  - Index: 12001201
+    StringKey: 
+    KOR: "\uD280\uC5B4\uB098\uC624\uB294 \uD574\uACE8"
+    EN: 
+  - Index: 12001202
+    StringKey: 
+    KOR: 
+    EN: 
+  - Index: 12001301
+    StringKey: 
+    KOR: "\uC5B4\uB450\uC6CC \uC18D\uC774 \uBCF4\uC774\uC9C0 \uC54A\uB294 \uAC10\uC625"
+    EN: 
+  - Index: 12001302
+    StringKey: 
+    KOR: "ToCrossCard\uAC00 \uC81C\uACF5\uD558\uB294 \uACF5\uD3EC +1"
+    EN: 

@@ -12,7 +12,7 @@ using CommonFunction.TypeConversion;
 [CreateAssetMenu(menuName = "CardDataBaseSO")]
 public class CardDataBaseSO : ScriptableObject
 {
-    [SerializeField] public List<ClassBase.Card.CardClass> cardDataList = new List<ClassBase.Card.CardClass>();
+    [SerializeField] public List<ClassBase.Card.CardClass> cardDataBaseList = new List<ClassBase.Card.CardClass>();
 
     public void LoadFromJSON(string jsonFilePath)
     {
@@ -21,7 +21,7 @@ public class CardDataBaseSO : ScriptableObject
 
         JArray cardArray = JArray.Parse(json);
 
-        cardDataList.Clear();
+        cardDataBaseList.Clear();
 
 
         foreach (JToken token in cardArray)
@@ -64,7 +64,7 @@ public class CardDataBaseSO : ScriptableObject
                 input4 = input4
             };
 
-            cardDataList.Add(newCard);
+            cardDataBaseList.Add(newCard);
         }
 #if UNITY_EDITOR
         EditorApplication.delayCall += () =>
@@ -72,6 +72,8 @@ public class CardDataBaseSO : ScriptableObject
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
         };
+
+        EditorUtility.SetDirty(this);
 #else
         SaveForAPI();
 #endif
@@ -79,7 +81,7 @@ public class CardDataBaseSO : ScriptableObject
     private void SaveForAPI()
     {
         string savePath = Path.Combine(Application.persistentDataPath, "SavedAnimationData.json");
-        string jsonData = Newtonsoft.Json.JsonConvert.SerializeObject(cardDataList, Newtonsoft.Json.Formatting.Indented);
+        string jsonData = Newtonsoft.Json.JsonConvert.SerializeObject(cardDataBaseList, Newtonsoft.Json.Formatting.Indented);
 
         File.WriteAllText(savePath, jsonData);
     }

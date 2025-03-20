@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 940cb5cb9e38a8f4d84557984afa5f20, type: 3}
+  m_Name: VisitorData
+  m_EditorClassIdentifier: 
+  visitorDataList:
+  - Index: 0
+    sex: -1
+    Age: 0
+    TraumaIndex: 
+    TraumaRatio: []
+    VisualHorrorTolerance: 0
+    AuditoryHorrorTolerance: 0
+    ScentHorrorTolerance: 0
+    TouchHorrorTolerance: 0
+    RequiredHorrorAmount: 
+    PanicAmount: 0
+    AmountOfTiredInTurn: 0
+    panicResponse: -1
+    PanicWeightedAmount: 
+    ExitGetScreamAmount: 0
+    EnterCardIndex: 
+  - Index: 0
+    sex: 0
+    Age: 0
+    TraumaIndex: 44db8a0000000000
+    TraumaRatio:
+    - 1.5
+    VisualHorrorTolerance: 1
+    AuditoryHorrorTolerance: 1
+    ScentHorrorTolerance: 1
+    TouchHorrorTolerance: 1
+    RequiredHorrorAmount: 050000000700000009000000
+    PanicAmount: 15
+    AmountOfTiredInTurn: 0.1
+    panicResponse: -1
+    PanicWeightedAmount: 
+    ExitGetScreamAmount: 2
+    EnterCardIndex: a4420f0000000000

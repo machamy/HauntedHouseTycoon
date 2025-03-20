@@ -52,12 +52,12 @@ public class CardSelection : MonoBehaviour, IPointerEnterHandler,IPointerExitHan
     
     private void OnEnable()
     {
-        turnEventChannelSo.OnPlayerTurnExit += OnPlayerTurnExit;
+        turnEventChannelSo.OnPlayerTurnExitEvent.AddListener(OnPlayerTurnExit);
     }
     
     private void OnDisable()
     {
-        turnEventChannelSo.OnPlayerTurnExit -= OnPlayerTurnExit;
+        turnEventChannelSo.OnPlayerTurnExitEvent.RemoveListener(OnPlayerTurnExit);
     }
 
     #region Events
@@ -172,7 +172,7 @@ public class CardSelection : MonoBehaviour, IPointerEnterHandler,IPointerExitHan
     }
     
     
-    private void OnPlayerTurnExit()
+    private void OnPlayerTurnExit(TurnEventArgs e)
     {
         if (IsUsed)
             return;

@@ -19,7 +19,7 @@ public class GuestManager : MonoBehaviour
     [Header("Channels")]
     [SerializeField] private CreateGuestChannelSO createGuestChannel;
     [SerializeField] private TurnEventChannelSO turnChannel;
-    [SerializeField] private TurnEventChannelSO delayedTurnChannel;
+    // [SerializeField] private TurnEventChannelSO delayedTurnChannel;
     [FormerlySerializedAs("guestQueueBar")]
     [Header("References")]
     [SerializeField] private GuestQueueBarUI guestQueueBarUI;
@@ -38,7 +38,7 @@ public class GuestManager : MonoBehaviour
         // turnChannel.OnNonPlayerTurnExit += OnNonPlayerTurnExit;
         
         
-        delayedTurnChannel.OnNonPlayerTurnEnter += OnDelayedNonPlayerTurnEnter;
+        turnChannel.OnNonPlayerTurnEnterEvent.AddListener(OnDelayedNonPlayerTurnEnter,1);
     }
     
     private void OnDisable()
@@ -50,7 +50,7 @@ public class GuestManager : MonoBehaviour
         // turnChannel.OnNonPlayerTurnExit -= OnNonPlayerTurnExit;
         
         
-        delayedTurnChannel.OnNonPlayerTurnEnter -= OnDelayedNonPlayerTurnEnter;
+        turnChannel.OnNonPlayerTurnEnterEvent.RemoveListener(OnDelayedNonPlayerTurnEnter,1);
     }
 
     // private void OnPlayerTurnEnter()
@@ -64,7 +64,7 @@ public class GuestManager : MonoBehaviour
     // }
     
     private int haveToMoveIndex = 0;
-    private void OnDelayedNonPlayerTurnEnter()
+    private void OnDelayedNonPlayerTurnEnter(TurnEventArgs args)
     {
         haveToMoveIndex = 0;
         StartCoroutine(NotifyGuestQueue());

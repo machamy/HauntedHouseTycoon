@@ -16,7 +16,7 @@ public class GuestObject : MonoBehaviour, IFocusable
     [Header("Events")]
     [SerializeField] private ScreamEventChannelSO screamEventChannel;
     [SerializeField] private TurnEventChannelSO turnEventChannelSo;
-    [SerializeField] private CustomerRoomEventSO roomEventChannelSo;
+    [SerializeField] private GuestRoomEventSO roomEventChannelSo;
     [FormerlySerializedAs("guestDataArray")]
     [FormerlySerializedAs("guestData")]
     [Header("Guest Properties")]
@@ -107,17 +107,19 @@ public class GuestObject : MonoBehaviour, IFocusable
     {
         OnValueChanged();
         screamEventChannel.OnScreamModified += OnCustomerScreamModified;
-        turnEventChannelSo.OnPlayerTurnEnter += OnPlayerTurnEnter;
-        turnEventChannelSo.OnPlayerTurnExit += OnPlayerTurnExit;
-        turnEventChannelSo.OnNonPlayerTurnEnter += OnNonPlayerTurnEnter;
-        turnEventChannelSo.OnNonPlayerTurnExit += OnNonPlayerTurnExit;
+        turnEventChannelSo.OnPlayerTurnEnterEvent.AddListener(OnPlayerTurnEnter);
+        turnEventChannelSo.OnPlayerTurnExitEvent.AddListener(OnPlayerTurnExit);
+        turnEventChannelSo.OnNonPlayerTurnEnterEvent.AddListener(OnNonPlayerTurnEnter);
+        turnEventChannelSo.OnNonPlayerTurnExitEvent.AddListener(OnNonPlayerTurnExit); 
     }
     
     private void OnDisable()
     {
         screamEventChannel.OnScreamModified -= OnCustomerScreamModified;
-        turnEventChannelSo.OnPlayerTurnEnter -= OnPlayerTurnEnter;
-        turnEventChannelSo.OnNonPlayerTurnExit -= OnNonPlayerTurnExit;
+        turnEventChannelSo.OnPlayerTurnEnterEvent.RemoveListener(OnPlayerTurnEnter);
+        turnEventChannelSo.OnPlayerTurnExitEvent.RemoveListener(OnPlayerTurnExit);
+        turnEventChannelSo.OnNonPlayerTurnEnterEvent.RemoveListener(OnNonPlayerTurnEnter);
+        turnEventChannelSo.OnNonPlayerTurnExitEvent.RemoveListener(OnNonPlayerTurnExit);
         
     }
     
@@ -180,6 +182,14 @@ public class GuestObject : MonoBehaviour, IFocusable
         if (nextRoom)
         {
             targetRoom = nextRoom;
+            
+            GuestMoveEventArgs e = GuestMoveEventArgs.Get();
+            e.guestObject = this;
+            e.fromRoom = CurrentRoom;
+            e.toRoom = nextRoom;
+            e.isEnter = false;
+            roomEventChannelSo.RaiseCustomerRoomExit(e);
+            
             // Debug.Log($"from {CurrentRoom.name} to {nextRoom.name}");
             movedDistance++;
             guestVisualController?.PlayAnimation(AnimationType.MOVE);
@@ -195,7 +205,13 @@ public class GuestObject : MonoBehaviour, IFocusable
                 });
             // entity.currentRoom = nextRoom;
             orientingDirection = targetDirection;
-            roomEventChannelSo.RaiseCustomerRoomEnter(this, nextRoom);
+            
+            GuestMoveEventArgs nextRoomEventArgs = GuestMoveEventArgs.Get();
+            nextRoomEventArgs.guestObject = this;
+            nextRoomEventArgs.fromRoom = CurrentRoom;
+            nextRoomEventArgs.toRoom = nextRoom;
+            nextRoomEventArgs.isEnter = true;
+            roomEventChannelSo.RaiseCustomerRoomEnter(nextRoomEventArgs);
         }
         else
         {
@@ -371,7 +387,7 @@ public class GuestObject : MonoBehaviour, IFocusable
     }
 
 
-    public void OnPlayerTurnEnter()
+    public void OnPlayerTurnEnter(TurnEventArgs e)
     {
         aliveTurnCnt += 1;
         fear = Mathf.CeilToInt(fear * 0.9f);
@@ -381,17 +397,17 @@ public class GuestObject : MonoBehaviour, IFocusable
         // MoveBehaviour(); 이동은 GuestManager에서 처리
     }
     
-    public void OnPlayerTurnExit()
+    public void OnPlayerTurnExit(TurnEventArgs e)
     {
         
     }
     
-    public void OnNonPlayerTurnEnter()
+    public void OnNonPlayerTurnEnter(TurnEventArgs e)
     {
         _screamedBefore = false;
     }
     
-    public void OnNonPlayerTurnExit()
+    public void OnNonPlayerTurnExit(TurnEventArgs e)
     {
         isCreatedNow = false;
     }

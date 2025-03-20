@@ -26,14 +26,12 @@ public class HandManager : MonoBehaviour
 
     private void OnEnable()
     {
-        turnEventChannel.OnPlayerTurnEnter += OnPlayerTurnEnter;
-        turnEventChannel.OnPlayerTurnExit += OnturnExit;
+
     }
     
     private void OnDisable()
     {
-        turnEventChannel.OnPlayerTurnEnter -= OnPlayerTurnEnter;
-        turnEventChannel.OnPlayerTurnExit -= OnturnExit;
+
     }
     
     private void OnPlayerTurnEnter()

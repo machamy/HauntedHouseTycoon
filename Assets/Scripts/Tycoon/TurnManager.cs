@@ -1,5 +1,6 @@
 using System;
 using DefaultNamespace;
+using Define;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -22,7 +23,7 @@ public class TurnManager : MonoBehaviour
     [SerializeField] private TurnIndicatingSliderUI turnIndicatingSliderUI;
     [Header("Events")]
     [SerializeField] private TurnEventChannelSO turnEventChannelSo;
-    [SerializeField] private TurnEventChannelSO delayedTurnEventChannelSo;
+    // [SerializeField] private TurnEventChannelSO delayedTurnEventChannelSo;
     private void Start()
     {
         turnVariableSO.Value = 0;
@@ -70,10 +71,17 @@ public class TurnManager : MonoBehaviour
         turnIndicatingSliderUI.UpdateColor();
         remainingTurnDuration = maxPlayerTurnDuration;
         turnVariableSO.Value = (turnVariableSO.Value + 1);
-        turnEventChannelSo.RaiseNonPlayerTurnExitEvent();
-        delayedTurnEventChannelSo.RaiseNonPlayerTurnExitEvent();
-        turnEventChannelSo.RaisePlayerTurnEnterEvent();
-        delayedTurnEventChannelSo.RaisePlayerTurnEnterEvent();
+
+        TurnEventArgs args = TurnEventArgs.Get();
+        args.turnType = TurnType.Npc;
+        args.turnEventType = TurnEventType.Exit;
+        turnEventChannelSo.RaiseNonPlayerTurnExitEvent(args);
+        args.turnEventType = TurnEventType.Enter;
+        turnEventChannelSo.RaiseNonPlayerTurnEnterEvent(args);
+        args.turnType = TurnType.Player;
+        args.turnEventType = TurnEventType.Enter;
+        turnEventChannelSo.RaisePlayerTurnEnterEvent(args);
+        args.turnEventType = TurnEventType.Exit;
     }
 
     /// <summary>
@@ -103,9 +111,15 @@ public class TurnManager : MonoBehaviour
         turnIndicatingSliderUI.isPlayerTurn = false;
         turnIndicatingSliderUI.UpdateColor();
         remainingTurnDuration = maxNonplayerTurnDuration;
-        turnEventChannelSo.RaisePlayerTurnExitEvent();
-        delayedTurnEventChannelSo.RaisePlayerTurnExitEvent();
-        turnEventChannelSo.RaiseNonPlayerTurnEnterEvent();
-        delayedTurnEventChannelSo.RaiseNonPlayerTurnEnterEvent();
+        
+        TurnEventArgs args = TurnEventArgs.Get();
+        args.turnType = TurnType.Player;
+        args.turnEventType = TurnEventType.Exit;
+        turnEventChannelSo.RaisePlayerTurnExitEvent(args);
+        args.turnEventType = TurnEventType.Exit;
+        args.turnType = TurnType.Npc;
+        args.turnEventType = TurnEventType.Enter;
+        turnEventChannelSo.RaiseNonPlayerTurnEnterEvent(args);
+        args.turnEventType = TurnEventType.Exit;
     }
 }

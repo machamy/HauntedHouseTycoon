@@ -6,6 +6,14 @@
         Player,
         Npc
     }
+    
+    public enum TurnEventType
+    {
+        None,
+        Enter,
+        Exit
+    }
+    
     public enum FearType
     {
         None,
@@ -25,7 +33,10 @@
 
     public enum Sex
     {
+        None,
         Male,
-        Female
+        Female,
     }
+    
+    // public enum 
 }

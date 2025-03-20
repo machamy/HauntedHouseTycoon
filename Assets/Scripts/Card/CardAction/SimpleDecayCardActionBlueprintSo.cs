@@ -16,7 +16,7 @@ public class SimpleDecayCardActionBlueprintSo : CardActionBlueprintSO
         public int DecayTurnAmount = 3;
         public int DecayTurnRemain = 3;
         
-        public override bool OnCardPlaced(Room room, CardData cardData)
+        public override bool OnCardPlaced(CardEventArgs cardEvent)
         {
             DecayTurnRemain = DecayTurnAmount;
             // Debug.Log($"[SimpleDecayCardActionSO::OnCardPlaced] {room.name} : {DecayTurnAmount} turns remain");
@@ -24,7 +24,7 @@ public class SimpleDecayCardActionBlueprintSo : CardActionBlueprintSO
             return breakChain;
         }
 
-        public override bool OnNpcTurnExit(Room room, CardData cardData)
+        public override bool OnNpcTurnExit(TurnEventArgs turnEvent)
         {
             DecayTurnRemain -= 1;
             if(DecayTurnRemain <= 0)

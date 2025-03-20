@@ -8,6 +8,10 @@ public abstract class EventArgs : System.EventArgs
 public abstract class EventArgs<T> : EventArgs where T : EventArgs<T>, new()
 {
     private static Queue<T> pool = new Queue<T>();
+    
+    protected EventArgs()
+    {
+    }
 
     public static T Get()
     {

@@ -10,13 +10,13 @@ public class TestSupportCardActionBlueprintSo : CardActionBlueprintSO
     {
         public int fearGlobalAmount = 2;
         
-        public override bool OnCardPlaced(Room room, CardData cardData)
+        public override bool OnCardPlaced(CardEventArgs cardEvent)
         {
             cardData.nonlocalVariables.AddInt(CardDataVariables.Key.FearGlobalAmount, fearGlobalAmount);
             return false;
         }
     
-        public override bool OnCardRemoved(Room room, CardData cardData)
+        public override bool OnCardRemoved(CardEventArgs cardEvent)
         {
             cardData.nonlocalVariables.AddInt(CardDataVariables.Key.FearGlobalAmount, -fearGlobalAmount);
             return false;

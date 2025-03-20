@@ -36,6 +36,11 @@ public class CardData : ICloneable<CardData>, ICopyable<CardData>
     {
         cardActionContainer.OnValidate();
     }
+    
+    public void OnCardPlaced(CardEventArgs cardEvent)
+    {
+        cardActionContainer.Initialize(cardEvent.room, this);
+    }
 
 
     /// <summary>

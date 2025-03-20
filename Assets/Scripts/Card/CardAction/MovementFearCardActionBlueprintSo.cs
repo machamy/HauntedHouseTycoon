@@ -11,10 +11,10 @@ public class MovementFearCardActionBlueprintSo : CardActionBlueprintSO
     {
         public int FearMovementCoefficient = 2;
         
-        public override bool OnGuestEnter(Room room, CardData cardData, GuestObject guestObject)
+        public override bool OnGuestEnter(GuestMoveEventArgs gusetMoveEventArgs)
             {
                 int fearCoef = FearMovementCoefficient;
-                guestObject.AddFearSimple(fearCoef * guestObject.MovedDistance);
+                gusetMoveEventArgs.guestObject.AddFearSimple(fearCoef * gusetMoveEventArgs.guestObject.MovedDistance);
                 return breakChain;
             }
     }

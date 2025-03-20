@@ -5,7 +5,7 @@ public class TurnEndOnPlacedActionBlueprintSo : CardActionBlueprintSO
     [System.Serializable]
     public class TurnEndOnPlacedAction : CardAction
     {
-        public override bool OnCardPlaced(Room room, CardData cardData)
+        public override bool OnCardPlaced(CardEventArgs cardEvent)
         {
             if (room == null)
                 return false;

@@ -17,7 +17,7 @@ public class EntranceCardActionBlueprintSo : CardActionBlueprintSO
         public int customerAmount = 1;
         public Direction prevGuestDirection = Direction.None;
         
-        public override bool OnNpcTurnEnter(Room room, CardData cardData)
+        public override bool OnNpcTurnEnter(TurnEventArgs turnEvent)
         {
             int amount = customerAmount;
             Debug.Log($"[EntranceCardActionSO::OnTurnExit] {room.name} : Summon {amount} customers");

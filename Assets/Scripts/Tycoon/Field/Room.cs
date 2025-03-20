@@ -21,7 +21,7 @@ public class Room : MonoBehaviour
     // [SerializeField] List<GuestObject> guests = new List<GuestObject>();
     [Header("Events")]
     [SerializeField] private TurnEventChannelSO turnEventChannelSo;
-    [SerializeField] private CustomerRoomEventSO roomEventChannelSo;
+    [SerializeField] private GuestRoomEventSO roomEventChannelSo;
     [SerializeField] private ScreamEventChannelSO screamEventChannelSo;
     public Vector2Int Coordinate => coordinate;
     public CardData CardData => cardData;
@@ -66,7 +66,10 @@ public class Room : MonoBehaviour
         DiscardCard();
         originalCardData = cardData;
         this.cardData.CopyFrom(cardData);
-        cardData.cardActionContainer.InvokeOnCardPlaced(this, this.cardData);
+        CardEventArgs placeEvent = CardEventArgs.Get();
+        placeEvent.room = this;
+        placeEvent.cardData = cardData;
+        cardData.OnCardPlaced(placeEvent);
         UpdatePlacedCard(uiSize);
         return true;
     }
@@ -74,7 +77,10 @@ public class Room : MonoBehaviour
     public bool DiscardCard()
     {
         Debug.Log($"DiscardCard {name}");
-        cardData.cardActionContainer.InvokeOnCardRemoved(this, cardData);
+        CardEventArgs discardEvent = CardEventArgs.Get();
+        discardEvent.room = this;
+        discardEvent.cardData = cardData;
+        cardData.cardActionContainer.InvokeOnCardRemoved(discardEvent);
         CardDataPool.Instance.Release(cardData);
         cardData = CardDataPool.Instance.Get();
         cardData.CopyFrom(defaultCardData.OriginalCardData);
@@ -161,11 +167,11 @@ public class Room : MonoBehaviour
     #region Event Handlers
     private void OnEnable()
     {
-        turnEventChannelSo.OnPlayerTurnEnter += OnPlayerTurnEnter;
-        turnEventChannelSo.OnNonPlayerTurnEnter += OnNpcTurnEnter;
-        turnEventChannelSo.OnNonPlayerTurnExit += OnNpcTurnExit;
-        roomEventChannelSo.OnCustomerRoomEnter += OnCustomerRoomEnter;
-        roomEventChannelSo.OnCustomerRoomExit += OnCustomerRoomExit;
+        turnEventChannelSo.OnPlayerTurnEnterEvent.AddListener(OnPlayerTurnEnter);
+        turnEventChannelSo.OnNonPlayerTurnEnterEvent.AddListener(OnNpcTurnEnter);
+        turnEventChannelSo.OnNonPlayerTurnExitEvent.AddListener(OnNpcTurnExit);
+        roomEventChannelSo.OnGuestRoomEnter.AddListener(OnCustomerRoomEnter);
+        roomEventChannelSo.OnGuestRoomExit.AddListener(OnCustomerRoomExit);
         screamEventChannelSo.OnScream += OnScream;
         if (cardUseArea)
         {
@@ -177,11 +183,11 @@ public class Room : MonoBehaviour
     
     private void OnDisable()
     {
-        turnEventChannelSo.OnPlayerTurnEnter -= OnPlayerTurnEnter;
-        turnEventChannelSo.OnNonPlayerTurnEnter -= OnNpcTurnEnter;
-        turnEventChannelSo.OnNonPlayerTurnExit -= OnNpcTurnExit;
-        roomEventChannelSo.OnCustomerRoomEnter -= OnCustomerRoomEnter;
-        roomEventChannelSo.OnCustomerRoomExit -= OnCustomerRoomExit;
+        turnEventChannelSo.OnNonPlayerTurnEnterEvent.RemoveListener(OnPlayerTurnEnter);
+        turnEventChannelSo.OnNonPlayerTurnEnterEvent.RemoveListener(OnNpcTurnEnter);
+        turnEventChannelSo.OnNonPlayerTurnExitEvent.RemoveListener(OnNpcTurnExit);
+        roomEventChannelSo.OnGuestRoomEnter.RemoveListener(OnCustomerRoomEnter);
+        roomEventChannelSo.OnGuestRoomExit.RemoveListener(OnCustomerRoomExit);
         screamEventChannelSo.OnScream -= OnScream;
         if (cardUseArea)
         {
@@ -191,52 +197,50 @@ public class Room : MonoBehaviour
         }
     }
 
-    private void OnPlayerTurnEnter()
+    private void OnPlayerTurnEnter(TurnEventArgs e)
     {
         if (cardData != null)
         {
-            var tmp = cardData;
             // print($"OnTurnEnter {name}");
-            cardData.cardActionContainer.InvokeOnPlayerTurnEnter(this, tmp);
+            cardData.cardActionContainer.InvokeOnPlayerTurnEnter(e);
         }
     }
     
-    private void OnNpcTurnEnter()
+    private void OnNpcTurnEnter(TurnEventArgs e)
     {
         // print($"OnNpcTurnEnter {name}");
         if (cardData != null)
         {
-            var tmp = cardData;
-            cardData.cardActionContainer.InvokeOnNpcTurnEnter(this, tmp);
+            cardData.cardActionContainer.InvokeOnNpcTurnEnter(e);
         }
     }
     
-    private void OnNpcTurnExit()
+    private void OnNpcTurnExit(TurnEventArgs e)
     {
         if (cardData != null)
         {
-            cardData.cardActionContainer.InvokeOnNpcTurnExit(this, cardData);
+            cardData.cardActionContainer.InvokeOnNpcTurnExit(e);
         }
     }
     
-    private void OnCustomerRoomEnter(GuestObject guestObject, Room room)
+    private void OnCustomerRoomEnter(GuestMoveEventArgs e)
     {
-        if (room == this)
+        if (e.isEnter && e.toRoom == this)
         {
             if (cardData != null)
             {
-                cardData.cardActionContainer.InvokeOnCustomerEnter(this, cardData, guestObject);
+                cardData.cardActionContainer.InvokeOnGuestEnter(e);
             }
         }
     }
     
-    private void OnCustomerRoomExit(GuestObject guestObject, Room room)
+    private void OnCustomerRoomExit(GuestMoveEventArgs e)
     {
-        if (room == this)
+        if (!e.isEnter && e.fromRoom == this)
         {
             if (cardData != null)
             {
-                cardData.cardActionContainer.InvokeOnCustomerExit(this, cardData, guestObject);
+                cardData.cardActionContainer.InvokeOnGuestExit(e);
             }
         }
     }

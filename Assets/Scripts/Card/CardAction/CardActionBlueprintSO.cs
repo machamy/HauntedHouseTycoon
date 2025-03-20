@@ -12,6 +12,8 @@ public abstract class CardActionBlueprintSO : ScriptableObject
     public class CardAction
     {
         public string actionName;
+        protected Room room;
+        protected CardData cardData;
         public bool breakChain = false;
         
         public CardAction()
@@ -19,38 +21,44 @@ public abstract class CardActionBlueprintSO : ScriptableObject
             actionName = GetType().Name;
         }
         
-        public virtual bool OnCardPlaced(Room room, CardData cardData)
+        public void Initialize(Room room, CardData cardData)
+        {
+            this.room = room;
+            this.cardData = cardData;
+        }
+        
+        public virtual bool OnCardPlaced(CardEventArgs cardEvent)
         {
             return false;
         }
 
     
-        public virtual bool OnCardRemoved(Room room,CardData cardData)
+        public virtual bool OnCardRemoved(CardEventArgs cardEvent)
         {
             return false;
         }
     
-        public virtual bool OnGuestEnter(Room room, CardData cardData, GuestObject guestObject)
+        public virtual bool OnGuestEnter(GuestMoveEventArgs gusetMoveEventArgs)
         {
             return false;
         }
     
-        public virtual bool OnGuestExit(Room room, CardData cardData, GuestObject guestObject)
+        public virtual bool OnGuestExit(GuestMoveEventArgs gusetMoveEventArgs)
         {
             return false;
         }
     
-        public virtual bool OnPlayerTurnEnter(Room room, CardData cardData)
+        public virtual bool OnPlayerTurnEnter(TurnEventArgs turnEvent)
         {
             return false;
         }
     
-        public virtual bool OnNpcTurnEnter(Room room, CardData cardData)
+        public virtual bool OnNpcTurnEnter(TurnEventArgs turnEvent)
         {
             return false;
         }
     
-        public virtual bool OnNpcTurnExit(Room room, CardData cardData)
+        public virtual bool OnNpcTurnExit(TurnEventArgs turnEvent)
         {
             return false;
         }
@@ -70,6 +78,7 @@ public abstract class CardActionBlueprintSO : ScriptableObject
             actionName = name;
         }
     }
+    
 
     public abstract CardAction CreateCardAction();
 

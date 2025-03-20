@@ -4,31 +4,31 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "EventChannel/TurnEventChannel")]
 public class TurnEventChannelSO : ScriptableObject
 {
-    public delegate void TurnEnterEvent();
-    public delegate void TurnExitEvent();
-    public event TurnEnterEvent OnPlayerTurnEnter;
-    public event TurnExitEvent OnPlayerTurnExit;
+    public delegate void TurnEnterEvent(TurnEventArgs args);
+    public delegate void TurnExitEvent(TurnEventArgs args);
     
-    public event TurnEnterEvent OnNonPlayerTurnEnter;
-    public event TurnExitEvent OnNonPlayerTurnExit;
+    public PriorityEvent<TurnEventArgs> OnPlayerTurnEnterEvent = new PriorityEvent<TurnEventArgs>();
+    public PriorityEvent<TurnEventArgs> OnPlayerTurnExitEvent = new PriorityEvent<TurnEventArgs>();
+    public PriorityEvent<TurnEventArgs> OnNonPlayerTurnEnterEvent = new PriorityEvent<TurnEventArgs>();
+    public PriorityEvent<TurnEventArgs> OnNonPlayerTurnExitEvent = new PriorityEvent<TurnEventArgs>();
     
-    public void RaisePlayerTurnEnterEvent()
+    public void RaisePlayerTurnEnterEvent(TurnEventArgs args)
     {
-        OnPlayerTurnEnter?.Invoke();
+        OnPlayerTurnEnterEvent?.Invoke(args);
     }
     
-    public void RaisePlayerTurnExitEvent()
+    public void RaisePlayerTurnExitEvent(TurnEventArgs args)
     {
-        OnPlayerTurnExit?.Invoke();
+        OnPlayerTurnExitEvent?.Invoke(args);
     }
     
-    public void RaiseNonPlayerTurnEnterEvent()
+    public void RaiseNonPlayerTurnEnterEvent(TurnEventArgs args)
     {
-        OnNonPlayerTurnEnter?.Invoke();
+        OnNonPlayerTurnEnterEvent?.Invoke(args);
     }
     
-    public void RaiseNonPlayerTurnExitEvent()
+    public void RaiseNonPlayerTurnExitEvent(TurnEventArgs args)
     {
-        OnNonPlayerTurnExit?.Invoke();
+        OnNonPlayerTurnExitEvent?.Invoke(args);
     }
 }

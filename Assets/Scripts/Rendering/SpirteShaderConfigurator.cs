@@ -32,7 +32,7 @@ public class SpirteShaderConfigurator : MonoBehaviour
                 continue;
             if(material && setMaterial)
             {
-                Debug.Log($"Set Material {material.name} to {spriteRenderer.name}");
+                // Debug.Log($"Set Material {material.name} to {spriteRenderer.name}");
                 spriteRenderer.material = material;
             }
             spriteRenderer.shadowCastingMode = shadowCastingMode;

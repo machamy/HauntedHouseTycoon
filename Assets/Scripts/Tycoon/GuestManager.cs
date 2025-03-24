@@ -25,7 +25,7 @@ public class GuestManager : MonoBehaviour
     [SerializeField] private GuestQueueBarUI guestQueueBarUI;
     [Header("Guest Properties")]
     [SerializeField] private GuestDataSO defaultGuestData;
-    [SerializeField] private List<GuestObject> guestQueue = new List<GuestObject>(); // List가 조작에 용이, 큐쓴다고 해서 큰 이점이 없음
+    [SerializeField] private List<GuestParty> guestQueue = new List<GuestParty>(); // List가 조작에 용이, 큐쓴다고 해서 큰 이점이 없음
     [Header("Settings")]
     [SerializeField] private float guestNotifyInterval = 0.2f;
 
@@ -80,13 +80,13 @@ public class GuestManager : MonoBehaviour
         }
         while (haveToMoveIndex < guestQueue.Count)
         {
-            GuestObject guestObject = guestQueue[haveToMoveIndex];
+            GuestParty guestParty = guestQueue[haveToMoveIndex];
             // 소환된 개체도 바로 이동하므로 주석처리
             // if (guest.IsCreatedNow) 
             // {
             //     continue;
             // }
-            guestObject.MoveBehaviour();
+            guestParty.MoveBehaviour();
             haveToMoveIndex++;
             yield return wait;
         }
@@ -97,20 +97,20 @@ public class GuestManager : MonoBehaviour
     //     
     // }
     public static int guestCount = 0;
-    public GuestObject CreateGuest(Vector3 position = default)
+    public GuestParty CreateGuest(Vector3 position = default)
     {
-        GuestObject guestObject = PoolManager.Instance.Get(PoolManager.Poolables.Guest).GetComponent<GuestObject>();
+        GuestParty guestParty = PoolManager.Instance.Get(PoolManager.Poolables.Guest).GetComponent<GuestParty>();
         GuestData guestData = defaultGuestData.GetCopy();
-        guestObject.ClearAndSetGuestData(guestData);
-        guestObject.transform.position = position;
-        guestObject.OnCreate();
-        guestQueue.Add(guestObject);
-        guestQueueBarUI.AddGuestNode(guestObject);
-        guestObject.OnRemoved += () =>
+        guestParty.ClearAndSetGuestData(guestData);
+        guestParty.transform.position = position;
+        guestParty.OnCreate();
+        guestQueue.Add(guestParty);
+        guestQueueBarUI.AddGuestNode(guestParty);
+        guestParty.OnRemoved += () =>
         {
-            guestQueue.Remove(guestObject);
+            guestQueue.Remove(guestParty);
         };
-        guestObject.name = $"Guest({guestCount++}) {guestData.name}";
-        return guestObject;
+        guestParty.name = $"Guest({guestCount++}) {guestData.name}";
+        return guestParty;
     }
 }

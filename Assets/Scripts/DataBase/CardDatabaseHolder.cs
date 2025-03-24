@@ -6,6 +6,7 @@ using System.Collections;
 using System;
 using ClassBase.Card;
 using CardDataManager;
+using ClassBase.ListName;
 using Newtonsoft.Json;
 
 public class CardDatabaseHolder : MonoBehaviour
@@ -34,7 +35,7 @@ public class CardDatabaseHolder : MonoBehaviour
         LoadAllScriptableObjects();
         ConvertAllListsToDictionaries();
     }
-
+    
     private void LoadAllScriptableObjects()
     {
         soLists.Clear();

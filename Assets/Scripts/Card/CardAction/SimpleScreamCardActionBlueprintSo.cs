@@ -10,9 +10,9 @@ public class SimpleScreamCardActionBlueprintSo : CardActionBlueprintSO
     {
         public override bool OnGuestEnter(GuestMoveEventArgs gusetMoveEventArgs)
         {
-            if (gusetMoveEventArgs.guestObject.CanScream)
+            if (gusetMoveEventArgs.GuestParty.CanScream)
             {
-                gusetMoveEventArgs.guestObject.Scream();
+                gusetMoveEventArgs.GuestParty.Scream();
             }
             return breakChain;
         }

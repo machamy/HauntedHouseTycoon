@@ -10,7 +10,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Entity), typeof(Poolable))]
-public class GuestObject : MonoBehaviour, IFocusable
+public class GuestParty : MonoBehaviour, IFocusable
 {
     private Entity entity;
     [Header("Events")]
@@ -184,7 +184,7 @@ public class GuestObject : MonoBehaviour, IFocusable
             targetRoom = nextRoom;
             
             GuestMoveEventArgs e = GuestMoveEventArgs.Get();
-            e.guestObject = this;
+            e.GuestParty = this;
             e.fromRoom = CurrentRoom;
             e.toRoom = nextRoom;
             e.isEnter = false;
@@ -207,7 +207,7 @@ public class GuestObject : MonoBehaviour, IFocusable
             orientingDirection = targetDirection;
             
             GuestMoveEventArgs nextRoomEventArgs = GuestMoveEventArgs.Get();
-            nextRoomEventArgs.guestObject = this;
+            nextRoomEventArgs.GuestParty = this;
             nextRoomEventArgs.fromRoom = CurrentRoom;
             nextRoomEventArgs.toRoom = nextRoom;
             nextRoomEventArgs.isEnter = true;
@@ -226,7 +226,7 @@ public class GuestObject : MonoBehaviour, IFocusable
     /// 이 객체는 Release된다.
     /// </summary>
     /// <param name="other"></param>
-    public void MergeTo(GuestObject other)
+    public void MergeTo(GuestParty other)
     {
         /*
          - 동선이 겹칠 경우 손님들은 뭉치게 된며 아래 수치들이 변경 된다.
@@ -339,7 +339,7 @@ public class GuestObject : MonoBehaviour, IFocusable
         guestVisualController.PlayAnimation(AnimationType.SCREAM);
         Debug.Log($"{entity.name} is screaming!");
         ScreamEventArgs screamEventArg = ScreamEventArgs.Get();
-        screamEventArg.GuestObject = this;
+        screamEventArg.GuestParty = this;
         screamEventArg.modifier = 0;
         screamEventChannel.RaiseScreamEvent(screamEventArg);
         screamRequirements.RemoveAt(0);
@@ -366,11 +366,11 @@ public class GuestObject : MonoBehaviour, IFocusable
     
     private void OnEnterRoom(Room room)
     {
-        GuestObject otherGuest = null;
+        GuestParty otherGuest = null;
         Entity otherEntity = room.FindEntity( // 움직임이 끝난 손님을 찾기
             (e)=>
                 e != entity 
-                && e.TryGetComponent<GuestObject>(out otherGuest)
+                && e.TryGetComponent<GuestParty>(out otherGuest)
                 && !otherGuest.isMoving
                 && !otherGuest.hasToMove);
         if (otherEntity && otherGuest)

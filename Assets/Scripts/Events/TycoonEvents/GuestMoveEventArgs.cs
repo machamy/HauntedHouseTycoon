@@ -1,7 +1,7 @@
 ﻿
 public class GuestMoveEventArgs : EventArgs<GuestMoveEventArgs>
 {
-    public GuestObject guestObject;
+    public GuestParty GuestParty;
     public Room fromRoom;
     // public Room currentRoom;
     public Room toRoom;
@@ -10,7 +10,7 @@ public class GuestMoveEventArgs : EventArgs<GuestMoveEventArgs>
     
     public override void Clear()
     {
-        guestObject = null;
+        GuestParty = null;
         fromRoom = null;
         // currentRoom = null;
         toRoom = null;

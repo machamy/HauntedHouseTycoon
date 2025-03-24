@@ -2,12 +2,13 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class TestPathChecker : MonoBehaviour
 {
     Field _field;
     [SerializeField] Room _room;
-    [SerializeField] GuestObject _guestObject;
+    [FormerlySerializedAs("_guestObject")] [SerializeField] GuestParty guestParty;
 
     [SerializeField] Direction _startDirection;
     [SerializeField] int depth = 5;
@@ -25,10 +26,10 @@ public class TestPathChecker : MonoBehaviour
             _room = room;
             _startDirection = Direction.Right;
         }
-        else if(TryGetComponent(out GuestObject guestObject))
+        else if(TryGetComponent(out GuestParty guestObject))
         {
-            _guestObject = guestObject;
-            _room = _guestObject.CurrentRoom;
+            guestParty = guestObject;
+            _room = guestParty.CurrentRoom;
         }
         
         if(TryGetComponent(out LineRenderer lineRenderer))
@@ -58,10 +59,10 @@ public class TestPathChecker : MonoBehaviour
         {
             return;
         }
-        if (_guestObject != null)
+        if (guestParty != null)
         {
-            _room = _guestObject.CurrentRoom;
-            _startDirection = _guestObject.OrientingDirection;
+            _room = guestParty.CurrentRoom;
+            _startDirection = guestParty.OrientingDirection;
         }
         
         UpdatePath();

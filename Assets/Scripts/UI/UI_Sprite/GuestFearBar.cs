@@ -2,6 +2,7 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GuestFearBar : MonoBehaviour
 {
@@ -18,8 +19,9 @@ public class GuestFearBar : MonoBehaviour
     [SerializeField] private LineElement NextScreamLine;
     [SerializeField] private LineElement PanicLine;
     
+    [FormerlySerializedAs("guestObject")]
     [Header("Ref")]
-    [SerializeField] private GuestObject guestObject;
+    [SerializeField] private GuestParty guestParty;
     private void Awake()
     {
         CurrentScreamLine.Initialize(left, right);
@@ -30,36 +32,36 @@ public class GuestFearBar : MonoBehaviour
     private void OnEnable()
     {
         // Debug.Log($"Is guest object null? {guestObject == null}");
-        if (guestObject)
+        if (guestParty)
         {
-            guestObject.OnValueChangedEvent -= GuestObjectChangedEvent;
-            guestObject.OnRemoved -= GuestObjectRemoved;
-            guestObject.OnValueChangedEvent += GuestObjectChangedEvent;
-            guestObject.OnRemoved += GuestObjectRemoved;
+            guestParty.OnValueChangedEvent -= GuestPartyChangedEvent;
+            guestParty.OnRemoved -= GuestPartyRemoved;
+            guestParty.OnValueChangedEvent += GuestPartyChangedEvent;
+            guestParty.OnRemoved += GuestPartyRemoved;
             
             UpdateUI();
         }
     }
 
-    public void SetGuest(GuestObject guestObject)
+    public void SetGuest(GuestParty guestParty)
     {
-        if(this.guestObject)
+        if(this.guestParty)
         {
-            this.guestObject.OnValueChangedEvent -= GuestObjectChangedEvent;
-            this.guestObject.OnRemoved -= GuestObjectRemoved;
+            this.guestParty.OnValueChangedEvent -= GuestPartyChangedEvent;
+            this.guestParty.OnRemoved -= GuestPartyRemoved;
         }
-        this.guestObject = guestObject;
-        this.guestObject.OnValueChangedEvent += GuestObjectChangedEvent;
-        this.guestObject.OnRemoved += GuestObjectRemoved;
+        this.guestParty = guestParty;
+        this.guestParty.OnValueChangedEvent += GuestPartyChangedEvent;
+        this.guestParty.OnRemoved += GuestPartyRemoved;
         UpdateUI();
     }
 
     private void OnDisable()
     {
-        if(guestObject)
+        if(guestParty)
         {
-            guestObject.OnValueChangedEvent -= GuestObjectChangedEvent;
-            guestObject.OnRemoved -= GuestObjectRemoved;
+            guestParty.OnValueChangedEvent -= GuestPartyChangedEvent;
+            guestParty.OnRemoved -= GuestPartyRemoved;
         }
     }
 
@@ -73,21 +75,21 @@ public class GuestFearBar : MonoBehaviour
     public void UpdateUI()
     {
         // Debug.Log($"Update UI");
-        float panic = guestObject.Panic;
+        float panic = guestParty.Panic;
         float maxValue = Mathf.Min(minimumMaxValue, panic);
-        print($"{guestObject.FinalFear} / {panic}");
-        fearSlider.Ratio = guestObject.FinalFear / panic;
+        print($"{guestParty.FinalFear} / {panic}");
+        fearSlider.Ratio = guestParty.FinalFear / panic;
         PanicLine.Ratio = panic / maxValue;
-        CurrentScreamLine.Ratio = (float)guestObject.ScreamRequirement / panic;
-        NextScreamLine.Ratio = (float)guestObject.NextScreamRequirement / panic;
+        CurrentScreamLine.Ratio = (float)guestParty.ScreamRequirement / panic;
+        NextScreamLine.Ratio = (float)guestParty.NextScreamRequirement / panic;
     }
 
-    private void GuestObjectRemoved()
+    private void GuestPartyRemoved()
     {
         
     }
 
-    private void GuestObjectChangedEvent()
+    private void GuestPartyChangedEvent()
     {
         UpdateUI();
     }

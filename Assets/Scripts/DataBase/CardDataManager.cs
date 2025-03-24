@@ -23,7 +23,7 @@ namespace CardDataManager
 
                 if (cardDatabaseHolder == null)
                 {
-                    Debug.LogError("CardDatabaseHolder¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+                    Debug.LogError("CardDatabaseHolderë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
                 }
             }
         }
@@ -40,7 +40,7 @@ namespace CardDataManager
                 }
             }
 
-            Debug.LogError($"{soListName}¿¡¼­ Index {index}¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+            Debug.LogError($"{soListName}ì—ì„œ Index {index}ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
             return null;
         }
     }
@@ -58,7 +58,7 @@ namespace CardDataManager
 
             if (loadedSprite == null)
             {
-                Debug.LogError($"Sprite '{fullPath}'À»(¸¦) Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+                Debug.LogError($"Sprite '{fullPath}'ì„(ë¥¼) ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
             }
 
             return loadedSprite;
@@ -72,7 +72,7 @@ namespace CardDataManager
 
             if (loadedSprite == null)
             {
-                Debug.LogError($"Sprite '{fullPath}'À»(¸¦) Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+                Debug.LogError($"Sprite '{fullPath}'ì„(ë¥¼) ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
             }
 
             return loadedSprite;

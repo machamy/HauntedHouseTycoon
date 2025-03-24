@@ -18,9 +18,10 @@ public class GuestNodeDisplay : MonoBehaviour
     [SerializeField] bool clockwise = false;
     [SerializeField] float startAngle = 0;
     [SerializeField] float endAngle = 360;
+    [FormerlySerializedAs("guestObject")]
     [FormerlySerializedAs("guest")]
     [Header("References")]
-    [SerializeField] private GuestObject guestObject;
+    [SerializeField] private GuestParty guestParty;
     [SerializeField] private Transform node;
 
     
@@ -33,25 +34,25 @@ public class GuestNodeDisplay : MonoBehaviour
         PanicLine.Initialize(startAngle, endAngle, clockwise);
     }
     
-    public void SetGuest(GuestObject guestObject)
+    public void SetGuest(GuestParty guestParty)
     {
-        if(this.guestObject)
+        if(this.guestParty)
         {
-            this.guestObject.OnValueChangedEvent -= GuestObjectChangedEvent;
-            this.guestObject.OnRemoved -= GuestObjectRemoved;
+            this.guestParty.OnValueChangedEvent -= GuestPartyChangedEvent;
+            this.guestParty.OnRemoved -= GuestPartyRemoved;
         }
-        this.guestObject = guestObject;
-        this.guestObject.OnValueChangedEvent += GuestObjectChangedEvent;
-        this.guestObject.OnRemoved += GuestObjectRemoved;
+        this.guestParty = guestParty;
+        this.guestParty.OnValueChangedEvent += GuestPartyChangedEvent;
+        this.guestParty.OnRemoved += GuestPartyRemoved;
         UpdateUI();
     }
 
     private void OnDisable()
     {
-        if(guestObject)
+        if(guestParty)
         {
-            guestObject.OnValueChangedEvent -= GuestObjectChangedEvent;
-            guestObject.OnRemoved -= GuestObjectRemoved;
+            guestParty.OnValueChangedEvent -= GuestPartyChangedEvent;
+            guestParty.OnRemoved -= GuestPartyRemoved;
         }
     }
 
@@ -60,7 +61,7 @@ public class GuestNodeDisplay : MonoBehaviour
         this.node = node;
     }
     
-    private void GuestObjectRemoved()
+    private void GuestPartyRemoved()
     {
         Destroy(node.gameObject);
         Destroy(gameObject);
@@ -75,22 +76,22 @@ public class GuestNodeDisplay : MonoBehaviour
         }
     }
     
-    public void GuestObjectChangedEvent()
+    public void GuestPartyChangedEvent()
     {
         UpdateUI();
     }
 
     public void UpdateUI()
     {
-        if(!guestObject)
+        if(!guestParty)
             return;
-        float panic = guestObject.Panic;
-        fearSliderUI.Value = guestObject.FinalFear / panic;
+        float panic = guestParty.Panic;
+        fearSliderUI.Value = guestParty.FinalFear / panic;
         PanicLine.Value = 1;
-        CurrentScreamLine.Value = (float)guestObject.ScreamRequirement / panic;
-        NextScreamLine.Value = (float)guestObject.NextScreamRequirement / panic;
-        currentFearCounter.text = guestObject.FinalFear.ToString();
-        statusText.text = guestObject.isPanic ? "Panic" : guestObject.ScreamedBefore ? "Scream" : "Normal";
+        CurrentScreamLine.Value = (float)guestParty.ScreamRequirement / panic;
+        NextScreamLine.Value = (float)guestParty.NextScreamRequirement / panic;
+        currentFearCounter.text = guestParty.FinalFear.ToString();
+        statusText.text = guestParty.isPanic ? "Panic" : guestParty.ScreamedBefore ? "Scream" : "Normal";
     }
 
     public void OnValidate()

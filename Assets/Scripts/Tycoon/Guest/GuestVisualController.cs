@@ -1,11 +1,13 @@
 ﻿
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GuestVisualController : MonoBehaviour
 {
+    [FormerlySerializedAs("guestObject")]
     [Header("Refereces")]
-    [SerializeField] private GuestObject guestObject;
+    [SerializeField] private GuestParty guestParty;
     [SerializeField] private GameObject guestVisual;
     [SerializeField] private Animator guestAnimator;
     [SerializeField] private bool isSpum = true;
@@ -15,9 +17,9 @@ public class GuestVisualController : MonoBehaviour
     
     private void Awake()
     {
-        if (guestObject == null)
+        if (guestParty == null)
         {
-            guestObject = GetComponent<GuestObject>();
+            guestParty = GetComponent<GuestParty>();
         }
         if (isSpum)
         {
@@ -62,10 +64,10 @@ public class GuestVisualController : MonoBehaviour
     }
     public IEnumerator MoveDirectionCheckRoutine()
     {
-        float prevX = guestObject.transform.position.x;
+        float prevX = guestParty.transform.position.x;
         while (isMoving)
         {
-            float currentX = guestObject.transform.position.x;
+            float currentX = guestParty.transform.position.x;
             if (currentX > prevX)
             {
                 IsDirectingLeft = false;

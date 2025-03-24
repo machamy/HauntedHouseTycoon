@@ -5,7 +5,7 @@ namespace EventChannel
     [CreateAssetMenu(fileName = "CreateGuestChannel", menuName = "EventChannel/CreateGuestChannel")]
     public class CreateGuestChannelSO : ScriptableObject
     {
-        public delegate GuestObject CreateGuest(Vector3 position = default);
+        public delegate GuestParty CreateGuest(Vector3 position = default);
         private CreateGuest OnCreateGuest;
         
         /// <summary>
@@ -28,7 +28,7 @@ namespace EventChannel
             OnCreateGuest = null;
         }
         
-        public GuestObject RaiseCreateGuest(Vector3 position = default)
+        public GuestParty RaiseCreateGuest(Vector3 position = default)
         {
             return OnCreateGuest?.Invoke(position);
         }

@@ -1,12 +1,12 @@
 ﻿public class ScreamEventArgs : EventArgs<ScreamEventArgs>
 {
-    public GuestObject GuestObject;
+    public GuestParty GuestParty;
     public int modifier;
 
 
     public override void Clear()
     {
-        GuestObject = null;
+        GuestParty = null;
         modifier = 0;
     }
 }

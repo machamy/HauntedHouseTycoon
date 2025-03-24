@@ -9,15 +9,15 @@ public class PathDrawer : MonoBehaviour
     Field _field;
     [Header("Current Object")]
     [SerializeField] Room _room;
-    [SerializeField,Tooltip("GuestObj가 있으면 Room을 덮어씌움")] GuestObject _guestObject;
+    [FormerlySerializedAs("_guestObject")] [SerializeField,Tooltip("GuestObj가 있으면 Room을 덮어씌움")] GuestParty guestParty;
     [SerializeField] Direction _startDirection;
     [SerializeField] int depth = 5;
     
-    public GuestObject GuestObject {
-        get => _guestObject;
+    public GuestParty GuestParty {
+        get => guestParty;
         set
         {
-            _guestObject = value;
+            guestParty = value;
             if(enabled)
                 UpdateDraw();
         }
@@ -37,10 +37,10 @@ public class PathDrawer : MonoBehaviour
             _room = room;
             _startDirection = Direction.Right;
         }
-        else if(TryGetComponent(out GuestObject guestObject))
+        else if(TryGetComponent(out GuestParty guestObject))
         {
-            _guestObject = guestObject;
-            _room = _guestObject.CurrentRoom;
+            guestParty = guestObject;
+            _room = guestParty.CurrentRoom;
         }
         
         if(TryGetComponent(out LineRenderer lineRenderer))
@@ -75,10 +75,10 @@ public class PathDrawer : MonoBehaviour
     public void UpdateDraw()
     {
 
-        if (_guestObject)
+        if (guestParty)
         {
-            _room = _guestObject.CurrentRoom;
-            _startDirection = _guestObject.OrientingDirection;
+            _room = guestParty.CurrentRoom;
+            _startDirection = guestParty.OrientingDirection;
         }
         if (!_room)
         {
@@ -104,9 +104,9 @@ public class PathDrawer : MonoBehaviour
             _rooms.Add(path[i].Item1);
             _directions.Add(path[i].Item2);
         }
-        if (_guestObject)
+        if (guestParty)
         {
-            Vector3 pos = _guestObject.transform.position;
+            Vector3 pos = guestParty.transform.position;
             pos.y = _lineAbsY;
             _lineRenderer.SetPosition(0, pos);
         }

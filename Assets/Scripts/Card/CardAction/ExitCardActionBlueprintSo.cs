@@ -10,7 +10,7 @@ public class ExitCardActionBlueprintSo : CardActionBlueprintSO
     {
         public override bool OnGuestEnter(GuestMoveEventArgs gusetMoveEventArgs)
         {
-            gusetMoveEventArgs.guestObject.Exit();
+            gusetMoveEventArgs.GuestParty.Exit();
             return breakChain;
         }
     }

@@ -1,0 +1,373 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1659604674720510075
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 680364878107617885}
+  - component: {fileID: 3085872862576385229}
+  - component: {fileID: 5994697739241401004}
+  - component: {fileID: 1223339569290497661}
+  m_Layer: 0
+  m_Name: '@TycoonManager'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &680364878107617885
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659604674720510075}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.1866192, y: 3.3354678, z: -0.11192828}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3085872862576385229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659604674720510075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42ba4f7c21e9466db8b1a9cd90530733, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  field: {fileID: 0}
+  handManager: {fileID: 0}
+  turnManager: {fileID: 5994697739241401004}
+  deck:
+    discardSize: {fileID: 11400000, guid: 72b6081ca9422f14e81051598fec9a92, type: 2}
+    drawSize: {fileID: 11400000, guid: 488548a036f92f942a4257283cbc7f55, type: 2}
+    cardDataList:
+    - cardName: "\uC785\uC7A5\uCE74\uB4DC 1"
+      cardDescription: "1\uBA85 \uC18C\uD658 2\uD134\uB4A4 \uC0AC\uB9DD"
+      directions: 10
+      cardSprite: {fileID: 21300000, guid: ee87494b71e2ae146b0aa356c97ba23e, type: 3}
+      simpleCardSprite: {fileID: 4444644672834298981, guid: e37a38533a542014baf1894373197c88, type: 3}
+      halfCardSprite: {fileID: 1835788373175305458, guid: 480de0f3e60e26848bf2060b36c5586d, type: 3}
+      fullCardSprite: {fileID: 1835788373175305458, guid: 480de0f3e60e26848bf2060b36c5586d, type: 3}
+      cardPlacedSprite: {fileID: 0}
+      cardActionContainer:
+        actionNodes:
+        - actionBlueprint: {fileID: 11400000, guid: b734331511c502648b5149874c00e4cb, type: 2}
+          action:
+            rid: 8903814736330097286
+        - actionBlueprint: {fileID: 11400000, guid: d58f103b126071f4dacd559af4f263a1, type: 2}
+          action:
+            rid: 8903814736330097287
+      nonlocalVariables:
+        arguments: []
+    - cardName: "\uC785\uC7A5\uCE74\uB4DC 1"
+      cardDescription: "2\uBA85 \uC18C\uD658 2\uD134\uB4A4 \uC0AC\uB9DD"
+      directions: 10
+      cardSprite: {fileID: 21300000, guid: 07c5e4f88482abe4d8e21b54f859a2bb, type: 3}
+      simpleCardSprite: {fileID: 4444644672834298981, guid: e37a38533a542014baf1894373197c88, type: 3}
+      halfCardSprite: {fileID: 1835788373175305458, guid: 480de0f3e60e26848bf2060b36c5586d, type: 3}
+      fullCardSprite: {fileID: 1835788373175305458, guid: 480de0f3e60e26848bf2060b36c5586d, type: 3}
+      cardPlacedSprite: {fileID: 0}
+      cardActionContainer:
+        actionNodes:
+        - actionBlueprint: {fileID: 11400000, guid: b734331511c502648b5149874c00e4cb, type: 2}
+          action:
+            rid: 8903814736330097288
+        - actionBlueprint: {fileID: 11400000, guid: d58f103b126071f4dacd559af4f263a1, type: 2}
+          action:
+            rid: 8903814736330097289
+      nonlocalVariables:
+        arguments: []
+    - cardName: Exit
+      cardDescription: "\uD0C8\uCD9C"
+      directions: 6
+      cardSprite: {fileID: 21300000, guid: 9f364f581d21f1d469648cb029fa3cbe, type: 3}
+      simpleCardSprite: {fileID: 4444644672834298981, guid: e37a38533a542014baf1894373197c88, type: 3}
+      halfCardSprite: {fileID: 1835788373175305458, guid: 480de0f3e60e26848bf2060b36c5586d, type: 3}
+      fullCardSprite: {fileID: 1835788373175305458, guid: 480de0f3e60e26848bf2060b36c5586d, type: 3}
+      cardPlacedSprite: {fileID: 0}
+      cardActionContainer:
+        actionNodes:
+        - actionBlueprint: {fileID: 11400000, guid: edcb5c4c3330f094a86716c4236ab3ba, type: 2}
+          action:
+            rid: 8903814736330097290
+      nonlocalVariables:
+        arguments: []
+    - cardName: "\uACF5\uD3EC\uCE74\uB4DC 1"
+      cardDescription: 
+      directions: 10
+      cardSprite: {fileID: 21300000, guid: 0c91f20f315e20749ae327dde89b14c2, type: 3}
+      simpleCardSprite: {fileID: 4444644672834298981, guid: e37a38533a542014baf1894373197c88, type: 3}
+      halfCardSprite: {fileID: 1835788373175305458, guid: 480de0f3e60e26848bf2060b36c5586d, type: 3}
+      fullCardSprite: {fileID: 1835788373175305458, guid: 480de0f3e60e26848bf2060b36c5586d, type: 3}
+      cardPlacedSprite: {fileID: 0}
+      cardActionContainer:
+        actionNodes:
+        - actionBlueprint: {fileID: 11400000, guid: 9403b8892d9e6294f806240da7564da5, type: 2}
+          action:
+            rid: 8903814736330097291
+      nonlocalVariables:
+        arguments: []
+    - cardName: "\uACF5\uD3EC\uCE74\uB4DC 1"
+      cardDescription: 
+      directions: 10
+      cardSprite: {fileID: 21300000, guid: e4bb8933ca0828e418a0cfee542d27e5, type: 3}
+      simpleCardSprite: {fileID: 4444644672834298981, guid: e37a38533a542014baf1894373197c88, type: 3}
+      halfCardSprite: {fileID: 1835788373175305458, guid: 480de0f3e60e26848bf2060b36c5586d, type: 3}
+      fullCardSprite: {fileID: 1835788373175305458, guid: 480de0f3e60e26848bf2060b36c5586d, type: 3}
+      cardPlacedSprite: {fileID: 0}
+      cardActionContainer:
+        actionNodes:
+        - actionBlueprint: {fileID: 11400000, guid: 9403b8892d9e6294f806240da7564da5, type: 2}
+          action:
+            rid: 8903814736330097292
+      nonlocalVariables:
+        arguments: []
+    - cardName: "\uACF5\uD3EC\uCE74\uB4DC 2"
+      cardDescription: 
+      directions: 5
+      cardSprite: {fileID: 21300000, guid: 1a128ac24d954da459aaf968a758b6c8, type: 3}
+      simpleCardSprite: {fileID: 4444644672834298981, guid: e37a38533a542014baf1894373197c88, type: 3}
+      halfCardSprite: {fileID: 1835788373175305458, guid: 480de0f3e60e26848bf2060b36c5586d, type: 3}
+      fullCardSprite: {fileID: 1835788373175305458, guid: 480de0f3e60e26848bf2060b36c5586d, type: 3}
+      cardPlacedSprite: {fileID: 0}
+      cardActionContainer:
+        actionNodes:
+        - actionBlueprint: {fileID: 11400000, guid: 9403b8892d9e6294f806240da7564da5, type: 2}
+          action:
+            rid: 8903814736330097293
+      nonlocalVariables:
+        arguments: []
+    - cardName: "\uACF5\uD3EC\uCE74\uB4DC 2"
+      cardDescription: "\uC774\uB3D9\uAC70\uB9AC\uB9CC\uD07C \uACF5\uD3EC"
+      directions: 12
+      cardSprite: {fileID: 21300000, guid: c3466c426e600e844951f71a551e5f6d, type: 3}
+      simpleCardSprite: {fileID: 4444644672834298981, guid: e37a38533a542014baf1894373197c88, type: 3}
+      halfCardSprite: {fileID: 1835788373175305458, guid: 480de0f3e60e26848bf2060b36c5586d, type: 3}
+      fullCardSprite: {fileID: 1835788373175305458, guid: 480de0f3e60e26848bf2060b36c5586d, type: 3}
+      cardPlacedSprite: {fileID: 0}
+      cardActionContainer:
+        actionNodes:
+        - actionBlueprint: {fileID: 11400000, guid: a523546ce626c7e4bbd04ca10187c0e0, type: 2}
+          action:
+            rid: 8903814736330097294
+      nonlocalVariables:
+        arguments: []
+    - cardName: "\uBE44\uBA85\uCE74\uB4DC 1"
+      cardDescription: 
+      directions: 9
+      cardSprite: {fileID: 21300000, guid: 9a55834dab0473148be31f36fd3e1b77, type: 3}
+      simpleCardSprite: {fileID: 4444644672834298981, guid: e37a38533a542014baf1894373197c88, type: 3}
+      halfCardSprite: {fileID: 1835788373175305458, guid: 480de0f3e60e26848bf2060b36c5586d, type: 3}
+      fullCardSprite: {fileID: 1835788373175305458, guid: 480de0f3e60e26848bf2060b36c5586d, type: 3}
+      cardPlacedSprite: {fileID: 0}
+      cardActionContainer:
+        actionNodes:
+        - actionBlueprint: {fileID: 11400000, guid: d92a58ffbd6f4ae49ba6704d7d8edcd4, type: 2}
+          action:
+            rid: 8903814736330097295
+      nonlocalVariables:
+        arguments: []
+    - cardName: "\uBE44\uBA85\uCE74\uB4DC 1"
+      cardDescription: 
+      directions: 13
+      cardSprite: {fileID: 21300000, guid: a280644f9ef69ed44b9f89b22b0f08ee, type: 3}
+      simpleCardSprite: {fileID: 4444644672834298981, guid: e37a38533a542014baf1894373197c88, type: 3}
+      halfCardSprite: {fileID: 1835788373175305458, guid: 480de0f3e60e26848bf2060b36c5586d, type: 3}
+      fullCardSprite: {fileID: 1835788373175305458, guid: 480de0f3e60e26848bf2060b36c5586d, type: 3}
+      cardPlacedSprite: {fileID: 0}
+      cardActionContainer:
+        actionNodes:
+        - actionBlueprint: {fileID: 11400000, guid: d92a58ffbd6f4ae49ba6704d7d8edcd4, type: 2}
+          action:
+            rid: 8903814736330097296
+      nonlocalVariables:
+        arguments: []
+    - cardName: "\uBE44\uBA85\uCE74\uB4DC 1"
+      cardDescription: 
+      directions: 3
+      cardSprite: {fileID: 21300000, guid: 1bf16e051e033834e8299a830a0e19d2, type: 3}
+      simpleCardSprite: {fileID: 4444644672834298981, guid: e37a38533a542014baf1894373197c88, type: 3}
+      halfCardSprite: {fileID: 1835788373175305458, guid: 480de0f3e60e26848bf2060b36c5586d, type: 3}
+      fullCardSprite: {fileID: 1835788373175305458, guid: 480de0f3e60e26848bf2060b36c5586d, type: 3}
+      cardPlacedSprite: {fileID: 0}
+      cardActionContainer:
+        actionNodes:
+        - actionBlueprint: {fileID: 11400000, guid: d92a58ffbd6f4ae49ba6704d7d8edcd4, type: 2}
+          action:
+            rid: 8903814736330097297
+      nonlocalVariables:
+        arguments: []
+    - cardName: "\uBCF4\uC870\uCE74\uB4DC 1"
+      cardDescription: 
+      directions: 10
+      cardSprite: {fileID: 21300000, guid: 608c8fb17d63fd148857d690342e55ce, type: 3}
+      simpleCardSprite: {fileID: 4444644672834298981, guid: e37a38533a542014baf1894373197c88, type: 3}
+      halfCardSprite: {fileID: 1835788373175305458, guid: 480de0f3e60e26848bf2060b36c5586d, type: 3}
+      fullCardSprite: {fileID: 1835788373175305458, guid: 480de0f3e60e26848bf2060b36c5586d, type: 3}
+      cardPlacedSprite: {fileID: 0}
+      cardActionContainer:
+        actionNodes:
+        - actionBlueprint: {fileID: 11400000, guid: 005b237729eed70479846e30cb2f54c0, type: 2}
+          action:
+            rid: 8903814736330097298
+      nonlocalVariables:
+        arguments: []
+    - cardName: "\uBCF4\uC870\uCE74\uB4DC 2"
+      cardDescription: 
+      directions: 10
+      cardSprite: {fileID: 21300000, guid: 2f660354e3216a847affdfd71c26c730, type: 3}
+      simpleCardSprite: {fileID: 4444644672834298981, guid: e37a38533a542014baf1894373197c88, type: 3}
+      halfCardSprite: {fileID: 1835788373175305458, guid: 480de0f3e60e26848bf2060b36c5586d, type: 3}
+      fullCardSprite: {fileID: 1835788373175305458, guid: 480de0f3e60e26848bf2060b36c5586d, type: 3}
+      cardPlacedSprite: {fileID: 0}
+      cardActionContainer:
+        actionNodes:
+        - actionBlueprint: {fileID: 11400000, guid: 005b237729eed70479846e30cb2f54c0, type: 2}
+          action:
+            rid: 8903814736330097299
+      nonlocalVariables:
+        arguments: []
+  isPaused: 0
+  initCameraToFieldCenter: 0
+  dataBase: {fileID: 0}
+  references:
+    version: 2
+    RefIds:
+    - rid: 8903814736330097286
+      type: {class: EntranceCardActionBlueprintSo/EntranceAction, ns: , asm: Assembly-CSharp}
+      data:
+        actionName: EntranceAction
+        breakChain: 0
+        createGuestChannel: {fileID: 11400000, guid: 5e5e427a32b624444bfaddb5ad779272, type: 2}
+        isRandomDirection: 0
+        clockwise: 1
+        customerAmount: 1
+        prevGuestDirection: -1
+    - rid: 8903814736330097287
+      type: {class: SimpleDecayCardActionBlueprintSo/SimpleDecayCardAction, ns: , asm: Assembly-CSharp}
+      data:
+        actionName: SimpleDecayCardAction
+        breakChain: 0
+        DecayTurnAmount: 3
+        DecayTurnRemain: 0
+    - rid: 8903814736330097288
+      type: {class: EntranceCardActionBlueprintSo/EntranceAction, ns: , asm: Assembly-CSharp}
+      data:
+        actionName: EntranceAction
+        breakChain: 0
+        createGuestChannel: {fileID: 11400000, guid: 5e5e427a32b624444bfaddb5ad779272, type: 2}
+        isRandomDirection: 0
+        clockwise: 1
+        customerAmount: 2
+        prevGuestDirection: -1
+    - rid: 8903814736330097289
+      type: {class: SimpleDecayCardActionBlueprintSo/SimpleDecayCardAction, ns: , asm: Assembly-CSharp}
+      data:
+        actionName: SimpleDecayCardAction
+        breakChain: 0
+        DecayTurnAmount: 3
+        DecayTurnRemain: 0
+    - rid: 8903814736330097290
+      type: {class: ExitCardActionBlueprintSo/ExitCardAction, ns: , asm: Assembly-CSharp}
+      data:
+        actionName: ExitCardAction
+        breakChain: 0
+    - rid: 8903814736330097291
+      type: {class: SimpleFearCardActionBlueprintSo/SimpleFearCardAction, ns: , asm: Assembly-CSharp}
+      data:
+        actionName: SimpleFearCardAction
+        breakChain: 0
+        fearAmount: 3
+    - rid: 8903814736330097292
+      type: {class: SimpleFearCardActionBlueprintSo/SimpleFearCardAction, ns: , asm: Assembly-CSharp}
+      data:
+        actionName: SimpleFearCardAction
+        breakChain: 0
+        fearAmount: 3
+    - rid: 8903814736330097293
+      type: {class: SimpleFearCardActionBlueprintSo/SimpleFearCardAction, ns: , asm: Assembly-CSharp}
+      data:
+        actionName: SimpleFearCardAction
+        breakChain: 0
+        fearAmount: 3
+    - rid: 8903814736330097294
+      type: {class: MovementFearCardActionBlueprintSo/EntranceAction, ns: , asm: Assembly-CSharp}
+      data:
+        actionName: EntranceAction
+        breakChain: 0
+        FearMovementCoefficient: 1
+    - rid: 8903814736330097295
+      type: {class: SimpleScreamCardActionBlueprintSo/SimpleScreamCardAction, ns: , asm: Assembly-CSharp}
+      data:
+        actionName: SimpleScreamCardAction
+        breakChain: 0
+    - rid: 8903814736330097296
+      type: {class: SimpleScreamCardActionBlueprintSo/SimpleScreamCardAction, ns: , asm: Assembly-CSharp}
+      data:
+        actionName: SimpleScreamCardAction
+        breakChain: 0
+    - rid: 8903814736330097297
+      type: {class: SimpleScreamCardActionBlueprintSo/SimpleScreamCardAction, ns: , asm: Assembly-CSharp}
+      data:
+        actionName: SimpleScreamCardAction
+        breakChain: 0
+    - rid: 8903814736330097298
+      type: {class: TestSupportCardActionBlueprintSo/TestSupportCard, ns: , asm: Assembly-CSharp}
+      data:
+        actionName: TestSupportCard
+        breakChain: 0
+        fearGlobalAmount: 2
+    - rid: 8903814736330097299
+      type: {class: TestSupportCardActionBlueprintSo/TestSupportCard, ns: , asm: Assembly-CSharp}
+      data:
+        actionName: TestSupportCard
+        breakChain: 0
+        fearGlobalAmount: 2
+--- !u!114 &5994697739241401004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659604674720510075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41bd210a3473997439636738878d2a3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turnVariableSO: {fileID: 11400000, guid: e2e2d0cc15efd134297adbb9feac0605, type: 2}
+  maxPlayerTurnDuration: 10
+  maxNonplayerTurnDuration: 5
+  isPlayerTurn: 1
+  turnIndicatingSliderUI: {fileID: 0}
+  turnEventChannelSo: {fileID: 11400000, guid: b30948b240df495448b1d9188f3ad6dc, type: 2}
+--- !u!114 &1223339569290497661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659604674720510075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57174190e14d4c91a40287be8d14c352, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  createGuestChannel: {fileID: 11400000, guid: 5e5e427a32b624444bfaddb5ad779272, type: 2}
+  turnChannel: {fileID: 11400000, guid: b30948b240df495448b1d9188f3ad6dc, type: 2}
+  guestQueueBarUI: {fileID: 0}
+  defaultGuestData: {fileID: 11400000, guid: b3a2cc204db7f6541875ba594b8cead3, type: 2}
+  guestQueue: []
+  guestNotifyInterval: 0.4

@@ -50,7 +50,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Rotate90: 0
-    - _Value: 0.405
+    - _Value: 0.429
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1

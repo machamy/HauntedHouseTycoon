@@ -96,11 +96,22 @@ public class GuestManager : MonoBehaviour
     // {
     //     
     // }
-    public static int guestCount = 0;
+    
     public GuestParty CreateGuest(Vector3 position = default)
     {
+        return CreateGuest(defaultGuestData.GetCopy(), position);
+    }
+    public static int guestCount = 0;
+    /// <summary>
+    /// 손님 Party 오브젝트를 만든다.
+    /// </summary>
+    /// <param name="guestData">null 일경우 기본값으로 생성</param>
+    /// <param name="position">초기 생성 위치</param>
+    /// <returns></returns>
+    public GuestParty CreateGuest(GuestData guestData = null, Vector3 position = default)
+    {
         GuestParty guestParty = PoolManager.Instance.Get(PoolManager.Poolables.Guest).GetComponent<GuestParty>();
-        GuestData guestData = defaultGuestData.GetCopy();
+        guestData ??= defaultGuestData.GetCopy();
         guestParty.ClearAndSetGuestData(guestData);
         guestParty.transform.position = position;
         guestParty.OnCreate();

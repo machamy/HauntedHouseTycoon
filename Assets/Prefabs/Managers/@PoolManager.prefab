@@ -49,9 +49,9 @@ MonoBehaviour:
   _factories:
     defaultKey: 0
     data:
-    - key: 1
+    - key: 101
       value: {fileID: 11400000, guid: 040db53f0aebf1a4e87c9be4fc80905c, type: 2}
-    - key: 2
+    - key: 201
       value: {fileID: 11400000, guid: 4ec1669abab3d494b8e4b43f5e41f2a5, type: 2}
-    - key: 3
+    - key: 202
       value: {fileID: 11400000, guid: 5181c7e1d95580c448f3a2a8d7636fea, type: 2}

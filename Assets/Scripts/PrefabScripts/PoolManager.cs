@@ -14,9 +14,11 @@ namespace Pools
         public enum Poolables
         {
             None,
-            Guest,
-            CardObject,
-            CardDisplay,
+            Guest = 101,
+            GuestVisual = 102,
+            
+            CardObject = 201,
+            CardDisplay = 202,
         }
         
         [SerializeField]

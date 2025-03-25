@@ -32,8 +32,9 @@ public class GuestParty : MonoBehaviour, IFocusable
     [SerializeField] private List<float> fearResistances = new List<float>() {1f,1f,1f,1f};
     // [SerializeField] private int fatigue = 2;
     [SerializeField] private int fatigueCoefficient = 2;
+    [FormerlySerializedAs("guestVisualController")]
     [Header("References")]
-    [SerializeField] private GuestVisualController guestVisualController;
+    [SerializeField] private GuestVisualHolder _guestVisualHolder;
     [SerializeField] private TextMeshPro fearText;
     [SerializeField] private GuestFearBar fearBar;
     
@@ -96,10 +97,11 @@ public class GuestParty : MonoBehaviour, IFocusable
         entity = GetComponent<Entity>();
         poolable = GetComponent<Poolable>();
         poolable.OnRelease += OnRelease;
-        if(guestVisualController == null)
-            guestVisualController = GetComponentInChildren<GuestVisualController>();
+        if(_guestVisualHolder == null)
+            _guestVisualHolder = GetComponentInChildren<GuestVisualHolder>();
         pathDrawer = gameObject.GetOrAddComponent<PathDrawer>();
         pathDrawer.enabled = false;
+        _guestVisualHolder.Initialize(this);
     }
 
 
@@ -148,10 +150,19 @@ public class GuestParty : MonoBehaviour, IFocusable
         {
             traumaDict.Add(trauma.Key, trauma.Value);
         }
+        _guestVisualHolder.AddGuestVisual(guestData);
         OnValueChanged();
     }
-    
 
+    /// <summary>
+    /// 단순히 손님 정보 등록 + 비주얼 추가
+    /// </summary>
+    /// <param name="guestData"></param>
+    private void AddGuestDataRaw(GuestData guestData)
+    {
+        guestDataList.Add(guestData);
+        _guestVisualHolder.AddGuestVisual(guestData);
+    }
     
     
     /// <summary>
@@ -192,13 +203,13 @@ public class GuestParty : MonoBehaviour, IFocusable
             
             // Debug.Log($"from {CurrentRoom.name} to {nextRoom.name}");
             movedDistance++;
-            guestVisualController?.PlayAnimation(AnimationType.MOVE);
+            _guestVisualHolder?.PlayAnimation(AnimationType.MOVE);
             isMoving = true;
             entity.transform
                 .DOMove(nextRoom.transform.position, 0.5f)
                 .OnComplete(() =>
                 {
-                    guestVisualController?.SetIsMoving(false);
+                    _guestVisualHolder?.SetIsMoving(false);
                     entity.Move(nextRoom);
                     OnEnterRoom(nextRoom);
                     isMoving = false;
@@ -242,7 +253,13 @@ public class GuestParty : MonoBehaviour, IFocusable
         
         // 초기값 설정
         int mergedGuestAmount = GuestAmount + other.GuestAmount;
-        other.guestDataList.AddRange(guestDataList);
+        
+        // 손님 추가 로직
+        foreach (var data in guestDataList)
+        {
+            other.AddGuestDataRaw(data);
+        }
+        
         float mergeCoeff1_1 = Mathf.Pow(1.1f, mergedGuestAmount);
         float mergeCoeff0_9 = Mathf.Pow(0.9f, mergedGuestAmount);
         // 비명 최대치
@@ -301,7 +318,7 @@ public class GuestParty : MonoBehaviour, IFocusable
     /// </summary>
     public void AddFearSimple(int amount)
     {
-        guestVisualController.PlayAnimation(AnimationType.FEAR);
+        _guestVisualHolder.PlayAnimation(AnimationType.FEAR);
         fear += amount;
         // if (CanScream)
         // {
@@ -323,7 +340,7 @@ public class GuestParty : MonoBehaviour, IFocusable
     /// * (카드의 키워드에 대응되는 트라우마, float)
     public void AddFear(int baseFear, int supportFear, int relicFear, float cardFearResistance, float relicFearResistance)
     {
-        guestVisualController.PlayAnimation(AnimationType.FEAR);
+        _guestVisualHolder.PlayAnimation(AnimationType.FEAR);
         fear += baseFear + supportFear + relicFear;
         fear = Mathf.Max(0, fear);
         fear = Mathf.CeilToInt(fear * cardFearResistance * relicFearResistance);
@@ -336,7 +353,7 @@ public class GuestParty : MonoBehaviour, IFocusable
     
     public void Scream()
     {
-        guestVisualController.PlayAnimation(AnimationType.SCREAM);
+        _guestVisualHolder.PlayAnimation(AnimationType.SCREAM);
         Debug.Log($"{entity.name} is screaming!");
         ScreamEventArgs screamEventArg = ScreamEventArgs.Get();
         screamEventArg.GuestParty = this;

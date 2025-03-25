@@ -3,12 +3,12 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class GuestVisualController : MonoBehaviour
+public class GuestVisual : MonoBehaviour
 {
     [FormerlySerializedAs("guestObject")]
     [Header("Refereces")]
     [SerializeField] private GuestParty guestParty;
-    [SerializeField] private GameObject guestVisual;
+    // [SerializeField] private GameObject guestVisual;
     [SerializeField] private Animator guestAnimator;
     [SerializeField] private bool isSpum = true;
     [SerializeField] private SPUM_Prefabs spumPrefab;
@@ -19,7 +19,7 @@ public class GuestVisualController : MonoBehaviour
     {
         if (guestParty == null)
         {
-            guestParty = GetComponent<GuestParty>();
+            guestParty = GetComponentInParent<GuestParty>();
         }
         if (isSpum)
         {
@@ -45,6 +45,11 @@ public class GuestVisualController : MonoBehaviour
             guestAnimator.runtimeAnimatorController = animatorOverrideController;
         }
     }
+    
+    public void Initialize(GuestParty guestParty)
+    {
+        this.guestParty = guestParty;
+    }
 
     private bool isMoving = false;
     private bool isDirectingLeft = true;
@@ -56,10 +61,10 @@ public class GuestVisualController : MonoBehaviour
         {
             if(isDirectingLeft == value) return;
             isDirectingLeft = value;
-            Vector3 localScale = guestVisual.transform.localScale;
+            Vector3 localScale = transform.localScale;
             // Debug.Log($"{isDirectingLeft} localPosition: {localPosition.x} => {localPosition.x * -1}");
             localScale.x *= -1;
-            guestVisual.transform.localScale = localScale;
+            transform.localScale = localScale;
         }
     }
     public IEnumerator MoveDirectionCheckRoutine()

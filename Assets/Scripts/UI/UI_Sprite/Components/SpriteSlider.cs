@@ -46,7 +46,8 @@ public class SpriteSlider : MonoBehaviour
             UpdateSprite();
         else
         {
-            spriteRenderer.sharedMaterial.SetFloat(CutoffValue, ratio);
+            if(spriteRenderer&&spriteRenderer.sharedMaterial)
+                spriteRenderer.sharedMaterial.SetFloat(CutoffValue, ratio);
         }
     }
 }

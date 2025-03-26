@@ -2,6 +2,14 @@ using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace Common.Interfaces
+{
+    public interface IBaseData
+    {
+        long Index { get; }
+    }
+}
+
 namespace CommonFunction.TypeConversion
 {
     public static class TypeConverter

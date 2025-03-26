@@ -2,70 +2,70 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using Newtonsoft.Json;
-using ExcelDataReader;
 using UnityEngine;
-using UnityEditor;
-using ClassBase;
-using static ClassBase.Card.CardDatabase;
-using System.Text;
+using ExcelDataReader;
+using Newtonsoft.Json;
 
-public class ExcelToJSON
+public class ExcelToJSON_Runtime
 {
-#if UNITY_EDITOR
-    public static void Initailze()
+    public static void ConvertExcelAtRuntime(string fileName)
     {
-        string folderPath = Application.dataPath + "/Scripts/DataBase";
-        ConvertAllExcelsInFolder(folderPath);
-    }
+        string inputPath = Path.Combine(Application.streamingAssetsPath, fileName);
+        string outputFolder = Path.Combine(Application.streamingAssetsPath,"AssetBundles","CardDataBase_JSON");
 
-    public static void ConvertAllExcelsInFolder(string folderPath)
-    {
-        if(!Directory.Exists(folderPath))
+        if (!File.Exists(inputPath))
         {
-            Debug.LogWarning("í´ë”ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
+            Debug.LogError("Excel ÆÄÀÏÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù: " + inputPath);
+            return;
         }
 
-        string[] excelFiles = Directory.GetFiles(folderPath, "*xlsx",SearchOption.AllDirectories);
-
-        foreach(string excelFilePath in excelFiles)
-        {
-            ConvertExcelToJson(excelFilePath, "");
-        }
-
-        AssetDatabase.Refresh();
-    }
-
-    public static void ConvertExcelToJson(string excelFilePath, string sheetName = "")
-    {
         System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
 
-        using (var stream = File.Open(excelFilePath, FileMode.Open, FileAccess.Read))
+        string markerPath = Path.Combine(outputFolder, "__ExcelLastModified.txt");
+        DateTime excelLastModified = File.GetLastWriteTimeUtc(inputPath);
+        bool isModified = true;
+
+        if (File.Exists(markerPath))
         {
-            using (var reader = ExcelReaderFactory.CreateReader(stream))
+            string timestamp = File.ReadAllText(markerPath);
+            if (DateTime.TryParse(timestamp, out var prevModified))
             {
-                var result = reader.AsDataSet();
-
-                string excelFileName = Path.GetFileNameWithoutExtension(excelFilePath);
-                string outputFolder = Path.Combine(Path.GetDirectoryName(excelFilePath), excelFileName + "_JSON");
-
-                if (!Directory.Exists(outputFolder))
+                if (prevModified >= excelLastModified)
                 {
-                    Directory.CreateDirectory(outputFolder);
-                }
-
-                foreach (DataTable table in result.Tables)
-                {
-                    ProcessSheet(table, outputFolder);
+                    Debug.Log("Excel ÆÄÀÏ º¯°æ ¾øÀ½. JSON »ı¼º »ı·«.");
+                    return;
                 }
             }
-            Debug.Log($"ì—‘ì…€ â†’ JSON ë³€í™˜ ì™„ë£Œ: {excelFilePath}");
+        }
+
+        if (Directory.Exists(outputFolder))
+        {
+            Directory.Delete(outputFolder, true);
+            Debug.Log("±âÁ¸ JSON Æú´õ »èÁ¦ ¿Ï·á");
+        }
+
+        Directory.CreateDirectory(outputFolder);
+
+        using (var stream = File.Open(inputPath, FileMode.Open, FileAccess.Read))
+        using (var reader = ExcelReaderFactory.CreateReader(stream))
+        {
+            var result = reader.AsDataSet();
+
+            if (!Directory.Exists(outputFolder))
+                Directory.CreateDirectory(outputFolder);
+
+            foreach (DataTable table in result.Tables)
+            {
+                ProcessSheet(table, outputFolder);
+            }
+
+            Debug.Log($"·±Å¸ÀÓ ¿¢¼¿ ¡æ JSON º¯È¯ ¿Ï·á: {inputPath}");
         }
     }
 
     public static void ProcessSheet(DataTable table, string outputFolder)
     {
-        Debug.Log($"ì‹œíŠ¸ ì´ë¦„: {table.TableName}");
+        Debug.Log($"½ÃÆ® ÀÌ¸§: {table.TableName}");
 
         var excelData = new List<Dictionary<string, string>>();
 
@@ -174,24 +174,11 @@ public class ExcelToJSON
             }
             excelData.Add(rowDict);
         }
+
         string jsonFilePath = Path.Combine(outputFolder, table.TableName + ".json");
-
-        var jsonString = JsonConvert.SerializeObject(excelData, Formatting.Indented);
-
+        string jsonString = JsonConvert.SerializeObject(excelData, Formatting.Indented);
         File.WriteAllText(jsonFilePath, jsonString, System.Text.Encoding.UTF8);
 
-        File.SetLastWriteTimeUtc(jsonFilePath, DateTime.UtcNow);
-
-        string assetRelativePath = "Assets" + jsonFilePath.Replace(Application.dataPath, "").Replace("\\", "/");
-
-        EditorApplication.delayCall += () =>
-        {
-            EditorApplication.delayCall += () =>
-            {
-                Debug.Log("JSON í›„ì²˜ë¦¬ ì‹¤í–‰: " + assetRelativePath);
-                AssetDatabase.ImportAsset(assetRelativePath);
-            };
-        };
-#endif
+        Debug.Log($"JSON ÀúÀå ¿Ï·á: {jsonFilePath}");
     }
 }

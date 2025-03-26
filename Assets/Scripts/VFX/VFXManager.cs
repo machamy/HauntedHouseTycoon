@@ -25,10 +25,10 @@ public class VFXManager : SingletonBehaviour<VFXManager>
         }
     }
 
-    public VisualEffect GetEffect()
+    /*public VisualEffect GetEffect()
     {
         
-    }
+    }*/
     
     private Poolable CreatePoolable(GameObject prefab)
     {

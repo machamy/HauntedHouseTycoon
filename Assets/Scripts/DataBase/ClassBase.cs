@@ -1,12 +1,19 @@
 using System;
 using System.Collections.Generic;
+using Common.Interfaces;
+using UnityEngine;
 
 namespace ClassBase.Card
 {
     [Serializable]
-    public class CardClass
+    public class CardDatabase : IBaseData
     {
-        public long Index;
+        [SerializeField] private long index;
+        public long Index
+        {
+            get => index;
+            set => index = value;
+        }
         public long NameIndex;
         public long ExplainIndex;
 
@@ -15,7 +22,11 @@ namespace ClassBase.Card
 
         public int Cost;
         public long[] KeyWordIndex;
+
         public string SpritePath;
+        [NonSerialized]
+        public Sprite Sprite;
+
         public int[] AvailableRoutes;
         public int DestroyPayback;
         public long[] CardEffectIndex;
@@ -45,9 +56,14 @@ namespace ClassBase.Card
     }
 
     [Serializable]
-    public class Effect
+    public class Effect : IBaseData
     {
-        public long Index;
+        [SerializeField] private long index;
+        public long Index
+        {
+            get => index;
+            set => index = value;
+        }
         public ConditonType condition;
         public TargetType target;
 
@@ -85,25 +101,40 @@ namespace ClassBase.Card
     }
 
     [Serializable]
-    public class KeywordData
+    public class KeywordData : IBaseData
     {
-        public long Index;
+        [SerializeField] private long index;
+        public long Index
+        {
+            get => index;
+            set => index = value;
+        }
         public long NameIndex;
         public long ExplainIndex;
     }
 
     [Serializable]
-    public class EnterCardData
+    public class EnterCardData : IBaseData
     {
-        public long Index;
+        [SerializeField] private long index;
+        public long Index
+        {
+            get => index;
+            set => index = value;
+        }
         public int EffectLastsTurn;
         public long[] SpawningVisitorIndex;
     }
 
     [Serializable]
-    public class CardPackData
+    public class CardPackData : IBaseData
     {
-        public long Index;
+        [SerializeField] private long index;
+        public long Index
+        {
+            get => index;
+            set => index = value;
+        }
         public long NameIndex;
         public long ExplainIndex;
         public int PackPrice;
@@ -118,29 +149,48 @@ namespace ClassBase.Card
     }
 
     [Serializable]
-    public class TraumaData
+    public class TraumaData : IBaseData
     {
-        public long Index;
+        [SerializeField] private long index;
+        public long Index
+        {
+            get => index;
+            set => index = value;
+        }
         public string TraumaName;
     }
 
     [Serializable]
-    public class MarketingData
+    public class MarketingData : IBaseData
     {
-        public long Index;
+        [SerializeField] private long index;
+        public long Index
+        {
+            get => index;
+            set => index = value;
+        }
     }
 
     [Serializable]
-    public class AnimationData
+    public class AnimationData : IBaseData
     {
-        public long Index;
-        public string EffectSound;
+        [SerializeField] private long index;
+        public long Index
+        {
+            get => index;
+            set => index = value;
+        }
     }
 
     [Serializable]
-    public class TextData
+    public class TextData : IBaseData
     {
-        public long Index;
+        [SerializeField] private long index;
+        public long Index
+        {
+            get => index;
+            set => index = value;
+        }
         public string StringKey;
         public string KOR;
         public string EN;
@@ -150,9 +200,14 @@ namespace ClassBase.Card
 namespace ClassBase.GameObject
 {
     [Serializable]
-    public class Visitor
+    public class Visitor : IBaseData
     {
-        public long Index;
+        [SerializeField] private long index;
+        public long Index
+        {
+            get => index;
+            set => index = value;
+        }
 
         public Sex sex;
         public enum Sex

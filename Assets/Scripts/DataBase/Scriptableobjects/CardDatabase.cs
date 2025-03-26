@@ -5,13 +5,13 @@ using System.IO;
 using Newtonsoft.Json.Linq;
 using CommonFunction.TypeConversion;
 using System.Linq;
-
-public class CardDatabase : ScriptableObject, JsonToSO.ILoadFromJson
+ 
+public class CardDatabase : ScriptableObject, JsonToSO.ILoadFromJson, JsonToSO.IIndexedData<ClassBase.Card.CardDatabase>
 {
     [SerializeField]
     public List<ClassBase.Card.CardDatabase> cardDatabaseList = new();
 
-    public ClassBase.Card.CardDatabase FindCardByIndex(long index)
+    public ClassBase.Card.CardDatabase FindByIndex(long index)
     {
         return cardDatabaseList.FirstOrDefault(card => card.Index == index);
     }
@@ -23,7 +23,7 @@ public class CardDatabase : ScriptableObject, JsonToSO.ILoadFromJson
             Debug.LogError("JSON 경로가 존재하지 않음: " + jsonPath);
             return;
         }
-
+        
         string json = File.ReadAllText(jsonPath);
         JArray cardArray = JArray.Parse(json);
 

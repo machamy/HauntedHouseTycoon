@@ -17,6 +17,12 @@ public class JsonToSO
         void LoadFromJson(string jsonPath);
     }
 
+    public interface IIndexedData<T> where T : IBaseData
+    {
+        T FindByIndex(long index);
+    }
+
+
     public ScriptableObject CreateSO(string className, string jsonPath)
     {
         Type soType = AppDomain.CurrentDomain.GetAssemblies()

@@ -14,7 +14,7 @@ public class CardDataManager : MonoBehaviour
 
         if (so != null)
         {
-            var card = so.FindCardByIndex(1000300);
+            var card = so.FindByIndex(1000300);
 
             if (card != null)
             {

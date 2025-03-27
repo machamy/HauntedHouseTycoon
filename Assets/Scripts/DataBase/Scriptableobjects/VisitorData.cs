@@ -7,7 +7,7 @@ using CommonFunction.TypeConversion;
 using System.Linq;
 using JetBrains.Annotations;
 
-public class VisitorDatabase : ScriptableObject, JsonToSO.ILoadFromJson, JsonToSO.IIndexedData<ClassBase.GameObject.Visitor>
+public class VisitorData : ScriptableObject, JsonToSO.ILoadFromJson, JsonToSO.IIndexedData<ClassBase.GameObject.Visitor>
 {
     [SerializeField]
     public List<ClassBase.GameObject.Visitor> visitorDataList = new();

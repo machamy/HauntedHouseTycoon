@@ -23,7 +23,15 @@ public class CardDatabase : ScriptableObject, JsonToSO.ILoadFromJson, JsonToSO.I
             Debug.LogError("JSON 경로가 존재하지 않음: " + jsonPath);
             return;
         }
-        
+
+        string assetBundlePath = Path.Combine(Application.streamingAssetsPath, "AssetBundles", "CardSprite");
+        AssetBundle cardSpriteBundle = AssetBundle.LoadFromFile(assetBundlePath);
+        if (cardSpriteBundle == null)
+        {
+            Debug.LogError("CardSprite AssetBundle 로드 실패: " + assetBundlePath);
+            return;
+        }
+
         string json = File.ReadAllText(jsonPath);
         JArray cardArray = JArray.Parse(json);
 
@@ -43,7 +51,15 @@ public class CardDatabase : ScriptableObject, JsonToSO.ILoadFromJson, JsonToSO.I
             long[] actionAnimationIndex = TypeConverter.ExtractLongArray(cardObj, "actionAnimationIndex");
 
             string spritePath = cardObj["spritePath"]?.ToString() ?? "";
-            var sprite = string.IsNullOrEmpty(spritePath) ? null : Resources.Load<Sprite>(spritePath);
+            Sprite sprite = null;
+            if (!string.IsNullOrEmpty(spritePath))
+            {
+                sprite = cardSpriteBundle.LoadAsset<Sprite>(spritePath);
+                if (sprite == null)
+                {
+                    Debug.LogWarning("AssetBundle에서 해당 Sprite를 찾을 수 없음: " + spritePath);
+                }
+            }
 
             var card = new ClassBase.Card.CardDatabase
             {

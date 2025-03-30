@@ -31,7 +31,7 @@ public class TextData : ScriptableObject, JsonToSO.ILoadFromJson, JsonToSO.IInde
 
         foreach(JObject textObj in textArray)
         {
-            string stringKey = textObj["StringKey"]?.ToString() ?? "";
+            string stringKey = textObj["stringKey"]?.ToString() ?? "";
             string kor = textObj["KOR"]?.ToString() ?? "";
             string en = textObj["EN"]?.ToString() ?? "";
             var text = new ClassBase.Card.TextData

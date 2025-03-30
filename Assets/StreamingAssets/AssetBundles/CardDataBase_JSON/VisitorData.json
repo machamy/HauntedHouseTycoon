@@ -1,23 +1,22 @@
 ﻿[
   {
     "idnex": "06100100",
-    "sex": "0",
+    "": "",
     "age": "",
     "traumaIndex": "09100100",
     "traumaRatio": "1.5",
     "visualHorrorTolerance": "1.0",
     "auditoryHorrorTolerance": "1.0",
-    "scentHorrorTolerance": "1.0",
+    "scentHororTolerance": "1.0",
     "touchHorrorTolerance": "1.0",
-    "requiredHorrorAmount_0": "5",
-    "requiredHorrorAmount_1": "7",
-    "requiredHorrorAmount_2": "9",
+    "_0": "5",
+    "_1": "7",
+    "_2": "9",
     "panicAmount": "15",
-    "amountOfTiredInTurn": "0.1",
+    "amountOfTiredInturn": "0.1",
     "panicResponse": "-1",
     "panicWeightedAmount": "",
     "exitGetScreamAmount": "2",
-    "enterCardIndex": "01000100",
-    "": ""
+    "enterCardIndex": "01000100"
   }
 ]

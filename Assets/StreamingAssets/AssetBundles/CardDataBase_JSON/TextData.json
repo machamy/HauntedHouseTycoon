@@ -1,158 +1,158 @@
 ﻿[
   {
-    "index": "10000101",
-    "StringKey": "",
+    "index": "11000101",
+    "stringKey": "",
     "KOR": "탄환 1",
     "EN": ""
   },
   {
-    "index": "10000102",
-    "StringKey": "",
+    "index": "11000102",
+    "stringKey": "",
     "KOR": "",
     "EN": ""
   },
   {
-    "index": "10000201",
-    "StringKey": "",
+    "index": "11000201",
+    "stringKey": "",
     "KOR": "탄환 2",
     "EN": ""
   },
   {
-    "index": "10000202",
-    "StringKey": "",
+    "index": "11000202",
+    "stringKey": "",
     "KOR": "",
     "EN": ""
   },
   {
-    "index": "12000301",
-    "StringKey": "",
+    "index": "11000301",
+    "stringKey": "",
     "KOR": "탄환 3",
     "EN": ""
   },
   {
-    "index": "12000302",
-    "StringKey": "",
+    "index": "11000302",
+    "stringKey": "",
     "KOR": "",
     "EN": ""
   },
   {
-    "index": "12000401",
-    "StringKey": "",
+    "index": "11000401",
+    "stringKey": "",
     "KOR": "총흔",
     "EN": ""
   },
   {
-    "index": "12000402",
-    "StringKey": "",
+    "index": "11000402",
+    "stringKey": "",
     "KOR": "",
     "EN": ""
   },
   {
-    "index": "12000501",
-    "StringKey": "",
+    "index": "11000501",
+    "stringKey": "",
     "KOR": "착각",
     "EN": ""
   },
   {
-    "index": "12000502",
-    "StringKey": "",
+    "index": "11000502",
+    "stringKey": "",
     "KOR": "",
     "EN": ""
   },
   {
-    "index": "12000601",
-    "StringKey": "",
+    "index": "11000601",
+    "stringKey": "",
     "KOR": "스친 탄환",
     "EN": ""
   },
   {
-    "index": "12000602",
-    "StringKey": "",
+    "index": "11000602",
+    "stringKey": "",
     "KOR": "",
     "EN": ""
   },
   {
-    "index": "12000701",
-    "StringKey": "",
+    "index": "11000701",
+    "stringKey": "",
     "KOR": "탄환 획득",
     "EN": ""
   },
   {
-    "index": "12000702",
-    "StringKey": "",
+    "index": "11000702",
+    "stringKey": "",
     "KOR": "",
     "EN": ""
   },
   {
-    "index": "12000801",
-    "StringKey": "",
+    "index": "11000801",
+    "stringKey": "",
     "KOR": "난사!",
     "EN": ""
   },
   {
-    "index": "12000802",
-    "StringKey": "",
+    "index": "11000802",
+    "stringKey": "",
     "KOR": "",
     "EN": ""
   },
   {
-    "index": "12000901",
-    "StringKey": "",
+    "index": "11000901",
+    "stringKey": "",
     "KOR": "녹슨 쇠창살",
     "EN": ""
   },
   {
-    "index": "12000902",
-    "StringKey": "",
+    "index": "11000902",
+    "stringKey": "",
     "KOR": "OnGuestEnter 일때 ToCurrentGuest에 레벨별{input1}만큼의 시각적 공포를 제공",
     "EN": ""
   },
   {
-    "index": "12001001",
-    "StringKey": "",
+    "index": "11001001",
+    "stringKey": "",
     "KOR": "삐걱거리는 문",
     "EN": ""
   },
   {
-    "index": "12001002",
-    "StringKey": "",
+    "index": "11001002",
+    "stringKey": "",
     "KOR": "OnGuestEnter 일때 ToCurrentGuest에 레벨별{input1}만큼의 청각적 공포를 제공",
     "EN": ""
   },
   {
-    "index": "12001101",
-    "StringKey": "",
+    "index": "11001101",
+    "stringKey": "",
     "KOR": "곰팡이 냄새",
     "EN": ""
   },
   {
-    "index": "12001102",
-    "StringKey": "",
+    "index": "11001102",
+    "stringKey": "",
     "KOR": "OnGuestEnter 일때 ToCurrentGuest에 레벨별{input1}만큼의 후각적 공포를 제공",
     "EN": ""
   },
   {
-    "index": "12001201",
-    "StringKey": "",
+    "index": "11001201",
+    "stringKey": "",
     "KOR": "튀어나오는 해골",
     "EN": ""
   },
   {
-    "index": "12001202",
-    "StringKey": "",
+    "index": "11001202",
+    "stringKey": "",
     "KOR_0": "OnGuestEnter 일때 ToCurrentGuest에 레벨별{input1}만큼의 촉적 공포를 제공",
     "KOR_1": "비명을 지를 수있는 상태면 비명을 지르게 함",
     "EN": ""
   },
   {
-    "index": "12001301",
-    "StringKey": "",
+    "index": "11001301",
+    "stringKey": "",
     "KOR": "어두워 속이 보이지 않는 감옥",
     "EN": ""
   },
   {
-    "index": "12001302",
-    "StringKey": "",
+    "index": "11001302",
+    "stringKey": "",
     "KOR": "ToCrossCard가 제공하는 공포 +1",
     "EN": ""
   }

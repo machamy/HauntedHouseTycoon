@@ -5,9 +5,13 @@ using System.IO;
 using ExcelDataReader.Log;
 using System.Collections.Generic;
 
-public class DataManager : MonoBehaviour
+/*
+ * var 호출할 SO를 담을 객체의 이름 = DataBaseManager.Instance.Get<호출하고 싶은 SO 이름>(); //SO 객체의 이름은 40번째 줄의 LoadAllDatabases를 참고
+ * var 단일 데이터를 담을 객체의 이름 = 앞서 호출한 SO를 담은 객체의 이름.FindByIndex(필요한 데이터의 Index);
+ */
+public class DataBaseManager : MonoBehaviour
 {
-    public static DataManager Instance { get; private set; }
+    public static DataBaseManager Instance { get; private set; }
     private readonly Dictionary<Type, ScriptableObject> databaseMap = new();
 
     private void Awake()
@@ -37,8 +41,8 @@ public class DataManager : MonoBehaviour
     {
         Register<AnimationData>("AssetBundles/CardDataBase_JSON/AnimationData.json");
         Register<CardDatabase>("AssetBundles/CardDataBase_JSON/CardData.json");
-        Register<CardEffectData>("AssetBundles/CardDataBase_JSON/CardEffectData.json");
-        Register<CardpackData>("AssetBundles/CardDataBase_JSON/CardpackData.json");
+        Register<EffectData>("AssetBundles/CardDataBase_JSON/CardEffectData.json");
+        Register<PackData>("AssetBundles/CardDataBase_JSON/CardpackData.json");
         Register<EnterCardData>("AssetBundles/CardDataBase_JSON/EnterCardData.json");
         Register<KeywordData>("AssetBundles/CardDataBase_JSON/KeywordData.json");
         Register<MarketingData>("AssetBundles/CardDataBase_JSON/MarketingData.json");

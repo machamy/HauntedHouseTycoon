@@ -6,14 +6,14 @@ using Newtonsoft.Json.Linq;
 using CommonFunction.TypeConversion;
 using System.Linq;
 
-public class CardpackData : ScriptableObject, JsonToSO.ILoadFromJson, JsonToSO.IIndexedData<ClassBase.Card.CardPackData>
+public class PackData : ScriptableObject, JsonToSO.ILoadFromJson, JsonToSO.IIndexedData<ClassBase.Card.CardPackData>
 {
     [SerializeField]
-    public List<ClassBase.Card.CardPackData> cardpackDataList = new();
+    public List<ClassBase.Card.CardPackData> packDataList = new();
 
     public ClassBase.Card.CardPackData FindByIndex(long index)
     {
-        return cardpackDataList.FirstOrDefault(cardpack => cardpack.Index == index);
+        return packDataList.FirstOrDefault(cardpack => cardpack.Index == index);
     }
 
     public void LoadFromJson(string jsonPath)
@@ -27,7 +27,7 @@ public class CardpackData : ScriptableObject, JsonToSO.ILoadFromJson, JsonToSO.I
         string json = File.ReadAllText(jsonPath);
         JArray packArray = JArray.Parse(json);
 
-        cardpackDataList.Clear();
+        packDataList.Clear();
 
         foreach (JObject packObj in packArray)
         {
@@ -53,7 +53,7 @@ public class CardpackData : ScriptableObject, JsonToSO.ILoadFromJson, JsonToSO.I
                 IllustFileName = illustFileName
             };
 
-            cardpackDataList.Add(packData);
+            packDataList.Add(packData);
         }
     }
 }

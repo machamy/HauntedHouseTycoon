@@ -6,14 +6,14 @@ using Newtonsoft.Json.Linq;
 using CommonFunction.TypeConversion;
 using System.Linq;
 
-public class CardEffectData : ScriptableObject, JsonToSO.ILoadFromJson, JsonToSO.IIndexedData<ClassBase.Card.Effect>
+public class EffectData : ScriptableObject, JsonToSO.ILoadFromJson, JsonToSO.IIndexedData<ClassBase.Card.Effect>
 {
     [SerializeField]
-    public List<ClassBase.Card.Effect> cardEffectDataList = new();
+    public List<ClassBase.Card.Effect> effectDataList = new();
 
     public ClassBase.Card.Effect FindByIndex(long index)
     {
-        return cardEffectDataList.FirstOrDefault(effect => effect.Index == index);
+        return effectDataList.FirstOrDefault(effect => effect.Index == index);
     }
 
     public void LoadFromJson(string jsonPath)
@@ -27,7 +27,7 @@ public class CardEffectData : ScriptableObject, JsonToSO.ILoadFromJson, JsonToSO
         string json = File.ReadAllText(jsonPath);
         JArray effectArray = JArray.Parse(json);
 
-        cardEffectDataList.Clear();
+        effectDataList.Clear();
 
         foreach(JObject effectObj in effectArray)
         {
@@ -38,7 +38,7 @@ public class CardEffectData : ScriptableObject, JsonToSO.ILoadFromJson, JsonToSO
                 target = (ClassBase.Card.Effect.TargetType)TypeConverter.TryParseInt(effectObj["targetType"]?.ToString(), 0),
             };
 
-            cardEffectDataList.Add(effect);
+            effectDataList.Add(effect);
         }
     }
 }

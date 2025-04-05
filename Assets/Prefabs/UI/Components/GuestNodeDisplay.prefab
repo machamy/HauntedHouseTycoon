@@ -926,7 +926,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31737529a3d040819dcd04632eb4f33b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fearSlider: {fileID: 7367313103292553058}
+  fearSliderUI: {fileID: 7367313103292553058}
   PanicLine: {fileID: 414011556445067695}
   CurrentScreamLine: {fileID: 103754106727607557}
   NextScreamLine: {fileID: 6107609930424025646}
@@ -936,7 +936,7 @@ MonoBehaviour:
   clockwise: 0
   startAngle: 25
   endAngle: 345
-  guest: {fileID: 0}
+  guestParty: {fileID: 0}
   node: {fileID: 0}
 --- !u!114 &758678298109776185
 MonoBehaviour:

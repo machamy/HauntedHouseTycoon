@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Define;
 using DG.Tweening;
 using JetBrains.Annotations;
 using Pools;
@@ -27,9 +28,9 @@ public class GuestParty : MonoBehaviour, IFocusable
     [SerializeField] private List<int> screamRequirements = new List<int>();
 
     // [SerializeField] private int screamRequirementIncrease = 3;
-    [SerializeField] private int fear = 0;
+    [FormerlySerializedAs("baseFear")] [SerializeField] private int fear = 0;
     [SerializeField] private int panic = 20;
-    [SerializeField] private List<float> fearResistances = new List<float>() {1f,1f,1f,1f};
+    [SerializeField] private List<float> fearWeakness = new List<float>() {1f,1f,1f,1f};
     // [SerializeField] private int fatigue = 2;
     [SerializeField] private int fatigueCoefficient = 2;
     [FormerlySerializedAs("guestVisualController")]
@@ -64,20 +65,26 @@ public class GuestParty : MonoBehaviour, IFocusable
     public event Action OnValueChangedEvent; 
     public event Action OnRemoved;
     
-    /// <summary>
-    /// 최종 공포치
-    /// </summary>
+    /// <summary> 최종 공포치 </summary>
     public int FinalFear => fear; // 전역적인 무언가? 있을수 도 있음
 
-    public int FearBySupportCard => 0;
-    public float FearByRelic => 0;
-
+    public List<float> FearWeakness => fearWeakness;
     public int Panic => panic;
     public int ScreamRequirement => screamRequirements.Count > 0 ? screamRequirements[0] : 0;
     // public int ScreamRequirementIncrease => screamRequirementIncrease;
     public int NextScreamRequirement => screamRequirements.Count > 1 ? screamRequirements[1] : 0;
     
     public bool CanScream => FinalFear >= ScreamRequirement;
+
+    public int Fear
+    {
+        get => fear;
+        set
+        {
+            fear = Mathf.Max(0, value);
+            OnValueChanged();
+        }
+    }
     
     public bool _screamedBefore = false;
     /// <summary>
@@ -286,10 +293,10 @@ public class GuestParty : MonoBehaviour, IFocusable
         other.fear = Mathf.RoundToInt((fear * GuestAmount + other.fear * other.GuestAmount) / (float) mergedGuestAmount * mergeCoeff0_9);
         other.panic = Mathf.RoundToInt((panic * GuestAmount + other.panic * other.GuestAmount) / (float)  mergedGuestAmount * mergeCoeff0_9);
         
-        // 공포 속성 내성 : 낮은 값으로 설정
-        for (int i = 0; i < fearResistances.Count; i++)
+        // 공포 속성 취약성 : 낮은 값으로 설정
+        for (int i = 0; i < fearWeakness.Count; i++)
         {
-            other.fearResistances[i] = Mathf.Min(fearResistances[i], other.fearResistances[i]);
+            other.fearWeakness[i] = Mathf.Min(fearWeakness[i], other.fearWeakness[i]);
         }
         
         // 트라우마는 모두 유지되고 중복되는 것들은 적용되는 값이 합쳐져서 적용됨
@@ -338,14 +345,19 @@ public class GuestParty : MonoBehaviour, IFocusable
     ///     + (보조카드에 의한 추가 공포치, int)
     ///     + (유물에 의한 추가 공포치, int))
     /// }
-    /// * (카드의 공포 속성에 맞는, float)
+    /// * (카드의 공포 속성에 맞는 취약성, float)
     /// * (카드의 키워드에 대응되는 트라우마, float)
-    public void ApplyFear(int baseFear, int supportFear, int relicFear, float cardFearResistance, float relicFearResistance)
+    /// TODO : 트라우마 반영 안됨
+    public void ApplyFear(FearType fearType, int baseFear, int supportFear, int relicFear, string[] tramuas = null)
     {
         _guestVisualHolder.PlayAnimation(AnimationType.FEAR);
-        fear += baseFear + supportFear + relicFear;
-        fear = Mathf.Max(0, fear);
-        fear = Mathf.CeilToInt(fear * cardFearResistance * relicFearResistance);
+        this.fear += baseFear + supportFear + relicFear;
+        this.fear = Mathf.Max(0, this.fear);
+        this.fear = Mathf.CeilToInt(this.fear * fearWeakness[(int) fearType]);
+        if (tramuas != null)
+        {
+            Debug.Log("트라우마는 아직 반영 안됨");
+        }
         if (CanScream)
         {
             Scream();
@@ -378,7 +390,6 @@ public class GuestParty : MonoBehaviour, IFocusable
 
     public void OnValueChanged()
     {
-        
         fearText.text = $"{fear} / {ScreamRequirement}";
         OnValueChangedEvent?.Invoke();
     }

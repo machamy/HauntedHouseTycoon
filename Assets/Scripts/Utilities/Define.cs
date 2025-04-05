@@ -14,7 +14,7 @@
         Exit
     }
     
-    public enum FearType
+    public enum FearType : byte
     {
         None,
         Vision,

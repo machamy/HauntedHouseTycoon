@@ -193,14 +193,15 @@ public class GuestParty : MonoBehaviour, IFocusable
         if (nextRoom)
         {
             targetRoom = nextRoom;
-            
-            GuestMoveEventArgs e = GuestMoveEventArgs.Get();
-            e.GuestParty = this;
-            e.fromRoom = CurrentRoom;
-            e.toRoom = nextRoom;
-            e.isEnter = false;
-            roomEventChannelSo.RaiseCustomerRoomExit(e);
-            
+
+            using (GuestMoveEventArgs e = GuestMoveEventArgs.Get())
+            {
+                e.GuestParty = this;
+                e.fromRoom = CurrentRoom;
+                e.toRoom = nextRoom;
+                e.isEnter = false;
+                roomEventChannelSo.RaiseCustomerRoomExit(e);
+            }
             // Debug.Log($"from {CurrentRoom.name} to {nextRoom.name}");
             movedDistance++;
             _guestVisualHolder?.PlayAnimation(AnimationType.MOVE);
@@ -216,13 +217,14 @@ public class GuestParty : MonoBehaviour, IFocusable
                 });
             // entity.currentRoom = nextRoom;
             orientingDirection = targetDirection;
-            
-            GuestMoveEventArgs nextRoomEventArgs = GuestMoveEventArgs.Get();
-            nextRoomEventArgs.GuestParty = this;
-            nextRoomEventArgs.fromRoom = CurrentRoom;
-            nextRoomEventArgs.toRoom = nextRoom;
-            nextRoomEventArgs.isEnter = true;
-            roomEventChannelSo.RaiseCustomerRoomEnter(nextRoomEventArgs);
+            using(GuestMoveEventArgs nextRoomEventArgs = GuestMoveEventArgs.Get())
+            {
+                nextRoomEventArgs.GuestParty = this;
+                nextRoomEventArgs.fromRoom = CurrentRoom;
+                nextRoomEventArgs.toRoom = nextRoom;
+                nextRoomEventArgs.isEnter = true;
+                roomEventChannelSo.RaiseCustomerRoomEnter(nextRoomEventArgs);
+            }
         }
         else
         {

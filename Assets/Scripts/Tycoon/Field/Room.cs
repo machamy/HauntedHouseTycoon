@@ -66,10 +66,12 @@ public class Room : MonoBehaviour
         DiscardCard();
         originalCardData = cardData;
         this.cardData.CopyFrom(cardData);
-        CardEventArgs placeEvent = CardEventArgs.Get();
-        placeEvent.room = this;
-        placeEvent.cardData = cardData;
-        cardData.OnCardPlaced(placeEvent);
+        using (CardEventArgs placeEvent = CardEventArgs.Get())
+        {
+            placeEvent.room = this;
+            placeEvent.cardData = cardData;
+            cardData.OnCardPlaced(placeEvent);
+        }
         UpdatePlacedCard(uiSize);
         return true;
     }
@@ -77,10 +79,12 @@ public class Room : MonoBehaviour
     public bool DiscardCard()
     {
         Debug.Log($"DiscardCard {name}");
-        CardEventArgs discardEvent = CardEventArgs.Get();
-        discardEvent.room = this;
-        discardEvent.cardData = cardData;
-        cardData.cardActionContainer.InvokeOnCardRemoved(discardEvent);
+        using (CardEventArgs discardEvent = CardEventArgs.Get())
+        {
+            discardEvent.room = this;
+            discardEvent.cardData = cardData;
+            cardData.cardActionContainer.InvokeOnCardRemoved(discardEvent);
+        }
         CardDataPool.Instance.Release(cardData);
         cardData = CardDataPool.Instance.Get();
         cardData.CopyFrom(defaultCardData.OriginalCardData);

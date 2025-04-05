@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9755030206ea4d2c9955341f8861ba35, type: 3}
   m_Name: FatigueLevel
   m_EditorClassIdentifier: 
-  value: 0
+  value: 24.4
   doClamp: 1
   minValue: 0
   maxValue: 100

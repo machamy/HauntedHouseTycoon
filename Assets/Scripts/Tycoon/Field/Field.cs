@@ -1,9 +1,11 @@
 ﻿
+using System.Collections;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(Grid))]
-public class Field : MonoBehaviour
+public class Field : MonoBehaviour, IEnumerable<Room>
 {
     [SerializeField] private Room defaultRoomPrefab;
     [SerializeField] private CardDataSO defaultCardData;
@@ -11,8 +13,8 @@ public class Field : MonoBehaviour
     [SerializeField] private Grid grid;
     public Grid Grid => grid;
     
-    [SerializeField,Tooltip("확인용, 값 바꾸면 안됨")] int width;
-    [SerializeField,Tooltip("확인용, 값 바꾸면 안됨")] int height;
+    [SerializeField,VisibleOnly] int width;
+    [SerializeField,VisibleOnly] int height;
     
     public void InitField(int width, int height)
     {
@@ -131,4 +133,19 @@ public class Field : MonoBehaviour
     }
     
     #endif
+    public IEnumerator<Room> GetEnumerator()
+    {
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                yield return roomContainer[y][x];
+            }
+        }
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
 }

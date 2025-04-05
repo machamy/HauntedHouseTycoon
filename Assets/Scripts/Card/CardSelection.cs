@@ -155,6 +155,7 @@ public class CardSelection : MonoBehaviour, IPointerEnterHandler,IPointerExitHan
         if(cardUseArea != null)
         {
             cardUseArea.RaiseOnCardUseEvent(cardObject.CardData);
+            TycoonManager.Context.OnCardUsed(cardObject.CardData);
             _isUsed = true;
             cardObject.LeaveHand();
         }

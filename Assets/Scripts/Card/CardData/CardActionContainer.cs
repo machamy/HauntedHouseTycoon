@@ -35,6 +35,11 @@ public class CardActionContainer: ICloneable, ICopyable<CardActionContainer>
             }
         }
     }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="actionBlueprint"></param>
     public void AddAction(CardActionBlueprintSO actionBlueprint)
     {
         actionNodes.Add(new CardActionContainerNode

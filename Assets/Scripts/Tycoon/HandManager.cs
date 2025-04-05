@@ -18,7 +18,10 @@ public class HandManager : MonoBehaviour
     private HorizontalCardHolder handCardHolder;
     [Header("Events")]
     [SerializeField] private TurnEventChannelSO turnEventChannel;
+    
 
+    
+    public int HandCount => handCardHolder.CardCount;
     public void Initialize()
     {
         
@@ -54,6 +57,8 @@ public class HandManager : MonoBehaviour
             return;
         handCardHolder.AddCardWithSlot(cardData);
         cardData.returnDeck = deck;
+        
+        TycoonManager.Context.OnCardDrawn(cardData);
     }
     
     public void DiscardHand()

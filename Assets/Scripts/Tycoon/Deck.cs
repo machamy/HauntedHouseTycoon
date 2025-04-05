@@ -18,6 +18,9 @@ public class Deck
     Queue<CardData> drawCardQueue = new Queue<CardData>();
     Queue<CardData> discardCardQueue = new Queue<CardData>();
     
+    public int DrawSize => drawCardQueue.Count;
+    public int DiscardSize => discardCardQueue.Count;
+    
     public List<CardData> CardDataListRef => cardDataList;
     public Queue<CardData> DrawCardQueueRef => drawCardQueue;
     public Queue<CardData> DiscardCardQueueRef => discardCardQueue;

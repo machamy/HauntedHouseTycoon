@@ -27,6 +27,16 @@ public class CardData : ICloneable<CardData>, ICopyable<CardData>
     
     public Deck returnDeck { get; set; }
     
+    // 업글은 3장 모이면 되는거 아니었나? 
+    public void UpgradeTemporary()
+    {
+        //TODO   
+    }
+    public void UpgradePermanent()
+    {
+        //TODO
+    }
+    
     public void CleanAction()
     {
         cardActionContainer.Clear();
@@ -43,6 +53,10 @@ public class CardData : ICloneable<CardData>, ICopyable<CardData>
     }
 
 
+    public bool IsBlank()
+    {
+        return String.IsNullOrWhiteSpace(cardName) || cardName.Equals("Blank");
+    }
     /// <summary>
     /// 
     /// </summary>

@@ -71,6 +71,7 @@ public class Room : MonoBehaviour
             placeEvent.room = this;
             placeEvent.cardData = cardData;
             cardData.OnCardPlaced(placeEvent);
+            cardData.cardActionContainer.InvokeOnCardPlaced(placeEvent);
         }
         UpdatePlacedCard(uiSize);
         return true;

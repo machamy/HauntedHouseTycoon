@@ -18,6 +18,7 @@ public class TurnManager : MonoBehaviour
     private float remainingTurnDuration = 10f;
     [SerializeField] private bool isPlayerTurn = true;
     public bool IsPlayerTurn => isPlayerTurn;
+    public int TurnCount => turnVariableSO.Value;
     [FormerlySerializedAs("turnIndicatingSlider")]
     [Header("References")]
     [SerializeField] private TurnIndicatingSliderUI turnIndicatingSliderUI;

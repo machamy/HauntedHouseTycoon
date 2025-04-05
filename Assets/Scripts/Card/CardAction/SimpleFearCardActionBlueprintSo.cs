@@ -13,7 +13,7 @@ public class SimpleFearCardActionBlueprintSo : CardActionBlueprintSO
         public override bool OnGuestEnter(GuestMoveEventArgs gusetMoveEventArgs)
         {
             int fear = fearAmount;
-            gusetMoveEventArgs.GuestParty.AddFearSimple(fear);
+            gusetMoveEventArgs.GuestParty.ApplyFearSimple(fear);
             return breakChain;
         }
     }

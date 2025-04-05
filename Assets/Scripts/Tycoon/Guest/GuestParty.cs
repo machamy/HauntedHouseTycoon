@@ -318,7 +318,7 @@ public class GuestParty : MonoBehaviour, IFocusable
     /// <summary>
     /// 단순하게 공포를 더함
     /// </summary>
-    public void AddFearSimple(int amount)
+    public void ApplyFearSimple(int amount)
     {
         _guestVisualHolder.PlayAnimation(AnimationType.FEAR);
         fear += amount;
@@ -340,7 +340,7 @@ public class GuestParty : MonoBehaviour, IFocusable
     /// }
     /// * (카드의 공포 속성에 맞는, float)
     /// * (카드의 키워드에 대응되는 트라우마, float)
-    public void AddFear(int baseFear, int supportFear, int relicFear, float cardFearResistance, float relicFearResistance)
+    public void ApplyFear(int baseFear, int supportFear, int relicFear, float cardFearResistance, float relicFearResistance)
     {
         _guestVisualHolder.PlayAnimation(AnimationType.FEAR);
         fear += baseFear + supportFear + relicFear;
@@ -402,7 +402,7 @@ public class GuestParty : MonoBehaviour, IFocusable
     
     public void OnCustomerScreamModified(ScreamEventArgs screamEventArg)
     {
-        AddFearSimple(screamEventArg.modifier + 1);
+        ApplyFearSimple(screamEventArg.modifier + 1);
     }
 
 

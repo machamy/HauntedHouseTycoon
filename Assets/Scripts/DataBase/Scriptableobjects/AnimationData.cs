@@ -20,7 +20,7 @@ public class AnimationData : ScriptableObject, JsonToSO.ILoadFromJson, JsonToSO.
     {
         if(!File.Exists(jsonPath))
         {
-            Debug.LogError("JSON °æ·Î°¡ Á¸ÀçÇÏÁö ¾ÊÀ½: " + jsonPath);
+            Debug.LogError("JSON ê²½ë¡œê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŒ: " + jsonPath);
             return;
         }
 

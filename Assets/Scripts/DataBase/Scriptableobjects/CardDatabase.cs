@@ -20,7 +20,7 @@ public class CardDatabase : ScriptableObject, JsonToSO.ILoadFromJson, JsonToSO.I
     {
         if (!File.Exists(jsonPath))
         {
-            Debug.LogError("JSON °æ·Î°¡ Á¸ÀçÇÏÁö ¾ÊÀ½: " + jsonPath);
+            Debug.LogError("JSON ê²½ë¡œê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŒ: " + jsonPath);
             return;
         }
 
@@ -28,7 +28,7 @@ public class CardDatabase : ScriptableObject, JsonToSO.ILoadFromJson, JsonToSO.I
         AssetBundle cardSpriteBundle = AssetBundle.LoadFromFile(assetBundlePath);
         if (cardSpriteBundle == null)
         {
-            Debug.LogError("CardSprite AssetBundle ·Îµå ½ÇÆĞ: " + assetBundlePath);
+            Debug.LogError("CardSprite AssetBundle ë¡œë“œ ì‹¤íŒ¨: " + assetBundlePath);
             return;
         }
 
@@ -57,7 +57,7 @@ public class CardDatabase : ScriptableObject, JsonToSO.ILoadFromJson, JsonToSO.I
                 sprite = cardSpriteBundle.LoadAsset<Sprite>(spritePath);
                 if (sprite == null)
                 {
-                    Debug.LogWarning("AssetBundle¿¡¼­ ÇØ´ç Sprite¸¦ Ã£À» ¼ö ¾øÀ½: " + spritePath);
+                    Debug.LogWarning("AssetBundleì—ì„œ í•´ë‹¹ Spriteë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŒ: " + spritePath);
                 }
             }
 

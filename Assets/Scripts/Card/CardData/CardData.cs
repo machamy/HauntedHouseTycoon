@@ -23,7 +23,8 @@ public class CardData : ICloneable<CardData>, ICopyable<CardData>
     public Sprite cardPlacedSprite;
     public CardActionContainer cardActionContainer = new CardActionContainer();
     public CardDataVariables nonlocalVariables = new CardDataVariables();
-
+    public string GetVariableStr(CardDataVariables.Key key) => nonlocalVariables.GetString(key);
+    public int GetVariableInt(CardDataVariables.Key key) => nonlocalVariables.GetInt(key);
     
     public Deck returnDeck { get; set; }
     

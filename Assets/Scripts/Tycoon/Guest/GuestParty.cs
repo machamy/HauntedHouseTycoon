@@ -30,7 +30,7 @@ public class GuestParty : MonoBehaviour, IFocusable
     // [SerializeField] private int screamRequirementIncrease = 3;
     [FormerlySerializedAs("baseFear")] [SerializeField] private int fear = 0;
     [SerializeField] private int panic = 20;
-    [SerializeField] private List<float> fearWeakness = new List<float>() {1f,1f,1f,1f};
+    [SerializeField] private List<float> fearWeakness = new List<float>() {1f,1f,1f,1f,1f};
     // [SerializeField] private int fatigue = 2;
     [SerializeField] private int fatigueCoefficient = 2;
     [FormerlySerializedAs("guestVisualController")]

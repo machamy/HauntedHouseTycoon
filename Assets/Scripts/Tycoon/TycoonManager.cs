@@ -85,6 +85,7 @@ public class TycoonManager : SingletonBehaviour<TycoonManager>
         public bool IsPlayerTurn => _turnManager.IsPlayerTurn;
         public int CurrentTurn => _turnManager.TurnCount;
         
+        public event Action<TycoonContext> OnContextChanged;
         public int CardCountOnField
         {
             get
@@ -142,14 +143,17 @@ public class TycoonManager : SingletonBehaviour<TycoonManager>
         public void OnCardUsed(CardData cardData)
         {
             usedCardContext.AddTurnData(CurrentTurn, cardData);
+            OnContextChanged?.Invoke(this);
         }
         public void OnCardDrawn(CardData cardData)
         {
             drawnCardContext.AddTurnData(CurrentTurn, cardData);
+            OnContextChanged?.Invoke(this);
         }
         public void OnCardDiscarded(CardData cardData)
         {
             discardedCardContext.AddTurnData(CurrentTurn, cardData);
+            OnContextChanged?.Invoke(this);
         }
         
 

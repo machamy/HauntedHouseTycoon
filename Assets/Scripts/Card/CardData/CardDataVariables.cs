@@ -11,13 +11,20 @@ public class CardDataVariables
     public void Clear() => arguments.Clear();
     public enum Key
     {
-        None,
-        CustomerAmount,
-        FearEnterAmount,
+        None = 0,
+        
+        CardLevel = 10,
+        
+        CustomerAmount = 20,
+        
+        FearEnterAmount = 50,
         FearMovementCoefficient,
         FearScreamAmount,
-        DecayTurnAmount,
+        
+        
+        DecayTurnAmount = 100,
         DecayTurnRemain,
+        
         FearGlobalAmount,
         
         PrevGuestDirection,

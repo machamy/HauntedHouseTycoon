@@ -15,7 +15,7 @@ public class ExcelToJSON_Runtime
 
         if (!File.Exists(inputPath))
         {
-            Debug.LogError("Excel ÆÄÀÏÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù: " + inputPath);
+            Debug.LogError("Excel íŒŒì¼ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤: " + inputPath);
             return;
         }
 
@@ -32,7 +32,7 @@ public class ExcelToJSON_Runtime
             {
                 if (prevModified >= excelLastModified)
                 {
-                    Debug.Log("Excel ÆÄÀÏ º¯°æ ¾øÀ½. JSON »ı¼º »ı·«.");
+                    Debug.Log("Excel íŒŒì¼ ë³€ê²½ ì—†ìŒ. JSON ìƒì„± ìƒëµ.");
                     return;
                 }
             }
@@ -41,7 +41,7 @@ public class ExcelToJSON_Runtime
         if (Directory.Exists(outputFolder))
         {
             Directory.Delete(outputFolder, true);
-            Debug.Log("±âÁ¸ JSON Æú´õ »èÁ¦ ¿Ï·á");
+            Debug.Log("ê¸°ì¡´ JSON í´ë” ì‚­ì œ ì™„ë£Œ");
         }
 
         Directory.CreateDirectory(outputFolder);
@@ -59,13 +59,13 @@ public class ExcelToJSON_Runtime
                 ProcessSheet(table, outputFolder);
             }
 
-            Debug.Log($"·±Å¸ÀÓ ¿¢¼¿ ¡æ JSON º¯È¯ ¿Ï·á: {inputPath}");
+            Debug.Log($"ëŸ°íƒ€ì„ ì—‘ì…€ â†’ JSON ë³€í™˜ ì™„ë£Œ: {inputPath}");
         }
     }
 
     public static void ProcessSheet(DataTable table, string outputFolder)
     {
-        Debug.Log($"½ÃÆ® ÀÌ¸§: {table.TableName}");
+        Debug.Log($"ì‹œíŠ¸ ì´ë¦„: {table.TableName}");
 
         var excelData = new List<Dictionary<string, string>>();
 
@@ -179,6 +179,6 @@ public class ExcelToJSON_Runtime
         string jsonString = JsonConvert.SerializeObject(excelData, Formatting.Indented);
         File.WriteAllText(jsonFilePath, jsonString, System.Text.Encoding.UTF8);
 
-        Debug.Log($"JSON ÀúÀå ¿Ï·á: {jsonFilePath}");
+        Debug.Log($"JSON ì €ì¥ ì™„ë£Œ: {jsonFilePath}");
     }
 }

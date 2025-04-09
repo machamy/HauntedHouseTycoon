@@ -76,7 +76,7 @@ public class TycoonManager : SingletonBehaviour<TycoonManager>
         public TycoonContext(TycoonManager tycoonManager)
         {
             _tycoonManager = tycoonManager;
-            _tycoonManager = tycoonManager;
+            _turnManager = tycoonManager.turnManager;
             _handManager = tycoonManager.handManager;
             _field = tycoonManager.field;
             _deck = tycoonManager.deck;

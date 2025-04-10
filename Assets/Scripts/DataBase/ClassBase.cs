@@ -6,7 +6,7 @@ using UnityEngine;
 namespace ClassBase.Card
 {
     [Serializable]
-    public class CardDatabase : IBaseData
+    public class CardData : IBaseData
     {
         [SerializeField] private long index;
         public long Index

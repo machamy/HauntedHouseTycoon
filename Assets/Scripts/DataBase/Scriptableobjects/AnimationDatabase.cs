@@ -6,7 +6,7 @@ using Newtonsoft.Json.Linq;
 using CommonFunction.TypeConversion;
 using System.Linq;
 
-public class AnimationData : ScriptableObject, JsonToSO.ILoadFromJson, JsonToSO.IIndexedData<ClassBase.Card.AnimationData>
+public class AnimationDatabase : ScriptableObject, JsonToSO.ILoadFromJson, JsonToSO.IIndexedData<ClassBase.Card.AnimationData>
 {
     [SerializeField]
     public List<ClassBase.Card.AnimationData> animationDataList = new();

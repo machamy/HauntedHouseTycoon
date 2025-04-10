@@ -6,7 +6,7 @@ using Newtonsoft.Json.Linq;
 using CommonFunction.TypeConversion;
 using System.Linq;
 
-public class MarketingData : ScriptableObject, JsonToSO.ILoadFromJson, JsonToSO.IIndexedData<ClassBase.Card.MarketingData>
+public class MarketingDatabase : ScriptableObject, JsonToSO.ILoadFromJson, JsonToSO.IIndexedData<ClassBase.Card.MarketingData>
 {
     [SerializeField]
     public List<ClassBase.Card.MarketingData> marketingDataList = new();
@@ -20,7 +20,7 @@ public class MarketingData : ScriptableObject, JsonToSO.ILoadFromJson, JsonToSO.
     {
         if (!File.Exists(jsonPath))
         {
-            Debug.LogError("JSON °æ·Î°¡ Á¸ÀçÇÏÁö ¾ÊÀ½: " + jsonPath);
+            Debug.LogError("JSON ï¿½ï¿½Î°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½: " + jsonPath);
             return;
         }
 

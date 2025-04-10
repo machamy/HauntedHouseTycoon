@@ -7,7 +7,7 @@ using CommonFunction.TypeConversion;
 using System.Linq;
 using JetBrains.Annotations;
 
-public class VisitorData : ScriptableObject, JsonToSO.ILoadFromJson, JsonToSO.IIndexedData<ClassBase.GameObject.Visitor>
+public class VisitorDatabase : ScriptableObject, JsonToSO.ILoadFromJson, JsonToSO.IIndexedData<ClassBase.GameObject.Visitor>
 {
     [SerializeField]
     public List<ClassBase.GameObject.Visitor> visitorDataList = new();
@@ -21,7 +21,7 @@ public class VisitorData : ScriptableObject, JsonToSO.ILoadFromJson, JsonToSO.II
     {
         if (!File.Exists(jsonPath))
         {
-            Debug.LogError("JSON °æ·Î°¡ Á¸ÀçÇÏÁö ¾ÊÀ½: " + jsonPath);
+            Debug.LogError("JSON ï¿½ï¿½Î°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½: " + jsonPath);
             return;
         }
 

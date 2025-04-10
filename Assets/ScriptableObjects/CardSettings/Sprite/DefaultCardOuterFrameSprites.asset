@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0046d7298ea64adcb3a2cceb4fb76af6, type: 3}
+  m_Name: DefaultCardOuterFrameSprites
+  m_EditorClassIdentifier: 
+  FullOuterFrameSprite: {fileID: 21300000, guid: b4dd5dbc707850f488fcc67d1d7f4dfd, type: 3}
+  HalfOuterFrameSprites:
+  - {fileID: 21300000, guid: b8bcfa1a91c172949a5ccb8803d4073c, type: 3}
+  - {fileID: 21300000, guid: 623171068d6a432448e85f25a3ef002a, type: 3}
+  - {fileID: 21300000, guid: 985fc88386bcc2740a9c21cde32d5e45, type: 3}
+  SimpleOuterFrameSprites:
+  - {fileID: 21300000, guid: 5f5563d4253dfaa4cabdeee5cbc47f79, type: 3}
+  - {fileID: 21300000, guid: 54abdc6a22b95784aa36b1f1ec21861b, type: 3}
+  - {fileID: 21300000, guid: 8272dbd37a81cbd45a07c48fbfdd4d70, type: 3}

@@ -4,6 +4,7 @@ using UnityEngine;
 /// <summary>
 /// 카드의 바깥쪽 테투리
 /// </summary>
+[CreateAssetMenu(fileName = "CardOuterFrameSprites", menuName = "Card/CardOuterFrameSprites", order = 0)]
 public class CardOuterFrameSpritesSO : ScriptableObject
 { 
     public Sprite FullOuterFrameSprite;

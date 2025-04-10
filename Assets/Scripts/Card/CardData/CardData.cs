@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using Define;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -16,6 +17,7 @@ public class CardData : ICloneable<CardData>, ICopyable<CardData>
     public string cardDescription;
     // [FormerlySerializedAs("directions")] public List<Direction> directionsLegacy;
     public DirectionFlag directions;
+    public CardType cardType = CardType.None;
     public Sprite cardSprite;
     public Sprite simpleCardSprite;
     public Sprite halfCardSprite;

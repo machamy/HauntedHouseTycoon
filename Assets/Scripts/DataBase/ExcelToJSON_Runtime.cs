@@ -95,9 +95,9 @@ public class ExcelToJSON_Runtime
                 {
                     if (header.Equals("Type", StringComparison.OrdinalIgnoreCase))
                     {
-                        if (Enum.TryParse(typeof(ClassBase.Card.CardDatabase.Type), cellValue, out var typeEnum))
+                        if (Enum.TryParse(typeof(ClassBase.Card.CardData.Type), cellValue, out var typeEnum))
                         {
-                            rowDict[header] = ((int)(ClassBase.Card.CardDatabase.Type)typeEnum).ToString();
+                            rowDict[header] = ((int)(ClassBase.Card.CardData.Type)typeEnum).ToString();
                         }
                         else
                         {
@@ -107,9 +107,9 @@ public class ExcelToJSON_Runtime
 
                     else if (header.Equals("Rank", StringComparison.OrdinalIgnoreCase))
                     {
-                        if (Enum.TryParse(typeof(ClassBase.Card.CardDatabase.Rank), cellValue, out var rankEnum))
+                        if (Enum.TryParse(typeof(ClassBase.Card.CardData.Rank), cellValue, out var rankEnum))
                         {
-                            rowDict[header] = ((int)(ClassBase.Card.CardDatabase.Rank)rankEnum).ToString();
+                            rowDict[header] = ((int)(ClassBase.Card.CardData.Rank)rankEnum).ToString();
                         }
                         else
                         {

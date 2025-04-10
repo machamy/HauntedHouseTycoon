@@ -1,6 +1,7 @@
 ﻿
 using Define;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 /// <summary>
 /// 카드의 종류별 안쪽 프레임
@@ -9,6 +10,6 @@ using UnityEngine;
 public class CardInnerFrameSpritesSO : ScriptableObject
 { 
     public CardType cardType;
+    public Sprite simpleInnerFrameSprite;
     public Sprite halfInnerFrameSprite;
-    public Sprite fullInnerFrameSprite;
 }

@@ -1,5 +1,6 @@
 ﻿
 using System;
+using Define;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -7,11 +8,10 @@ using UnityEngine.Serialization;
 public class CardSetting
 {
     public bool useDebugSprite = false;
-    [Header("Background Sprite")]
-    public Sprite simpleBackgroundSprite;
-    public Sprite halfBackgroundSprite;
-    public Sprite fullBackgroundSprite;
-    
+    [Header("Base Sprite")]
+    public CardBackgroundSpritesSO cardBackgroundSpritesSO;
+    public SerialzableDict<CardType, CardInnerFrameSpritesSO> cardInnerFrameSpritesSO;
+    public CardOuterFrameSpritesSO cardOuterFrameSpritesSO;
     
     [Header("Card Parameters")]
     public float slotWidth = 238.5f;

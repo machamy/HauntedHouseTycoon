@@ -6,12 +6,12 @@ using Newtonsoft.Json.Linq;
 using CommonFunction.TypeConversion;
 using System.Linq;
  
-public class CardDatabase : ScriptableObject, JsonToSO.ILoadFromJson, JsonToSO.IIndexedData<ClassBase.Card.CardDatabase>
+public class CardDatabase : ScriptableObject, JsonToSO.ILoadFromJson, JsonToSO.IIndexedData<ClassBase.Card.CardData>
 {
     [SerializeField]
-    public List<ClassBase.Card.CardDatabase> cardDatabaseList = new();
+    public List<ClassBase.Card.CardData> cardDatabaseList = new();
 
-    public ClassBase.Card.CardDatabase FindByIndex(long index)
+    public ClassBase.Card.CardData FindByIndex(long index)
     {
         return cardDatabaseList.FirstOrDefault(card => card.Index == index);
     }
@@ -61,14 +61,14 @@ public class CardDatabase : ScriptableObject, JsonToSO.ILoadFromJson, JsonToSO.I
                 }
             }
 
-            var card = new ClassBase.Card.CardDatabase
+            var card = new ClassBase.Card.CardData
             {
                 Index = TypeConverter.TryParseLong(cardObj["index"]?.ToString(), 0),
                 NameIndex = TypeConverter.TryParseLong(cardObj["nameIndex"]?.ToString(), 0),
                 ExplainIndex = TypeConverter.TryParseLong(cardObj["explainIndex"]?.ToString(), 0),
 
-                CardType = (ClassBase.Card.CardDatabase.Type)TypeConverter.TryParseInt(cardObj["type"]?.ToString(), 0),
-                CardRank = (ClassBase.Card.CardDatabase.Rank)TypeConverter.TryParseInt(cardObj["rank"]?.ToString(), 0),
+                CardType = (ClassBase.Card.CardData.Type)TypeConverter.TryParseInt(cardObj["type"]?.ToString(), 0),
+                CardRank = (ClassBase.Card.CardData.Rank)TypeConverter.TryParseInt(cardObj["rank"]?.ToString(), 0),
                 Cost = TypeConverter.TryParseInt(cardObj["cost"]?.ToString(), 0),
                 DestroyPayback = TypeConverter.TryParseInt(cardObj["destroyPayback"]?.ToString(), 0),
 

@@ -39,16 +39,16 @@ public class DataBaseManager : MonoBehaviour
 
     private void LoadAllDatabases()
     {
-        Register<AnimationData>("AssetBundles/CardDataBase_JSON/AnimationData.json");
+        Register<AnimationDatabase>("AssetBundles/CardDataBase_JSON/AnimationData.json");
         Register<CardDatabase>("AssetBundles/CardDataBase_JSON/CardData.json");
-        Register<EffectData>("AssetBundles/CardDataBase_JSON/CardEffectData.json");
-        Register<PackData>("AssetBundles/CardDataBase_JSON/CardpackData.json");
-        Register<EnterCardData>("AssetBundles/CardDataBase_JSON/EnterCardData.json");
-        Register<KeywordData>("AssetBundles/CardDataBase_JSON/KeywordData.json");
-        Register<MarketingData>("AssetBundles/CardDataBase_JSON/MarketingData.json");
-        Register<TextData>("AssetBundles/CardDataBase_JSON/TextData.json");
-        Register<TraumaData>("AssetBundles/CardDataBase_JSON/TraumaData.json");
-        Register<VisitorData>("AssetBundles/CardDataBase_JSON/VisitorData.json");
+        Register<EffectDatabase>("AssetBundles/CardDataBase_JSON/CardEffectData.json");
+        Register<PackDatabase>("AssetBundles/CardDataBase_JSON/CardpackData.json");
+        Register<EnterCardDatabase>("AssetBundles/CardDataBase_JSON/EnterCardData.json");
+        Register<KeywordDatabase>("AssetBundles/CardDataBase_JSON/KeywordData.json");
+        Register<MarketingDatabase>("AssetBundles/CardDataBase_JSON/MarketingData.json");
+        Register<TextDatabase>("AssetBundles/CardDataBase_JSON/TextData.json");
+        Register<TraumaDatabase>("AssetBundles/CardDataBase_JSON/TraumaData.json");
+        Register<VisitorDatabase>("AssetBundles/CardDataBase_JSON/VisitorData.json");
     }
 
     public T Get<T>() where T : ScriptableObject

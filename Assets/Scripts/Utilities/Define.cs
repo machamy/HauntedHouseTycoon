@@ -38,5 +38,12 @@
         Female,
     }
     
+    public enum CardType
+    {
+        None,
+        Fear,
+        Scream,
+        Support,
+    }
     // public enum 
 }

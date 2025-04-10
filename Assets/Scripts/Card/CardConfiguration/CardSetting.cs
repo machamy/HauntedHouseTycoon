@@ -7,6 +7,12 @@ using UnityEngine.Serialization;
 public class CardSetting
 {
     public bool useDebugSprite = false;
+    [Header("Background Sprite")]
+    public Sprite simpleBackgroundSprite;
+    public Sprite halfBackgroundSprite;
+    public Sprite fullBackgroundSprite;
+    
+    
     [Header("Card Parameters")]
     public float slotWidth = 238.5f;
     public float slotHeight = 375f;

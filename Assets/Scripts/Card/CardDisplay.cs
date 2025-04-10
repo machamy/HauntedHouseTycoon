@@ -5,6 +5,7 @@ using DG.Tweening;
 using Pools;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 
@@ -14,18 +15,29 @@ using UnityEngine.UI;
 /// </summary>
 public class CardDisplay : MonoBehaviour
 {
+    public enum CardDisplayType
+    {
+        None,
+        Half,
+        Simple,
+        Full,
+    }
+    
     public CardObject cardObject;
     private CardSetting CardSetting => cardObject.CardSetting;
     private CardSelection _cardSelection => cardObject.CardSelection;
     
-    [SerializeField] private Image cardImage;
+    [FormerlySerializedAs("cardImage")] [SerializeField] private Image cardBackgroundImage;
+    [SerializeField] private Image cardFrameImage;
     [SerializeField] private Image cardFullRightImage;
-    public Vector3 CardImageSize => cardImage.rectTransform.sizeDelta;
+    
+    [SerializeField,VisibleOnly] 
+    private CardDisplayType _cardDisplayType = CardDisplayType.Full;
+    public Vector3 CardImageSize => cardBackgroundImage.rectTransform.sizeDelta;
     private RectTransform rectTransform;
     
     private bool _isAnimating = false;
     public bool IsAnimating => _isAnimating;
-    
     private bool _handlerInitialized = false;
 
     private void Awake()
@@ -55,6 +67,9 @@ public class CardDisplay : MonoBehaviour
     {
         if (_handlerInitialized)
             return;
+        TycoonManager.Context.OnContextChanged -= OnContextChanged;
+        TycoonManager.Context.OnContextChanged += OnContextChanged;
+        
         _cardSelection.OnCardPointerEnter.RemoveListener(OnPointerEnter);
         _cardSelection.OnCardPointerExit.RemoveListener(OnPointerExit);
         _cardSelection.OnCardPointerDown -= OnPointerDown;
@@ -76,17 +91,18 @@ public class CardDisplay : MonoBehaviour
     
     public void InitializeDisplay()
     {
+        _cardDisplayType = CardDisplayType.Simple;
         transform.localScale = CardSetting.defaultScale * Vector3.one;
-        cardImage.color = Color.white;
+        cardBackgroundImage.color = Color.white;
         if(CardSetting.useDebugSprite)
         {
-            cardImage.sprite = cardObject.CardData.cardSprite;
+            cardBackgroundImage.sprite = cardObject.CardData.cardSprite;
         }
         else
         {
-            cardImage.sprite = cardObject.CardData.simpleCardSprite;
+            cardBackgroundImage.sprite = cardObject.CardData.simpleCardSprite;
         }
-        cardImage.SetNativeSize();
+        cardBackgroundImage.SetNativeSize();
     }
 
     public void UpdateIndex()
@@ -97,8 +113,8 @@ public class CardDisplay : MonoBehaviour
     public void DoFade(float targetAlpha, float duration,bool stopCurrent = true)
     {
         if(stopCurrent)
-            cardImage.DOKill();
-        cardImage.DOFade(targetAlpha, duration);
+            cardBackgroundImage.DOKill();
+        cardBackgroundImage.DOFade(targetAlpha, duration);
     }
 
     
@@ -215,19 +231,24 @@ public class CardDisplay : MonoBehaviour
     
     private void ShowSimpleCard()
     {
-        cardImage.sprite = cardObject.CardData.simpleCardSprite;
-        cardImage.SetNativeSize();
+        _cardDisplayType = CardDisplayType.Simple;
+        cardBackgroundImage.sprite = cardObject.CardData.simpleCardSprite;
+        cardBackgroundImage.SetNativeSize();
     }
     
     private void ShowHalfCard()
     {
-        cardImage.sprite = cardObject.CardData.halfCardSprite;
-        cardImage.SetNativeSize();
+        _cardDisplayType = CardDisplayType.Half;
+        cardBackgroundImage.sprite = cardObject.CardData.halfCardSprite;
+        cardBackgroundImage.SetNativeSize();
     }
 
 
     private void ShowFullCardUI()
     {
+        if (isShowPopup)
+            return;
+        _cardDisplayType = CardDisplayType.Full;
         CardPopupUI cardPopupUi = UIManager.Instance.CreateUI<CardPopupUI>(UI_Poups.CardPopup);
         cardPopupUi.Initialize(cardObject.CardData);
         isShowPopup = true;
@@ -241,6 +262,10 @@ public class CardDisplay : MonoBehaviour
             }
             isShowPopup = false;
         };
+    }
+    
+    private void OnContextChanged(TycoonManager.TycoonContext context)
+    {
     }
     
     private void OnPointerDown(PointerEventData eventData,CardSelection cardSelection)
@@ -283,7 +308,7 @@ public class CardDisplay : MonoBehaviour
             return;
         _isAnimating = true;
         transform.DOScale(CardSetting.dragScale, CardSetting.dragAnimationDuration);
-        cardImage.DOFade(CardSetting.dragAlpha, CardSetting.dragAnimationDuration)
+        cardBackgroundImage.DOFade(CardSetting.dragAlpha, CardSetting.dragAnimationDuration)
             .OnComplete(() => _isAnimating = false);
     }
     
@@ -292,13 +317,13 @@ public class CardDisplay : MonoBehaviour
         if(!cardSelection.IsDragging || cardSelection.IsUsed)
             return;
         transform.DOScale(CardSetting.defaultScale, CardSetting.dragAnimationDuration);
-        cardImage.DOFade(CardSetting.defaultAlpha, CardSetting.dragAnimationDuration);
+        cardBackgroundImage.DOFade(CardSetting.defaultAlpha, CardSetting.dragAnimationDuration);
     }
     
     public void StopAllDOTweens()
     {
         transform.DOKill();
-        cardImage.DOKill();
+        cardBackgroundImage.DOKill();
         _isAnimating = false;
     }
 }
